@@ -1,4 +1,3 @@
-# evauxie
 # Project Title
 
 Hey, this is evauxie.
@@ -41,26 +40,23 @@ Folders in Project
 * open the editor
 * open the htmk file into that editor
 * All CSS Files are in CSS folder
-* Main CSS file is Stylee.css
+* all css files are connected to same named html file
 * All images are pasted in images folder
- 
+* Main CSS files are bt5.css and main.css
 ```
 ##Structure
-/index.html Entry point for the application. (have to design)
+/index.html Entry point for the application.
 /blog.html Implementation of blogs, Archives, tags, search.
 /blog-description Description of blogs. Details, Images, tags.
-/Planning-Tools-Page-boxs.html all venues in list view
-/Planning-Tools-Page-carousol-page.html detail of choosen venue.
-/Planning-Tools-Page-grid.html venue's grid view
+/vendors.html all vendors. 
+/vendor-detail.html detail of choosen vendor.
+/vendor-profile.html vendor's profile.
+/vendor-inbox.html vendor's chat room where vendor send or recieve messages by user.
+/user-inbox.html   buyer's chat room where vendor send or recieve messages by vendors.
+/Payments.html all payments show here.
 #CSS
-bt5.css all css.
-main.css all all basic css.
-blog-home.css for blog page
-blog-home2.css for blog details page
-Planning-Tools-Page-box.css for Planning-Tools-Page-box.html
-Planning-Tools-Page-carousol-page.css for Planning-Tools-Page-carousol-page.html
-Planning-Tools-Page-grid.css for Planning-Tools-Page-grid.html
-
+style.css all css.
+navbar-footer.css css of footer and navbar
 #Font
 Poppins
 
@@ -69,7 +65,7 @@ Poppins
 
 Contributors names and contact info
 
-Owner: XolaniLLC
+Owner: evauxie
 Developer: Momina-11821
 Contact info: mominamalik307@gmail.com
 
