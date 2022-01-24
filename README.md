@@ -1,3 +1,4 @@
+# evauxie
 # Project Title
 
 Hey, this is evauxie.
@@ -44,24 +45,36 @@ Folders in Project
 * All images are pasted in images folder
 * Main CSS files are bt5.css and main.css
 ```
-##Structure
+### Structure
 /index.html Entry point for the application.
+
 /blog.html Implementation of blogs, Archives, tags, search.
+
 /blog-description Description of blogs. Details, Images, tags.
+
 /vendors.html all vendors. 
+
 /vendor-detail.html detail of choosen vendor.
+
 /vendor-profile.html vendor's profile.
+
 /vendor-inbox.html vendor's chat room where vendor send or recieve messages by user.
+
 /user-inbox.html   buyer's chat room where vendor send or recieve messages by vendors.
+
 /Payments.html all payments show here.
-#CSS
+
+### CSS
+
 style.css all css.
+
 navbar-footer.css css of footer and navbar
-#Font
+
+###Font
 Poppins
 
 
-## Authors
+### Authors
 
 Contributors names and contact info
 
