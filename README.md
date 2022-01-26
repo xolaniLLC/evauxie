@@ -20,6 +20,13 @@ You can be change your vendors anytime. Evauxie gives you many flexibilities.
 
 * You must have browser and windows.
 
+### Technologies
+
+* HTML
+* CSS
+* Bootstrap
+* JavaScript
+
 ### Installing
 
 * If you installed git you can clone the code to your machine, or download a ZIP of all the files directly.
