@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Assets/CSS/style.css">
+    <link rel="stylesheet" href="../Assets/icons/fontawesome-free-5.15.4-web/css/all.css">
+    <link rel="stylesheet" href="../Assets/bootstrap-5.1.3-dist/css/bootstrap.min.css">
+    <style>
+        @media (max-width: 860px) {
+            .Nav-menu{
+                position: absolute;
+                top: 115px;
+            }
+        }
+    </style>
+    <title>Evauxie</title>
+</head>
+<body>
+    <!-- navbar -->
+    
+    <div class="Navbar">
+        <!-- first_nav -->
+        <div class="first_nav" style="height: 35px;">
+
+        </div>
+        <!-- second_nav -->
+        <div class="second_nav ">
+            <div class="comp_logo">
+                <a href="" class=""><img src="../Assets/icons/logo 4 1.png" alt="" width="90px"></a>
+                <div class="menu-button icon">
+                    <span class="line top"></span>
+                    <span class="line middle"></span>
+                    <span class="line bottom"></span>
+                </div>
+                <a href="#" class="login_acout">
+                    <i class="fas fa-user-circle"></i>
+                    <p>william johnes</p>
+                </a>
+            </div>
+            <div class="Nav-menu">
+                <ul>
+                    <li>
+                        <a href="" class="">Planning Tools</a>
+                        <ul class="menu_list">
+                            <li><a href="">Check Lists</a></li>
+                            <li><a href="">Guest Lists</a></li>
+                            <li><a href="">Vendor Manager</a></li>
+                            <li><a href="">Budget</a></li>
+                        </ul>
+                        <div class="plan_tol_list plan_icon">
+                            <span class="tol_list plan_top"></span>
+                            <span class="tol_list plan_bottom"></span>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="" class="">Venues</a>
+                        <ul class="menu_list">
+                            <li><a href="">Gardens</a></li>
+                            <li><a href="">Marquee</a></li>
+                            <li><a href="">Beach</a></li>
+                            <li><a href="">Mountains</a></li>
+                            <li><a href="">Outdoor</a></li>
+                            <li><a href="">Mansions</a></li>
+                            <li><a href="">Hotels</a></li>
+                            <li><a href="">Resturants</a></li>
+                        </ul>
+                        <div class="plan_tol_list plan_icon">
+                            <span class="tol_list plan_top"></span>
+                            <span class="tol_list plan_bottom"></span>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="" class="">Vendors</a>
+                        <ul class="menu_list">
+                            <li><a href="">Photography</a></li>
+                            <li><a href="">DJS</a></li>
+                            <li><a href="">Wedding Planning</a></li>
+                            <li><a href="">Videography</a></li>
+                            <li><a href="">Catering</a></li>
+                            <li><a href="">Flowers</a></li>
+                        </ul>
+                        <div class="plan_tol_list plan_icon">
+                            <span class="tol_list plan_top"></span>
+                            <span class="tol_list plan_bottom"></span>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="" class="">Forum</a>
+                    </li>
+                    <li>
+                        <a href="" class="">Ideas</a>
+                    </li>
+                    <li>
+                        <a href="" class="">Blogs Posts</a>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- black_div  -->
+    <!-- vender page links -->
+    <div class="container">
+    <div class="vendor-pg-links">
+        <a href="#">
+            <div class="pg-link-box">
+                <img src="../Assets/icons/Group 488 (1).png" alt="" width="100px">
+                <p>Home</p>
+            </div>
+        </a>
+        <a href="#">
+            <div class="pg-link-box acc">
+                <img src="../Assets/icons/Group 489.png" alt="" width="100px">
+                <p>Account</p>
+            </div>
+        </a>
+        <a href="#">
+            <div class="pg-link-box acc">
+                <img src="../Assets/icons/Group 489.png" alt="" width="100px">
+                <p>Reviews</p>
+            </div>
+        </a>
+        <a href="#">
+            <div class="pg-link-box acc">
+                <img src="../Assets/icons/Group 489.png" alt="" width="100px">
+                <p>Messages</p>
+            </div> 
+        </a>
+        <a href="#">
+            <div class="pg-link-box acc">
+                <img src="../Assets/icons/Group 489.png" alt="" width="100px">
+                <p>Payments</p>
+            </div>
+        </a>
+    </div>
+</div>
+    <!-- booking manager page -->
+    <!-- booking manager calender section  -->
+    <div class="container">
+    <div class="book_mang_calender">
+        <h2>Calenders</h2>
+        <!-- booking manager calender -->
+        <div class="book_mang_calender_sec">
+            <div class="book_mang_calendar">
+                <div class="book_mang_calendar-header">
+                    <span class="month-picker" id="book-mang-month-picker">February</span>
+                    <div class="year-picker">
+                        <span class="year-change" id="book-mang-prev-year">
+                            <pre><</pre>
+                        </span>
+                        <span id="book-mang-year">2021</span>
+                        <span class="year-change" id="book-mang-next-year">
+                            <pre>></pre>
+                        </span>
+                    </div>
+                </div>
+                <div class="book-mang-calendar-body">
+                    <div class="calendar-week-day">
+                        <div>Sun</div>
+                        <div>Mon</div>
+                        <div>Tue</div>
+                        <div>Wed</div>
+                        <div>Thu</div>
+                        <div>Fri</div>
+                        <div>Sat</div>
+                    </div>
+                    <div class="book-mang-calendar-days"></div>
+                </div>
+                
+                <div class="book-mang-month-list"></div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Bookings of calint section -->
+    <div class="container">
+    <div class="bookings_calint_section">
+        <div class="bookings_sec">
+            <h2>Bookings</h2>
+            <div class="btns-all-bookings">
+                <button>All</button>
+                <button>ongoing</button>
+                <button>upcoming</button>
+                <button>Pending</button>
+            </div>
+            <div class="book_mang_list_sec">
+                <div class="book_list_div">
+                    <div class="booking_custm_detail">
+                        <div class="booking_custm_img">
+                            <img src="../Assets/images/Ellipse 109.png" alt="" width="130px">
+                        </div>
+                        <div class="booking_custm_info">
+                            <div class="booking_custm_nam">
+                                <p>Mr & Mrs Aineed Weeding</p>
+                                <div class="booking_custm_caldr">
+                                    <img src="../Assets/icons/Ellipse 94.png" alt="" width="40px">
+                                </div>
+                            </div>
+                            <div class="booking_custm_dates">
+                                <p>Dated: <span>8-01-2022</span> to <span>11-01-2022</span></p>
+                            </div>
+                            <div class="booking_info_btn">
+                                <div class="booking_custm_cont">
+                                    Contact Cutomer
+                                </div>
+                                <div class="booking_custm_bugt">
+                                    Budget: <span>1500 &dollar;</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book_checkList_sec">
+                        <div class="top_sec">
+                            <h1>CheckList</h1>
+                            <div class="new_checklist">
+                                &plus; Add New 
+                            </div>
+                        </div>
+                        <div class="bottom_sec">
+                            <div class="booked_checkList_paln">
+                                <div class="paln_top_sec">
+                                    <button>overdue</button>
+                                    <button>pending</button>
+                                    <button>Upcoming</button>
+                                </div>
+                                <div class="paln_bottom_sec">
+                                    <div class="paln_list_menu">
+                                        <div class="paln_checkbox">
+                                            <i class="far fa-check-circle"></i>
+                                            <!-- <i class="far fa-circle"></i> -->
+
+                                        </div>
+                                        <div class="paln_title">
+                                            <p class="editable">Start your shopping</p>
+                                            <div class="dates">
+                                                <p>October 29 </p>
+                                                <div class="icon"><img src="../Assets/icons/Frame.png" alt="" width="25px"></div>
+                                                <span>$ - $$</span>
+                                            </div>
+                                        </div>
+                                        <div class="paln_deletebox">
+                                            <i class="fas fa-times-circle"></i>
+                                        </div>
+                                    </div>
+                                    <div class="paln_list_menu">
+                                        <div class="paln_checkbox">
+                                            <i class="far fa-check-circle"></i>
+                                            
+                                        </div>
+                                        <div class="paln_title">
+                                            <p class="editable">Start your shopping</p>
+                                            <div class="dates">
+                                                <p>October 29 </p>
+                                                <div class="icon"><img src="../Assets/icons/Frame.png" alt="" width="30px"></div>
+                                                <span>$ - $$</span>
+                                            </div>
+                                        </div>
+                                        <div class="paln_deletebox">
+                                            <i class="fas fa-times-circle"></i>
+                                        </div>
+                                    </div>
+                                    <div class="paln_list_menu">
+                                        <div class="paln_checkbox">
+                                            <i class="far fa-check-circle"></i>
+                                            
+                                        </div>
+                                        <div class="paln_title">
+                                            <p class="editable">Start your shopping</p>
+                                            <div class="dates">
+                                                <p>October 29 </p>
+                                                <div class="icon"><img src="../Assets/icons/Frame.png" alt="" width="30px"></div>
+                                                <span>$ - $$</span>
+                                            </div>
+                                        </div>
+                                        <div class="paln_deletebox">
+                                            <i class="fas fa-times-circle"></i>
+                                        </div>
+                                    </div>
+                                    <div class="paln_list_menu">
+                                        <div class="paln_checkbox">
+                                            <i class="far fa-check-circle"></i>
+                                            
+                                        </div>
+                                        <div class="paln_title">
+                                            <p class="editable">Start your shopping</p>
+                                            <div class="dates">
+                                                <p>October 29 </p>
+                                                <div class="icon"><img src="../Assets/icons/Frame.png" alt="" width="30px"></div>
+                                                <span>$ - $$</span>
+                                            </div>
+                                        </div>
+                                        <div class="paln_deletebox">
+                                            <i class="fas fa-times-circle"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkList_paln_details">
+                                <div class="title">
+                                    <h2>Details</h2>
+                                    <div class="add_btn"><i class="fas fa-pen"></i></div>
+                                </div>
+                                <div class="detalis_txt">
+                                    Guests: 300 persons <br>
+                                    Amount paid: 10000$ <br>
+                                    Location: California <br>
+                                    Amount left:1500$ <br>
+                                    Event Category: Hotel
+                                </div>
+                                <button class="bottom_add_btn">
+                                    Add Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- footer -->
+    <div class="footer p-t">
+        <div class="bottom_logo">
+            <img src="../Assets/icons/Group 211.png" width="130px" alt="image not found">
+        </div>
+        <div class="news_let_div">
+            <div class="news_txt">
+                <p>
+                    <span>
+                        Get the Free Newsletter
+                    </span>
+                    <br>signup to get the updates about news and events
+                </p>
+            </div>
+            <div class="news_search">
+                <div class="search_bar">
+                    <input type="search" placeholder="Search Newsletter">
+                </div>
+                <button type="submit"><i class="far fa-envelope"></i></button>
+            </div>
+        </div>
+        <div class="footer_botm_sec">
+            <div class="footer_txt">
+                <h3>About Evauxie</h3>
+                <p>Lorem Ipsum is simply dummy  text of 
+                    the printing and typesetting industry. 
+                    Lorem Ipsum has been the industry's 
+                    standard dummy text ever since the 1500s,
+                    when an unknown printer took a galley.
+                </p>
+            </div>
+            <div class="kp-in-tu">
+                <h3>Keep in touch</h3>
+                <div class="conects">
+                    <ul>
+                        <li class="">
+                            <i class="fas fa-map-marker-alt"></i>&nbsp; &nbsp; <a href=""><p>38-2 Hilton Street, California, USA </p></a>
+                        </li>
+                        <li class="">
+                            <i class="fas fa-phone-alt"></i>&nbsp; &nbsp; <a href=""><p>(+01) 123 456 7890</p></a>
+                        </li>
+                        <li class="">
+                            <i class="fas fa-envelope"></i>&nbsp; &nbsp; <a href=""><p>abc.123@evauxie.com</p></a>
+                        </li>
+                        <li class="">
+                            <i class="far fa-clock"></i>&nbsp; &nbsp; <a href=""><p>Monday -Friday 9.00 am to 6.00 pm </p></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="gallery">
+                <h3>Gallery</h3>
+                <a href=""><img src="../Assets/icons/Group 80 (1).png" width="150px" alt=""></a>
+            </div>
+            <div class="quick_link">
+                <h3>Quick links</h3>
+                <div class="sec_link">
+                    <div class="first_sec_links">
+                        <ul>
+                            <li>
+                                <a href="">
+                                    <div class="play_ico"></div> <p>Our Services</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <div class="play_ico"></div> <p>Our Team</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <div class="play_ico"></div> <p>Our Blogs</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="second_sec_links">
+                        <ul>
+                            <li>
+                                <a href="">
+                                    <div class="play_ico"></div> <p>Rings & attire</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <div class="play_ico"></div> <p>About us</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <div class="play_ico"></div> <p>Vendors</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- script -->
+    <script src="../Assets/js/jquery.min.js"></script>
+    <script src="../Assets/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../Assets/js/Book_Mang_CalanderCSS.js"></script>
+    <script src="../Assets/js/script.js"></script>
+</body>
+</html>

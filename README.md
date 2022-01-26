@@ -43,6 +43,8 @@ With the files open in Visual Studio Code,
 * How to run the program
 * open the project in VS code
 * click on the index or home file it will be open in the default browser
+* there is a folder Vendor pages! 
+* there are pages and assets folder having all images and css file.
 ```
 Folders in Project
 * open the editor
@@ -53,7 +55,7 @@ Folders in Project
 * Main CSS files are bt5.css and main.css
 ```
 ### Structure
-/index.html Entry point for the application.
+
 
 /blog.html Implementation of blogs, Archives, tags, search.
 
@@ -71,6 +73,15 @@ Folders in Project
 
 /Payments.html all payments show here.
 
+/account.html show account of vendor
+
+/booking manager.html vendors option
+
+/Messagesopen.html inbox of vendor
+
+vendor home pagemanager.html vendors option page
+
+/vendor messages.html vendors option
 ### CSS
 
 style.css all css.
