@@ -54,6 +54,15 @@ Folders in Project
 * All images are pasted in images folder
 * Main CSS files are bt5.css and main.css
 ```
+
+* Open Pages vendor 
+* Folder admin having all admin pages
+* Assets having all css and images and jquery folders
+* Main css is in CSS folder in Pages vendor for pages in that folders
+* Pages having all past first push code on github
+* Vendor having all vendor pages
+
+
 ### Structure
 
 
@@ -71,13 +80,19 @@ Folders in Project
 
 /user-inbox.html   buyer's chat room where vendor send or recieve messages by vendors.
 
-/Payments.html all payments show here.
+/Vendor Payments.html all payments show here.
 
 /account.html show account of vendor
 
 /booking manager.html vendors option
 
 /Messagesopen.html inbox of vendor
+
+/inbox.html inbox of vendor
+
+/unread_msg.html unread messages for vendor
+
+/private_msg.html all private messages of vendor
 
 vendor home pagemanager.html vendors option page
 
