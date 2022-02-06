@@ -1,0 +1,349 @@
+/*----------------------------------------*/ 
+/*  9. Blog CSS
+/*----------------------------------------*/
+.single-blog{box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.15)}
+.blog-area .section-title h2 {
+    margin-bottom: 55px;
+}
+.blog-img{line-height: 0; position: relative}
+.blog-img a:after{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: rgb(56,62,86,0.4);
+    opacity: 0;
+    -webkit-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+.blog-img img {
+  width: 100%;
+}
+/*
+.blog-hover {
+    content: "";
+    left: 50%;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transition: all 0.5s ease 0s;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+}
+*/
+.blog-hover i{
+    color: #fff;
+    font-size: 20px;
+    z-index: 1;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    -webkit-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+.blog-hover i:hover{
+    color: #fb743e;
+}
+.single-blog:hover .blog-img a:after, .single-blog:hover .blog-hover, .single-blog:hover .blog-hover i{opacity: 1}
+.blog-top p{
+    font-size: 14px;
+    color: #606060;
+    
+    padding: 15px 20px 0px 25px;
+    border-bottom: 1px solid #E1E1E1;
+}
+.blog-top p i{
+    font-size: 16px;
+    color: #fb743e;
+    margin-left: 5px;
+}
+.blog-bottom{padding: 26px 15px 30px 25px}
+.blog-bottom h2{margin-bottom: 14px}
+.blog-bottom h2 a{
+    font-size: 18px;
+    color: #383e56;
+    font-weight: 700;
+    
+    text-transform: uppercase;
+    -webkit-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+.blog-bottom h2 a:hover{
+    color: #fb743e;
+}
+.blog-bottom a{
+    font-size: 14px;
+    color: #fb743e;
+    font-weight: 700;
+    
+    text-transform: uppercase;
+    -webkit-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+.blog-bottom a:hover{
+    color: #383e56;
+}
+.single-blog-widget h3{
+    font-size: 20px;
+    color: #383e56;
+    font-weight: 600;
+    
+    text-transform: uppercase;
+    margin-bottom: 35px;
+    line-height: 26px;
+}
+.blog-search form input{
+    border: 1px solid #E1E1E1;
+    padding: 11px 43px 11px 12px;
+    width: 100%;
+    font-size: 14px;
+    color: #606060;
+    font-weight: 400;
+    
+}
+.blog-search form{
+    position: relative;
+}
+.blog-search form button{
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #FDA172;
+    width: 43px;
+    height: 40px;
+    -webkit-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+.blog-search form button:hover{
+    background: #383e56;
+}
+.blog-search form button i{
+    font-size: 16px;
+    color: #606060;
+    line-height: 25px;
+}
+.blog-search form button:hover i{
+    color: #fff;
+}
+.single-blog-widget ul li{
+    display: block;
+    padding-bottom: 2px;
+}
+.single-blog-widget ul li:last-child{
+    padding-bottom: 2px;
+}
+.single-blog-widget ul li a{
+    font-size: 14px;
+    
+    font-weight: 600;
+    color: #606060;
+    -webkit-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+.single-blog-widget ul li:hover a{
+    color: #383e56;
+}
+.single-blog-banner a{position: relative; display: block}
+.single-blog-banner a img{line-height: 0; display: block}
+.single-blog-banner a:after{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.48);
+    content: "";
+}
+.single-blog-banner{position: relative}
+.single-blog-banner h2{
+    position: absolute;
+    left: 20px;
+    bottom: 25px;
+    font-size: 30px;
+    font-weight: 700;
+    
+    text-transform: uppercase;
+    color: #fefefe;
+    z-index: 9;
+    line-height: 35px;
+}
+.blog-sidebar.left{
+    margin-right: 70px;
+}
+.single-post-img{
+    
+}
+.single-post-img a{float: left; margin-right: 20px; position: relative; }
+.single-post-img a:after{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background:  rgba(236, 28, 35, 0.5) none repeat scroll 0 0;
+    opacity: 0;
+    -webkit-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+.single-post-img a:hover::after, .single-post-img a:hover .blog-hover, .single-post-img a:hover .blog-hover i{opacity: 1}
+.blog-img > a, .single-post-img a {
+    display: inline-block;
+    line-height: 0;
+    
+}
+.blog-sidebar.right{margin-left: 70px}
+.blog-area .pagination{margin-bottom: 0}
+.single-post-content{overflow: hidden; margin-bottom: -30px;}
+.single-post-content h5{
+    color: #000;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Poppins'
+    margin: 5px 0px;
+    
+}
+.single-post-content h6{
+   color: #c4c4c4;
+   line-height: 15px;
+   font-size: 12px;
+}
+.single-tag a{
+    float: left; 
+    text-transform: capitalize;
+    border: 1px solid #E1E1E1;
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: 300;
+     
+    display: block;
+    color: #606060;
+    -webkit-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+.single-tag a:hover{
+    color: #fff;
+    background: #2C2B5E;
+    border: 1px solid #2C2B5E;
+}
+.blog-details-content{padding-top: 30px; justify-content: all;}
+.blog-details-content h2{
+    font-size: 24px;
+    color: black;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+.blog-details-img{
+    width: 100%;
+    border-top: 5px solid #FDA172;
+
+}
+.blog-details-content h6{
+    font-size: 16px;
+    color: #606060;
+    
+    font-weight: 400;
+    margin-bottom: 35px;
+}
+
+.comma{
+    font-size: 50px;
+    color: #FDA172;
+    margin-bottom: 0px;
+}
+.quote{
+    
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 25px; 
+    font-style: italic;
+    line-height: 25px;
+}
+.reply-area h3{
+    font-size: 20px;
+    color: #383e56;
+    text-transform: uppercase;
+    
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+.reply-area form{position: relative;}
+.reply-area h4{
+    font-size: 14px;
+    color: #606060;
+    font-weight: 400;
+    margin-bottom: 26px;
+}
+.reply-area form h4{
+    font-size: 14px;
+    color: #030303;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.reply-area form input, .reply-area form textarea{
+    border: 1px solid #383e56;
+    height: 42px;
+    width:100%;
+    margin-bottom: 20px;
+    padding: 0 15px;
+}
+.reply-area form textarea{
+    height: auto;
+    margin-bottom: 40px;
+}
+.reply-area form a.reply-btn{
+    background: #2C2B5E;
+    color: #fff;
+    text-transform: uppercase;
+    
+    padding: 8px 25px;
+    font-weight: 700;
+    display: inline-block;
+}
+.reply-area form a.reply-btn:hover{
+    background: #383e56;
+    -webkit-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+
+
+
+
+.commentstop{
+    font-weight: 600;
+    font-size: 30px;
+    text-align: left;
+    color: #000;
+    line-height: 20px;
+
+}
+
+.nameofcomment{
+    margin-top: 15px;
+    font-size: 20px;
+    color: #000;  
+    margin-left: -120px;
+}
+.nameofcomment span{
+    color: #c4c4c4;
+    font-weight: 600px;
+}
+.nameofcomment h6{
+    font-weight: normal;
+    color: #000;
+    
+
+}
