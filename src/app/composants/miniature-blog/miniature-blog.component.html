@@ -1,0 +1,12 @@
+<div class="card blog-card" style="width: 100%" *ngIf="currentBlog !== null">
+  <img src="{{currentBlog.images.length > 0 ? currentBlog.images[0] : ''}}" class="card-img-top" alt="...">
+  <div class=" card-body1 card-center blog-text d-flex justify-content-around d-flex ">
+    <span style="color: white"><i class="fas fa-user"></i> {{currentBlog.auteur}}</span>
+    <span style="color: white"><i class="far fa-calendar-alt"></i> {{currentBlog.date | date:"dd / MM / yyyy"}}</span>
+  </div>
+  <div class="card-body blog-card-footer">
+    <h5 class="card-title"><b> {{currentBlog.titre}}</b> </h5>
+    <p class="card-text">{{currentBlog.contenu}}</p>
+    <a routerLink="../blog-detail/{{idBlog}}">Read More</a>
+  </div>
+</div>

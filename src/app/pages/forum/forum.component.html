@@ -1,0 +1,46 @@
+<app-header></app-header>
+
+<div class="mebr_wel_tit">
+  <h2>Welcome to our Member Community</h2>
+</div>
+<div class="mebr_backimage">
+  <div class="white_filter">
+    <h1>Start Your Discussion</h1>
+    <p>Ask questions and get answers with the help of other engaged couples.</p>
+    <button routerLink="../forum/new-topic" class="mebr_btn">
+      Start Discussion
+    </button>
+  </div>
+</div>
+<div class="mebr_sec mb-5">
+  <div class="mebr_left_sec">
+    <div class="mebr_left_top">
+      <div class="top_btns">
+        <div class="btn">Categories</div>
+        <button class="btn">All</button>
+        <button class="btn">Recent Discussion</button>
+      </div>
+      <div class="bottom_btns">
+        <div class="btn">Most popular</div>
+        <div class="btn">Latest </div>
+        <div class="btn">Most views</div>
+      </div>
+    </div>
+    <div class="mebr_left_bottom">
+      <app-miniature-topic skin="item" idTopic="{{topic.id}}" *ngFor="let topic of listeTopics"></app-miniature-topic>
+    </div>
+  </div>
+  <div class="mebr_right_sec">
+    <div class="mebr_right_top">
+      <div class="mebr_search">
+        <input type="search" placeholder="Search your discusion">
+        <button type="submit"><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+    <div class="mebr_right_bottm">
+      <app-miniature-topic skin="suggestion" idTopic="{{topic.id}}" *ngFor="let topic of listeTopics"></app-miniature-topic>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

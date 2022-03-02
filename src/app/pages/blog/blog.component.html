@@ -1,0 +1,59 @@
+
+<app-header></app-header>
+
+<div class="blog-top-section">
+  <div class="blog-active-page-div">
+    <h5 class="text-center">BLogs</h5>
+    <div class="d-flex justify-content-center">
+      <a href=""> Home</a>
+      <p> >></p>
+      <a href=""> Blogs</a>
+    </div>
+  </div>
+
+</div>
+<!-- section-2 -->
+<!-- section-3 -->
+
+<div class="container ">
+    <h1 class="text-center mt-5"> <b> Blogs</b></h1>
+      <div class="row mt-4">
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-5 text-center h1" *ngIf="listeBlogs.length === 0">
+          No content for the moment
+        </div>
+        <br> <a  (click)="tempBlog()">click ici pour ajouter blog</a>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-5" *ngFor="let blog of listeBlogs">
+          <app-miniature-blog idBlog="{{blog.id}}"></app-miniature-blog>
+        </div>
+
+      </div>
+</div>
+
+  <!-- cards-boxes -->
+
+  <!-- cards-boxes -->
+
+<!-- section-3 -->
+<!-- pagination -->
+<nav aria-label="Page navigation example" *ngIf="listeBlogs.length !== 0">
+  <ul style="margin-left: -45px !important;" class="pagination d-flex justify-content-center mt-4">
+    <li class="page-item">
+      <a class="page-link pagination-indicator" href="#" aria-label="Previous">
+        <span aria-hidden="true"><i class="fas fa-arrow-left"></i></span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link pagination-indicator" href="#" aria-label="Next">
+        <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<p class="mt-5">&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;</p>
+
+<app-footer></app-footer>

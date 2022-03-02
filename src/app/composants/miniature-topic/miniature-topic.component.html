@@ -1,0 +1,55 @@
+<div class="mebr_discu_box" *ngIf="currentTopic && skin === 'item'">
+  <div class="discu_box_img">
+    <div class="box_img_f" style="background-image: url( {{ currentUser && currentUser.photo ? currentUser.photo : 'assets/images/user.png' }} )"></div>
+
+  </div>
+  <div class="discu_text">
+    <div class="text_tiltle">
+      <h4>{{currentTopic.titre}}</h4>
+      <div class="text_time">
+        &nbsp; &nbsp; {{minEcouler(currentTopic.date)}} minutes ago
+      </div>
+    </div>
+    <div class="text_nam-time" *ngIf="currentUser">
+      <p><b> {{currentUser.prenom + ' ' + currentUser.nom}}</b> in <b> {{currentTopic.categories[0]}}</b>, on {{currentTopic.date | date:"MMM dd, yyyy"}} at {{currentTopic.date | date:"hh:mm"}}</p>
+    </div>
+    <div class="text_disp">
+      <p>{{getPureTexte(currentTopic.contenu)}}</p>
+    </div>
+    <div class="text_discu_view">
+      <div class="text_discu_p_view">
+        <div class="discu_p_img" *ngFor="let user of currentUserComment" [style]="'background-image: url(' + user.photo ? user.photo : '' + ')'"></div>
+      </div>
+      <div class="text-soicl">
+        <div class="text_comm">
+          {{currentCommentaire.length}}
+          <i class="far fa-comment"></i>
+        </div>
+        <div class="text_like">
+          {{currentTopic.like.length}}
+          <i class="fas fa-heart"></i>
+        </div>
+        <div class="text_views">
+          {{currentTopic.vus.length}}
+          <i class="far fa-eye"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="search_msg_box" *ngIf="currentTopic && skin === 'suggestion'">
+  <div class="msg_box_img" style="background-image: url( {{ currentUser && currentUser.photo ? currentUser.photo : 'assets/images/user.png' }} )"></div>
+  <div class="msg_box_txt">
+    <div class="box_txt_f">
+      {{currentTopic.categories[0]}} -
+      {{currentTopic.titre}}
+    </div>
+    <div class="box_txt_n">
+      <b *ngIf="currentUser">{{currentUser.prenom + ' ' + currentUser.nom}}</b>
+    </div>
+    <div class="box_txt_t">
+      {{minEcouler(currentTopic.date)}} minutes ago
+    </div>
+  </div>
+</div>

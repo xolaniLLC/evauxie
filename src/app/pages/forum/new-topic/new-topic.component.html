@@ -1,0 +1,61 @@
+<app-header></app-header>
+
+<div class="mebr_sec mb-5">
+  <div class="mebr_left_sec new_discussion">
+    <h3>New Discussion</h3>
+    <div class="new_discu_boad_sec">
+      <form #form="ngForm" (ngSubmit)="sendTopic(form)">
+        <div class="new_discu_boad_top">
+          <input ngModel name="titre" type="text" placeholder="write title of discussion here.">
+
+          <div class="dropdown">
+            <select ngModel name="categorie" class="new_discu_grup form-select" aria-label="Default select example">
+              <option selected>Open this select menu</option>
+              <option value="Wedding attire">Wedding attire</option>
+              <option value="Decorations">Decorations</option>
+              <option value="Planning">Planning</option>
+              <option value="Honey Moon">Honey Moon</option>
+              <option value="Married Life">Married Life</option>
+              <option value="Hair and Makeup">Hair and Makeup</option>
+              <option value="View All">View All</option>
+            </select>
+          </div>
+        </div>
+
+        <editor class="mt-5"
+          ngModel
+          name="html"
+          apiKey="ykyh8j6aqah0jdmw6sbtjjtvrnvprawtf5mx81xfhyx8f7i5"
+          [init]="{
+               height: 500,
+               menubar: false,
+               plugins: [
+                 'advlist autolink lists link image charmap print preview anchor',
+                 'searchreplace visualblocks code fullscreen',
+                 'insertdatetime media table paste code help wordcount'
+               ],
+               toolbar:
+                 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
+             }"
+        ></editor>
+
+        <div class="new_discu_boad_bottom">
+          <button [disabled]="titre === '' || categorie === '' || html === ''" type="submit">Post</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="mebr_right_sec">
+    <div class="mebr_right_top">
+      <div class="mebr_search">
+        <input type="search" placeholder="Search your discusion">
+        <button type="submit"><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+    <div class="mebr_right_bottm">
+      <app-miniature-topic skin="suggestion" idTopic="{{topic.id}}" *ngFor="let topic of listeTopics"></app-miniature-topic>
+    </div>
+  </div>
+</div>
+
+<app-footer class="mt-5"></app-footer>

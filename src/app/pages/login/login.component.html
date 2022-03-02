@@ -1,0 +1,38 @@
+<form #form="ngForm" (ngSubmit)="loginEmail(form)">
+  <div class="login_body">
+    <div class="login_farm_div">
+      <h2>login with Evauxie</h2>
+      <div class="last_txt">
+        <span>not a member yet?</span>
+        <a routerLink="../register">register now</a>
+      </div>
+      <div class="ico_section">
+        <a href=""><div class="ico_d ico1"></div></a>
+        <a href=""><div class="ico_d ico2"></div></a>
+        <a (click)="lrgoogle()"><div class="ico_d ico3"></div></a>
+      </div>
+
+        <div class="name_box email_box">
+          <span>User name</span>
+          <input ngModel [disabled]="isLoading" required name="email" type="email" placeholder="email">
+        </div>
+        <div class="name_box email_box">
+          <span>enter your password</span>
+          <input ngModel [disabled]="isLoading" required name="password" type="password" placeholder="password">
+        </div>
+        <button [disabled]="isLoading || form.invalid" type="submit">login</button>
+
+      <!--div class="last_txt">
+        <span>Forgot your password?</span>
+        <a routerLink="../login"> Click here</a>
+      </div-->
+
+      <div class="spinner-border mt-4" *ngIf="isLoading" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <div class="log_img_section">
+      <div class="log_img_div"></div>
+    </div>
+  </div>
+</form>

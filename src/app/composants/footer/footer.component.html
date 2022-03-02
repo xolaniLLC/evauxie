@@ -1,0 +1,99 @@
+<!-- footer -->
+<div class="footer" style="margin-top: 0px;">
+  <div class="bottom_logo">
+    <img src="assets/icons/Group 211.png" width="130px" alt="image not found">
+  </div>
+  <div class="news_let_div">
+    <div class="news_txt">
+      <p>
+                    <span>
+                        Get the Free Newsletter
+                    </span>
+        <br>signup to get the updates about news and events
+      </p>
+    </div>
+    <div class="news_search">
+      <div class="search_bar">
+        <input [disabled]="isLoading" [(ngModel)]="email" type="search" placeholder="Search Newsletter">
+      </div>
+      <button (click)="newSubcriber()" [disabled]="!email" type="submit"><i class="far fa-envelope"></i></button>
+    </div>
+  </div>
+  <div class="footer_botm_sec">
+    <div class="footer_txt">
+      <h3>About Evauxie</h3>
+      <p>Lorem Ipsum is simply dummy  text of
+        the printing and typesetting industry.
+        Lorem Ipsum has been the industry's
+        standard dummy text ever since the 1500s,
+        when an unknown printer took a galley.
+      </p>
+    </div>
+    <div class="kp-in-tu">
+      <h3>Keep in touch</h3>
+      <div class="conects">
+        <ul>
+          <li class="">
+            <i class="fas fa-map-marker-alt"></i>&nbsp; &nbsp; <a href=""><p>38-2 Hilton Street, California, USA </p></a>
+          </li>
+          <li class="">
+            <i class="fas fa-phone-alt"></i>&nbsp; &nbsp; <a href=""><p>(+01) 123 456 7890</p></a>
+          </li>
+          <li class="">
+            <i class="fas fa-envelope"></i>&nbsp; &nbsp; <a href=""><p>abc.123@evauxie.com</p></a>
+          </li>
+          <li class="">
+            <i class="far fa-clock"></i>&nbsp; &nbsp; <a href=""><p>Monday -Friday 9.00 am to 6.00 pm </p></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="gallery">
+      <h3>Gallery</h3>
+      <a href=""><img src="assets/icons/Group 80 (1).png" width="150px" alt=""></a>
+    </div>
+    <div class="quick_link">
+      <h3>Quick links</h3>
+      <div class="sec_link">
+        <div class="first_sec_links">
+          <ul>
+            <li>
+              <a href="">
+                <div class="play_ico"></div> <p>Our Services</p>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <div class="play_ico"></div> <p>Our Team</p>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <div class="play_ico"></div> <p>Our Blogs</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="second_sec_links">
+          <ul>
+            <li>
+              <a href="">
+                <div class="play_ico"></div> <p>Rings & attire</p>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <div class="play_ico"></div> <p>About us</p>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <div class="play_ico"></div> <p>Vendors</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
