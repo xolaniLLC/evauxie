@@ -1,44 +1,8 @@
 <app-header></app-header>
 
 <!-- vender page links -->
-<div class="vendor-pg-links">
-  <a href="./Client  Checklist page.html">
-    <div class="pg-link-box">
-      <img src="assets/icons/checklist icon.png" alt="" width="100px" />
-      <p>Checklist</p>
-    </div>
-  </a>
-  <a href="./Client Favourite Vendors.html">
-    <div class="pg-link-box acc">
-      <img src="assets/icons/hand shake icon.png" alt="" width="100px" />
-      <p>Vendor Manager</p>
-    </div>
-  </a>
-  <a href="./custmer Budget.html">
-    <div class="pg-link-box acc">
-      <img src="assets/icons/dollar.png" alt="" width="100px" />
-      <p>Budget</p>
-    </div>
-  </a>
-  <a href="./Guests Lists.html">
-    <div class="pg-link-box acc">
-      <img src="assets/icons/Group 489.png" alt="" width="100px" />
-      <p>Guests List</p>
-    </div>
-  </a>
-  <a href="./Client Inbox.html">
-    <div class="pg-link-box acc">
-      <img src="assets/icons/messeges.png" alt="" width="100px" />
-      <p>Messeges</p>
-    </div>
-  </a>
-  <a href="./payments.html">
-    <div class="pg-link-box acc">
-      <img src="assets/icons/PAYMENTS.png" alt="" width="100px" />
-      <p>Payments</p>
-    </div>
-  </a>
-</div>
+<app-menu-planning-tools></app-menu-planning-tools>
+
 <div class="gesuts_first_div">
   <button><i class="far fa-envelope"></i> <span>Message Guests</span></button>
   <p>guests list</p>
@@ -50,333 +14,62 @@
 <div class="overview_div">
   <h2>Overview</h2>
   <div class="over_btn">
-    <button class="add_guests"><i class="fas fa-plus"></i>Guests</button>
-    <button class="add_group"><i class="fas fa-plus"></i>group</button>
+    <button data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="add_guests"><i class="fas fa-plus"></i>Guests</button>
+    <!--button class="add_group"><i class="fas fa-plus"></i>group</button-->
   </div>
 </div>
-<div class="gesut_final_div">
+<div class="gesut_final_div" *ngIf="currentEvent">
   <div class="totle_guests_div">
     <h2>totle guests</h2>
     <div class="t_gesuts_btn">
-      <div id="attend" class="guest_act"><p>attending</p> <span>02</span></div>
-      <div id="decline"><p>Declined</p> <span>00</span></div>
-      <div id="awating"><p>awating</p> <span>00</span></div>
+      <div id="all" (click)="vue = -2" [class]="vue === -2 ? 'guest_act' : ''"><p>All</p> <span>{{liste_invite.length}}</span></div>
+      <div id="attend" (click)="vue = 0" [class]="vue === 0 ? 'guest_act' : ''"><p>On hold</p> <span>{{liste_invite_en_attente.length}}</span></div>
+      <div id="decline" (click)="vue = 1" [class]="vue === 1 ? 'guest_act' : ''"><p>Validate</p> <span>{{liste_invite_accepted.length}}</span></div>
+      <div id="awating" (click)="vue = -1" [class]="vue === -1 ? 'guest_act' : ''"><p>Declined</p> <span>{{liste_invite_declined.length}}</span></div>
     </div>
   </div>
   <div id="attend_div" class="guests_show_div">
     <div class="gesut_box">
       <div class="chexk">
-        <input type="checkbox">
-        <span>select all</span>
+        <input id="checkBoxAll" type="checkbox" (click)="liste_invite_select.length === liste_invite.length ? liste_invite_select = [] : liste_invite_select = liste_invite"> &nbsp; &nbsp;
+        <label for="checkBoxAll">select all</label>
       </div>
 
     </div>
     <div class="gesut_box gus head">
       <div class="data_box">gesuts</div>
       <div class="data_box">rsvp</div>
-      <div class="data_box">contect</div>
+      <div class="data_box">contact</div>
       <div class="data_box">edit</div>
     </div>
-    <div class="gesut_box gus">
-      <div class="data_box"><input type="checkbox"> <span>Name of guest</span></div>
+    <div *ngIf="liste_invite.length === 0" class="text-center p-5" style="color: #8e8e8e">
+      Aucun invité pour cette evenement
+    </div>
+    <div class="gesut_box gus" *ngFor="let guest of (vue === -2 ? liste_invite : (vue === 1 ? liste_invite_accepted : (vue === 0 ? liste_invite_en_attente : liste_invite_declined))) ">
+      <div class="data_box"><input (click)="liste_invite_select.includes(guest) ? liste_invite_select.splice(liste_invite_select.indexOf(guest), 1) : liste_invite_select.push(guest)" type="checkbox" [checked]="liste_invite_select.includes(guest) ? true : false"> <span>{{guest.nom}}</span></div>
       <div class="data_box">
         <div class="dropdown">
-          <div class="dropdown-toggle on_cu_ges" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <div class="dropdown-toggle on_cu_ges" id="dropdownMenuButton0" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="far fa-check-circle"></i> attended
           </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton0">
             <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> decline</a></li>
             <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> awating</a></li>
           </ul>
         </div>
       </div>
-      <div class="data_box"><i class="g_ico far fa-envelope"></i></div>
+      <div class="data_box" title="{{guest.email}}"><i class="g_ico far fa-envelope"></i></div>
       <div class="data_box">
         <div class="dropdown">
-          <div id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <div id="dropdownMenuButton11" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="g_ico fas fa-ellipsis-h"></i>
           </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton11">
             <li><a class="dropdown-item" href="#">remove</a></li>
             <li><a class="dropdown-item" href="#">edit</a></li>
           </ul>
         </div>
       </div>
-    </div>
-    <div class="gesut_box gus">
-      <div class="data_box"><input type="checkbox"> <span>Name of guest</span></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div class="dropdown-toggle on_cu_ges" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="far fa-check-circle"></i> attended
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> decline</a></li>
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> awating</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="data_box"><i class="g_ico far fa-envelope"></i></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="g_ico fas fa-ellipsis-h"></i>
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">remove</a></li>
-            <li><a class="dropdown-item" href="#">edit</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="gesut_box gus">
-      <div class="data_box"><input type="checkbox"> <span>Name of guest</span></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div class="dropdown-toggle on_cu_ges" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="far fa-check-circle"></i> attended
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> decline</a></li>
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> awating</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="data_box"><i class="g_ico far fa-envelope"></i></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="g_ico fas fa-ellipsis-h"></i>
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">remove</a></li>
-            <li><a class="dropdown-item" href="#">edit</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="gesut_box gus">
-      <div class="data_box"><input type="checkbox"> <span>Name of guest</span></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div class="dropdown-toggle on_cu_ges" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="far fa-check-circle"></i> attended
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> decline</a></li>
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> awating</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="data_box"><i class="g_ico far fa-envelope"></i></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="g_ico fas fa-ellipsis-h"></i>
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">remove</a></li>
-            <li><a class="dropdown-item" href="#">edit</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="gesut_box gus">
-      <div class="data_box"><input type="checkbox"> <span>Name of guest</span></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div class="dropdown-toggle on_cu_ges" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="far fa-check-circle"></i> attended
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> decline</a></li>
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> awating</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="data_box"><i class="g_ico far fa-envelope"></i></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="g_ico fas fa-ellipsis-h"></i>
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">remove</a></li>
-            <li><a class="dropdown-item" href="#">edit</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="gesut_box gus">
-      <div class="data_box"><input type="checkbox"> <span>Name of guest</span></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div class="dropdown-toggle on_cu_ges" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="far fa-check-circle"></i> attended
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> decline</a></li>
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> awating</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="data_box"><i class="g_ico far fa-envelope"></i></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="g_ico fas fa-ellipsis-h"></i>
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">remove</a></li>
-            <li><a class="dropdown-item" href="#">edit</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="gesut_box gus">
-      <div class="data_box"><input type="checkbox"> <span>Name of guest</span></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div class="dropdown-toggle on_cu_ges" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="far fa-check-circle"></i> attended
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> decline</a></li>
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> awating</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="data_box"><i class="g_ico far fa-envelope"></i></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="g_ico fas fa-ellipsis-h"></i>
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">remove</a></li>
-            <li><a class="dropdown-item" href="#">edit</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="gesut_box gus">
-      <div class="data_box"><input type="checkbox"> <span>Name of guest</span></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div class="dropdown-toggle on_cu_ges" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="far fa-check-circle"></i> attended
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> decline</a></li>
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> awating</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="data_box"><i class="g_ico far fa-envelope"></i></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="g_ico fas fa-ellipsis-h"></i>
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">remove</a></li>
-            <li><a class="dropdown-item" href="#">edit</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="gesut_box gus">
-      <div class="data_box"><input type="checkbox"> <span>Name of guest</span></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div class="dropdown-toggle on_cu_ges" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="far fa-check-circle"></i> attended
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> decline</a></li>
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> awating</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="data_box"><i class="g_ico far fa-envelope"></i></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="g_ico fas fa-ellipsis-h"></i>
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">remove</a></li>
-            <li><a class="dropdown-item" href="#">edit</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="gesut_box gus">
-      <div class="data_box"><input type="checkbox"> <span>Name of guest</span></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div class="dropdown-toggle on_cu_ges" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="far fa-check-circle"></i> attended
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> decline</a></li>
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> awating</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="data_box"><i class="g_ico far fa-envelope"></i></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="g_ico fas fa-ellipsis-h"></i>
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">remove</a></li>
-            <li><a class="dropdown-item" href="#">edit</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="gesut_box gus">
-      <div class="data_box"><input type="checkbox"> <span>Name of guest</span></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div class="dropdown-toggle on_cu_ges" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="far fa-check-circle"></i> attended
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> decline</a></li>
-            <li><a class="dropdown-item" href="#"><i class="far fa-check-circle"></i> awating</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="data_box"><i class="g_ico far fa-envelope"></i></div>
-      <div class="data_box">
-        <div class="dropdown">
-          <div id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="g_ico fas fa-ellipsis-h"></i>
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">remove</a></li>
-            <li><a class="dropdown-item" href="#">edit</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="decline_div" class="guests_show_div guest_hide">
-    <div class="gesut_box">
-      <div class="chexk">
-        <input type="checkbox">
-        <span>select all</span>
-      </div>
-
-    </div>
-    <div class="gesut_box gus head">
-      <div class="data_box">gesuts</div>
-      <div class="data_box">rsvp</div>
-      <div class="data_box">contect</div>
-      <div class="data_box">edit</div>
     </div>
   </div>
   <div id="awating_div" class="guests_show_div guest_hide">
@@ -390,10 +83,48 @@
     <div class="gesut_box gus head">
       <div class="data_box">gesuts</div>
       <div class="data_box">rsvp</div>
-      <div class="data_box">contect</div>
+      <div class="data_box">contact</div>
       <div class="data_box">edit</div>
     </div>
   </div>
 </div>
 
+<br> <br> <br> <br> <br>
+
 <app-footer></app-footer>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #505b8e; color: white">
+        <h5 class="modal-title" id="staticBackdropLabel">Add guest form</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="form-add-event p-4" #form="ngForm" (ngSubmit)="addGuest(form)">
+            <label for="nom" class="form-label">Name of guest</label>
+            <div class="input-group mb-3">
+              <input type="text" required ngModel name="nom" id="nom" class="form-control border-0" placeholder="name" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <label for="email" class="form-label">Guest email address</label>
+            <div class="input-group mb-3">
+              <input type="text" required ngModel name="email" id="email" class="form-control border-0" placeholder="email" aria-label="Server">
+            </div>
+            <label for="etat" class="form-label">Presence of the guest</label>
+            <div class="input-group mb-3">
+              <select required ngModel name="etat" id="etat" class="form-select border-0" aria-label="Default select example">
+                <option value="0" selected>Attending</option>
+                <option value="1">Validate</option>
+              </select>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form class="form-add-event p-4" #form="ngForm" (ngSubmit)="addGuest(form)">
+          <button [disabled]="form.invalid" data-bs-dismiss="modal" style="background-color: #505b8e;" type="submit" class="btn btn-primary border-0">Add</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
 import {AuthentificationService} from "./authentification.service";
-import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from "@angular/router";
 import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService {
+export class RedirectGuardService  implements CanActivate {
 
   constructor(private authService: AuthentificationService,
               private router: Router) { }
@@ -18,9 +18,10 @@ export class AuthGuardService {
     return new Promise((resolve, reject) => {
       this.authService.isAuthenticated().then(
         (docRef) => {
-          if (docRef === false)
-            this.router.navigate(['/login']);
-          resolve(docRef as boolean);
+          if (docRef === true) {
+            this.router.navigate(['/home']);
+          }
+          resolve(!docRef as boolean);
         }
       );
     });

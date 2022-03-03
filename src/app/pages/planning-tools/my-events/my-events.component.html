@@ -1,0 +1,101 @@
+<app-header></app-header>
+
+<!-- black_div  -->
+<!-- vender page links -->
+<app-menu-planning-tools></app-menu-planning-tools>
+
+<button class="fav_fil_catga_btn">
+  <i class="fas fa-filter"></i>
+</button>
+<div class="fav_vender_catga Checklist_body">
+
+  <div class="Checklist_sec">
+    <div class="wed_chcklist_sec mb-5">
+      <div class="wed_chcklist">
+        <div class="wed_chcklist_left">
+          <h2>Your current event</h2>
+          <div class="wed_chck-day" *ngFor="let sec of liste_my_event">
+            {{ sec.etat === 1 ? sec.titre : null }}
+            {{ sec.etat === 1 && !event_en_cours.includes(sec) ? event_en_cours.push(sec) : null }}
+          </div>
+          <p *ngIf="event_en_cours.length === 0" class="p-3" style="color: #8e8e8e">
+            No events in progress
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="chck_to_do_sec">
+      <div class="paln_list_menu p-3" *ngIf="!view_form_event">
+        <div class="paln_checkbox chck_add_new" (click)="view_form_event = true">
+          <img src="assets/icons/Group 219.png" height="70px" alt="">
+          Add new event
+        </div>
+      </div>
+      <div class="paln_list_menu" *ngIf="view_form_event">
+        <form class="form-add-event p-4" #form="ngForm" (ngSubmit)="addMyEvent(form)">
+          <h4 class="mb-4">Information about the event</h4>
+          <div>
+            <label for="titre" class="form-label">Name of the event</label>
+            <div class="input-group mb-3">
+              <input type="text" required ngModel name="titre" id="titre" class="form-control border-0" placeholder="name" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <label for="date" class="form-label">Date event</label>
+            <div class="input-group mb-3">
+              <input type="date" required ngModel name="dateSelect" id="date" class="form-control border-0" placeholder="date" aria-label="Server">
+            </div>
+            <label for="categorie" class="form-label">Category event</label>
+            <div class="input-group mb-3">
+              <select required ngModel name="categorie" id="categorie" class="form-select border-0" aria-label="Default select example">
+                <option selected value="wedding">Wedding</option>
+              </select>
+            </div>
+            <label for="description" class="form-label">Description</label>
+            <div class="input-group mb-3">
+              <textarea ngModel name="description" id="description" class="form-control border-0" placeholder="description..." aria-label="Server"></textarea>
+            </div>
+          </div>
+        </form>
+          <div class="wed_chcklist_right">
+            <form class="form-add-event p-4" #form="ngForm" (ngSubmit)="addMyEvent(form)">
+              <button [disabled]="form.invalid" type="submit">
+                Add to your events
+              </button>
+            </form>
+            <button style="background-color: red" (click)="view_form_event = false">
+              Cancel
+            </button>
+          </div>
+      </div>
+      <h4 class="mt-3">
+        List of your events
+      </h4>
+      <p *ngIf="liste_my_event.length === 0" class="p-3" style="color: #8e8e8e">
+        No event created
+      </p>
+      <div class="paln_list_menu p-3" *ngFor="let event of liste_my_event">
+        <div class="paln_checkbox">
+          <i class="far fa-check-circle"></i>
+          <!-- <i class="far fa-circle"></i> -->
+        </div>
+        <div class="paln_title">
+          <p class="editable">{{event.titre}}</p>
+          <div class="dates">
+            <p>{{event.dateEvenement | date:"MMMM dd"}} </p>
+            &nbsp; &nbsp;
+            <a class="btn-define-currently" (click)="updateEtatEvent(event)" *ngIf="event.etat === 0">Set as current event</a>
+            <a class="btn-remove-currently" (click)="updateEtatEvent(event)" *ngIf="event.etat === 1">Remove events in progress</a>
+          </div>
+          <p class="py-3">
+            {{event.description}}
+          </p>
+        </div>
+        <div class="paln_deletebox">
+          <i class="fas fa-trash" (click)="deleteMyEvent(event)"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

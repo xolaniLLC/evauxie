@@ -16,24 +16,27 @@ import {BudgetComponent} from "./pages/planning-tools/budget/budget.component";
 import {VendorsComponent} from "./pages/vendors/vendors.component";
 import {VenuesComponent} from "./pages/venues/venues.component";
 import {VendorDetailComponent} from "./pages/vendors/vendor-detail/vendor-detail.component";
+import {MyEventsComponent} from "./pages/planning-tools/my-events/my-events.component";
+import {RedirectGuardService} from "./services/redirect-guard.service";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'login', canActivate: [AuthGuardService], component: LoginComponent },
-  { path: 'register', canActivate: [AuthGuardService], component: RegisterComponent },
+  { path: 'login', canActivate: [RedirectGuardService], component: LoginComponent },
+  { path: 'register', canActivate: [RedirectGuardService], component: RegisterComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'blog-detail/:id', component: BlogDetailComponent },
   { path: 'forum', component: ForumComponent },
   { path: 'forum/new-topic', component: NewTopicComponent },
   { path: 'planning-tools', component: PlanningToolsComponent },
-  { path: 'planning-tools/guests-list', component: GuestsListComponent },
-  { path: 'planning-tools/check-list-page', component: ChecklistPageComponent },
-  { path: 'planning-tools/vendor-manager', component: VendorManagerComponent },
-  { path: 'planning-tools/budget', component: BudgetComponent },
-  { path: 'vendors', component: VendorsComponent },
+  { path: 'guests-list', canActivate: [AuthGuardService], component: GuestsListComponent },
+  { path: 'check-list-page', canActivate: [AuthGuardService], component: ChecklistPageComponent },
+  { path: 'vendor-manager', canActivate: [AuthGuardService], component: VendorManagerComponent },
+  { path: 'budget', canActivate: [AuthGuardService], component: BudgetComponent },
+  { path: 'my-events', canActivate: [AuthGuardService], component: MyEventsComponent },
+  { path: 'vendors', canActivate: [AuthGuardService], component: VendorsComponent },
   { path: 'venues', component: VenuesComponent },
-  { path: 'vendors/vendor-detail/:id', component: VendorDetailComponent },
+  { path: 'vendors/vendor-detail/:id', canActivate: [AuthGuardService], component: VendorDetailComponent },
 ];
 
 @NgModule({

@@ -2,108 +2,26 @@
 
 <!-- black_div  -->
 <!-- vender page links -->
-<div class="vendor-pg-links">
-  <a href="./Client  Checklist page.html">
-    <div class="pg-link-box">
-      <img src="assets/icons/checklist icon.png" alt="" width="100px" />
-      <p>Checklist</p>
-    </div>
-  </a>
-  <a href="./Client Favourite Vendors.html">
-    <div class="pg-link-box acc">
-      <img src="assets/icons/hand shake icon.png" alt="" width="100px" />
-      <p>Vendor Manager</p>
-    </div>
-  </a>
-  <a href="./custmer Budget.html">
-    <div class="pg-link-box acc">
-      <img src="assets/icons/dollar.png" alt="" width="100px" />
-      <p>Budget</p>
-    </div>
-  </a>
-  <a href="./Guests Lists.html">
-    <div class="pg-link-box acc">
-      <img src="assets/icons/Group 489.png" alt="" width="100px" />
-      <p>Guests List</p>
-    </div>
-  </a>
-  <a href="./Client Inbox.html">
-    <div class="pg-link-box acc">
-      <img src="assets/icons/messeges.png" alt="" width="100px" />
-      <p>Messeges</p>
-    </div>
-  </a>
-  <a href="./payments.html">
-    <div class="pg-link-box acc">
-      <img src="assets/icons/PAYMENTS.png" alt="" width="100px" />
-      <p>Payments</p>
-    </div>
-  </a>
-</div>
+<app-menu-planning-tools></app-menu-planning-tools>
+
 <button class="fav_fil_catga_btn">
   <i class="fas fa-filter"></i>
 </button>
-<div class="fav_vender_catga Checklist_body">
-  <div class="fav_fil_catga"  >
-    <h4>Checklist</h4>
-    <div class="Checklist_seac">
-      <h6>Search status</h6>
-      <ul>
-        <li>
-          Completed <span>04</span>
-        </li>
-        <li>
-          To DO <span>20</span>
-        </li>
-      </ul>
-    </div>
-    <div class=" catgo_list">
-      <h6>By Date:</h6>
-      <ul>
-        <li><a href="">October 2021</a> <span>04</span></li>
-        <li><a href="">Novemeber 2021</a> <span>8</span> </li>
-        <li><a href="">December 2021</a> <span>4</span></li>
-        <li><a href="">January  2022</a> <span>3</span></li>
-        <li><a href="">Others</a> <span>3</span></li>
-
-
-      </ul>
-    </div>
-    <div class="catgo_list">
-      <h6>Categories</h6>
-      <ul>
-        <li><a href="">Accomodation</a> <span>04</span></li>
-        <li><a href="">Budget</a> </li>
-        <li><a href="">Beauty</a> </li>
-        <li><a href="">Guests</a> </li>
-        <li><a href="">Dress & Attire</a> </li>
-        <li><a href="">Jewelery</a> </li>
-        <li><a href="">April 2022</a> </li>
-      </ul>
-    </div>
-  </div>
+<div class="fav_vender_catga Checklist_body" *ngIf="currentEvent">
   <div class="Checklist_sec">
     <div class="wed_chcklist_sec">
       <div class="wed_chcklist">
         <div class="wed_chcklist_left">
-          <h2>Your Wedding Checklist</h2>
+          <h2>Your {{currentEvent.titre}} Checklist</h2>
           <div class="wed_chck-day">
-            382 days to go
+            {{getNombreJoursRestant(currentEvent.dateEvenement)}} days to go
           </div>
           <div class="wed_comp_mo">
-            <div class="wed_complete"></div>
+            <div [style]="'width: ' + liste_task_effectuer.length * 100 / liste_task.length + '%'" class="wed_complete"></div>
           </div>
           <div class="web_comp_num">
-            2% Completed
+            {{liste_task_effectuer.length * 100 / liste_task.length}}% Completed
           </div>
-        </div>
-        <div class="wed_chcklist_right">
-          <button>
-            Edit Checklist
-          </button>
-          <button>
-            Add New To-Do
-          </button>
         </div>
       </div>
     </div>
@@ -116,551 +34,124 @@
       </button>
     </div>
     <div class="chck_to_do_sec">
-      <div class="paln_list_menu">
-        <div class="paln_checkbox chck_add_new">
+      <div class="paln_list_menu p-3" *ngIf="!view_form_task">
+        <div class="paln_checkbox chck_add_new" (click)="view_form_task = true">
           <img src="assets/icons/Group 219.png" height="70px" alt="">
-          <!-- <i class="far fa-circle"></i> -->
           Add New Task
         </div>
       </div>
-      <h4>
-        overdue
-      </h4>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
+      <div class="paln_list_menu" *ngIf="view_form_task">
+        <form class="form-add-event p-4" #form="ngForm" (ngSubmit)="addTask(form)">
+          <h4 class="mb-4">Information about the task</h4>
+          <div>
+            <label for="titre" class="form-label">Name of the task</label>
+            <div class="input-group mb-3">
+              <input type="text" required ngModel name="titre" id="titre" class="form-control border-0" placeholder="name" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <label for="date" class="form-label">Date for doing the task</label>
+            <div class="input-group mb-3">
+              <input type="date" required ngModel name="date" id="date" class="form-control border-0" placeholder="date" aria-label="Server">
+            </div>
+            <label for="sommes" class="form-label">Price of the task</label>
+            <div class="input-group mb-3">
+              <input type="number" required ngModel name="sommes" id="sommes" class="form-control border-0" placeholder="price" aria-label="Server">
+            </div>
+            <label for="categorie" class="form-label">Category of the task</label>
+            <div class="input-group mb-3">
+              <select required ngModel name="categorie" id="categorie" class="form-select border-0" aria-label="Default select example">
+                <option value="accomodation">Accomodation</option>
+                <option value="budget">Budget</option>
+                <option value="beauty">Beauty</option>
+                <option value="guests">Guests</option>
+                <option value="dress & attire">Dress & Attire</option>
+                <option value="jewelery">Jewelery</option>
+              </select>
+            </div>
+            <label for="description" class="form-label">Description of the task</label>
+            <div class="input-group mb-3">
+              <textarea ngModel name="description" id="description" class="form-control border-0" placeholder="description..." aria-label="Server"></textarea>
+            </div>
           </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
+        </form>
+        <div class="wed_chcklist_right">
+          <form class="form-add-event p-4" #form="ngForm" (ngSubmit)="addTask(form)">
+            <button [disabled]="form.invalid" type="submit">
+              Add task
+            </button>
+          </form>
+          <button style="background-color: red" (click)="view_form_task = false">
+            Cancel
+          </button>
         </div>
       </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
+      <div class="mt-3" *ngIf="liste_task.length === 0">
+        <h4>
+          List of tasks
+        </h4>
+        <p *ngIf="liste_task.length === 0" class="p-3" style="color: #8e8e8e">
+          No tasks added
+        </p>
+      </div>
+      <div class="mt-3" *ngIf="liste_task_non_effectuer.length > 0">
+        <h4>
+          List of tasks not yet completed
+        </h4>
+        <div class="paln_list_menu p-3" *ngFor="let task of liste_task_non_effectuer">
+          <div class="paln_checkbox">
+            <i class="far fa-check-circle"></i>
+            <!-- <i class="far fa-circle"></i> -->
+          </div>
+          <div class="paln_title">
+            <p class="editable">{{task.titre}}</p>
+            <div class="dates">
+              <p>{{task.dateTaf | date:"MMMM dd"}} </p>
+              <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
+              <span *ngIf="task.sommes">{{task.sommes}}</span>
+            </div>
+            <p class="py-3">
+              <b>{{task.categorie}}</b> <br>
+              {{task.description}}
+            </p>
+          </div>
+          <div class="paln_deletebox">
+            <i class="fas fa-times-circle" (click)="deleteTask(task)"></i>
+          </div>
+          <div class="paln_deletebox">
+            <i style="color: #8e8e8e" class="fas fa-check" *ngIf="task.etat === 0" (click)="updateEtatEvent(task)"></i>
+            <i style="color: #34A853" class="fas fa-check-double" *ngIf="task.etat === 1" (click)="updateEtatEvent(task)"></i>
           </div>
         </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
       </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
+      <div class="mt-3" *ngIf="liste_task_effectuer.length > 0">
+        <h4>
+          List of tasks performed
+        </h4>
+        <div class="paln_list_menu p-3" *ngFor="let task of liste_task_effectuer">
+          <div class="paln_checkbox">
+            <i class="far fa-check-circle"></i>
+            <!-- <i class="far fa-circle"></i> -->
+          </div>
+          <div class="paln_title">
+            <p class="editable">{{task.titre}}</p>
+            <div class="dates">
+              <p>{{task.dateTaf | date:"MMMM dd"}} </p>
+              <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
+              <span *ngIf="task.sommes">{{task.sommes}}</span>
+            </div>
+            <p class="py-3">
+              <b>{{task.categorie}}</b> <br>
+              {{task.description}}
+            </p>
+          </div>
+          <div class="paln_deletebox">
+            <i class="fas fa-times-circle" (click)="deleteTask(task)"></i>
+          </div>
+          <div class="paln_deletebox">
+            <i style="color: #8e8e8e" class="fas fa-check" *ngIf="task.etat === 0" (click)="updateEtatEvent(task)"></i>
+            <i style="color: #34A853" class="fas fa-check-double" *ngIf="task.etat === 1" (click)="updateEtatEvent(task)"></i>
           </div>
         </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
       </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <h4>
-        November 2021
-      </h4>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <h4>
-        December 2021
-      </h4>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <h4>
-        January 2021
-      </h4>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <h4>
-        Others (After Wedding)
-      </h4>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-      <div class="paln_list_menu">
-        <div class="paln_checkbox">
-          <i class="far fa-check-circle"></i>
-          <!-- <i class="far fa-circle"></i> -->
-
-        </div>
-        <div class="paln_title">
-          <p class="editable">Start your shopping</p>
-          <div class="dates">
-            <p>October 29 </p>
-            <div class="icon"><img src="assets/icons/Frame.png" alt="" width="25px"></div>
-            <span>$ - $$</span>
-          </div>
-        </div>
-        <div class="paln_deletebox">
-          <i class="fas fa-times-circle"></i>
-        </div>
-      </div>
-
     </div>
   </div>
 </div>

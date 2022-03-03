@@ -26,6 +26,8 @@ import { BudgetComponent } from './pages/planning-tools/budget/budget.component'
 import { VendorsComponent } from './pages/vendors/vendors.component';
 import { VenuesComponent } from './pages/venues/venues.component';
 import { VendorDetailComponent } from './pages/vendors/vendor-detail/vendor-detail.component';
+import { MenuPlanningToolsComponent } from './composants/menu-planning-tools/menu-planning-tools.component';
+import { MyEventsComponent } from './pages/planning-tools/my-events/my-events.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { VendorDetailComponent } from './pages/vendors/vendor-detail/vendor-deta
     BudgetComponent,
     VendorsComponent,
     VenuesComponent,
-    VendorDetailComponent
+    VendorDetailComponent,
+    MenuPlanningToolsComponent,
+    MyEventsComponent
   ],
   imports: [
     BrowserModule,
