@@ -1,0 +1,144 @@
+<app-header></app-header>
+
+<!-- vender page links -->
+<app-menu-planning-tools></app-menu-planning-tools>
+
+<!-- Massege Section -->
+<div class="container">
+  <div class="masseges">
+    <div id="side_bar" class="msg_side_bar">
+      <i id="hide_btn" class="fas fa-times hide_btn"></i>
+      <div (click)="currentMenuSelect = 'write'" id="write_btn" class="unread_btn">Write message</div>
+      <div (click)="currentMenuSelect = 'inbox'" id="inbox_btn" class="unread_btn">Inbox <span *ngIf="msgNonLu > 0">{{msgNonLu}}</span></div>
+      <!--a (click)="currentMenuSelect = 'inbox'" href="./Client Unread_msg.html"><div id="unread_btn" class="unread_btn">Unread <span>10</span></div></a-->
+      <div class="hr"></div>
+      <ul class="msg_list">
+        <a (click)="currentMenuSelect = 'send'"><li id="vender_msg">Sent messages</li></a>
+        <a>&nbsp;</a>
+        <a>&nbsp;</a>
+      </ul>
+    </div>
+    <div class="msg_div">
+      <div class="msg_sec">
+        <section *ngIf="currentMenuSelect === 'open'">
+          <div>
+            <h1>PREVIEW MESSAGES {{typeCurrentIndexMessage === 'me' ? '' : (mesMessagesRecu[currentIndexMessage].reponse !== '' ? '[Reply]' : '')}}</h1> <br>
+            <p *ngIf="mesMessagesEnvoyer.length === 0" class="p-3" style="color: #8e8e8e">
+              No message sent
+            </p>
+            <div class="msg_sec">
+              <i id="sidebar_show" class="fas fa-plus-circle s_ico"></i>
+              <div class="msg_open">
+
+                <div class="msg_sender_name">{{typeCurrentIndexMessage === 'me' ? ('you sent it to ' + mesMessagesEnvoyer[currentIndexMessage].destinataires) : mesMessagesRecu[currentIndexMessage].auteur + ' you to send a message'}}</div>
+                <div class="date_msg_send">message sent at {{ typeCurrentIndexMessage === 'me' ? (mesMessagesEnvoyer[currentIndexMessage].date | date:"hh:mm dd MMMM yyyy") : (mesMessagesRecu[currentIndexMessage].date | date:"hh:mm dd MMMM yyyy") }}</div>
+                <div class="msg_div_open">
+                  <div class="sender_pic"></div>
+                  <div class="msg_send_read">
+                    <div class="msg_send_title">{{ typeCurrentIndexMessage === 'me' ? mesMessagesEnvoyer[currentIndexMessage].objet : mesMessagesRecu[currentIndexMessage].objet }}</div>
+                    <div class="msg_full">{{ typeCurrentIndexMessage === 'me' ? mesMessagesEnvoyer[currentIndexMessage].message : mesMessagesRecu[currentIndexMessage].message }}</div>
+                    <input *ngIf="typeCurrentIndexMessage !== 'me'" type="text" [(ngModel)]="reponseText" placeholder="write your reply......">
+                    <div class="rep_btn" (click)="repondreMessage()" *ngIf="typeCurrentIndexMessage !== 'me' && reponseText !== ''">Reply</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section *ngIf="currentMenuSelect === 'write'">
+          <h1>WRITE NEW MESSAGE</h1> <br>
+
+          <form class="form-add-event p-4" #form="ngForm" (ngSubmit)="sendMessage(form)">
+            <div>
+              <label for="destinataires" class="form-label">Recipients</label>
+              <div class="input-group mb-3">
+                <input type="text" required ngModel name="destinataires" id="destinataires" class="form-control" placeholder="you can separate the addresses with commas" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+              <label for="objet" class="form-label">Object</label>
+              <div class="input-group mb-3">
+                <input type="text" required ngModel name="objet" id="objet" class="form-control" placeholder="object" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+              <label for="description" class="form-label">Message</label>
+              <div class="input-group mb-3">
+                <textarea ngModel name="description" id="description" class="form-control" placeholder="write..." aria-label="Server"></textarea>
+              </div>
+            </div>
+          </form>
+          <div class="wed_chcklist_right">
+            <form class="form-add-event" #form="ngForm" (ngSubmit)="sendMessage(form)">
+              <button class="float-end" [disabled]="form.invalid" type="submit">
+                Send
+              </button>
+            </form>
+          </div>
+        </section>
+        <section *ngIf="currentMenuSelect === 'inbox'">
+          <div id="read_div">
+            <h1>MESSAGES RECEIVED</h1> <br>
+            <p *ngIf="mesMessagesRecu.length === 0" class="p-3" style="color: #8e8e8e">
+              No message received
+            </p>
+            <div class="msg_section" *ngIf="mesMessagesRecu.length > 0">
+              <a *ngFor="let msg of mesMessagesRecu; let i = index;" (click)="currentMenuSelect = 'open'; currentIndexMessage = i; typeCurrentIndexMessage = 'other'; msg.read.includes(currentEmailUser) ? '' : updateReadMessage(msg)">
+                <div class="{{msg.read.includes(currentEmailUser) ? 'readed_msg' : 'unreaded_msg'}} vender_msg msg_box open_1">
+                  <div class="msgs">
+                    <!--input type="checkbox" /-->
+                    <div class="avt_pic"></div>
+                    <div class="msg_nam_sec">
+                      <div class="msg_name">{{msg.auteur}}</div>
+                      <p class="msg_res">
+                        {{msg.objet}}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="time_msg">{{getNombreJoursRestant(msg.date)}} days ago</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>
+        <section *ngIf="currentMenuSelect === 'send'">
+          <div>
+            <h1>SENT MESSAGES</h1> <br>
+            <p *ngIf="mesMessagesEnvoyer.length === 0" class="p-3" style="color: #8e8e8e">
+              No message sent
+            </p>
+            <div class="msg_section" *ngIf="mesMessagesEnvoyer.length > 0">
+              <a *ngFor="let msg of mesMessagesRecu; let i = index;" (click)="currentMenuSelect = 'open'; currentIndexMessage = i; typeCurrentIndexMessage = 'me';">
+                <div class="{{msg.read.includes(currentEmailUser) ? 'readed_msg' : 'unreaded_msg'}} vender_msg msg_box open_1">
+                  <div class="msgs">
+                    <!--input type="checkbox" /-->
+                    <div class="avt_pic"></div>
+                    <div class="msg_nam_sec">
+                      <div class="msg_name">{{msg.destinataires}}</div>
+                      <p class="msg_res">
+                        {{msg.objet}}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="time_msg">{{getNombreJoursRestant(msg.date)}} days ago</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nest">
+  <div class="num_arows">
+    <i class="fas fa-chevron-left"></i>
+  </div>
+  <div class="all_nest_div">
+    <div class="num_box">1</div>
+    <div class="num_box">2</div>
+    <div class="num_box">3</div>
+    <div class="num_box">4</div>
+  </div>
+  <div class="num_arows">
+    <i class="fas fa-chevron-right"></i>
+  </div>
+</div>
+
+<app-footer></app-footer>

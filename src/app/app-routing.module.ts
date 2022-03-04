@@ -18,6 +18,7 @@ import {VenuesComponent} from "./pages/venues/venues.component";
 import {VendorDetailComponent} from "./pages/vendors/vendor-detail/vendor-detail.component";
 import {MyEventsComponent} from "./pages/planning-tools/my-events/my-events.component";
 import {RedirectGuardService} from "./services/redirect-guard.service";
+import {MessagesComponent} from "./pages/planning-tools/messages/messages.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'vendors', canActivate: [AuthGuardService], component: VendorsComponent },
   { path: 'venues', component: VenuesComponent },
   { path: 'vendors/vendor-detail/:id', canActivate: [AuthGuardService], component: VendorDetailComponent },
+  { path: 'messages', canActivate: [AuthGuardService], component: MessagesComponent },
 ];
 
 @NgModule({

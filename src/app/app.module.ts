@@ -28,6 +28,8 @@ import { VenuesComponent } from './pages/venues/venues.component';
 import { VendorDetailComponent } from './pages/vendors/vendor-detail/vendor-detail.component';
 import { MenuPlanningToolsComponent } from './composants/menu-planning-tools/menu-planning-tools.component';
 import { MyEventsComponent } from './pages/planning-tools/my-events/my-events.component';
+import { MessagesComponent } from './pages/planning-tools/messages/messages.component';
+import { WriteMessageComponent } from './composants/write-message/write-message.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { MyEventsComponent } from './pages/planning-tools/my-events/my-events.co
     VenuesComponent,
     VendorDetailComponent,
     MenuPlanningToolsComponent,
-    MyEventsComponent
+    MyEventsComponent,
+    MessagesComponent,
+    WriteMessageComponent
   ],
   imports: [
     BrowserModule,
