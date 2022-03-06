@@ -45,7 +45,8 @@ export class ChecklistPageComponent implements OnInit {
   deleteTask(task: Task) {
     this.eventService.deleteTask(task).then(
       () => {
-        alert('supprimer avec succes');
+        //alert('supprimer avec succes');
+        this.ngOnInit();
       }
     );
   }
@@ -54,7 +55,8 @@ export class ChecklistPageComponent implements OnInit {
     if(task.etat === 0) { task.etat = 1; } else { task.etat = 0; }
     this.eventService.updateTask(task).then(
       () => {
-        alert('mis a jour avec succes');
+        //alert('mis a jour avec succes');
+        this.ngOnInit();
       }
     );
   }
@@ -69,7 +71,8 @@ export class ChecklistPageComponent implements OnInit {
   addTask(form: any) {
     this.eventService.ajouterTache(new Task(this.currentEvent.id, form.value.titre, form.value.date, firebase.auth().currentUser?.email, form.value.categorie, 0, form.value.description, form.value.sommes)).then(
       () => {
-        alert('ajouter avec succes');
+        //alert('ajouter avec succes');
+        this.ngOnInit();
       }
     );
   }

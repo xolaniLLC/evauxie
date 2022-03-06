@@ -3,6 +3,7 @@ import firebase from "firebase";
 import {Evenement} from "../models/evenement";
 import {Task} from "../models/task";
 import {Guest} from "../models/guest";
+import {Depense} from "../models/depense";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,45 @@ export class EvenementService {
 
   constructor() { }
 
+  async ajouterDepense(dep: Depense) {
+    return new Promise<void>((resolve, reject) => {
+      firebase.firestore().collection('depenses').doc(dep.id).set(Object.assign({}, dep)).then(
+        () => {
+          resolve();
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async deleteDepense(dep: Depense) {
+    return new Promise<void>((resolve, reject) => {
+      firebase.firestore().collection('depenses').doc(dep.id).delete().then(
+        () => {
+          resolve();
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async updateDepense(dep: Depense) {
+    return new Promise<void>((resolve, reject) => {
+      firebase.firestore().collection('depenses').doc(dep.id).set(Object.assign({}, dep)).then(
+        () => {
+          resolve();
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
   async deleteGuest(guest: Guest) {
     return new Promise<void>((resolve, reject) => {
       firebase.firestore().collection('invites').doc(guest.id).delete().then(
@@ -18,6 +58,23 @@ export class EvenementService {
           resolve();
         },
         (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async getDepenseEvents(idEvent: string) {
+    return new Promise<Depense[]>((resolve, reject) => {
+      // @ts-ignore
+      firebase.firestore().collection('depenses').where('idEvenement', '==', idEvent).onSnapshot(
+        (docRef) => {
+          const result: Depense[] = [];
+          docRef.forEach(function (doc) {
+            result.push(doc.data() as Depense);
+          });
+          resolve(result as any);
+        }, (error) => {
           reject(error);
         }
       );

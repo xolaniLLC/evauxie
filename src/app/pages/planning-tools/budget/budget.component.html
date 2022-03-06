@@ -1,61 +1,25 @@
 <app-header></app-header>
 
-<!-- vender page links -->
-<div class="vendor-pg-links">
-  <a href="./Client  Checklist page.html">
-    <div class="pg-link-box">
-      <img src="assets/icons/checklist icon.png" alt="" width="100px" />
-      <p>Checklist</p>
-    </div>
-  </a>
-  <a href="./Client Favourite Vendors.html">
-    <div class="pg-link-box acc">
-      <img src="assets/icons/hand shake icon.png" alt="" width="100px" />
-      <p>Vendor Manager</p>
-    </div>
-  </a>
-  <a href="./custmer Budget.html">
-    <div class="pg-link-box acc">
-      <img src="assets/icons/dollar.png" alt="" width="100px" />
-      <p>Budget</p>
-    </div>
-  </a>
-  <a href="./Guests Lists.html">
-    <div class="pg-link-box acc">
-      <img src="assets/icons/Group 489.png" alt="" width="100px" />
-      <p>Guests List</p>
-    </div>
-  </a>
-  <a href="./Client Inbox.html">
-    <div class="pg-link-box acc">
-      <img src="assets/icons/messeges.png" alt="" width="100px" />
-      <p>Messeges</p>
-    </div>
-  </a>
-  <a href="./payments.html">
-    <div class="pg-link-box acc">
-      <img src="assets/icons/PAYMENTS.png" alt="" width="100px" />
-      <p>Payments</p>
-    </div>
-  </a>
-</div>
-<div class="container">
+<app-menu-planning-tools></app-menu-planning-tools>
+
+<div class="container mb-5">
   <button class="fav_fil_catga_btn">
     <i class="fas fa-filter"></i>
   </button>
   <div class="main_div">
 
-    <div class="fav_fil_catga"  >
+    <div class="fav_fil_catga" >
       <h5>Categories</h5>
       <div class="catgo_list">
         <ul>
-          <li><a href="">Accomodation</a> </li>
-          <li><a href="">Budget</a> </li>
-          <li><a href="">Beauty</a> </li>
-          <li><a href="">Guests</a> </li>
-          <li><a href="">Dress & Attire</a> </li>
-          <li><a href="">Jewelery</a> </li>
-          <li><a href="">April 2022</a> </li>
+          <li><a [style]="categorieSelect === '' ? 'color: #fda172' : ''" routerLink="./" (click)="categorieSelect = ''">All</a> </li>
+          <li><a [style]="categorieSelect === 'accomodation' ? 'color: #fda172' : ''" routerLink="./" (click)="categorieSelect = 'accomodation'">Accomodation</a> </li>
+          <li><a [style]="categorieSelect === 'budget' ? 'color: #fda172' : ''" routerLink="./" (click)="categorieSelect = 'budget'">Budget</a> </li>
+          <li><a [style]="categorieSelect === 'beauty' ? 'color: #fda172' : ''" routerLink="./" (click)="categorieSelect = 'beauty'">Beauty</a> </li>
+          <li><a [style]="categorieSelect === 'guests' ? 'color: #fda172' : ''" routerLink="./" (click)="categorieSelect = 'guests'">Guests</a> </li>
+          <li><a [style]="categorieSelect === 'dress_&_attire' ? 'color: #fda172' : ''" routerLink="./" (click)="categorieSelect = 'dress_&_attire'">Dress & Attire</a> </li>
+          <li><a [style]="categorieSelect === 'jewelery' ? 'color: #fda172' : ''" routerLink="./" (click)="categorieSelect = 'jewelery'">Jewelery</a> </li>
+          <li><a [style]="categorieSelect === 'other' ? 'color: #fda172' : ''" routerLink="./" (click)="categorieSelect = 'other'">Other</a> </li>
         </ul>
       </div>
     </div>
@@ -65,62 +29,103 @@
         <p>estimated budget</p>
         <div class="buget_entry">
           <div class="buget_ico"><img src="assets/icons/Group 290.png" alt="" srcset=""></div>
-          <input type="number">
+          <input [(ngModel)]="newEstimateBudget" placeholder="Enter an amount" type="number">
           <i class="fas fa-dollar-sign"></i>
         </div>
         <p>You can edit this at any time.</p>
-        <button class="save_budget_btn">save budget</button>
+        <button [disabled]="currentEvent && (currentEvent.estimationBudget === newEstimateBudget)" (click)="saveNewEstimatBudget()" class="save_budget_btn">save budget</button>
       </div>
       <div class="venue_div">
         <div class="v_txt">venue</div>
         <div class="v_cost">
-          <div class="v_cost_txt">estimated cost: <span>$ 2,944</span></div>
+          <div class="v_cost_txt">estimated cost: <span>{{currentEvent ? currentEvent.estimationBudget : 0}}</span></div>
           <div class="v_cost_txt">final cost: <span>$ 0</span></div>
         </div>
-        <button><i class="fas fa-trash-alt"></i> remove</button>
-        <div class="v_box">
+        <div class="v_add_exp my-5" data-bs-toggle="modal" data-bs-target="#addDepenseModal">
+          <i class="fas fa-plus"></i>
+          <p>add new expenses</p>
+        </div>
+        <div class="v_box mb-4" *ngIf="depenses.length > 0">
           <div class="v_data_box">Expense</div>
           <div class="v_data_box">Estimated Cost</div>
           <div class="v_data_box">Final cost</div>
           <div class="v_data_box">Paid</div>
+          <div class="v_data_box">Operations</div>
         </div>
-        <div class="v_box">
-          <div class="v_data_box">Ceremony Venue Fee</div>
-          <div class="v_data_box">$ 100</div>
-          <div class="v_data_box">$ 0</div>
-          <div class="v_data_box">$ 0</div>
-        </div>
-        <div class="v_box">
-          <div class="v_data_box">Ceremony Venue Fee</div>
-          <div class="v_data_box">$ 100</div>
-          <div class="v_data_box">$ 0</div>
-          <div class="v_data_box">$ 0</div>
-        </div>
-        <div class="v_box">
-          <div class="v_data_box">Ceremony Venue Fee</div>
-          <div class="v_data_box">$ 100</div>
-          <div class="v_data_box">$ 0</div>
-          <div class="v_data_box">$ 0</div>
-        </div>
-        <div class="v_box">
-          <div class="v_data_box">Ceremony Venue Fee</div>
-          <div class="v_data_box">$ 100</div>
-          <div class="v_data_box">$ 0</div>
-          <div class="v_data_box">$ 0</div>
-        </div>
-        <div class="v_add_exp">
-          <i class="fas fa-plus"></i>
-          <p>add new expenses</p>
-        </div>
-        <div class="v_box">
-          <div class="v_data_box">Totle...</div>
-          <div class="v_data_box">$ 400</div>
-          <div class="v_data_box">$ 0</div>
-          <div class="v_data_box">$ 0</div>
+        <p *ngIf="depenses.length === 0" class="p-3 mb-3" style="color: #8e8e8e">
+          No expenses recorded for the moment
+        </p>
+        <ng-container *ngFor="let depense of depenses">
+          <div class="v_box my-2" *ngIf="categorieSelect === '' || categorieSelect === depense.categorie">
+            <div class="v_data_box">{{depense.titre}}</div>
+            <div class="v_data_box">{{depense.coutEstime}}</div>
+            <div class="v_data_box">{{depense.coutFinal}}</div>
+            <div class="v_data_box">{{depense.paye}}</div>
+            <div class="v_data_box">
+              <button (click)="deleteDepense(depense)" ><i class="fas fa-trash-alt"></i></button>
+              <button class="mx-2" (click)="currentDepenseUpdate = depense"><i class="fas fa-edit"></i></button>
+            </div>
+          </div>
+        </ng-container>
+        <div class="v_box my-2" *ngIf="depenses.length > 0">
+          <div class="v_data_box">Total</div>
+          <div class="v_data_box">{{ce}}</div>
+          <div class="v_data_box">{{cf}}</div>
+          <div class="v_data_box">{{pa}}</div>
+          <div class="v_data_box"></div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
+<br> <br> <br> <br>
 <app-footer></app-footer>
+
+<div class="modal fade" id="addDepenseModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #505b8e; color: white">
+        <h5 class="modal-title" id="staticBackdropLabel">Add new expenses</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="form-add-event p-4" #form="ngForm" (ngSubmit)="addDepense(form)">
+          <label for="titre" class="form-label">{{currentDepenseUpdate ? 'Update' : 'Title of the expenditure'}}</label>
+          <div class="input-group mb-3">
+            <input type="text" required ngModel="{{currentDepenseUpdate ? currentDepenseUpdate.titre : ''}}" name="titre" id="titre" class="form-control" placeholder="name" aria-label="title" aria-describedby="basic-addon1">
+          </div>
+          <label for="coutEstime" class="form-label">Estimated Cost</label>
+          <div class="input-group mb-3">
+            <input type="number" ngModel="{{currentDepenseUpdate ? currentDepenseUpdate.coutEstime : ''}}" name="coutEstime" id="coutEstime" class="form-control" placeholder="amout" aria-label="Server">
+          </div>
+          <label for="coutEstime" class="form-label">Final cost</label>
+          <div class="input-group mb-3">
+            <input type="number" ngModel="{{currentDepenseUpdate ? currentDepenseUpdate.coutFinal : ''}}" name="coutFinal" id="coutFinal" class="form-control" placeholder="amout" aria-label="Server">
+          </div>
+          <label for="coutEstime" class="form-label">Paid</label>
+          <div class="input-group mb-3">
+            <input type="number" ngModel="{{currentDepenseUpdate ? currentDepenseUpdate.paye : ''}}" name="paye" id="paye" class="form-control" placeholder="amout" aria-label="Server">
+          </div>
+          <label for="categorie" class="form-label">Category</label>
+          <div class="input-group mb-3">
+            <select required ngModel="{{currentDepenseUpdate ? currentDepenseUpdate.categorie : ''}}" name="categorie" id="categorie" class="form-select" aria-label="Default select example">
+              <option value="accomodation">Accomodation</option>
+              <option value="budget">Budget</option>
+              <option value="beauty">Beauty</option>
+              <option value="guests">Guests</option>
+              <option value="dress_&_attire">Dress & Attire</option>
+              <option value="jewelery">Jewelery</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form class="form-add-event p-4" #form="ngForm" (ngSubmit)="addDepense(form)">
+          <button [disabled]="form.invalid" data-bs-dismiss="modal" style="background-color: #505b8e;" type="submit" class="btn btn-primary border-0">Add</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

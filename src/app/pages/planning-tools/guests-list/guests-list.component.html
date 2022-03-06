@@ -3,24 +3,24 @@
 <!-- vender page links -->
 <app-menu-planning-tools></app-menu-planning-tools>
 
-<div class="gesuts_first_div">
-  <button><i class="far fa-envelope"></i> <span>Message Guests</span></button>
+<div class="gesuts_first_div container">
+  <button routerLink="../messages" [queryParams]="{ destinataires: liste_email_invite}"><i class="far fa-envelope"></i> <span>Message Guests</span></button>
   <p>guests list</p>
   <div>
     <input type="search" placeholder="Search Guests">
     <i class="fas fa-search"></i>
   </div>
 </div>
-<div class="overview_div">
+<div class="overview_div container">
   <h2>Overview</h2>
   <div class="over_btn">
     <button data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="add_guests"><i class="fas fa-plus"></i>Guests</button>
     <!--button class="add_group"><i class="fas fa-plus"></i>group</button-->
   </div>
 </div>
-<div class="gesut_final_div" *ngIf="currentEvent">
+<div class="gesut_final_div container" *ngIf="currentEvent">
   <div class="totle_guests_div">
-    <h2>totle guests</h2>
+    <h2 class="h3">totle guests</h2>
     <div class="t_gesuts_btn">
       <div id="all" (click)="vue = -2" [class]="vue === -2 ? 'guest_act' : ''"><p>All</p> <span>{{liste_invite.length}}</span></div>
       <div id="attend" (click)="vue = 0" [class]="vue === 0 ? 'guest_act' : ''"><p>On hold</p> <span>{{liste_invite_en_attente.length}}</span></div>
@@ -32,7 +32,8 @@
     <div class="gesut_box">
       <div class="chexk">
         <input id="checkBoxAll" type="checkbox" (click)="liste_invite_select.length === liste_invite.length ? liste_invite_select = [] : liste_invite_select = liste_invite"> &nbsp; &nbsp;
-        <label for="checkBoxAll">select all</label>
+        <label for="checkBoxAll">Select all</label>
+        &nbsp; &nbsp; <label *ngIf="liste_invite_select.length > 0" (click)="deleteGuestSelect()"> <a routerLink="./"> Delete selection </a> </label>
       </div>
 
     </div>

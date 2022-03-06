@@ -5,7 +5,7 @@
       <a routerLink="../register" class="reg"><i class="far fa-id-badge"></i>Not a member? <span>Register</span></a>
     </div>
     <div *ngIf="isConnected === 1">
-
+      <a *ngIf="currentUser" routerLink="../messages" class="agent_login d-flex align-items-center"><i class="fas fa-solid fa-message"></i>Messages {{messagesNonLus.length > 0 ? '[' + messagesNonLus.length + ']' : ''}} </a>
       <a href="#" style="text-transform: capitalize;" class="agent_login d-flex align-items-center" *ngIf="currentUser">
         <img width="32" height="32" src="{{currentUser.photo ? currentUser.photo : 'assets/images/user.png'}}" class="float-start rounded-circle" alt="...">
         &nbsp; {{currentUser.prenom + ' ' + currentUser.nom}}

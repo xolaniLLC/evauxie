@@ -9,6 +9,24 @@ export class MessageService {
 
   constructor() { }
 
+  async getMesMessagesNonLus() {
+    return new Promise<Message[]>((resolve, reject) => {
+      // @ts-ignore
+      firebase.firestore().collection('messages').where('destinataires', 'array-contains', firebase.auth().currentUser?.email).onSnapshot(
+        (docRef) => {
+          const result: Message[] = [];
+          docRef.forEach(function (doc) {
+            if (!doc.data().read.includes(firebase.auth().currentUser?.email))
+              result.push(doc.data() as Message);
+          });
+          resolve(result as any);
+        }, (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
   async updateMessage(msg: Message) {
     return new Promise<void>((resolve, reject) => {
       firebase.firestore().collection('messages').doc(msg.id).set(Object.assign({}, msg)).then(

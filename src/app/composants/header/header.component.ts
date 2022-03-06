@@ -3,6 +3,7 @@ import {AuthentificationService} from "../../services/authentification.service";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import firebase from "firebase";
+import {MessageService} from "../../services/message.service";
 
 @Component({
   selector: 'app-header',
@@ -13,8 +14,9 @@ export class HeaderComponent implements OnInit {
 
   isConnected = -1;
   currentUser: any = null;
+  messagesNonLus: any[] = [];
 
-  constructor(private userService: UserService, private authService: AuthentificationService, private router: Router) { }
+  constructor(private messageService: MessageService, private userService: UserService, private authService: AuthentificationService, private router: Router) { }
 
   ngOnInit(): void {
     this.authService.isAuthenticated().then(
@@ -25,6 +27,12 @@ export class HeaderComponent implements OnInit {
           this.userService.getInfosUserWitchId(tmpData).then(
             (data) => {
               this.currentUser = data;
+
+              this.messageService.getMesMessagesNonLus().then(
+                (msg) => {
+                  this.messagesNonLus = msg;
+                }
+              );
             }
           );
         } else { this.isConnected = 0; }

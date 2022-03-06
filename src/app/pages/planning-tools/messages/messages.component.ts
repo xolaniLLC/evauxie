@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MessageService} from "../../../services/message.service";
 import {Message} from "../../../models/message";
 import firebase from "firebase";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-messages',
@@ -10,6 +11,7 @@ import firebase from "firebase";
 })
 export class MessagesComponent implements OnInit {
 
+  emailsParam = '';
   mesMessagesRecu: Message[] = [];
   mesMessagesEnvoyer: Message[] = [];
   currentMenuSelect = 'inbox';
@@ -19,9 +21,14 @@ export class MessagesComponent implements OnInit {
   reponseText = '';
   msgNonLu = 0;
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    if(this.activatedRoute.snapshot.queryParams.destinataires) {
+      this.emailsParam = this.activatedRoute.snapshot.queryParams.destinataires;
+      this.currentMenuSelect = 'write';
+    }
+
     this.messageService.getMesMessagesRecu().then(
       (result) => {
         this.mesMessagesRecu = result;
@@ -42,7 +49,8 @@ export class MessagesComponent implements OnInit {
     tmpMsg.read.push(firebase.auth().currentUser?.email as String | any);
     this.messageService.updateMessage(tmpMsg).then(
       () => {
-        alert('Mis à jour effectuée');
+        //alert('Mis à jour effectuée');
+        this.ngOnInit();
       }
     );
   }
@@ -52,7 +60,8 @@ export class MessagesComponent implements OnInit {
     tmpMsg.reponse = this.mesMessagesRecu[this.currentIndexMessage].id;
     this.messageService.envoyerMessage(tmpMsg).then(
       () => {
-        alert('envoyer avec succes');
+        //alert('envoyer avec succes');
+        this.ngOnInit();
       }
     );
   }
@@ -72,7 +81,8 @@ export class MessagesComponent implements OnInit {
     }
     this.messageService.envoyerMessage(new Message(firebase.auth().currentUser?.email, form.value.objet, tmpFdest, form.value.description, '')).then(
       () => {
-        alert('envoyer avec succes');
+        //alert('envoyer avec succes');
+        this.ngOnInit();
       }
     );
   }

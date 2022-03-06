@@ -52,7 +52,7 @@
             <div>
               <label for="destinataires" class="form-label">Recipients</label>
               <div class="input-group mb-3">
-                <input type="text" required ngModel name="destinataires" id="destinataires" class="form-control" placeholder="you can separate the addresses with commas" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" required [ngModel]="emailsParam ? emailsParam : ''" name="destinataires" id="destinataires" class="form-control" placeholder="you can separate the addresses with commas" aria-label="Username" aria-describedby="basic-addon1">
               </div>
               <label for="objet" class="form-label">Object</label>
               <div class="input-group mb-3">
@@ -140,5 +140,7 @@
     <i class="fas fa-chevron-right"></i>
   </div>
 </div>
+
+<br> <br> <br> <br>
 
 <app-footer></app-footer>

@@ -28,7 +28,8 @@ export class MyEventsComponent implements OnInit {
   deleteMyEvent(event: Evenement) {
     this.eventService.deleteEvent(event).then(
       () => {
-        alert('supprimer avec succes');
+        //alert('supprimer avec succes');
+        this.ngOnInit();
       }
     );
   }
@@ -41,7 +42,8 @@ export class MyEventsComponent implements OnInit {
       if(event.etat === 0) { event.etat = 1; } else { event.etat = 0; }
       this.eventService.updateEvent(event).then(
         () => {
-          alert('mis a jour avec succes');
+          //alert('mis a jour avec succes');
+          this.ngOnInit();
         }
       );
     }
@@ -50,7 +52,8 @@ export class MyEventsComponent implements OnInit {
   addMyEvent(form: any) {
     this.eventService.ajouterEvenement(new Evenement(form.value.titre, form.value.dateSelect, firebase.auth().currentUser?.email, form.value.categorie, this.liste_my_event.length === 0 ? 1 : 0, form.value.description)).then(
       () => {
-        alert('ajouter avec succes');
+        //alert('ajouter avec succes');
+        this.ngOnInit();
       }
     );
   }
