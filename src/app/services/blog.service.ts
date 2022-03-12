@@ -10,6 +10,34 @@ export class BlogService {
 
   constructor() { }
 
+  async getCommentaireWitchId(id: any) {
+    return new Promise<CommentaireBlog>((resolve, reject) => {
+      firebase.firestore().collection('commentaires_blogs').doc(id).get().then(
+        (docRef) => {
+          resolve(docRef.data() as CommentaireBlog);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async viewBlog(blog: any) {
+    return new Promise<void>((resolve, reject) => {
+      firebase.firestore().collection('blogs').doc(blog.id).update({
+          vus : firebase.firestore.FieldValue.arrayUnion(firebase.auth().currentUser?.email)
+        }
+      ).then(
+        () => {
+          resolve();
+        }, () => {
+          reject();
+        }
+      )
+    });
+  }
+
   async getCommentaireWitchIdBlog(idBlog: any) {
     return new Promise<CommentaireBlog[]>((resolve, reject) => {
       firebase.firestore().collection('commentaires_blogs').where('idBlog', '==', idBlog).get().then(

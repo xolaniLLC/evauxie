@@ -1,9 +1,25 @@
 <section class="p-4 bg-indigo-600">
-  <div class=" items-center text-right items-end content-end justify-end justify-items-end right-14">
+  <div class="items-center text-right items-end content-end justify-end justify-items-end right-14" *ngIf="isConnected === 0">
     <span class="mx-5 font-bold text-white">Are you a seller? click here to <a class="underline">sign in</a> or click here to <a class="underline">sign up</a></span>
     <button routerLink="../login-customer" class="font-bold mx-2 my-2 bg-white transition duration-150 ease-in-out hover:bg-gray-100 hover:text-indigo-600 rounded text-indigo-700 px-8 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-700"><a>Login</a></button>
     <button routerLink="../register-customer" class="mx-2 my-2 bg-transparent transition duration-150 ease-in-out hover:bg-gray-100 hover:text-indigo-600 font-bold rounded border border-white text-white px-8 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-700">Not a member? Register</button>
+  </div>
+  <div class="flex space-x-5 justify-end items-center pl-2 pr-5" *ngIf="isConnected === 1">
+    <div class="relative cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800">
+      <svg routerLink="../messages" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <div *ngIf="messagesNonLus.length > 0" class="animate-ping w-1.5 h-1.5 bg-orange-500 rounded-full absolute -top-1 -right-1 m-auto duration-200"></div>
+      <div *ngIf="messagesNonLus.length > 0" class="w-1.5 h-1.5 bg-orange-500 rounded-full absolute -top-1 -right-1 m-auto shadow-lg"></div>
+    </div>
 
+    <svg (click)="goDeconnect()" xmlns="http://www.w3.org/2000/svg" class="cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+    <div class="relative bg-cover rounded-md bg-center -ml-2">
+      <img [src]="currentUser && currentUser !== '' ? currentUser.photo : 'asset/images/user.png'" alt="" class="h-8 w-8 overflow-hidden object-cover rounded-full border-2 border-white dark:border-gray-700 shadow" />
+    </div>
   </div>
 </section>
 <!-- This example requires Tailwind CSS v2.0+ -->
@@ -17,7 +33,7 @@
         </a>
       </div>
       <div class="-mr-2 -my-2 md:hidden">
-        <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
+        <button (click)="sm_1_1 ? sm_1_1 = false : sm_1_1 = true" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600" aria-expanded="false">
           <span class="sr-only">Open menu</span>
           <!-- Heroicon name: outline/menu -->
           <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -28,7 +44,7 @@
       <nav class="hidden md:flex space-x-10 pl-20">
         <div class="relative">
           <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
-          <button type="button" (click)="sm_1 ? sm_1 = false : sm_1 = true" class="{{sm_1 ? 'text-gray-900' : 'text-gray-500'}} group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-expanded="false">
+          <button type="button" (click)="sm_1 ? sm_1 = false : sm_1 = true" class="{{sm_1 ? 'text-indigo-600' : 'text-gray-900'}} group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600" aria-expanded="false">
             <span class="font-semibold">Planning Tools</span>
             <!--
               Heroicon name: solid/chevron-down
@@ -136,7 +152,7 @@
 
         <div class="relative">
           <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
-          <button type="button" (click)="sm_1_2 ? sm_1_2 = false : sm_1_2 = true" class="{{sm_1_2 ? 'text-gray-900' : 'text-gray-500'}} group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-expanded="false">
+          <button type="button" (click)="sm_1_2 ? sm_1_2 = false : sm_1_2 = true" class="{{sm_1_2 ? 'text-indigo-600' : 'text-gray-900'}} group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600" aria-expanded="false">
             <span class="font-semibold">Venues</span>
             <svg class="{{sm_1_2 ? 'text-gray-600' : 'text-gray-400'}} ml-2 h-5 w-5 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -158,7 +174,7 @@
 
         <div class="relative">
           <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
-          <button type="button" (click)="sm_1_3 ? sm_1_3 = false : sm_1_3 = true" class="{{sm_1_3 ? 'text-gray-900' : 'text-gray-500'}} group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-expanded="false">
+          <button type="button" (click)="sm_1_3 ? sm_1_3 = false : sm_1_3 = true" class="{{sm_1_3 ? 'text-indigo-600' : 'text-gray-900'}} group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600" aria-expanded="false">
             <span class="font-semibold">Vendors</span>
             <svg class="{{sm_1_3 ? 'text-gray-600' : 'text-gray-400'}} ml-2 h-5 w-5 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -205,8 +221,8 @@
             </div>
           </div>
         </div>
-        <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900 font-semibold"> Forum </a>
-        <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900 font-semibold"> Blogs posts </a>
+        <a routerLink="../forum" class="text-base text-gray-900 hover:text-indigo-600 font-semibold"> Forum </a>
+        <a routerLink="../blogs-posts" class="text-base text-gray-900 hover:text-indigo-600 font-semibold"> Blogs posts </a>
       </nav>
     </div>
   </div>
@@ -221,7 +237,7 @@
       From: "opacity-100 scale-100"
       To: "opacity-0 scale-95"
   -->
-  <div class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
+  <div class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden" *ngIf="sm_1_1" style="z-index: 50">
     <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
       <div class="pt-5 pb-6 px-5">
         <div class="flex items-center justify-between">
@@ -229,7 +245,7 @@
             <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
           </div>
           <div class="-mr-2">
-            <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+            <button (click)="sm_1_1 = false" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600">
               <span class="sr-only">Close menu</span>
               <!-- Heroicon name: outline/x -->
               <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -300,7 +316,7 @@
           <a href="#" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"> Sign up </a>
           <p class="mt-6 text-center text-base font-medium text-gray-500">
             Existing customer?
-            <a href="#" class="text-indigo-600 hover:text-indigo-500"> Sign in </a>
+            <a href="#" class="text-indigo-600 hover:text-indigo-600"> Sign in </a>
           </p>
         </div>
       </div>

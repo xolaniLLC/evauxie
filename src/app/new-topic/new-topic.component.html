@@ -1,0 +1,73 @@
+<app-navbar></app-navbar>
+
+<section class="border-y">
+    <p class="py-5 text-sm leading-none text-gray-400 px-10 capitalize">
+      <a class="hover:text-indigo-600 cursor-pointer" routerLink="../home">Home</a> -
+      <a class="cursor-pointer hover:text-indigo-600" routerLink="../forum">Forums</a> -
+      <a class="cursor-pointer hover:text-indigo-600">New Post</a>
+    </p>
+</section>
+
+<section class="md:grid md:grid-cols-4 md:grid-rows-1">
+  <div class="md:px-10 md:col-span-3">
+    <div>
+      <!-- Code block starts -->
+      <div class="my-6 lg:my-9 container mx-auto px-10 flex flex-col md:flex-row items-start md:items-center justify-between pb-4 border-b border-gray-300">
+        <div>
+          <h4 class="text-3xl font-bold leading-tight text-gray-800 dark:text-gray-100">New Discussion</h4>
+          <div class="flex flex-col md:py-0 py-4 w-full">
+            <label for="titre" class="md:pt-4 text-gray-400 text-sm font-bold leading-tight tracking-normal mb-2"></label>
+            <input id="titre" name="titre" [(ngModel)]="titre" class="dark:text-gray-400 focus:outline-none focus:border focus:border-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-96 h-16 flex items-center pl-3 text-sm rounded border-gray-300 border" placeholder="Title of your discussion " />
+          </div>
+          <div class="mt-6">
+            <label for="categorie" class="text-sm font-medium leading-none text-gray-800"></label>
+            <select [(ngModel)]="categorie" required name="categorie" id="categorie" class="bg-transparent dark:text-gray-400 w-96 h-16 border border-gray-300 rounded text-sm font-medium leading-none placeholder-gray-800 text-gray-800 py-3 pl-3 mt-2">
+              <option value="" selected="selected">Select group</option>
+              <option value="Wedding attire">Wedding attire </option>
+              <option value="Decorations">Decorations </option>
+              <option value="Planning">Planning </option>
+              <option value="Honey Moon">Honey Moon </option>
+              <option value="Married Life">Married Life </option>
+              <option value="Hair and Makeup">Hair and Makeup </option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <button [disabled]="html === '' || titre === '' || categorie === ''" (click)="sendTopic()" type="button" role="button" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-bold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 px-8 py-4 w-full">
+            <svg *ngIf="isLoading" style="display: inline" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Post the discussion
+          </button>
+        </div>
+      </div>
+      <div class="px-10">
+        <editor class="mt-5"
+                [(ngModel)]="html"
+                name="html"
+                apiKey="ykyh8j6aqah0jdmw6sbtjjtvrnvprawtf5mx81xfhyx8f7i5"
+                [init]="{
+               height: 500,
+               menubar: true,
+               placeholder: 'Write...',
+               plugins: [
+                 'advlist autolink lists link image charmap print preview anchor',
+                 'searchreplace visualblocks code fullscreen',
+                 'insertdatetime media table paste code help wordcount'
+               ],
+               toolbar:
+                 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
+             }"
+        ></editor>
+      </div>
+    </div>
+  </div>
+
+  <div class="px-10 my-10 lg:my-14 container">
+    <app-suggestions-topic></app-suggestions-topic>
+  </div>
+</section>
+
+<br> <br>
+
+<app-footer></app-footer>

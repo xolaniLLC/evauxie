@@ -7,7 +7,7 @@ export class Topic {
   like: string[];
   vus: string[];
 
-  constructor(public titre: string, public contenu: any, public auteur: any, public categories: string[]) {
+  constructor(public titre: string, public contenu: any, public auteur: any, public categorie: string) {
     const gid = new ToolsService();
     this.id = gid.generateId(23);
     this.date = new Date().toString();

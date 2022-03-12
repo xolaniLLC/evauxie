@@ -10,6 +10,49 @@ export class ForumService {
 
   constructor() { }
 
+  async addCommentTopic(comment: CommentaireTopic) {
+    return new Promise<void>((resolve, reject) => {
+      firebase.firestore().collection('commentaires_topics').doc(comment.id).set(Object.assign({}, comment)).then(
+        () => {
+          resolve();
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async viewTopic(topic: any) {
+    return new Promise<void>((resolve, reject) => {
+      firebase.firestore().collection('topics').doc(topic.id).update({
+          vus : firebase.firestore.FieldValue.arrayUnion(firebase.auth().currentUser?.email)
+        }
+      ).then(
+        () => {
+          resolve();
+        }, () => {
+          reject();
+        }
+      )
+    });
+  }
+
+  async likeTopic(topic: any) {
+    return new Promise<void>((resolve, reject) => {
+      firebase.firestore().collection('topics').doc(topic.id).update({
+          like : topic.like.includes(firebase.auth().currentUser?.email) ? firebase.firestore.FieldValue.arrayRemove(firebase.auth().currentUser?.email) : firebase.firestore.FieldValue.arrayUnion(firebase.auth().currentUser?.email)
+        }
+      ).then(
+        () => {
+          resolve();
+        }, () => {
+          reject();
+        }
+      )
+    });
+  }
+
   async getTopics() {
     return new Promise<Topic[]>((resolve, reject) => {
       // @ts-ignore
@@ -36,6 +79,19 @@ export class ForumService {
             result.push(doc.data() as CommentaireTopic);
           });
           resolve(result as any);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async getCommentaireWitchId(id: any) {
+    return new Promise<CommentaireTopic>((resolve, reject) => {
+      firebase.firestore().collection('commentaires_topics').doc(id).get().then(
+        (docRef) => {
+          resolve(docRef.data() as CommentaireTopic);
         },
         (error) => {
           reject(error);

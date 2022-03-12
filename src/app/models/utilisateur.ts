@@ -5,7 +5,7 @@ export class Utilisateur {
   country: string;
   priceRang: number;
 
-  constructor(public nom: string, public prenom: string, public email: string, public typeInscription: string, public typeUtilisateur: string) {
+  constructor(public nom: string, public email: string, public typeInscription: string, public typeUtilisateur: string) {
     this.photo = '';
     this.date = new Date().toString();
     this.country = '';

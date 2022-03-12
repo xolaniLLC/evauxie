@@ -1,0 +1,180 @@
+<app-navbar></app-navbar>
+
+<header id="up" class="bg-center bg-fixed bg-no-repeat bg-center bg-cover relative">
+  <div class="relative h-fit w-full flex items-center justify-start bg-cover bg-center" [style]="'background-image:url(assets/images/ill_11.jpg);'">
+    <div class="absolute top-0 right-0 bottom-0 left-0 bg-black opacity-75"></div>
+    <main class="px-10 lg:px-24 py-20" style="z-index: 1">
+      <div class="lg:w-auto custom md:mt-0 h-full flex px-4 md:px-0  z-10 justify-center items-center md:items-start flex-col md:pl-20 lg:px-20 2xl:px-44">
+        <p class="text-xl sm:text-2xl xl:text-4xl text-center md:text-left font-semibold leading-6 xl:leading-10 text-gray-100 md:w-96 2xl:w-2/3" >Start Your Discussion</p>
+        <p class="mt-4 md:w-80 lg:w-2/3 xl:w-3/4 text-center md:text-left  text-base leading-normal text-gray-200" >Ask questions and get answers with the help of other engaged couples.</p>
+        <button routerLink="../new-topic" class="mt-6 shrink-0 w-full md:w-auto  lg:mt-8 py-2 md:py-3 px-10 flex justify-center duration-700  items-center text-base border-2 border-white transition hover:-translate-y-1 hover:bg-gray-100 hover:text-gray-800 font-medium text-white">
+          Start Discussion
+        </button>
+      </div>
+    </main>
+  </div>
+</header>
+
+<section class="border-y">
+  <p class="py-5 text-sm leading-none text-gray-400 px-10 capitalize">
+    <a class="hover:text-indigo-600 cursor-pointer" routerLink="../home">Home</a> -
+    <a class="cursor-pointer hover:text-indigo-600">Forums</a>
+  </p>
+</section>
+
+<app-page-loading *ngIf="isLoading"></app-page-loading>
+
+<section class="md:grid md:grid-cols-4 md:grid-rows-1" *ngIf="!isLoading">
+  <div class="md:px-10 md:col-span-3">
+    <div>
+      <!-- Code block starts -->
+      <div class="my-6 lg:my-9 container mx-auto px-10 flex flex-col md:flex-row items-start md:items-center justify-between pb-4 border-b border-gray-300">
+        <div>
+          <h4 class="text-3xl font-bold leading-tight text-gray-800 dark:text-gray-100">Discussions</h4>
+          <p *ngIf="listeTopics.length === 0" class="py-6 text-gray-500">
+            No discussion at this time
+          </p>
+          <ul *ngIf="listeTopics.length > 0" class="flex flex-col md:flex-row items-start md:items-center text-gray-600 dark:text-gray-400 text-sm mt-3">
+            <li class="flex items-center mr-4 text-xl">
+              <div class="mr-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-paperclip" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+                </svg>
+              </div>
+              <span>All</span>
+            </li>
+            <li class="flex items-center mr-4 mt-4 md:mt-0 text-xl">
+              <div class="mr-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trending-up" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" />
+                  <polyline points="3 17 9 11 13 15 21 7" />
+                  <polyline points="14 7 21 7 21 14" />
+                </svg>
+              </div>
+              <span>Most popular</span>
+            </li>
+            <li class="flex items-center mt-4 md:mt-0 text-xl">
+              <div class="mr-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plane-departure" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <span>Recent Discussion</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <div class="relative inline-block text-left py-6">
+            <div>
+              <button (click)="printMenuCategorie ? printMenuCategorie = false : printMenuCategorie = true" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                Select the category to display
+                <!-- Heroicon name: solid/chevron-down -->
+                <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </button>
+            </div>
+
+            <ul *ngIf="printMenuCategorie"
+                class="p-2 w-40 border-r bg-white absolute rounded right-0 shadow top-0 mt-16 ">
+              <li
+                class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                <div class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                       class="icon icon-tabler icon-tabler-user" width="20" height="20"
+                       viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                       stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" />
+                    <circle cx="12" cy="7" r="4" />
+                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                  </svg>
+                  <span class="ml-2">My Profile</span>
+                </div>
+              </li>
+              <li
+                class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-help"
+                     width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" fill="none" stroke-linecap="round"
+                     stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" />
+                  <circle cx="12" cy="12" r="9" />
+                  <line x1="12" y1="17" x2="12" y2="17.01" />
+                  <path d="M12 13.5a1.5 1.5 0 0 1 1 -1.5a2.6 2.6 0 1 0 -3 -4" />
+                </svg>
+                <span class="ml-2">Help Center</span>
+              </li>
+              <li
+                class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="icon icon-tabler icon-tabler-settings" width="20" height="20"
+                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" />
+                  <path
+                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+                <span class="ml-2">Account Settings</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Code block ends -->
+
+      </div>
+    </div>
+
+    <div>
+      <!--div class="py-4 w-full"-->
+      <div class="my-6 lg:my-10 container px-6 mx-auto flex flex-col md:flex-row items-start md:items-center justify-between pb-4 border-gray-300">
+        <div class="items-center justify-center w-full">
+
+          <app-miniature-topic skin="item" idTopic="{{topic.id}}" *ngFor="let topic of listeTopics | slice:(page * nbreLimitEltPrPage):((page * nbreLimitEltPrPage) + nbreLimitEltPrPage)"></app-miniature-topic>
+
+          <div class="max-w-8xl mx-auto container py-10" *ngIf="listeTopics.length > nbreLimitEltPrPage">
+            <ul class="flex justify-center items-center">
+              <li>
+            <span (click)="page > 0 ? (page = page - 1) : ''" class="cursor-pointer p-1 flex rounded transition duration-150 ease-in-out text-base leading-tight font-bold text-gray-500 hover:text-indigo-700 focus:outline-none mr-1 sm:mr-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" />
+                    <polyline points="15 6 9 12 15 18" />
+                </svg>
+            </span>
+              </li>
+              <li *ngFor="let elt of [].constructor(recupNombreEntier(listeTopics.length / nbreLimitEltPrPage)); let i = index">
+                <span (click)="page = i" class="{{page === i ? 'text-white bg-indigo-600' : 'text-indigo-600 hover:bg-indigo-600 hover:text-white focus:outline-none cursor-pointer'}} flex  text-base leading-tight font-bold shadow transition duration-150 ease-in-out mx-2 sm:mx-4 rounded px-3 py-2 ">{{i + 1}}</span>
+              </li>
+              <li>
+            <span (click)="(page + 1) < recupNombreEntier(listeTopics.length / nbreLimitEltPrPage) ? (page = page + 1) : ''" class="flex cursor-pointer rounded transition duration-150 ease-in-out text-base leading-tight font-bold text-gray-500 hover:text-indigo-700 p-1 focus:outline-none ml-1 sm:ml-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" />
+                    <polyline points="9 6 15 12 9 18" />
+                </svg>
+            </span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="px-10 my-10 lg:my-14 container">
+    <div class="md:flex justify-start md:gap-4 mb-8">
+      <form #form="ngForm" (ngSubmit)="searchTopic(form)">
+        <input type="email" placeholder="Search your discusion" class="placeholder-gray-600 w-full p-4 grid place-items-center border rounded-md focus:outline-none" />
+      </form>
+      <form #form="ngForm" (ngSubmit)="searchTopic(form)">
+        <button type="submit" class="w-full md:w-auto bg-indigo-600 text-white px-8 py-4 border rounded-md hover:bg-indigo-700 grid place-items-center font-semibold mt-4 md:mt-0 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" color="#ffffff" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </button>
+      </form>
+    </div>
+    <app-suggestions-topic></app-suggestions-topic>
+  </div>
+</section>
+<app-footer></app-footer>

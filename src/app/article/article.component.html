@@ -1,0 +1,127 @@
+<app-navbar></app-navbar>
+
+<section class="border-y">
+  <p class="py-5 text-sm leading-none text-gray-400 px-10 capitalize">
+    <a class="hover:text-indigo-600 cursor-pointer" routerLink="../home">Home</a> -
+    <a class="cursor-pointer hover:text-indigo-600" routerLink="../blogs-posts">Blogs</a> -
+    <a class="cursor-pointer hover:text-indigo-600" *ngIf="currentBlog">{{currentBlog.titre}}</a>
+  </p>
+</section>
+
+<app-page-loading *ngIf="!currentBlog"></app-page-loading>
+
+<section class="md:grid md:grid-cols-4 md:grid-rows-1" *ngIf="currentBlog">
+  <div class="md:px-10 md:col-span-3">
+    <div class="my-7 container mx-auto px-10 flex flex-col md:flex-row items-start md:items-center justify-between pb-4 border-b border-gray-300">
+      <div class="flex items-center border-gray-200 pb-1" *ngIf="currentUserAuthor">
+        <img [src]="currentUserAuthor.photo ? currentUserAuthor.photo : 'assets/images/user.png'" alt="" class="w-16 h-16 rounded-full" />
+        <div class="flex items-start justify-between w-full">
+          <div class="pl-3 w-full">
+            <p class="font-bold text-xl leading-5 text-gray-900">{{currentBlog.titre}}</p>
+            <p class="text-sm leading-normal pt-2 text-gray-500">
+              <span routerLink="../profil" class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">{{currentUserAuthor.nom}}</span> in
+              <span class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">{{currentBlog.categorie}}</span>,
+              on {{currentBlog.date | date:"MMMM dd, yyyy"}} at {{currentBlog.date | date:"hh:mm"}} · <span class="font-bold text-gray-900 capitalize"> {{currentBlog.vus.length}} views </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="my-3 container px-10 mx-auto flex flex-col md:flex-row items-start md:items-center justify-between">
+      <div class="items-center justify-center w-full overflow-auto overscroll-none" [innerHTML]="currentBlog.contenu">
+      </div>
+    </div>
+
+    <div>
+      <div class="my-6 lg:my-12 container px-10 mx-auto flex flex-col md:flex-row items-start md:items-center justify-between pb-4 border-b border-gray-300">
+        <div>
+          <h4 class="text-2xl font-bold leading-tight text-gray-800 dark:text-gray-100">Comments</h4>
+          <ul class="flex flex-col md:flex-row items-start md:items-center text-gray-600 dark:text-gray-400 text-sm mt-3">
+            <li class="flex items-center mr-4">
+              <div class="mr-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-paperclip" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+              </div>
+              <span>{{currentCommentaire.length}} comments in total</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <app-commentaire-blog [idCommentaire]="comment.id" *ngFor="let comment of currentCommentaire"></app-commentaire-blog>
+      </div>
+      <div>
+        <div class="flex md:flex-row flex-col items-start justify-start py-6 px-10">
+          <div class="mt-7">
+            <div class="h-16 w-16 mb-4 lg:mb-0 mr-4">
+              <img [src]="currentUserAuthor && currentUserAuthor.photo !== '' ? currentUserAuthor.photo : 'assets/images/user.png'" alt="" class="h-full w-full rounded-full overflow-hidden shadow" />
+            </div>
+          </div>
+          <!-- Code block starts -->
+          <div id="popover" class="transition duration-150 ease-in-out ml-10 w-full">
+            <div class="w-full bg-white rounded shadow-xl">
+              <div class="relative bg-gray-200 rounded-t py-4 px-4 xl:px-8">
+                <svg class="hidden md:block absolute -ml-5 -mb-10 left-0 bottom-0" width="30px" height="30px" viewBox="0 0 9 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Tooltips-" transform="translate(-874.000000, -1029.000000)" fill="#FFFFFF">
+                      <g id="Group-3-Copy-16" transform="translate(850.000000, 975.000000)">
+                        <g id="Group-2" transform="translate(24.000000, 0.000000)">
+                          <polygon id="Triangle" transform="translate(4.500000, 62.000000) rotate(-90.000000) translate(-4.500000, -62.000000) " points="4.5 57.5 12.5 66.5 -3.5 66.5"></polygon>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+                <svg class="absolute top-0 -mt-5 block md:hidden" xmlns="http://www.w3.org/2000/svg" width="26" height="23" viewBox="0 0 26 23" fill="none">
+                  <path id="Polygon 2" d="M13 0L25.9904 22.5H0.00961876L13 0Z" fill="#e5e7eb" />
+                </svg>
+                <p class="text-base text-gray-800 font-bold leading-normal tracking-normal">Reply to this discussion</p>
+              </div>
+              <div class="w-full h-full px-4 xl:px-8 py-5">
+                <form #form="ngForm" (ngSubmit)="sendReply()">
+                  <editor class="mt-5"
+                          [(ngModel)]="html"
+                          required
+                          [disabled]="!currentUserEmail"
+                          name="html"
+                          apiKey="ykyh8j6aqah0jdmw6sbtjjtvrnvprawtf5mx81xfhyx8f7i5"
+                          [init]="{
+                             height: 200,
+                             menubar: false,
+                             placeholder: 'Write...',
+                             plugins: [
+                               'advlist autolink lists link image charmap print preview anchor',
+                               'searchreplace visualblocks code fullscreen',
+                               'insertdatetime media table paste code help wordcount'
+                             ],
+                             toolbar:
+                               'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | image'
+                           }"
+                  ></editor>
+                  <div class="text-right ">
+                    <button *ngIf="!currentUserEmail" routerLink="../../login-customer" class="mt-4 font-normal bg-gray-100 focus:outline-none transition duration-150 ease-in-out hover:bg-gray-300 rounded text-indigo-600 px-6 py-2 text-sm border border-gray-300">Log in to reply</button>
+                    <button *ngIf="currentUserEmail" [disabled]="form.invalid || isLoadingSendReply" type="submit" class="disabled:bg-gray-400 mt-4 mr-2 sm:mr-3 font-normal focus:outline-none bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-6 py-2 text-sm">
+                      <svg *ngIf="isLoadingSendReply" style="display: inline" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      Reply
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- Code block ends -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="px-10 my-10 lg:my-14 container">
+    <app-suggestions-article></app-suggestions-article>
+  </div>
+</section>
+
+<app-footer></app-footer>
