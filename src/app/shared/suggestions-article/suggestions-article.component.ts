@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Blog} from "../../models/blog";
 import {BlogService} from "../../services/blog.service";
 
@@ -9,6 +9,7 @@ import {BlogService} from "../../services/blog.service";
 })
 export class SuggestionsArticleComponent implements OnInit {
 
+  @Input() skin: any;
   listeArticles: Blog[] = [];
 
   constructor(private blogService: BlogService) { }
@@ -21,4 +22,12 @@ export class SuggestionsArticleComponent implements OnInit {
     );
   }
 
+  extractImage(brute: string) {
+    let result = '';
+    let e1 = brute.split('img src="');
+    if(e1.length > 1) {
+      result = e1[1].split('"')[0];
+    }
+    return result;
+  }
 }

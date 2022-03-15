@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
   isConnected = -1;
   currentUser: any = null;
   messagesNonLus: any[] = [];
+  userDropdown = false;
 
   constructor(private messageService: MessageService, private userService: UserService, private authService: AuthentificationService, private router: Router) { }
 

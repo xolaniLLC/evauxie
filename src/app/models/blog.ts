@@ -6,7 +6,7 @@ export class Blog {
   date: string;
   vus: string[];
 
-  constructor(public images: string[], public titre: string, public contenu: string, public auteur: string, public categorie: string, public tags: string[]) {
+  constructor(public titre: string, public contenu: string, public auteur: string, public categorie: string, public tags: string[]) {
     const gid = new ToolsService();
     this.id = gid.generateId(23);
     this.date = new Date().toString();

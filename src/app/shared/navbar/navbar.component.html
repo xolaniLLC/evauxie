@@ -1,325 +1,579 @@
-<section class="p-4 bg-indigo-600">
-  <div class="items-center text-right items-end content-end justify-end justify-items-end right-14" *ngIf="isConnected === 0">
-    <span class="mx-5 font-bold text-white">Are you a seller? click here to <a class="underline">sign in</a> or click here to <a class="underline">sign up</a></span>
-    <button routerLink="../login-customer" class="font-bold mx-2 my-2 bg-white transition duration-150 ease-in-out hover:bg-gray-100 hover:text-indigo-600 rounded text-indigo-700 px-8 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-700"><a>Login</a></button>
-    <button routerLink="../register-customer" class="mx-2 my-2 bg-transparent transition duration-150 ease-in-out hover:bg-gray-100 hover:text-indigo-600 font-bold rounded border border-white text-white px-8 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-700">Not a member? Register</button>
-  </div>
-  <div class="flex space-x-5 justify-end items-center pl-2 pr-5" *ngIf="isConnected === 1">
-    <div class="relative cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800">
-      <svg routerLink="../messages" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-      <div *ngIf="messagesNonLus.length > 0" class="animate-ping w-1.5 h-1.5 bg-orange-500 rounded-full absolute -top-1 -right-1 m-auto duration-200"></div>
-      <div *ngIf="messagesNonLus.length > 0" class="w-1.5 h-1.5 bg-orange-500 rounded-full absolute -top-1 -right-1 m-auto shadow-lg"></div>
-    </div>
+<div class="bg-white">
 
-    <svg (click)="goDeconnect()" xmlns="http://www.w3.org/2000/svg" class="cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-    </svg>
+  <div *ngIf="sm_1" class="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true">
 
-    <div class="relative bg-cover rounded-md bg-center -ml-2">
-      <img [src]="currentUser && currentUser !== '' ? currentUser.photo : 'asset/images/user.png'" alt="" class="h-8 w-8 overflow-hidden object-cover rounded-full border-2 border-white dark:border-gray-700 shadow" />
-    </div>
-  </div>
-</section>
-<!-- This example requires Tailwind CSS v2.0+ -->
-<div class="relative bg-white">
-  <div class="mx-auto px-4 sm:px-16">
-    <div class="flex justify-between items-center  py-6 md:justify-start md:space-x-10">
-      <div class="flex-shrink-0 flex items-center">
-        <a href="#">
-          <span class="sr-only">Workflow</span>
-          <img class="h-8 w-auto sm:h-16" src="assets/images/logo.png" alt="">
-        </a>
-      </div>
-      <div class="-mr-2 -my-2 md:hidden">
-        <button (click)="sm_1_1 ? sm_1_1 = false : sm_1_1 = true" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600" aria-expanded="false">
-          <span class="sr-only">Open menu</span>
-          <!-- Heroicon name: outline/menu -->
+    <div class="fixed inset-0 bg-black bg-opacity-25" aria-hidden="true"></div>
+
+    <div class="relative max-w-xs w-full bg-white shadow-xl pb-12 flex flex-col overflow-y-auto">
+      <div class="px-4 pt-5 pb-2 flex">
+        <button (click)="sm_1 = false" type="button" class="-m-2 p-2 rounded-md inline-flex items-center justify-center text-gray-400">
+          <span class="sr-only">Close menu</span>
+          <!-- Heroicon name: outline/x -->
           <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
-      <nav class="hidden md:flex space-x-10 pl-20">
-        <div class="relative">
-          <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
-          <button type="button" (click)="sm_1 ? sm_1 = false : sm_1 = true" class="{{sm_1 ? 'text-indigo-600' : 'text-gray-900'}} group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600" aria-expanded="false">
-            <span class="font-semibold">Planning Tools</span>
-            <!--
-              Heroicon name: solid/chevron-down
 
-              Item active: "text-gray-600", Item inactive: "text-gray-400"
-            -->
-            <svg class="{{sm_1 ? 'text-gray-600' : 'text-gray-400'}} ml-2 h-5 w-5 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-            </svg>
-          </button>
+      <!-- Links -->
+      <div class="mt-2">
 
-          <!--
-            'Solutions' flyout menu, show/hide based on flyout menu state.
-
-            Entering: "transition ease-out duration-200"
-              From: "opacity-0 translate-y-1"
-              To: "opacity-100 translate-y-0"
-            Leaving: "transition ease-in duration-150"
-              From: "opacity-100 translate-y-0"
-              To: "opacity-0 translate-y-1"
-          -->
-          <div *ngIf="sm_1" class="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
-            <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-              <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
-                  <!-- Heroicon name: outline/chart-bar -->
-                  <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                  </svg>
-                  <div class="ml-4">
-                    <p class="text-base font-medium text-gray-900">My Events</p>
-                    <p class="mt-1 text-sm text-gray-500">Get a better understanding of where your traffic is coming from.</p>
-                  </div>
-                </a>
-
-                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
-                  <!-- Heroicon name: outline/cursor-click -->
-                  <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                  </svg>
-                  <div class="ml-4">
-                    <p class="text-base font-medium text-gray-900">Check Lists</p>
-                    <p class="mt-1 text-sm text-gray-500">Speak directly to your customers in a more meaningful way.</p>
-                  </div>
-                </a>
-
-                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
-                  <!-- Heroicon name: outline/shield-check -->
-                  <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                  <div class="ml-4">
-                    <p class="text-base font-medium text-gray-900">Guest Lists</p>
-                    <p class="mt-1 text-sm text-gray-500">Your customers&#039; data will be safe and secure.</p>
-                  </div>
-                </a>
-
-                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
-                  <!-- Heroicon name: outline/view-grid -->
-                  <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                  </svg>
-                  <div class="ml-4">
-                    <p class="text-base font-medium text-gray-900">Vendor Manager</p>
-                    <p class="mt-1 text-sm text-gray-500">Connect with third-party tools that you&#039;re already using.</p>
-                  </div>
-                </a>
-
-                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
-                  <!-- Heroicon name: outline/refresh -->
-                  <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                  </svg>
-                  <div class="ml-4">
-                    <p class="text-base font-medium text-gray-900">Budget</p>
-                    <p class="mt-1 text-sm text-gray-500">Budget</p>
-                  </div>
-                </a>
-              </div>
-              <!--div class="px-5 py-5 bg-gray-50 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
-                <div class="flow-root">
-                  <a href="#" class="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">
-
-                    <svg class="flex-shrink-0 h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span class="ml-3">Watch Demo</span>
-                  </a>
-                </div>
-
-                <div class="flow-root">
-                  <a href="#" class="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">
-
-                    <svg class="flex-shrink-0 h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                    <span class="ml-3">Contact Sales</span>
-                  </a>
-                </div>
-              </div-->
-            </div>
-          </div>
-        </div>
-
-        <div class="relative">
-          <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
-          <button type="button" (click)="sm_1_2 ? sm_1_2 = false : sm_1_2 = true" class="{{sm_1_2 ? 'text-indigo-600' : 'text-gray-900'}} group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600" aria-expanded="false">
-            <span class="font-semibold">Venues</span>
-            <svg class="{{sm_1_2 ? 'text-gray-600' : 'text-gray-400'}} ml-2 h-5 w-5 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-            </svg>
-          </button>
-          <div *ngIf="sm_1_2" class="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
-            <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-              <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" *ngFor="let d of [1,2,3,4,5]">
-                  <div class="ml-4">
-                    <p class="text-base font-medium text-gray-900">Place of marriage {{d}}</p>
-                    <p class="mt-1 text-sm text-gray-500">Get a better understanding of where your traffic is coming from.</p>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="relative">
-          <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
-          <button type="button" (click)="sm_1_3 ? sm_1_3 = false : sm_1_3 = true" class="{{sm_1_3 ? 'text-indigo-600' : 'text-gray-900'}} group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600" aria-expanded="false">
-            <span class="font-semibold">Vendors</span>
-            <svg class="{{sm_1_3 ? 'text-gray-600' : 'text-gray-400'}} ml-2 h-5 w-5 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-            </svg>
-          </button>
-          <div *ngIf="sm_1_3" class="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
-            <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-              <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
-                  <div class="ml-4">
-                    <p class="text-base font-medium text-gray-900">Photography</p>
-                    <p class="mt-1 text-sm text-gray-500">Get a better understanding of where your traffic is coming from.</p>
-                  </div>
-                </a>
-
-                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
-                  <div class="ml-4">
-                    <p class="text-base font-medium text-gray-900">DJ</p>
-                    <p class="mt-1 text-sm text-gray-500">Speak directly to your customers in a more meaningful way.</p>
-                  </div>
-                </a>
-
-                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
-                  <div class="ml-4">
-                    <p class="text-base font-medium text-gray-900">Wedding Planning</p>
-                    <p class="mt-1 text-sm text-gray-500">Your customers&#039; data will be safe and secure.</p>
-                  </div>
-                </a>
-
-                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
-                  <div class="ml-4">
-                    <p class="text-base font-medium text-gray-900">Videography</p>
-                    <p class="mt-1 text-sm text-gray-500">Connect with third-party tools that you&#039;re already using.</p>
-                  </div>
-                </a>
-
-                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
-                  <div class="ml-4">
-                    <p class="text-base font-medium text-gray-900">Flowers</p>
-                    <p class="mt-1 text-sm text-gray-500">Connect with third-party tools that you&#039;re already using.</p>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <a routerLink="../forum" class="text-base text-gray-900 hover:text-indigo-600 font-semibold"> Forum </a>
-        <a routerLink="../blogs-posts" class="text-base text-gray-900 hover:text-indigo-600 font-semibold"> Blogs posts </a>
-      </nav>
-    </div>
-  </div>
-
-  <!--
-    Mobile menu, show/hide based on mobile menu state.
-
-    Entering: "duration-200 ease-out"
-      From: "opacity-0 scale-95"
-      To: "opacity-100 scale-100"
-    Leaving: "duration-100 ease-in"
-      From: "opacity-100 scale-100"
-      To: "opacity-0 scale-95"
-  -->
-  <div class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden" *ngIf="sm_1_1" style="z-index: 50">
-    <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
-      <div class="pt-5 pb-6 px-5">
-        <div class="flex items-center justify-between">
+        <!-- tab panel, show/hide based on tab state. -->
+        <div class="pt-10 pb-8 px-4 space-y-10">
           <div>
-            <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
+            <p href="./planning-tools" class="cursor-pointer font-medium text-gray-900">Planning Tools</p>
+            <ul role="list" aria-labelledby="women-clothing-heading-mobile" class="mt-6 flex flex-col space-y-6">
+              <li class="flow-root">
+                <a href="./planning-tools/my-events" class="-m-2 p-2 block text-gray-500"> My event </a>
+              </li>
+
+              <li class="flow-root">
+                <a href="./planning-tools/checklist" class="-m-2 p-2 block text-gray-500"> Check lists </a>
+              </li>
+
+              <li class="flow-root">
+                <a href="./planning-tools/vendors-manager" class="-m-2 p-2 block text-gray-500"> Guest lists </a>
+              </li>
+
+              <li class="flow-root">
+                <a href="#" class="-m-2 p-2 block text-gray-500"> Vendor manager </a>
+              </li>
+
+              <li class="flow-root">
+                <a href="#" class="-m-2 p-2 block text-gray-500"> Budget </a>
+              </li>
+
+              <li class="flow-root">
+                <a href="#" class="-m-2 p-2 block text-gray-500"> Sweaters </a>
+              </li>
+
+              <li class="flow-root">
+                <a href="#" class="-m-2 p-2 block text-gray-500"> T-Shirts </a>
+              </li>
+
+              <li class="flow-root">
+                <a href="#" class="-m-2 p-2 block text-gray-500"> Jackets </a>
+              </li>
+
+              <li class="flow-root">
+                <a href="#" class="-m-2 p-2 block text-gray-500"> Activewear </a>
+              </li>
+
+              <li class="flow-root">
+                <a href="#" class="-m-2 p-2 block text-gray-500"> Browse All </a>
+              </li>
+            </ul>
           </div>
-          <div class="-mr-2">
-            <button (click)="sm_1_1 = false" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600">
-              <span class="sr-only">Close menu</span>
-              <!-- Heroicon name: outline/x -->
-              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+
+          <div>
+            <p id="women-accessories-heading-mobile" class="font-medium text-gray-900">Accessories</p>
+            <ul role="list" aria-labelledby="women-accessories-heading-mobile" class="mt-6 flex flex-col space-y-6">
+              <li class="flow-root">
+                <a href="#" class="-m-2 p-2 block text-gray-500"> Watches </a>
+              </li>
+
+              <li class="flow-root">
+                <a href="#" class="-m-2 p-2 block text-gray-500"> Wallets </a>
+              </li>
+
+              <li class="flow-root">
+                <a href="#" class="-m-2 p-2 block text-gray-500"> Bags </a>
+              </li>
+
+              <li class="flow-root">
+                <a href="#" class="-m-2 p-2 block text-gray-500"> Sunglasses </a>
+              </li>
+
+              <li class="flow-root">
+                <a href="#" class="-m-2 p-2 block text-gray-500"> Hats </a>
+              </li>
+
+              <li class="flow-root">
+                <a href="#" class="-m-2 p-2 block text-gray-500"> Belts </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p id="women-brands-heading-mobile" class="font-medium text-gray-900">Brands</p>
+            <ul role="list" aria-labelledby="women-brands-heading-mobile" class="mt-6 flex flex-col space-y-6">
+              <li class="flow-root">
+                <a href="#" class="-m-2 p-2 block text-gray-500"> Full Nelson </a>
+              </li>
+
+              <li class="flow-root">
+                <a href="#" class="-m-2 p-2 block text-gray-500"> My Way </a>
+              </li>
+
+              <li class="flow-root">
+                <a href="#" class="-m-2 p-2 block text-gray-500"> Re-Arranged </a>
+              </li>
+
+              <li class="flow-root">
+                <a href="#" class="-m-2 p-2 block text-gray-500"> Counterfeit </a>
+              </li>
+
+              <li class="flow-root">
+                <a href="#" class="-m-2 p-2 block text-gray-500"> Significant Other </a>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="mt-6">
-          <nav class="grid gap-y-8">
-            <a href="#" class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50">
-              <!-- Heroicon name: outline/chart-bar -->
-              <svg class="flex-shrink-0 h-6 w-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
-              <span class="ml-3 text-base font-medium text-gray-900"> Analytics </span>
-            </a>
 
-            <a href="#" class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50">
-              <!-- Heroicon name: outline/cursor-click -->
-              <svg class="flex-shrink-0 h-6 w-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
-              </svg>
-              <span class="ml-3 text-base font-medium text-gray-900"> Engagement </span>
-            </a>
+      </div>
 
-            <a href="#" class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50">
-              <!-- Heroicon name: outline/shield-check -->
-              <svg class="flex-shrink-0 h-6 w-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-              <span class="ml-3 text-base font-medium text-gray-900"> Security </span>
-            </a>
+      <div class="border-t border-gray-200 py-6 px-4 space-y-6">
+        <div class="flow-root">
+          <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Company</a>
+        </div>
 
-            <a href="#" class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50">
-              <!-- Heroicon name: outline/view-grid -->
-              <svg class="flex-shrink-0 h-6 w-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-              </svg>
-              <span class="ml-3 text-base font-medium text-gray-900"> Integrations </span>
-            </a>
-
-            <a href="#" class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50">
-              <!-- Heroicon name: outline/refresh -->
-              <svg class="flex-shrink-0 h-6 w-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
-              <span class="ml-3 text-base font-medium text-gray-900"> Automations </span>
-            </a>
-          </nav>
+        <div class="flow-root">
+          <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Stores</a>
         </div>
       </div>
-      <div class="py-6 px-5 space-y-6">
-        <div class="grid grid-cols-2 gap-y-4 gap-x-8">
-          <a href="#" class="text-base font-medium text-gray-900 hover:text-gray-700"> Pricing </a>
 
-          <a href="#" class="text-base font-medium text-gray-900 hover:text-gray-700"> Docs </a>
-
-          <a href="#" class="text-base font-medium text-gray-900 hover:text-gray-700"> Help Center </a>
-
-          <a href="#" class="text-base font-medium text-gray-900 hover:text-gray-700"> Guides </a>
-
-          <a href="#" class="text-base font-medium text-gray-900 hover:text-gray-700"> Events </a>
-
-          <a href="#" class="text-base font-medium text-gray-900 hover:text-gray-700"> Security </a>
+      <div class="border-t border-gray-200 py-6 px-4 space-y-6">
+        <div class="flow-root">
+          <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Sign in</a>
         </div>
-        <div>
-          <a href="#" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"> Sign up </a>
-          <p class="mt-6 text-center text-base font-medium text-gray-500">
-            Existing customer?
-            <a href="#" class="text-indigo-600 hover:text-indigo-600"> Sign in </a>
-          </p>
+        <div class="flow-root">
+          <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Create account</a>
         </div>
+      </div>
+
+      <div class="border-t border-gray-200 py-6 px-4">
+        <a href="#" class="-m-2 p-2 flex items-center">
+          <img src="https://tailwindui.com/img/flags/flag-canada.svg" alt="" class="w-5 h-auto block flex-shrink-0">
+          <span class="ml-3 block text-base font-medium text-gray-900"> CAD </span>
+          <span class="sr-only">, change currency</span>
+        </a>
       </div>
     </div>
   </div>
+
+  <header class="relative bg-white">
+    <div class="p-4 bg-indigo-600">
+      <div class="items-center text-right items-end content-end justify-end justify-items-end right-14" *ngIf="isConnected === 0">
+        <span class="mx-5 font-semibold text-white">Are you a seller? click here to <a class="underline">sign in</a> or click here to <a class="underline">sign up</a></span>
+        <button routerLink="../login-customer" class="font-bold mx-2 my-2 bg-white transition duration-150 ease-in-out hover:bg-gray-100 hover:text-indigo-600 rounded text-indigo-700 px-8 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-700"><a>Login</a></button>
+        <button routerLink="../register-customer" class="mx-2 my-2 bg-transparent transition duration-150 ease-in-out hover:bg-gray-100 hover:text-indigo-600 font-bold rounded border border-white text-white px-8 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-700">Not a member? Register</button>
+      </div>
+      <div class="flex space-x-5 justify-end items-center pl-2 pr-5" *ngIf="isConnected === 1">
+        <div class="relative cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800">
+          <svg routerLink="../messages" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <div *ngIf="messagesNonLus.length > 0" class="animate-ping w-1.5 h-1.5 bg-orange-500 rounded-full absolute -top-1 -right-1 m-auto duration-200"></div>
+          <div *ngIf="messagesNonLus.length > 0" class="w-1.5 h-1.5 bg-orange-500 rounded-full absolute -top-1 -right-1 m-auto shadow-lg"></div>
+        </div>
+        <div class="ml-6 relative">
+          <div class="flex items-center relative" (click)="userDropdown ? (userDropdown = false) : (userDropdown = true)">
+            <ul *ngIf="userDropdown"
+                class="p-2 w-40 border-r bg-white absolute rounded right-0 shadow top-0 mt-16 z-50">
+              <li routerLink="../profil"
+                class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                <div class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                       class="icon icon-tabler icon-tabler-user" width="20" height="20"
+                       viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                       stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" />
+                    <circle cx="12" cy="7" r="4" />
+                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                  </svg>
+                  <span class="ml-2">My Profile</span>
+                </div>
+              </li>
+              <li (click)="goDeconnect()"
+                class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="icon icon-tabler icon-tabler-settings" width="20" height="20"
+                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                <span class="ml-2">Log out</span>
+              </li>
+            </ul>
+            <div
+              class="cursor-pointer flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-white transition duration-150 ease-in-out">
+              <img class="rounded-full h-10 w-10 object-cover border-white dark:border-gray-700 border-2"
+                   [src]="currentUser && currentUser !== '' ? currentUser.photo : 'asset/images/user.png'"
+                   alt="Profil" />
+            </div>
+            <div class="ml-2 text-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   class="icon icon-tabler icon-tabler-chevron-down cursor-pointer" width="20"
+                   height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"></path>
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav aria-label="Top" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="">
+        <div class="h-20 flex items-center">
+          <!-- Mobile menu toggle, controls the 'mobileMenuOpen' state. -->
+          <button type="button" class="bg-white p-2 rounded-md text-gray-400 lg:hidden" (click)="sm_1 = true">
+            <span class="sr-only">Open menu</span>
+            <!-- Heroicon name: outline/menu -->
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+
+          <!-- Logo -->
+          <div class="ml-4 flex lg:ml-0">
+            <a href="./home">
+              <span class="sr-only">Evauxie</span>
+              <img class="h-10 w-auto" src="assets/images/logo.png" alt="">
+            </a>
+          </div>
+
+          <!-- Flyout menus -->
+          <div class="hidden lg:ml-8 lg:block lg:self-stretch">
+            <div class="h-full flex space-x-8">
+              <div class="flex">
+                <div class="relative flex">
+                  <button routerLink="../planning-tools" (mouseover)="sm_1_1 = true; sm_1_2 = false; sm_1_3 = false;" type="button" class="{{ sm_1_1 ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-700 hover:text-gray-800'}} relative z-10 flex items-center transition-colors ease-out duration-200 text-base font-semibold border-b-2 -mb-px pt-px" aria-expanded="false">Planning Tools</button>
+                </div>
+                <div class="absolute top-full inset-x-0 text-sm text-gray-500 z-10" *ngIf="sm_1_1" (mouseleave)="sm_1_1 = false" >
+                 <div class="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true"></div>
+
+                  <div class="relative bg-white">
+                    <div class="max-w-7xl mx-auto px-8">
+                      <div class="grid grid-cols-2 gap-y-10 gap-x-8 py-16">
+                        <div class="col-start-2 grid grid-cols-2 gap-x-8">
+                          <div class="group relative text-base sm:text-sm">
+                            <div class="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden group-hover:opacity-75">
+                              <img src="assets/images/ill_19.jpg" alt="Models sitting back to back, wearing Basic Tee in black and bone." class="object-center object-cover">
+                            </div>
+                            <a href="#" class="mt-6 block font-medium text-gray-900">
+                              <span class="absolute z-10 inset-0" aria-hidden="true"></span>
+                              Check your task list
+                            </a>
+                            <p aria-hidden="true" class="mt-1">Check now</p>
+                          </div>
+
+                          <div class="group relative text-base sm:text-sm">
+                            <div class="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden group-hover:opacity-75">
+                              <img src="assets/images/ill_20.jpeg" alt="Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees." class="object-center object-cover">
+                            </div>
+                            <a href="#" class="mt-6 block font-medium text-gray-900">
+                              <span class="absolute z-10 inset-0" aria-hidden="true"></span>
+                              Manage your guests
+                            </a>
+                            <p aria-hidden="true" class="mt-1">Manage now</p>
+                          </div>
+                        </div>
+                        <div class="row-start-1 grid grid-cols-3 gap-y-10 gap-x-8 text-sm">
+                          <div>
+                            <p id="loa" class="font-medium text-gray-900">List of actions</p>
+                            <ul role="list" aria-labelledby="loa" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
+                              <li class="flex">
+                                <a href="./planning-tools/my-events" class="hover:text-gray-800"> My Events </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="./planning-tools/checklist" class="hover:text-gray-800"> Check Lists </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="./planning-tools/guests-lists" class="hover:text-gray-800"> Guest Lists </a>
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <p id="mvm" class="font-medium text-gray-900">&nbsp;</p>
+                            <ul role="list" aria-labelledby="mvm" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Vendor Manager </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Budget </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex">
+                <div class="relative flex">
+                  <button (mouseover)="sm_1_2 = true; sm_1_1 = false; sm_1_3 = false;" type="button" class="{{ sm_1_2 ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-700 hover:text-gray-800'}} hover:text-gray-800 relative z-10 flex items-center transition-colors ease-out duration-200 text-base font-semibold border-b-2 -mb-px pt-px" aria-expanded="false">Venues</button>
+                </div>
+
+                <div class="absolute top-full inset-x-0 text-sm text-gray-500 z-10" *ngIf="sm_1_2" (mouseleave)="sm_1_2 = false">
+                  <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow -->
+                  <div class="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true"></div>
+
+                  <div class="relative bg-white">
+                    <div class="max-w-7xl mx-auto px-8">
+                      <div class="grid grid-cols-2 gap-y-10 gap-x-8 py-16">
+                        <div class="col-start-2 grid grid-cols-2 gap-x-8">
+                          <div class="group relative text-base sm:text-sm">
+                            <div class="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden group-hover:opacity-75">
+                              <img src="https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg" alt="Drawstring top with elastic loop closure and textured interior padding." class="object-center object-cover">
+                            </div>
+                            <a href="#" class="mt-6 block font-medium text-gray-900">
+                              <span class="absolute z-10 inset-0" aria-hidden="true"></span>
+                              New Arrivals
+                            </a>
+                            <p aria-hidden="true" class="mt-1">Shop now</p>
+                          </div>
+
+                          <div class="group relative text-base sm:text-sm">
+                            <div class="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden group-hover:opacity-75">
+                              <img src="https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg" alt="Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt." class="object-center object-cover">
+                            </div>
+                            <a href="#" class="mt-6 block font-medium text-gray-900">
+                              <span class="absolute z-10 inset-0" aria-hidden="true"></span>
+                              Artwork Tees
+                            </a>
+                            <p aria-hidden="true" class="mt-1">Shop now</p>
+                          </div>
+                        </div>
+                        <div class="row-start-1 grid grid-cols-3 gap-y-10 gap-x-8 text-sm">
+                          <div>
+                            <p id="Clothing-heading" class="font-medium text-gray-900">Clothing</p>
+                            <ul role="list" aria-labelledby="Clothing-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Tops </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Pants </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Sweaters </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> T-Shirts </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Jackets </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Activewear </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Browse All </a>
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <p id="Accessories-heading" class="font-medium text-gray-900">Accessories</p>
+                            <ul role="list" aria-labelledby="Accessories-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Watches </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Wallets </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Bags </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Sunglasses </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Hats </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Belts </a>
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <p id="Brands-heading" class="font-medium text-gray-900">Brands</p>
+                            <ul role="list" aria-labelledby="Brands-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Re-Arranged </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Counterfeit </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Full Nelson </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> My Way </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex">
+                <div class="relative flex">
+                  <button type="button" (mouseover)="sm_1_3 = true; sm_1_1 = false; sm_1_2 = false;" class="{{ sm_1_3 ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-700 hover:text-gray-800'}} relative z-10 flex items-center transition-colors ease-out duration-200 text-base font-semibold border-b-2 -mb-px pt-px" aria-expanded="false">Vendors</button>
+                </div>
+
+                <!--
+                  'Men' flyout menu, show/hide based on flyout menu state.
+
+                  Entering: "transition ease-out duration-200"
+                    From: "opacity-0"
+                    To: "opacity-100"
+                  Leaving: "transition ease-in duration-150"
+                    From: "opacity-100"
+                    To: "opacity-0"
+                -->
+                <div class="absolute top-full inset-x-0 text-sm text-gray-500 z-10" *ngIf="sm_1_3" (mouseover)="sm_1_3 = false">
+                  <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow -->
+                  <div class="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true"></div>
+
+                  <div class="relative bg-white">
+                    <div class="max-w-7xl mx-auto px-8">
+                      <div class="grid grid-cols-2 gap-y-10 gap-x-8 py-16">
+                        <div class="col-start-2 grid grid-cols-2 gap-x-8">
+                          <div class="group relative text-base sm:text-sm">
+                            <div class="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden group-hover:opacity-75">
+                              <img src="https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg" alt="Drawstring top with elastic loop closure and textured interior padding." class="object-center object-cover">
+                            </div>
+                            <a href="#" class="mt-6 block font-medium text-gray-900">
+                              <span class="absolute z-10 inset-0" aria-hidden="true"></span>
+                              New Arrivals
+                            </a>
+                            <p aria-hidden="true" class="mt-1">Shop now</p>
+                          </div>
+
+                          <div class="group relative text-base sm:text-sm">
+                            <div class="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden group-hover:opacity-75">
+                              <img src="https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg" alt="Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt." class="object-center object-cover">
+                            </div>
+                            <a href="#" class="mt-6 block font-medium text-gray-900">
+                              <span class="absolute z-10 inset-0" aria-hidden="true"></span>
+                              Artwork Tees
+                            </a>
+                            <p aria-hidden="true" class="mt-1">Shop now</p>
+                          </div>
+                        </div>
+                        <div class="row-start-1 grid grid-cols-3 gap-y-10 gap-x-8 text-sm">
+                          <div>
+                            <p id="Clothing-heading" class="font-medium text-gray-900">Clothing</p>
+                            <ul role="list" aria-labelledby="Clothing-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Tops </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Pants </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Sweaters </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> T-Shirts </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Jackets </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Activewear </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Browse All </a>
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <p id="Accessories-heading" class="font-medium text-gray-900">Accessories</p>
+                            <ul role="list" aria-labelledby="Accessories-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Watches </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Wallets </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Bags </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Sunglasses </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Hats </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Belts </a>
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <p id="Brands-heading" class="font-medium text-gray-900">Brands</p>
+                            <ul role="list" aria-labelledby="Brands-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Re-Arranged </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Counterfeit </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> Full Nelson </a>
+                              </li>
+
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800"> My Way </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a href="./forum" class="flex items-center text-base font-semibold text-gray-700 hover:text-indigo-600">Forum</a>
+
+              <a href="./blogs-posts" class="flex items-center text-base font-semibold text-gray-700 hover:text-indigo-600">Blogs Posts</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
 </div>

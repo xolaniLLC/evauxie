@@ -25,6 +25,13 @@ import { MiniatureBlogComponent } from './shared/miniature-blog/miniature-blog.c
 import { ArticleComponent } from './article/article.component';
 import { SuggestionsArticleComponent } from './shared/suggestions-article/suggestions-article.component';
 import { CommentaireBlogComponent } from './shared/commentaire-blog/commentaire-blog.component';
+import { PlanningToolsComponent } from './planning-tools/planning-tools.component';
+import { MyEventsComponent } from './planning-tools/my-events/my-events.component';
+import { MenuPlanningToolsComponent } from './shared/menu-planning-tools/menu-planning-tools.component';
+import { ChecklistComponent } from './planning-tools/checklist/checklist.component';
+import { VendorsManagerComponent } from './planning-tools/vendors-manager/vendors-manager.component';
+import { GuestsListsComponent } from './planning-tools/guests-lists/guests-lists.component';
+import { BudgetComponent } from './planning-tools/budget/budget.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +55,14 @@ import { CommentaireBlogComponent } from './shared/commentaire-blog/commentaire-
     MiniatureBlogComponent,
     ArticleComponent,
     SuggestionsArticleComponent,
-    CommentaireBlogComponent
+    CommentaireBlogComponent,
+    PlanningToolsComponent,
+    MyEventsComponent,
+    MenuPlanningToolsComponent,
+    ChecklistComponent,
+    VendorsManagerComponent,
+    GuestsListsComponent,
+    BudgetComponent
   ],
     imports: [
         BrowserModule,

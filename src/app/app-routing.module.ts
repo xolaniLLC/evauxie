@@ -12,6 +12,13 @@ import {AuthGuardService} from "./services/auth-guard.service";
 import {TopicComponent} from "./topic/topic.component";
 import {BlogComponent} from "./blog/blog.component";
 import {ArticleComponent} from "./article/article.component";
+import {PlanningToolsComponent} from "./planning-tools/planning-tools.component";
+import {MyEventsComponent} from "./planning-tools/my-events/my-events.component";
+import {ChecklistComponent} from "./planning-tools/checklist/checklist.component";
+import {VendorsManagerComponent} from "./planning-tools/vendors-manager/vendors-manager.component";
+import {GuestsListsComponent} from "./planning-tools/guests-lists/guests-lists.component";
+import {BudgetComponent} from "./planning-tools/budget/budget.component";
+import {PlanningToolsGuardService} from "./services/planning-tools-guard.service";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -22,6 +29,12 @@ const routes: Routes = [
   { path: 'blogs-posts', component: BlogComponent },
   { path: 'article/:id', component: ArticleComponent },
   { path: 'profil', component: ProfilComponent },
+  { path: 'planning-tools', component: PlanningToolsComponent },
+  { path: 'planning-tools/my-events', canActivate: [PlanningToolsGuardService], component: MyEventsComponent },
+  { path: 'planning-tools/checklist', canActivate: [PlanningToolsGuardService], component: ChecklistComponent },
+  { path: 'planning-tools/vendors-manager', canActivate: [PlanningToolsGuardService], component: VendorsManagerComponent },
+  { path: 'planning-tools/guests-lists', canActivate: [PlanningToolsGuardService], component: GuestsListsComponent },
+  { path: 'planning-tools/budget', canActivate: [PlanningToolsGuardService], component: BudgetComponent },
   { path: 'new-topic', canActivate: [AuthGuardService], component: NewTopicComponent },
   { path: 'topic/:id', component: TopicComponent },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },

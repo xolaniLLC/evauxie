@@ -1,14 +1,14 @@
-<div class="w-full m-5" *ngIf="currentBlog && skin === 'item'">
-  <div class="bg-center bg-fixed bg-no-repeat bg-center bg-cover relative">
-    <div class="w-96 h-96" style="background-image:url({{currentBlog && extractImage(currentBlog.contenu) !== '' ? extractImage(currentBlog.contenu) : 'assets/images/ill_14.png'}})">
+<div class="w-full m-5 hover:cursor-pointer" routerLink="../article/{{currentBlog.id}}" *ngIf="currentBlog && skin === 'item'">
+  <div class="bg-center bg-fixed bg-no-repeat bg-center bg-center">
+    <div class="w-96 h-96 hover:scale-105 hover:transition-transform" style="background-image:url({{currentBlog && extractImage(currentBlog.contenu) !== '' ? extractImage(currentBlog.contenu) : 'assets/images/ill_14.png'}})">
 
     </div>
     <div class="bg-white absolute top-0 left-0" *ngIf="extractNombreJour(currentBlog.date) < 1">
       <p class="text-base leading-4 py-3 px-5 text-white bg-orange-500">News</p>
     </div>
   </div>
-  <p class="text-base font-light leading-4 text-gray-800 mt-6">{{currentUser ? currentUser.nom : 'Evauxie'}} · <span class="text-orange-500"> {{currentBlog.date | date:"MMMM dd, yyyy"}} </span> </p>
-  <h1 class="text-2xl font-semibold leading-7 sm:pr-20 mt-2 text-gray-800 w-96">{{currentBlog.titre}}</h1>
+  <p class="text-base font-light leading-4 text-gray-800 mt-6 capitalize">{{currentUser ? currentUser.nom : 'Evauxie'}} · <span class="text-orange-500"> {{currentBlog.date | date:"MMMM dd, yyyy"}} </span> </p>
+  <h1 class="text-2xl font-semibold leading-7 sm:pr-20 mt-2 text-gray-800 w-96 capitalize">{{currentBlog.titre}}</h1>
   <p class="text-base leading-normal mt-4 sm:pr-20 md:pr-10 text-gray-600 overflow-hidden whitespace-nowrap overflow-ellipsis w-96">{{getPureTexte(currentBlog.contenu)}}</p>
   <button routerLink="../article/{{currentBlog.id}}" class="focus:outline-none flex items-center justify-between w-72 mt-6 bg-indigo-600 p-4 hover:bg-indigo-500 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
     <p class="text-base font-medium leading-4 text-white">Read more</p>
@@ -25,7 +25,7 @@
   <div>
     <p class="p-6 text-xs font-medium leading-3 text-white absolute top-0 right-0">{{currentBlog.date | date:"MMMM dd, yyyy"}}</p>
     <div class="absolute bottom-0 left-0 p-6">
-      <h2 class="text-xl font-semibold 5 text-white overflow-hidden whitespace-nowrap overflow-ellipsis w-48">{{currentBlog.titre}}</h2>
+      <h2 class="text-xl font-semibold 5 text-white overflow-hidden whitespace-nowrap overflow-ellipsis w-48 capitalize">{{currentBlog.titre}}</h2>
       <p class="text-base leading-4 text-white mt-2 overflow-hidden whitespace-nowrap overflow-ellipsis w-48">{{getPureTexte(currentBlog.contenu)}}</p>
       <a class="focus:outline-none focus:underline flex items-center mt-4 cursor-pointer text-white hover:text-gray-200 hover:underline">
         <p routerLink="../article/{{currentBlog.id}}" class="pr-2 text-sm font-medium leading-none">Read More</p>
@@ -35,7 +35,7 @@
       </a>
     </div>
   </div>
-  <img src="{{currentBlog && extractImage(currentBlog.contenu) !== '' ? extractImage(currentBlog.contenu) : 'assets/images/ill_14.png'}}" class="w-60 h-60" alt="chair" />
+  <img class="w-60 h-60" src="{{currentBlog && extractImage(currentBlog.contenu) !== '' ? extractImage(currentBlog.contenu) : 'assets/images/ill_14.png'}}" alt="chair" />
 </div>
 
 
