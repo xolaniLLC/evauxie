@@ -2,4 +2,366 @@
 
 <app-menu-planning-tools></app-menu-planning-tools>
 
+<section *ngIf="currentEvent">
+  <div class="mx-auto container my-6">
+    <div id="accordion-open" data-accordion="open" class="border-b-2 border-gray-200 dark:border-gray-700">
+      <h2 id="accordion-open-heading-1">
+        <button (click)="printResumeBudget ? printResumeBudget = false : printResumeBudget = true" type="button" class="flex justify-between items-center p-5 w-full font-medium text-left text-gray-900 bg-gray-100 rounded-t-xl border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-open-body-1" aria-expanded="false" aria-controls="accordion-open-body-1">
+          <span class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+            </svg>
+            Overall status</span>
+          <svg data-accordion-icon="" class="w-6 h-6 {{printResumeBudget ? '' : 'rotate-180'}} shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+      </h2>
+      <div id="accordion-open-body-1" class="{{ printResumeBudget ? '' : 'hidden' }}" aria-labelledby="accordion-open-heading-1">
+        <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+          <div class="w-full flex items-center justify-start">
+            <div class="py-4 sm:py-6 md:py-8">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-6 xl:px-10 gap-y-8 gap-x-12 2xl:gap-x-28">
+                <div class="w-full">
+                  <p class="text-xs md:text-sm font-medium leading-none text-gray-500 uppercase">Total estimated cost</p>
+                  <input (change)="saveNewEstimatBudget(currentEvent.estimationBudget)" class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-3 text-gray-800 mt-3 md:mt-5" [(ngModel)]="currentEvent.estimationBudget" />
+                  <div class="flex flex-col md:w-64">
+                    <div class="w-full flex justify-end">
+                      <div class="flex items-center">
+                        <p class="text-xs leading-none text-green-600">Click on the sum to modify it</p>
+                      </div>
+                    </div>
+                    <div class="mt-2.5">
+                      <div class="w-full h-1 bg-gray-200 rounded-full">
+                        <div class="h-1 {{rve(currentEvent.estimationBudget, recupTotalDepense().fc) < 0 ? 'bg-red-500' : 'bg-blue-500'}} rounded-full"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-1.5 text-xs leading-3 text-gray-400">For {{currentCategorySelect ? currentCategorySelect : 'all'}} category &nbsp; | &nbsp; Estimated cost is <span class="text-xs leading-none text-orange-600">{{recupTotalDepense().ec}}</span>
+                  </p>
+                </div>
+                <div class="w-full">
+                  <p class="text-xs md:text-sm font-medium leading-none text-gray-500 uppercase">Final cost</p>
+                  <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-3 text-gray-800 mt-3 md:mt-5">{{recupTotalDepense().fc}}</p>
+                  <div class="flex flex-col">
+                    <div class="h-4"></div>
+                    <div class="md:w-64 mt-2.5">
+                      <div class="w-full h-1 bg-gray-200 rounded-full">
+                        <div class="h-1 {{rve(recupTotalDepense().ec, recupTotalDepense().fc) < 0 ? 'bg-red-500' : 'bg-lime-500'}} rounded-full"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-1.5 text-xs leading-3 text-gray-400">For {{currentCategorySelect ? currentCategorySelect : 'all'}} category</p>
+                </div>
+                <div class="w-full">
+                  <p class="text-xs md:text-sm font-medium leading-none text-gray-500 uppercase">Paid</p>
+                  <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-3 text-gray-800 mt-3 md:mt-5">{{recupTotalDepense().pd}}</p>
+                  <div class="flex flex-col md:w-64">
+                    <div class="w-full flex justify-end">
+                      <div class="flex items-center">
+                        <p class="text-xs leading-none text-green-600">&nbsp;</p>
+                      </div>
+                    </div>
+                    <div class="mt-2.5">
+                      <div class="w-full h-1 bg-gray-200 rounded-full">
+                        <div class="w-full h-1 rounded-full"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-1.5 text-xs leading-3 text-gray-400">For {{currentCategorySelect ? currentCategorySelect : 'all'}} category</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="mx-auto container bg-white dark:bg-gray-800 dark:bg-gray-800 shadow rounded">
+    <div class="flex flex-col lg:flex-row p-4 lg:p-8 justify-between items-start lg:items-stretch w-full">
+      <div class="w-full lg:w-1/3 flex flex-col lg:flex-row items-start lg:items-center">
+        <div class="flex items-center space-x-5" *ngIf="depenses.length > 0">
+          <a class="p-2" *ngIf="isLoading"
+             href="javascript: void(0)">
+            <svg width="20" height="20" role="status" class="inline mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"></path>
+              <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"></path>
+            </svg>
+          </a>
+
+          <a *ngIf="depenses_select.length > 0" (click)="deleteAll()" class="text-red-500 p-2 border-transparent border bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 hover:bg-gray-200 cursor-pointer rounded focus:outline-none focus:border-gray-800 focus:shadow-outline-gray">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon cursor-pointer icon-tabler icon-tabler-trash"
+                 width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" />
+              <line x1="4" y1="7" x2="20" y2="7" />
+              <line x1="10" y1="11" x2="10" y2="17" />
+              <line x1="14" y1="11" x2="14" y2="17" />
+              <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+              <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="w-full lg:w-2/3 flex flex-col lg:flex-row items-start lg:items-center justify-end">
+
+        <div class="flex items-center lg:border-r border-gray-300 pb-3 lg:pb-0 lg:px-6">
+          <div class="relative w-32 z-10">
+            <div
+              class="pointer-events-none text-gray-600 dark:text-gray-400 absolute inset-0 m-auto mr-2 xl:mr-4 z-0 w-5 h-5">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   class="icon cursor-pointer icon-tabler icon-tabler-chevron-down" width="20" height="20"
+                   viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"></path>
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+            <select aria-label="Selected tab"
+                    class="focus:outline-none border border-transparent focus:border-gray-800 focus:shadow-outline-gray text-base form-select block w-full py-2 px-2 xl:px-3 rounded text-gray-600 dark:text-gray-400 appearance-none bg-transparent">
+              <option (click)="currentCategorySelect = ''" value="">All</option>
+              <option (click)="currentCategorySelect = 'accomodation'">Accommodations</option>
+              <option (click)="currentCategorySelect = 'budget'">Budget</option>
+              <option (click)="currentCategorySelect = 'beauty'">Beauty</option>
+              <option (click)="currentCategorySelect = 'guests'">Guests</option>
+              <option (click)="currentCategorySelect = 'dress & attire'">Dress and Attire</option>
+              <option (click)="currentCategorySelect = 'beauty'">Jewelery</option>
+              <option (click)="currentCategorySelect = 'other'">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="lg:ml-6 flex items-center space-x-5">
+          <button (click)="modalHandler(true)" class="{{depenses.length === 0 ? 'animate-pulse' : ''}} items-center bg-indigo-600 transition duration-150 ease-in-out focus:outline-none border border-transparent focus:border-gray-800 focus:shadow-outline-gray hover:bg-gray-300 rounded text-white px-5 h-8 flex items-center text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Add new expenses
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="w-full overflow-x-scroll xl:overflow-x-hidden">
+      <p class="text-gray-500 font-light text-center pb-6 text-xl" *ngIf="depenses.length === 0">
+        You have not created any expenses
+      </p>
+      <table id="tableau_doc" class="min-w-full bg-white dark:bg-gray-800" *ngIf="depenses.length > 0">
+        <thead>
+        <tr class="w-full h-16 border-gray-300 border-b py-8">
+          <th
+            class="pl-8 text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
+            <input (change)="depenses.length === depenses_select.length ? (depenses_select = []) : (depenses_select = depenses)"  type="checkbox" [checked]="depenses_select.length === depenses.length"
+                   class="cursor-pointer relative w-5 h-5 border rounded border-gray-400 bg-white dark:bg-gray-800 outline-none" />
+          </th>
+          <th
+            class="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
+            Title</th>
+          <th
+            class="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
+            Estimated Cost</th>
+          <th
+            class="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
+            Final cost</th>
+          <th
+            class="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
+            Paid</th>
+          <th
+            class="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
+          Category</th>
+          <td
+            class="text-gray-600 dark:text-gray-400 font-normal pr-8 text-left text-sm tracking-normal leading-4">
+            Options</td>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let dep of depenses">
+          <tr *ngIf="dep.categorie === currentCategorySelect || currentCategorySelect === ''"
+              [ngClass]="dep.paye > 0  ? 'border-b bg-gray-100 border-gray-300 h-24' : 'border-b bg-white border-gray-300 h-24' "
+          >
+            <td
+              class="pl-8 pr-6 text-left whitespace-no-wrap text-sm text-gray-800 dark:text-gray-100 tracking-normal leading-4">
+              <input type="checkbox" [checked]="depenses_select.includes(dep)"
+                     class="cursor-pointer relative w-5 h-5 border rounded border-gray-400 bg-white dark:bg-gray-800 outline-none"
+                     (change)="depenses_select.includes(dep) ? depenses_select.splice(depenses_select.indexOf(dep), 1) : depenses_select.push(dep)" />
+            </td>
+            <td
+              class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal">
+              {{dep.titre}}</td>
+            <td
+              class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal">
+              {{dep.coutEstime}}</td>
+            <td
+              class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
+              {{dep.coutFinal}}
+            </td>
+            <td
+              class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
+              {{dep.paye}}
+            </td>
+            <td class="pr-6 whitespace-no-wrap">
+              <div class="flex items-center">
+                <a href="#" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300">{{dep.categorie}}</a>
+              </div>
+            </td>
+            <td
+              class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
+              {{dep.date | date:"MMMM dd, yyyy"}}</td>
+            <td class="pr-8 relative">
+              <div *ngIf="menuOption === dep.id"
+                   class="dropdown-content mt-8 absolute left-0 -ml-12 shadow-md z-30 w-32">
+                <ul class="bg-white dark:bg-gray-800 shadow rounded py-1">
+                  <li (click)="!isLoading ? modalUpdateBtn() : ''; currentDepenseUpdate = dep; !isLoading ? menuOption = '' : '';"
+                      class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-indigo-700 hover:text-white px-3 font-normal">
+                    Update</li>
+                  <li (click)="!isLoading ? deleteDepense(dep) : ''"
+                      class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-indigo-700 hover:text-white px-3 font-normal">
+                    Delete</li>
+                </ul>
+              </div>
+              <button (click)="menuOption === dep.id ? (menuOption = '') : (menuOption = dep.id)"
+                      class="text-gray-500 rounded cursor-pointer border border-transparent focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="icon icon-tabler icon-tabler-dots-vertical dropbtn" width="28" height="28"
+                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" />
+                  <circle cx="12" cy="12" r="1" />
+                  <circle cx="12" cy="19" r="1" />
+                  <circle cx="12" cy="5" r="1" />
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+        <tr class="w-full h-16 border-gray-300 border-b py-8">
+          <td
+            class="pl-8 pr-6 text-left whitespace-no-wrap font-semibold text-sm text-gray-800 dark:text-gray-100 tracking-normal leading-4">
+            Total
+          </td>
+          <td
+            class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal">
+            </td>
+          <td
+            class="text-sm pr-6 whitespace-no-wrap font-semibold text-gray-800 dark:text-gray-100 tracking-normal">
+            {{recupTotalDepense().ec}}</td>
+          <td
+            class="text-sm pr-6 whitespace-no-wrap font-semibold text-gray-800 dark:text-gray-100 tracking-normal leading-4">
+            {{recupTotalDepense().fc}}
+          </td>
+          <td
+            class="text-sm pr-6 whitespace-no-wrap font-semibold text-gray-800 dark:text-gray-100 tracking-normal leading-4">
+            {{recupTotalDepense().pd}}
+          </td>
+          <td class="pr-6 whitespace-no-wrap">
+            <div class="flex items-center">
+              <a href="#" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300">{{currentCategorySelect ? currentCategorySelect : 'All'}}</a>
+            </div>
+          </td>
+          <td class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4"></td>
+          <td class="pr-8 relative"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="py-12 bg-black bg-opacity-75 transition duration-150 ease-in-out flex top-0 bottom-0 right-0 left-0 fixed z-50 w-full h-full hidden" id="modal">
+    <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
+      <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
+        <form #form="ngForm" (ngSubmit)="addDepense(form)">
+          <div class="w-full flex justify-start text-gray-600 mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="52" height="52" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+          <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Information about the expense</h1>
+          <label for="titre" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Title of the expenditure <span class="text-rose-600">*</span></label>
+          <input id="titre" ngModel name="titre" required class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Title..." />
+          <label for="coutEstime" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Estimated Cost</label>
+          <input id="coutEstime" name="coutEstime" ngModel type="number" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Sum" />
+          <label for="coutFinal" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Final cost</label>
+          <input id="coutFinal" name="coutFinal" ngModel type="number" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Sum" />
+          <label for="paye" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Paid</label>
+          <input id="paye" name="paye" ngModel type="number" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Sum" />
+          <label for="categorie" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Category <span class="text-rose-600">*</span></label>
+          <div class="relative mb-5 mt-2">
+            <select id="categorie" name="categorie" required ngModel class="bg-transparent mb-8 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
+              <option selected value="">Select category</option>
+              <option value="accomodation">Accomodation</option>
+              <option value="budget">Budget</option>
+              <option value="beauty">Beauty</option>
+              <option value="guests">Guests</option>
+              <option value="dress_&_attire">Dress & Attire</option>
+              <option value="jewelery">Jewelery</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="flex items-center justify-start w-full">
+            <button [disabled]="form.invalid || isLoading" type="submit" class="disabled:bg-gray-300 disabled:text-gray-600 focus:outline-none transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">
+              <svg *ngIf="isLoading" role="status" class="inline mr-3 w-4 h-4 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+              </svg>
+              Add expense
+            </button>
+            <button class="focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" (click)="modalHandler(false)">Cancel</button>
+          </div>
+          <div class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out" (click)="modalHandler(false)">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-label="Close" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" />
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div [ngClass]="'z-50 fixed w-full flex justify-center inset-0 ' + (modal ? 'hidden' : 'block')" *ngIf="currentDepenseUpdate">
+    <div  (click)="modalUpdateBtn()" class="w-full h-full bg-black opacity-75 z-0 absolute inset-0"></div>
+    <div class="mx-auto container">
+      <div class="flex items-center justify-center h-full w-full">
+        <div class="bg-white rounded-md shadow fixed overflow-y-auto sm:h-auto w-10/12 md:w-8/12 lg:w-1/2 2xl:w-2/5">
+          <div class="bg-gray-100 rounded-tl-md rounded-tr-md px-4 md:px-8 md:py-4 py-7 flex items-center justify-between">
+            <p class="text-base font-semibold">Update expense</p>
+            <button role="button" aria-label="close label"  (click)="modalUpdateBtn()" class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 focus:outline-none">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 7L7 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M7 7L21 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="px-4 md:px-10 pt-3 pb-7">
+            <form class="mt-11" #form1="ngForm" (ngSubmit)="updateDepense(form1)">
+              <div class="flex items-center space-x-9">
+                <input placeholder="Title" required name="titre" id="titreUpdate" ngModel="{{currentDepenseUpdate.titre}}" class="focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+                <input placeholder="Estimated cost" name="coutEstime" ngModel="{{currentDepenseUpdate.coutEstime}}" type="number" min="0" class="focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+              </div>
+              <div class="flex items-center space-x-9 mt-8">
+                <input placeholder="Final cost" name="coutFinal" ngModel="{{currentDepenseUpdate.coutFinal}}" type="number" min="0" class="focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+                <input placeholder="Paid" name="paye" ngModel="{{currentDepenseUpdate.paye}}" type="number" min="0" class="focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+              </div>
+              <div class="flex items-center justify-between mt-9">
+                <a role="button" aria-label="close button"  (click)="modalUpdateBtn()" class="cursor-pointer focus:ring-2 focus:ring-offset-2 focus:bg-gray-600 focus:ring-gray-600 focus:outline-none px-6 py-3 bg-gray-600 hover:bg-gray-500 shadow rounded text-sm text-white">Cancel</a>
+                <button aria-label="update expense" role="button" [disabled]="form1.invalid || isLoading" type="submit" class="disabled:bg-gray-300 disabled:text-gray-600 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-800 focus:outline-none px-6 py-3 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white">
+                  <svg *ngIf="isLoading" role="status" class="inline mr-3 w-4 h-4 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+                  </svg>
+                  Update expense</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <app-footer></app-footer>

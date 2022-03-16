@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'forum', component: ForumComponent },
   { path: 'blogs-posts', component: BlogComponent },
   { path: 'article/:id', component: ArticleComponent },
-  { path: 'profil', component: ProfilComponent },
+  { path: 'profil/:id', component: ProfilComponent },
   { path: 'planning-tools', component: PlanningToolsComponent },
   { path: 'planning-tools/my-events', canActivate: [PlanningToolsGuardService], component: MyEventsComponent },
   { path: 'planning-tools/checklist', canActivate: [PlanningToolsGuardService], component: ChecklistComponent },

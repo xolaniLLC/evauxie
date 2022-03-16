@@ -20,7 +20,6 @@ export class ChecklistComponent implements OnInit {
   event_en_cours: Evenement[] = [];
   liste_task: Task[] = [];
   menuOption = '';
-  numberTaskLoading = 0;
 
   constructor(private eventService: EvenementService, private alertService: AlertService) { }
 
@@ -36,8 +35,6 @@ export class ChecklistComponent implements OnInit {
             pointe.eventService.getTaskEvents(evt.id).then(
               (data) => {
                 pointe.liste_task = data;
-
-
               }
             );
           }
@@ -87,6 +84,9 @@ export class ChecklistComponent implements OnInit {
         this.isLoading = false;
         this.alertService.print('Operation done', 'success');
         this.liste_task.splice(this.liste_task.indexOf(task), 1);
+      }, (error) => {
+        this.isLoading = false;
+        this.alertService.print(error, 'danger');
       }
     );
   }

@@ -11,6 +11,7 @@ import {Subscriber} from "../../models/subscriber";
 export class FooterComponent implements OnInit {
 
   isLoading = false;
+  currentDate = new Date();
 
   constructor(private newsletterService: NewsletterService, private alertService: AlertService) { }
 

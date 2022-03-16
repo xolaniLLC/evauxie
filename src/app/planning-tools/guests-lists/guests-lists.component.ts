@@ -3,6 +3,9 @@ import {Guest} from "../../models/guest";
 import {EvenementService} from "../../services/evenement.service";
 import firebase from "firebase";
 import {AlertService} from "../../services/alert.service";
+import {UserService} from "../../services/user.service";
+import {Evenement} from "../../models/evenement";
+import {Utilisateur} from "../../models/utilisateur";
 
 @Component({
   selector: 'app-guests-lists',
@@ -14,11 +17,12 @@ export class GuestsListsComponent implements OnInit {
   isLoading = false;
   currentEvent: Event | any = null;
   liste_invite: Guest[] = [];
+  liste_profil_invite: Utilisateur[] = [];
   liste_invite_select: Guest[] = [];
   currentCategorySelect: number | any = null;
   menuOption = '';
 
-  constructor(private eventService: EvenementService, private alertService: AlertService) { }
+  constructor(private eventService: EvenementService, private alertService: AlertService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.eventService.getMyEvents().then(
@@ -30,6 +34,17 @@ export class GuestsListsComponent implements OnInit {
             this.eventService.getGuestEvents(this.currentEvent.id).then(
               (result1) => {
                 this.liste_invite = result1;
+                const pointe = this;
+                this.liste_invite.forEach(function (guest) {
+                  pointe.userService.getInfosUserWitchId(guest.email).then(
+                    (mimi) => {
+                      if (mimi)
+                        pointe.liste_profil_invite.push(mimi);
+                      else
+                        pointe.liste_profil_invite.push(new Utilisateur('', '', '', ''));
+                    }
+                  );
+                });
               }
             );
           }
@@ -55,6 +70,9 @@ export class GuestsListsComponent implements OnInit {
         this.isLoading = false;
         this.liste_invite.splice(this.liste_invite.indexOf(gt), 1);
         this.liste_invite.push(gt);
+      }, (error) => {
+        this.isLoading = false;
+        this.alertService.print(error, 'danger');
       }
     );
   }

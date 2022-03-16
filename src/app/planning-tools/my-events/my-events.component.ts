@@ -88,6 +88,9 @@ export class MyEventsComponent implements OnInit {
             this.event_en_cours.splice(this.event_en_cours.indexOf(oldEvent), 1);
             this.event_en_cours.push(event);
           }
+        }, (error) => {
+          this.isLoading = false;
+          this.alertService.print(error, 'danger');
         }
       );
     }
