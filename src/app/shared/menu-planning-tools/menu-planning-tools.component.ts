@@ -35,6 +35,8 @@ export class MenuPlanningToolsComponent implements OnInit {
       this.menu = 4;
     } else if(this.router.url.includes('budget')) {
       this.menu = 5;
+    } else if(this.router.url.includes('payment')) {
+      this.menu = 6;
     }
 
     this.userService.getInfosUserWitchId(firebase.auth().currentUser?.email as string).then(

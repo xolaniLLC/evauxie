@@ -38,6 +38,22 @@ export class ForumService {
     });
   }
 
+  async getLikeTopicWitchUserId(id: any) {
+    return new Promise<Topic[]>((resolve, reject) => {
+      firebase.firestore().collection('topics').where('like', 'array-contains', id).onSnapshot(
+        (docRef) => {
+          const result: Topic[] = [];
+          docRef.forEach(function (doc) {
+            result.push(doc.data() as Topic);
+          });
+          resolve(result as any);
+        }, () => {
+          reject();
+        }
+      )
+    });
+  }
+
   async likeTopic(topic: any) {
     return new Promise<void>((resolve, reject) => {
       firebase.firestore().collection('topics').doc(topic.id).update({
@@ -57,6 +73,23 @@ export class ForumService {
     return new Promise<Topic[]>((resolve, reject) => {
       // @ts-ignore
       firebase.firestore().collection('topics').onSnapshot(
+        (docRef) => {
+          const result: Topic[] = [];
+          docRef.forEach(function (doc) {
+            result.push(doc.data() as Topic);
+          });
+          resolve(result as any);
+        }, (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async getTopicsWitchIdUser(id: any) {
+    return new Promise<Topic[]>((resolve, reject) => {
+      // @ts-ignore
+      firebase.firestore().collection('topics').where('auteur', '==', id).onSnapshot(
         (docRef) => {
           const result: Topic[] = [];
           docRef.forEach(function (doc) {

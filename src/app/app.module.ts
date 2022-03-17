@@ -32,6 +32,8 @@ import { ChecklistComponent } from './planning-tools/checklist/checklist.compone
 import { VendorsManagerComponent } from './planning-tools/vendors-manager/vendors-manager.component';
 import { GuestsListsComponent } from './planning-tools/guests-lists/guests-lists.component';
 import { BudgetComponent } from './planning-tools/budget/budget.component';
+import { MailboxComponent } from './mailbox/mailbox.component';
+import { PaymentComponent } from './planning-tools/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { BudgetComponent } from './planning-tools/budget/budget.component';
     ChecklistComponent,
     VendorsManagerComponent,
     GuestsListsComponent,
-    BudgetComponent
+    BudgetComponent,
+    MailboxComponent,
+    PaymentComponent
   ],
     imports: [
         BrowserModule,

@@ -9,7 +9,7 @@ export class UserService {
 
   constructor() { }
 
-  async getInfosUserWitchId(id: string) {
+  async getInfosUserWitchId(id: any) {
     return new Promise<Utilisateur>((resolve, reject) => {
       firebase.firestore().collection('comptes').doc(id).get().then(
         (docRef) => {

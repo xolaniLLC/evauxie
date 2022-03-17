@@ -1,0 +1,177 @@
+<app-navbar></app-navbar>
+
+<section>
+  <div class="sm:px-6 w-full">
+    <div class="px-4 md:px-10 py-4 md:py-7">
+      <div class="flex items-center justify-between">
+        <p class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">MailBox</p>
+        <div class="py-3 px-4 flex items-center text-sm font-medium leading-none text-gray-600 bg-gray-200 hover:bg-gray-300 cursor-pointer rounded">
+          <p>Type of message:</p>
+          <select class="focus:outline-none bg-transparent ml-1">
+            <option (click)="viewTypeMessage = ''" class="text-sm text-indigo-800">All</option>
+            <option (click)="viewTypeMessage = 'vendor'" class="text-sm text-indigo-800">Vendor Messages</option>
+            <option (click)="viewTypeMessage = 'private'" class="text-sm text-indigo-800">Private Maessages</option>
+            <option (click)="viewTypeMessage = 'admin'" class="text-sm text-indigo-800">Admin Messages</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
+      <div class="sm:flex items-center justify-between">
+        <div class="flex items-center">
+          <a (click)="viewElement = 'inbox'; destinatairesMessage = ''">
+            <div class="py-2 px-8 cursor-pointer {{ viewElement === 'inbox' ? 'bg-indigo-100 text-indigo-700' : 'text-gray-600 hover:text-indigo-700 hover:bg-indigo-100'}} rounded-full">
+              <p>Inbox</p>
+            </div>
+          </a>
+          <a (click)="viewElement = 'unread'; destinatairesMessage = ''">
+            <div class="py-2 px-8 cursor-pointer {{ viewElement === 'unread' ? 'bg-indigo-100 text-indigo-700' : 'text-gray-600 hover:text-indigo-700 hover:bg-indigo-100'}} rounded-full ml-4 sm:ml-8">
+              <p>Unread</p>
+            </div>
+          </a>
+          <a (click)="viewElement = 'send'; destinatairesMessage = ''">
+            <div class="py-2 px-8 cursor-pointer {{ viewElement === 'send' ? 'bg-indigo-100 text-indigo-700' : 'text-gray-600 hover:text-indigo-700 hover:bg-indigo-100'}} rounded-full ml-4 sm:ml-8">
+              <p>Send</p>
+            </div>
+          </a>
+        </div>
+        <!--button class="mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
+          <p routerLink="../mailbox" [queryParams]="{write: '@' }" class="text-sm font-medium leading-none text-white">New message</p>
+        </button-->
+      </div>
+      <div class="flex md:flex-row flex-col items-start justify-start py-6 px-10" *ngIf="destinatairesMessage !== ''">
+        <div class="mt-7">
+          <div class="h-16 w-16 mb-4 lg:mb-0 mr-4">
+            <img [src]="currentUser && currentUser.photo !== '' ? currentUser.photo : 'assets/images/user.png'" alt="" class="h-full w-full rounded-full overflow-hidden shadow" />
+          </div>
+        </div>
+        <!-- Code block starts -->
+        <div id="popover" class="transition duration-150 ease-in-out ml-10 w-full">
+          <div class="w-full bg-white rounded shadow-xl">
+            <div class="relative bg-gray-200 rounded-t py-4 px-4 xl:px-8">
+              <svg class="hidden md:block absolute -ml-5 -mb-10 left-0 bottom-0" width="30px" height="30px" viewBox="0 0 9 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="Tooltips-" transform="translate(-874.000000, -1029.000000)" fill="#FFFFFF">
+                    <g id="Group-3-Copy-16" transform="translate(850.000000, 975.000000)">
+                      <g id="Group-2" transform="translate(24.000000, 0.000000)">
+                        <polygon id="Triangle" transform="translate(4.500000, 62.000000) rotate(-90.000000) translate(-4.500000, -62.000000) " points="4.5 57.5 12.5 66.5 -3.5 66.5"></polygon>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+              <svg class="absolute top-0 -mt-5 block md:hidden" xmlns="http://www.w3.org/2000/svg" width="26" height="23" viewBox="0 0 26 23" fill="none">
+                <path id="Polygon 2" d="M13 0L25.9904 22.5H0.00961876L13 0Z" fill="#e5e7eb" />
+              </svg>
+              <p class="text-base text-gray-800 font-bold leading-normal tracking-normal">Write message</p>
+            </div>
+            <div class="w-full h-full px-4 xl:px-8 py-5">
+              <form #form="ngForm" (ngSubmit)="sendMessage(form)">
+                <div class="mb-6">
+                  <label for="destinataires" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Recipients</label>
+                  <input [disabled]="destinatairesMessage !== ''" type="text" id="destinataires" name="destinataires" [ngModel]="destinatairesMessage" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@evauxie.cm, nana@evauxie.com" required>
+                </div>
+                <div class="mb-6">
+                  <label for="objet" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Objet</label>
+                  <input type="text" id="objet" name="objet" ngModel class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="write...">
+                </div>
+                <editor class="mt-5"
+                        ngModel
+                        required
+                        [disabled]="isLoading"
+                        name="description"
+                        apiKey="ykyh8j6aqah0jdmw6sbtjjtvrnvprawtf5mx81xfhyx8f7i5"
+                        [init]="{
+                             height: 200,
+                             menubar: false,
+                             placeholder: 'Write...',
+                             plugins: [
+                               'advlist autolink lists link image charmap print preview anchor',
+                               'searchreplace visualblocks code fullscreen',
+                               'insertdatetime media table paste code help wordcount'
+                             ],
+                             toolbar:
+                               'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | image'
+                           }"
+                ></editor>
+                <div class="text-right ">
+                  <button [disabled]="form.invalid || isLoading" type="submit" class="disabled:bg-gray-400 mt-4 mr-2 sm:mr-3 font-normal focus:outline-none bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-6 py-2 text-sm">
+                    <svg *ngIf="isLoading" style="display: inline" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Send
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- Code block ends -->
+        </div>
+      </div>
+      <div class="mt-7 overflow-x-auto" *ngIf="destinatairesMessage === ''">
+        <p class="text-gray-500 font-light text-center" *ngIf="(viewElement === 'send' && mesMessagesEnvoyer.length === 0) || (viewElement !== 'send' && mesMessagesRecu.length === 0)">
+          No items to display
+        </p>
+        <table class="w-full whitespace-nowrap">
+          <tbody>
+          <ng-container *ngFor="let message of (viewElement === 'send' ? mesMessagesEnvoyer :  mesMessagesRecu)">
+            <tr *ngIf="(viewElement === 'unread' && !message.read.includes(currentEmailUser) || viewElement !== 'unread') && (viewTypeMessage === '' || message.typeMessage.includes(viewTypeMessage))" class="h-16 border rounded {{!message.read.includes(currentEmailUser) && viewElement !== 'send' ? 'bg-gray-100 border-gray-200' : 'bg-transparent border-gray-100'}}">
+              <td>
+                <div class="ml-5">
+                  <div class="bg-gray-200 rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
+                    <input checked="" type="checkbox" class="checkbox opacity-0 absolute cursor-pointer w-full h-full" />
+                    <div class="check-icon hidden bg-indigo-700 text-white rounded-sm">
+                      <svg class="icon icon-tabler icon-tabler-check" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z"></path>
+                        <path d="M5 12l5 5l10 -10"></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="">
+                <div class="flex items-center pl-5">
+                  <p class="text-base font-semibold leading-none text-gray-900 mr-2 overflow-ellipsis overflow-hidden max-w-sm capitalize">{{viewElement === 'send' ? message.destinataires : message.auteur}}</p>
+                </div>
+              </td>
+              <td class="">
+                <div class="flex items-center pl-5">
+                  <p class="text-base font-semibold leading-none text-gray-900 mr-2 overflow-ellipsis overflow-hidden max-w-sm capitalize">{{message.objet}}</p>
+                </div>
+              </td>
+              <td class="pl-24">
+                <p class="text-base font-medium leading-none text-gray-700 mr-2 overflow-ellipsis overflow-hidden max-w-full capitalize">{{message.message}}</p>
+              </td>
+              <td class="pl-5">
+                <button class="py-3 px-3 text-sm focus:outline-none leading-none text-orange-500 bg-orange-100 hover:bg-orange-200 rounded">{{message.date | date:"MMMM dd, yyyy"}}</button>
+              </td>
+              <td>
+                <div class="relative px-5 pt-2">
+                  <button class="focus:outline-none" (click)="menuOption === '' ? menuOption = message.id : menuOption = ''">
+                    <svg class="dropbtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M4.16667 10.8332C4.62691 10.8332 5 10.4601 5 9.99984C5 9.5396 4.62691 9.1665 4.16667 9.1665C3.70643 9.1665 3.33334 9.5396 3.33334 9.99984C3.33334 10.4601 3.70643 10.8332 4.16667 10.8332Z" stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="M10 10.8332C10.4602 10.8332 10.8333 10.4601 10.8333 9.99984C10.8333 9.5396 10.4602 9.1665 10 9.1665C9.53976 9.1665 9.16666 9.5396 9.16666 9.99984C9.16666 10.4601 9.53976 10.8332 10 10.8332Z" stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="M15.8333 10.8332C16.2936 10.8332 16.6667 10.4601 16.6667 9.99984C16.6667 9.5396 16.2936 9.1665 15.8333 9.1665C15.3731 9.1665 15 9.5396 15 9.99984C15 10.4601 15.3731 10.8332 15.8333 10.8332Z" stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </button>
+                  <div *ngIf="menuOption === message.id" class="bg-white shadow w-24 absolute z-30 right-0 mr-6">
+                    <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
+                      <p>Edit</p>
+                    </div>
+                    <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
+                      <p>Delete</p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr class="h-3"></tr>
+          </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

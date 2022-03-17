@@ -5,7 +5,7 @@
       <div class="pl-3 w-full">
         <p routerLink="../topic/{{currentTopic.id}}" class="hover:text-indigo-600 hover:cursor-pointer font-bold text-xl leading-5 text-gray-900">{{currentTopic.titre}}</p>
         <p class="text-sm leading-normal pt-2 text-gray-500">
-          <span routerLink="../profil" class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">{{currentUser.nom}}</span> in
+          <span routerLink="../profil/{{currentUser.email}}" class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">{{currentUser.nom}}</span> in
           <span class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">{{currentTopic.categorie}}</span>,
           on {{currentTopic.date | date:"MMMM dd, yyyy"}} at {{currentTopic.date | date:"hh:mm"}}
         </p>
@@ -74,7 +74,7 @@
       <div class="pl-3 w-full">
         <p routerLink="../topic/{{currentTopic.id}}" class="hover:text-indigo-600 hover:cursor-pointer font-bold text-xl leading-5 text-gray-900">{{currentTopic.titre}}</p>
         <p class="text-sm leading-normal pt-2 text-gray-500">
-          <span routerLink="../profil" class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">{{currentUser.nom}}</span> in
+          <span routerLink="../profil/{{currentUser.email}}" class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">{{currentUser.nom}}</span> in
           <span class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">{{currentTopic.categorie}}</span>,
           on {{currentTopic.date | date:"MMMM dd, yyyy"}} at {{currentTopic.date | date:"hh:mm"}}
         </p>

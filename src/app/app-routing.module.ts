@@ -19,6 +19,8 @@ import {VendorsManagerComponent} from "./planning-tools/vendors-manager/vendors-
 import {GuestsListsComponent} from "./planning-tools/guests-lists/guests-lists.component";
 import {BudgetComponent} from "./planning-tools/budget/budget.component";
 import {PlanningToolsGuardService} from "./services/planning-tools-guard.service";
+import {MailboxComponent} from "./mailbox/mailbox.component";
+import {PaymentComponent} from "./planning-tools/payment/payment.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -29,12 +31,14 @@ const routes: Routes = [
   { path: 'blogs-posts', component: BlogComponent },
   { path: 'article/:id', component: ArticleComponent },
   { path: 'profil/:id', component: ProfilComponent },
+  { path: 'mailbox', canActivate: [AuthGuardService], component: MailboxComponent },
   { path: 'planning-tools', component: PlanningToolsComponent },
   { path: 'planning-tools/my-events', canActivate: [PlanningToolsGuardService], component: MyEventsComponent },
   { path: 'planning-tools/checklist', canActivate: [PlanningToolsGuardService], component: ChecklistComponent },
   { path: 'planning-tools/vendors-manager', canActivate: [PlanningToolsGuardService], component: VendorsManagerComponent },
   { path: 'planning-tools/guests-lists', canActivate: [PlanningToolsGuardService], component: GuestsListsComponent },
   { path: 'planning-tools/budget', canActivate: [PlanningToolsGuardService], component: BudgetComponent },
+  { path: 'planning-tools/payment', canActivate: [PlanningToolsGuardService], component: PaymentComponent },
   { path: 'new-topic', canActivate: [AuthGuardService], component: NewTopicComponent },
   { path: 'topic/:id', component: TopicComponent },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },

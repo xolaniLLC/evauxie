@@ -219,6 +219,23 @@ export class EvenementService {
     });
   }
 
+  async getEventsWithIdUser(idUser: any) {
+    return new Promise<Evenement[]>((resolve, reject) => {
+      // @ts-ignore
+      firebase.firestore().collection('evenements').where('auteur', '==', idUser).onSnapshot(
+        (docRef) => {
+          const result: Evenement[] = [];
+          docRef.forEach(function (doc) {
+            result.push(doc.data() as Evenement);
+          });
+          resolve(result as any);
+        }, (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
   async getMyEvents() {
     return new Promise<Evenement[]>((resolve, reject) => {
       // @ts-ignore
