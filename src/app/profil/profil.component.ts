@@ -8,6 +8,7 @@ import {Evenement} from "../models/evenement";
 import {EvenementService} from "../services/evenement.service";
 import {Topic} from "../models/topic";
 import {ForumService} from "../services/forum.service";
+import {WriteMailService} from "../services/write-mail.service";
 
 @Component({
   selector: 'app-profil',
@@ -25,7 +26,7 @@ export class ProfilComponent implements OnInit {
   menu = 1;
   onglet = 1;
 
-  constructor(private forumService: ForumService, private eventService: EvenementService, private userService: UserService, private activatedRoute: ActivatedRoute, private authService: AuthentificationService) { }
+  constructor(public writeMailService: WriteMailService, private forumService: ForumService, private eventService: EvenementService, private userService: UserService, private activatedRoute: ActivatedRoute, private authService: AuthentificationService) { }
 
   ngOnInit(): void {
     this.userService.getInfosUserWitchId(this.activatedRoute.snapshot.paramMap.get('id')).then(

@@ -69,7 +69,7 @@
             <!--div class="rounded-full bg-gray-200 text-gray-600 dark:text-gray-400 text-sm px-6 py-2 flex justify-center items-center">&nbsp;</div>
             <div class="ml-5 rounded-full bg-green-200 text-green-500 text-sm px-6 py-2 flex justify-center items-center">&nbsp;</div-->
           </div>
-          <button routerLink="../../mailbox" [queryParams]="{ write: currentUser.email}" *ngIf="userConnect && currentUser.email !== userConnect" class="focus:outline-none ml-0 md:ml-5 bg-indigo-700 dark:bg-indigo-600 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-3 md:px-6 py-2 text-sm">Message</button>
+          <button (click)="writeMailService.new(currentUser.email, '', '')" *ngIf="userConnect && currentUser.email !== userConnect" class="focus:outline-none ml-0 md:ml-5 bg-indigo-700 dark:bg-indigo-600 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-3 md:px-6 py-2 text-sm">Message</button>
         </div>
       </div>
     </div>
@@ -97,7 +97,7 @@
       <div id="myTabContent">
         <div class="{{ onglet === 1 ? '' : 'hidden'}} space-x-5 space-y-5" id="profile" role="tabpanel" aria-labelledby="profile-tab">
           <p class="text-sm text-gray-500 dark:text-gray-400 p-4 bg-gray-50 rounded-lg dark:bg-gray-800" *ngIf="currentEvent === null"> No element for the moment </p>
-          <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700" *ngIf="currentEvent !== null">
+          <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700" *ngIf="currentEvent">
             <a>
               <img class="rounded-t-lg" src="assets/images/ill_14.png" alt="" />
             </a>

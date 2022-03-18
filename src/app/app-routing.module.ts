@@ -21,6 +21,7 @@ import {BudgetComponent} from "./planning-tools/budget/budget.component";
 import {PlanningToolsGuardService} from "./services/planning-tools-guard.service";
 import {MailboxComponent} from "./mailbox/mailbox.component";
 import {PaymentComponent} from "./planning-tools/payment/payment.component";
+import {ApercuMailComponent} from "./mailbox/apercu-mail/apercu-mail.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'article/:id', component: ArticleComponent },
   { path: 'profil/:id', component: ProfilComponent },
   { path: 'mailbox', canActivate: [AuthGuardService], component: MailboxComponent },
+  { path: 'mailbox/:id', canActivate: [AuthGuardService], component: ApercuMailComponent },
   { path: 'planning-tools', component: PlanningToolsComponent },
   { path: 'planning-tools/my-events', canActivate: [PlanningToolsGuardService], component: MyEventsComponent },
   { path: 'planning-tools/checklist', canActivate: [PlanningToolsGuardService], component: ChecklistComponent },

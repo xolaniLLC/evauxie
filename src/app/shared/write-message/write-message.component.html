@@ -1,0 +1,68 @@
+<div *ngFor="let modalWrite of writeMailService.modals; let i = index" id="modal_{{i}}" role="alert" class="z-20 sm:mr-6 sm:mb-0 xl:w-5/12 mx-auto fixed left-0 sm:left-auto right-0 bottom-0  sm:w-6/12 md:w-3/5 justify-end w-11/12 bg-white dark:bg-gray-800 shadow-lg rounded flex sm:flex-row flex-col transition duration-150 ease-in-out" id="modal_{{i}}">
+  <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded shadow-xl shadow-gray-600 w-full">
+    <div class="w-full flex justify-start text-gray-600 mb-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="52" height="52" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    </div>
+    <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Write message in evauxie</h1>
+
+    <ng-container *ngIf="modalWrite.reponse ? getContenuMessage(modalWrite.reponse) : ''">
+      <div id="accordion-collapse" data-accordion="collapse" class="border-b-2 border-gray-200 dark:border-gray-700" *ngIf="reponseContenu">
+        <h2 id="accordion-collapse-heading-1">
+          <button (click)="printDetailReponse ? printDetailReponse = false : printDetailReponse = true" type="button" class="flex justify-between items-center p-5 w-full font-medium text-left text-gray-900 bg-gray-100 rounded-t-xl border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
+            <span>Reply to <span></span></span>
+            <svg data-accordion-icon class="w-6 h-6 {{printDetailReponse ? '' : 'rotate-180'}} shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+          </button>
+        </h2>
+        <div class="{{ printDetailReponse ? '' : 'hidden' }}" id="accordion-collapse-body-1" aria-labelledby="accordion-collapse-heading-1">
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+            <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
+            <p class="text-gray-500 dark:text-gray-400">Check out this guide to learn how to <a href="https://flowbite.com/docs/getting-started/introduction/" class="text-blue-600 dark:text-blue-500 hover:underline">get started</a> and start developing websites even faster with components on top of Tailwind CSS.</p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <form #form="ngForm" (ngSubmit)="sendMessage(form, modalWrite.reponse ? modalWrite.reponse : '')">
+      <label for="destinataires" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">To</label>
+      <input [readOnly]="modalWrite.destinataires" id="destinataires" name="destinataires" [ngModel]="modalWrite.destinataires" required class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Name1@customer.com, Name2@customer.com" />
+      <label for="objet" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Objet</label>
+      <input id="objet" name="objet" [ngModel]="modalWrite.objet" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Evauxie" />
+      <editor class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full items-center text-sm rounded"
+              [ngModel]="modalWrite.message"
+              required
+              [disabled]="isLoading"
+              name="message"
+              apiKey="ykyh8j6aqah0jdmw6sbtjjtvrnvprawtf5mx81xfhyx8f7i5"
+              [init]="{
+                               height: 200,
+                               menubar: false,
+                               placeholder: 'Write...',
+                               plugins: [
+                                 'advlist autolink lists link image charmap print preview anchor',
+                                 'searchreplace visualblocks code fullscreen',
+                                 'insertdatetime media table paste code help wordcount'
+                               ],
+                               toolbar:
+                                 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | image'
+                             }"
+      ></editor>
+      <div class="flex items-center justify-start w-full">
+        <button [disabled]="form.invalid || isLoading" type="submit" class="disabled:bg-gray-300 disabled:text-gray-600 disabled:cursor-default cursor-pointer focus:outline-none transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">
+          <svg *ngIf="isLoading" style="display: inline" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Send</button>
+        <a class="cursor-pointer focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" (click)="closeModal(i)">Cancel</a>
+      </div>
+    </form>
+    <div class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out" (click)="closeModal(i)">
+      <svg xmlns="http://www.w3.org/2000/svg" aria-label="Close" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" />
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </div>
+  </div>
+</div>

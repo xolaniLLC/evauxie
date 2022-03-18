@@ -1,0 +1,65 @@
+<app-navbar></app-navbar>
+
+<section class="border-y">
+  <p class="py-5 text-sm leading-none text-gray-400 px-10 capitalize">
+    <a class="hover:text-indigo-600 cursor-pointer" routerLink="../../home">Home</a> -
+    <a class="hover:text-indigo-600 cursor-pointer" routerLink="../../mailbox">MailBox</a> -
+    <a>Overview</a>
+  </p>
+</section>
+
+<app-page-loading *ngIf="!currentMessage"></app-page-loading>
+
+<section *ngIf="currentMessage">
+  <div class="sm:px-6 w-full">
+    <div class="px-4 md:px-10 py-4 md:py-5">
+      <div class="flex items-center justify-between">
+        <p class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800 capitalize">
+          {{currentMessage.objet ? currentMessage.objet : '...'}}
+        </p>
+      </div>
+    </div>
+    <div class="py-4 md:py-7 px-4 md:px-8 xl:px-10">
+      <div class="flex items-center pb-4">
+        <img src="{{currentAuteurMessage && currentAuteurMessage.photo !== '' ? currentAuteurMessage.photo : 'assets/images/user.png'}}" alt="" class="w-12 h-12 rounded-full" />
+        <div class="flex items-start justify-between w-full">
+          <div class="pl-3 w-full">
+            <p [routerLink]="currentAuteurMessage ? '../../profil/' + currentAuteurMessage.email : ''" class="hover:text-indigo-600 cursor-pointer text-base font-semibold leading-5 text-gray-800 capitalize">{{currentAuteurMessage ? currentAuteurMessage.nom : '...'}}</p>
+            <div class="flex items-center flex-no-wrap w-full justify-start pt-2">
+              <ng-container *ngFor="let dest of currentDestinatairesMessage; let i = index">
+                <div class="relative mt-20 md:mt-0" (mouseover)="this.tooltip_status = i" (mouseout)="this.tooltip_status = -1">
+                  <div class="w-6 h-6 bg-cover {{i === 1 ? 'bg-center rounded-md' : 'rounded-md -ml-2'}}">
+                    <img [routerLink]="dest ? '../../profil/' + dest.email : ''" src="{{dest && dest.photo !== '' ? dest.photo : 'assets/images/user.png'}}" alt="" class="{{dest ? 'cursor-pointer' : ''}} h-full w-full overflow-hidden object-cover rounded-full border-2 border-white dark:border-gray-700 shadow" />
+                  </div>
+                  <div *ngIf="tooltip_status == i" role="tooltip" class="z-20 -mt-20 w-64 absolute transition duration-150 ease-in-out left-0 ml-8 shadow-lg bg-gray-800 p-4 rounded">
+                    <svg class="absolute left-0 -ml-2 bottom-0 top-0 h-full" width="9px" height="16px" viewBox="0 0 9 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="Tooltips-" transform="translate(-874.000000, -1029.000000)" fill="#2D3748">
+                          <g id="Group-3-Copy-16" transform="translate(850.000000, 975.000000)">
+                            <g id="Group-2" transform="translate(24.000000, 0.000000)">
+                              <polygon id="Triangle" transform="translate(4.500000, 62.000000) rotate(-90.000000) translate(-4.500000, -62.000000) " points="4.5 57.5 12.5 66.5 -3.5 66.5"></polygon>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </svg>
+                    <p class="text-sm font-bold text-white pb-1 capitalize">{{dest ? dest.nom : '[Not yet registered]'}}</p>
+                    <p class="text-xs leading-4 text-white pb-3">{{dest ? dest.email : currentMessage.destinataires[i-1]}}</p>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div class="text-sm text-gray-500">
+            {{currentMessage.date | date:"MMMM dd, yyyy"}}
+          </div>
+          <div class="font-semibold">
+            <button (click)="openWrite(currentMessage.destinataires, currentMessage.id)">Reply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

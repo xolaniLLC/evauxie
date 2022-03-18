@@ -19,12 +19,6 @@ export class ToastComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   /*let notification: any = document.getElementsByClassName("notification");
-    notification.style.transform = "translateX(150%)";
-    notification.classList.add("hidden");
-    setTimeout(function () { console.log('ikkii');
-      notification.style.transform = "translateX(0%)";
-    }, 1000);*/
   }
 
   public closeModal(i: number) {

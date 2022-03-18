@@ -9,6 +9,18 @@ export class MessageService {
 
   constructor() { }
 
+  async getMessageWitchId(idMessage: any) {
+    return new Promise<Message>((resolve, reject) => {
+      firebase.firestore().collection('messages').doc(idMessage).onSnapshot(
+        (docRef) => {
+          resolve(docRef.data() as Message);
+        }, (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
   async getMesMessagesNonLus() {
     return new Promise<Message[]>((resolve, reject) => {
       // @ts-ignore

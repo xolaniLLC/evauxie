@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import {MessageService} from "../services/message.service";
 import {Message} from "../models/message";
 import firebase from "firebase";
@@ -14,7 +13,6 @@ import {AlertService} from "../services/alert.service";
 })
 export class MailboxComponent implements OnInit {
 
-  destinatairesMessage = '';
   mesMessagesRecu: Message[] = [];
   mesMessagesEnvoyer: Message[] = [];
   currentEmailUser: any = firebase.auth().currentUser?.email;
@@ -26,13 +24,13 @@ export class MailboxComponent implements OnInit {
   menuOption = '';
   currentUser: Utilisateur | any;
   isLoading = false;
+  listeMessageSelect: Message[] = [];
+  currentMessageOpen: Message | any;
+  writeMail = false;
 
-  constructor(private messageService: MessageService, private activatedRoute: ActivatedRoute, private userService: UserService, private alertService: AlertService) { }
+  constructor(private messageService: MessageService, private userService: UserService, private alertService: AlertService) { }
 
   ngOnInit(): void {
-    if(this.activatedRoute.snapshot.queryParams['write']) {
-      this.destinatairesMessage = this.activatedRoute.snapshot.queryParams['write'];
-    }
 
     this.userService.getInfosUserWitchId(firebase.auth().currentUser?.email).then(
       (data) => {
@@ -51,6 +49,26 @@ export class MailboxComponent implements OnInit {
     this.messageService.getMesMessagesEnvoyer().then(
       (result1) => {
         this.mesMessagesEnvoyer = result1;
+      }
+    );
+  }
+
+  make_all_massage() {
+    for(let i=0; i<this.listeMessageSelect.length; i++) {
+      this.make_read_or_unread_message(this.listeMessageSelect[i]);
+    }
+  }
+
+  make_read_or_unread_message(message: Message) {
+    this.isLoading = true;
+    message.read.includes(firebase.auth().currentUser?.email as string) ? message.read.push(firebase.auth().currentUser?.email as String | any) : message.read.splice(message.read.indexOf(firebase.auth().currentUser?.email as string), 1);
+    this.messageService.updateMessage(message).then(
+      () => {
+        this.isLoading = false;
+        this.alertService.print('Operation successfully completed', 'success');
+      }, (error) => {
+        this.isLoading = false;
+        this.alertService.print(error, 'danger');
       }
     );
   }
@@ -91,22 +109,4 @@ export class MailboxComponent implements OnInit {
     const Diff_temps = date2.getTime() - date1.getTime();
     return Math.trunc(Diff_temps / (1000 * 3600 * 24));
   }
-
-  sendMessage(form: any) {
-    const tmpDest = form.value.destinataires.split(',');
-    const tmpFdest = [];
-    for(let i=0; i < tmpDest.length; i++) {
-      tmpFdest.push(tmpDest[i].trim());
-    }
-    this.messageService.envoyerMessage(new Message(firebase.auth().currentUser?.email, form.value.objet, tmpFdest, form.value.description, '')).then(
-      () => {
-        this.isLoading = false;
-        this.alertService.print('Operation successfully completed', 'success');
-      }, (error) => {
-        this.isLoading = false;
-        this.alertService.print(error, 'danger');
-      }
-    );
-  }
-
 }

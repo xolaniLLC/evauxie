@@ -34,6 +34,8 @@ import { GuestsListsComponent } from './planning-tools/guests-lists/guests-lists
 import { BudgetComponent } from './planning-tools/budget/budget.component';
 import { MailboxComponent } from './mailbox/mailbox.component';
 import { PaymentComponent } from './planning-tools/payment/payment.component';
+import { ApercuMailComponent } from './mailbox/apercu-mail/apercu-mail.component';
+import { WriteMessageComponent } from './shared/write-message/write-message.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { PaymentComponent } from './planning-tools/payment/payment.component';
     GuestsListsComponent,
     BudgetComponent,
     MailboxComponent,
-    PaymentComponent
+    PaymentComponent,
+    ApercuMailComponent,
+    WriteMessageComponent
   ],
     imports: [
         BrowserModule,
