@@ -82,12 +82,7 @@ export class MyEventsComponent implements OnInit {
       this.eventService.updateEvent(event).then(
         () => {
           this.isLoading = false;
-          this.liste_my_event.splice(this.liste_my_event.indexOf(oldEvent), 1);
-          this.liste_my_event.push(event);
-          if(this.event_en_cours.includes(oldEvent)) {
-            this.event_en_cours.splice(this.event_en_cours.indexOf(oldEvent), 1);
-            this.event_en_cours.push(event);
-          }
+          location.reload();
         }, (error) => {
           this.isLoading = false;
           this.alertService.print(error, 'danger');

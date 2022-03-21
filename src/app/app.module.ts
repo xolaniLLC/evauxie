@@ -36,6 +36,7 @@ import { MailboxComponent } from './mailbox/mailbox.component';
 import { PaymentComponent } from './planning-tools/payment/payment.component';
 import { ApercuMailComponent } from './mailbox/apercu-mail/apercu-mail.component';
 import { WriteMessageComponent } from './shared/write-message/write-message.component';
+import { MiniatureMessageComponent } from './shared/miniature-message/miniature-message.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { WriteMessageComponent } from './shared/write-message/write-message.comp
     MailboxComponent,
     PaymentComponent,
     ApercuMailComponent,
-    WriteMessageComponent
+    WriteMessageComponent,
+    MiniatureMessageComponent
   ],
     imports: [
         BrowserModule,

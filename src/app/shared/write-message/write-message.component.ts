@@ -23,7 +23,7 @@ export class WriteMessageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getContenuMessage(id: string) {
+  async getContenuMessage(id: string) {
     this.messageService.getMessageWitchId(id).then(
       (result) => {
         this.reponseContenu = result;
@@ -40,18 +40,14 @@ export class WriteMessageComponent implements OnInit {
     }, 1000);
   }
 
-  sendMessage(form: any, reponse?: string) {
+  sendMessage(form: any, index: number, reponse?: string) {
     this.isLoading = true;
-    const tmpDest = form.value.destinataires.split(',');
-    const tmpFdest = [];
-    for(let i=0; i < tmpDest.length; i++) {
-      tmpFdest.push(tmpDest[i].trim());
-    }
-    let tmpMsg = new Message(firebase.auth().currentUser?.email, form.value.objet, tmpFdest, form.value.message, '');
+    let tmpMsg = new Message(firebase.auth().currentUser?.email, form.value.objet, form.value.destinataires, form.value.message, '');
     if(reponse) { tmpMsg.reponse = reponse; }
     this.messageService.envoyerMessage(tmpMsg).then(
       () => {
         this.isLoading = false;
+        this.closeModal(index);
         this.alertService.print('Operation successfully completed', 'success');
       }, (error) => {
         this.isLoading = false;

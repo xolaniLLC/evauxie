@@ -66,7 +66,7 @@
     </div>
     <div class="w-full overflow-x-scroll xl:overflow-x-hidden">
       <p class="text-gray-500 font-light text-center pb-6 text-xl" *ngIf="depenses.length === 0">
-        No results yet
+        {{ !currentEvent ? 'You don\'t have any events defined, please do so in the "My Event" section' : 'No results yet'}}
       </p>
       <table id="tableau_doc" class="min-w-full bg-white dark:bg-gray-800" *ngIf="depenses.length > 0">
         <thead>

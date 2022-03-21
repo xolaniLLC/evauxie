@@ -53,6 +53,10 @@ export class MailboxComponent implements OnInit {
     );
   }
 
+  getPureTexte(brute: any) {
+    return brute.toString().replace(/<[^>]*>/g, '').replace('&nbsp;', '');
+  }
+
   make_all_massage() {
     for(let i=0; i<this.listeMessageSelect.length; i++) {
       this.make_read_or_unread_message(this.listeMessageSelect[i]);

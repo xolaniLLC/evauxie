@@ -5,7 +5,7 @@
 <section *ngIf="currentUser">
   <div class="flex items-center justify-center w-full py-8">
   <!-- Card code block start -->
-  <div class="bg-white dark:bg-gray-800 shadow rounded w-2/3">
+  <div class="bg-white dark:bg-gray-800 shadow rounded md:w-2/3">
     <div class="relative">
       <img class="h-56 shadow rounded-t w-full object-cover object-center" src="assets/images/ill_25.png" alt="" />
       <div class="inset-0 m-auto w-24 h-24 absolute bottom-0 -mb-12 xl:ml-10 rounded-full border-2 shadow border-white">
@@ -69,7 +69,7 @@
             <!--div class="rounded-full bg-gray-200 text-gray-600 dark:text-gray-400 text-sm px-6 py-2 flex justify-center items-center">&nbsp;</div>
             <div class="ml-5 rounded-full bg-green-200 text-green-500 text-sm px-6 py-2 flex justify-center items-center">&nbsp;</div-->
           </div>
-          <button (click)="writeMailService.new(currentUser.email, '', '')" *ngIf="userConnect && currentUser.email !== userConnect" class="focus:outline-none ml-0 md:ml-5 bg-indigo-700 dark:bg-indigo-600 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-3 md:px-6 py-2 text-sm">Message</button>
+          <button (click)="writeMailService.new(currentUser.email, '', '', '')" *ngIf="userConnect && currentUser.email !== userConnect" class="focus:outline-none ml-0 md:ml-5 bg-indigo-700 dark:bg-indigo-600 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-3 md:px-6 py-2 text-sm">Message</button>
         </div>
       </div>
     </div>
@@ -80,7 +80,7 @@
 
 <section *ngIf="currentUser">
   <div class="flex items-center justify-center w-full py-8">
-    <div class="items-center justify-center w-2/3">
+    <div class="items-center justify-center md:w-2/3">
       <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
         <ul class="flex flex-wrap -mb-px" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
           <li class="mr-2" role="presentation">
