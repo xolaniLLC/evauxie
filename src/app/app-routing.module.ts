@@ -22,12 +22,14 @@ import {PlanningToolsGuardService} from "./services/planning-tools-guard.service
 import {MailboxComponent} from "./mailbox/mailbox.component";
 import {PaymentComponent} from "./planning-tools/payment/payment.component";
 import {ApercuMailComponent} from "./mailbox/apercu-mail/apercu-mail.component";
+import {RegisterVendorComponent} from "./register-vendor/register-vendor.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login-customer', canActivate: [RedirectGuardService], component: LoginCustomerComponent },
   { path: 'register-customer', canActivate: [RedirectGuardService], component: RegisterCustomerComponent },
+  { path: 'register-vendor', canActivate: [RedirectGuardService], component: RegisterVendorComponent },
   { path: 'forum', component: ForumComponent },
   { path: 'blogs-posts', component: BlogComponent },
   { path: 'article/:id', component: ArticleComponent },

@@ -42,7 +42,7 @@ export class AuthentificationService {
           this.isRegister(tmpInfo.email).then(
             (rep) => {
               if (!rep) {
-                const tmpUser = new Utilisateur(tmpInfo.displayName, tmpInfo.email, 'google', 'customer');
+                const tmpUser = new Utilisateur(tmpInfo.name, tmpInfo.email, 'google', 'customer');
                 tmpUser.photo = tmpInfo.picture;
                 this.saveToDataBase(tmpUser).then(
                   () => {

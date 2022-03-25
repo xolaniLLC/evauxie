@@ -24,7 +24,7 @@
 
 <app-page-loading *ngIf="isLoading"></app-page-loading>
 
-<section class="md:grid md:grid-cols-4 md:grid-rows-1" *ngIf="!isLoading">
+<section class="md:grid lg:grid-cols-4 md:grid-cols-3" *ngIf="!isLoading">
   <div class="md:px-10 md:col-span-3">
     <div>
       <!-- Code block starts -->
@@ -69,7 +69,7 @@
     <div>
       <!--div class="py-4 w-full"-->
       <div class="my-6 px-10 lg:my-10 mx-auto flex flex-col md:flex-row items-center md:items-center justify-between pb-4">
-        <div class="items-center justify-center grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+        <div class="items-center justify-center grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 space-x-5 space-y-5">
           <app-miniature-blog [idBlog]="blog.id" skin="item" *ngFor="let blog of listeBlog | slice:(page * nbreLimitEltPrPage):((page * nbreLimitEltPrPage) + nbreLimitEltPrPage)"></app-miniature-blog>
         </div>
       </div>
