@@ -1,0 +1,281 @@
+<app-navbar></app-navbar>
+
+<app-menu-company-management></app-menu-company-management>
+
+<section class="mx-auto container 2xl:mx-auto 2xl:container py-10">
+  <div class="grid grid-cols-2 grid-rows-1">
+    <h2 class="float-left text-2xl font-bold text-gray-800 dark:text-gray-100">List of your companies</h2>
+    <div>
+      <button [disabled]="listCompany.length > 0 && listCompany[0].date === ''" (click)="addNewCompany()" class="{{listCompany.length === 0 ? 'animate-pulse' : ''}} disabled:bg-gray-400 disabled:text-gray-200 w-fit float-right px-4 py-2 font-semibold tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80">
+        + Add a new company
+      </button>
+    </div>
+  </div>
+
+  <div>
+    <div class="flex items-center justify-center w-full h-full py-5 sm:py-8">
+      <div class="w-full relative flex items-center justify-center">
+        <button aria-label="slide backward" class="absolute z-30 left-0 ml-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer" (click)="goPrev()">
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 1L1 7L7 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <div class="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
+          <div id="slider" class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700">
+            <ng-container *ngFor="let box of listCompany">
+              <div class="flex flex-shrink-0 relative w-full sm:w-auto">
+
+                <div (click)="currentCompany = box" class="cursor-pointer max-w-sm mx-auto overflow-hidden {{ currentCompany !== box ? 'bg-white' : 'bg-indigo-600'}} rounded-lg shadow-lg dark:bg-gray-800 my-5">
+                  <img class="object-cover object-center w-full h-28" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" alt="">
+
+                  <div class="flex items-center px-6 py-3 bg-gray-900">
+
+                    <img src="assets/images/logo-company.png" alt="" class="h-6 w-6 rounded-full overflow-hidden shadow" />
+
+                    <h1 class="mx-3 text-lg font-semibold text-white">{{box.administrateur[0]}}</h1>
+                  </div>
+
+                  <div class="px-6 py-4">
+                    <h1 class="text-xl font-semibold {{ currentCompany !== box ? 'text-gray-800' : 'text-gray-100'}} dark:text-white">Patterson johnson</h1>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <button aria-label="slide forward" class="absolute z-30 right-0 mr-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" (click)="goNext()">
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7 7L1 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="text-gray-600 body-font" *ngIf="currentCompany && !currentCompany.date">
+  <div class="container mx-auto flex flex-wrap">
+    <h2 class="float-left text-2xl font-bold text-gray-800 dark:text-gray-100">List of your companies</h2>
+    <div class="flex flex-wrap w-full px-5 py-5">
+      <div class="sm:w-full md:w-1/5 md:pr-10 sm:py-4 md:py-6">
+        <div class="flex relative pb-12">
+          <div class="h-full w-10 absolute inset-0 flex items-center justify-center">
+            <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
+          </div>
+          <div class="flex-shrink-0 w-10 h-10 rounded-full {{stepMake >=1 ? 'bg-indigo-500 text-white' : 'bg-gray-200 text-gray-400'}} inline-flex items-center justify-center relative z-10">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <div class="flex-grow pl-4">
+            <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">STEP 1</h2>
+            <p class="leading-relaxed">Basic information.</p>
+          </div>
+        </div>
+        <div class="flex relative pb-12">
+          <div class="h-full w-10 absolute inset-0 flex items-center justify-center">
+            <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
+          </div>
+          <div class="flex-shrink-0 w-10 h-10 rounded-full {{stepMake >= 2 ? 'bg-indigo-500 text-white' : 'bg-gray-200 text-gray-400'}} inline-flex items-center justify-center relative z-10">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div>
+          <div class="flex-grow pl-4">
+            <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">STEP 2</h2>
+            <p class="leading-relaxed">Media library.</p>
+          </div>
+        </div>
+        <div class="flex relative pb-12">
+          <div class="h-full w-10 absolute inset-0 flex items-center justify-center">
+            <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
+          </div>
+          <div class="flex-shrink-0 w-10 h-10 rounded-full {{stepMake >= 3 ? 'bg-indigo-500 text-white' : 'bg-gray-200 text-gray-400'}} inline-flex items-center justify-center relative z-10">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+              <circle cx="12" cy="5" r="3"></circle>
+              <path d="M12 22V8M5 12H2a10 10 0 0020 0h-3"></path>
+            </svg>
+          </div>
+          <div class="flex-grow pl-4">
+            <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">STEP 3</h2>
+            <p class="leading-relaxed">FAQ.</p>
+          </div>
+        </div>
+        <div class="flex relative">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full {{stepMake === 4 ? 'bg-indigo-500 text-white' : 'bg-gray-200 text-gray-400'}} inline-flex items-center justify-center relative z-10">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+              <path d="M22 4L12 14.01l-3-3"></path>
+            </svg>
+          </div>
+          <div class="flex-grow pl-4">
+            <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">FINISH</h2>
+            <p class="leading-relaxed">Additional information.</p>
+          </div>
+        </div>
+      </div>
+      <div class="sm:w-full md:w-4/5 md:py-6 space-y-5">
+        <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
+          <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Company information</h2>
+
+          <form #form="ngForm" (ngSubmit)="save(form)">
+            <div class="grid grid-cols-1 gap-6 mt-4 md:grid-cols-2">
+              <div>
+                <label class="text-gray-700 dark:text-gray-200" for="username">Name of the company</label>
+                <input id="name" name="name" [(ngModel)]="currentCompany.nom" required type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+              </div>
+
+              <div>
+                <label class="text-gray-700 dark:text-gray-200" for="emailAddress">Company website</label>
+                <input id="webSite" name="webSite" [(ngModel)]="currentCompany.webSite" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label class="text-gray-700 dark:text-gray-200" for="description">Description</label>
+              <editor class="mt-2"
+                      id="description"
+                      required
+                      [(ngModel)]="currentCompany.description"
+                      name="description"
+                      apiKey="ykyh8j6aqah0jdmw6sbtjjtvrnvprawtf5mx81xfhyx8f7i5"
+                      [init]="{
+                         height: 300,
+                         menubar: false,
+                         placeholder: 'Write...',
+                         plugins: [
+                           'advlist autolink lists link image charmap print preview anchor',
+                           'searchreplace visualblocks code fullscreen',
+                           'insertdatetime media table paste code help wordcount'
+                         ],
+                         toolbar:
+                           'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
+                       }"
+              ></editor>
+            </div>
+          </form>
+        </div>
+        <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
+          <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Company's contact information</h2>
+
+          <form>
+            <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+              <div>
+                <label class="text-gray-700 dark:text-gray-200" for="username">Name of the company</label>
+                <input id="username" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+              </div>
+
+              <div>
+                <label class="text-gray-700 dark:text-gray-200" for="emailAddress">Company website</label>
+                <input id="emailAddress" type="email" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+              </div>
+
+              <div>
+                <label class="text-gray-700 dark:text-gray-200" for="password">Password</label>
+                <input id="password" type="password" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+              </div>
+
+              <div>
+                <label class="text-gray-700 dark:text-gray-200" for="passwordConfirmation">Password Confirmation</label>
+                <input id="passwordConfirmation" type="password" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div>
+          <form #form="ngForm" (ngSubmit)="save(form)">
+            <div class="justify-end flex mt-6 space-x-5">
+              <a (click)="stepMake > 1 ? (stepMake = stepMake - 1) : ''" class="{{stepMake <= 1 ? 'bg-gray-200 text-gray-400' : 'bg-gray-700 text-white hover:bg-gray-600 focus:outline-none focus:bg-gray-600'}} px-6 py-2 leading-5 transition-colors duration-200 transform rounded-md">Previous</a>
+              <button [disabled]="form.invalid" type="submit" class="disabled:bg-gray-400 disabled:bg-gray-200 disabled:text-gray-400 px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mx-auto container 2xl:mx-auto 2xl:container py-10" *ngIf="currentCompany && currentCompany.date">
+  <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Information about the selected company</h2>
+  <div class="container px-6 py-8 mx-auto">
+    <div class="lg:flex lg:-mx-2">
+      <div class="space-y-3 lg:w-1/5 lg:px-2 lg:space-y-4">
+        <a href="#" class="block font-medium text-gray-500 dark:text-gray-300 hover:underline">Company information</a>
+        <a href="#" class="block font-medium text-gray-500 dark:text-gray-300 hover:underline">Location and map</a>
+        <a href="#" class="block font-medium text-blue-600 dark:text-blue-500 hover:underline">Frequently asked Questions</a>
+        <a href="#" class="block font-medium text-gray-500 dark:text-gray-300 hover:underline">Pictures</a>
+        <a href="#" class="block font-medium text-gray-500 dark:text-gray-300 hover:underline">Social networks</a>
+      </div>
+
+      <div class="mt-6 lg:mt-0 lg:px-2 lg:w-4/5 ">
+        <div class="flex items-center justify-between text-sm tracking-widest uppercase ">
+          <p class="text-gray-500 dark:text-gray-300">6 Items</p>
+          <div class="flex items-center">
+            <p class="text-gray-500 dark:text-gray-300">Sort</p>
+            <select class="font-medium text-gray-700 bg-transparent dark:text-gray-500 focus:outline-none">
+              <option value="#">Recommended</option>
+              <option value="#">Size</option>
+              <option value="#">Price</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div class="flex flex-col items-center justify-center w-full max-w-lg mx-auto">
+            <img class="object-cover w-full rounded-md h-72 xl:h-80" src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80" alt="T-Shirt">
+            <h4 class="mt-2 text-lg font-medium text-gray-700 dark:text-gray-200">Printed T-shirt</h4>
+            <p class="text-blue-500">$12.55</p>
+
+            <button class="flex items-center justify-center w-full px-2 py-2 mt-4 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-gray-800 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mx-1" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+              </svg>
+              <span class="mx-1">Add to cart</span>
+            </button>
+          </div>
+
+          <div class="flex flex-col items-center justify-center w-full max-w-lg mx-auto">
+            <img class="object-cover w-full rounded-md h-72 xl:h-80" src="https://images.unsplash.com/photo-1620799139507-2a76f79a2f4d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=966&q=80" alt="T-Shirt">
+            <h4 class="mt-2 text-lg font-medium text-gray-700 dark:text-gray-200"> Slub jersey T-shirt</h4>
+            <p class="text-blue-500">$18.70</p>
+
+            <button class="flex items-center justify-center w-full px-2 py-2 mt-4 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-gray-800 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mx-1" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+              </svg>
+              <span class="mx-1">Add to cart</span>
+            </button>
+          </div>
+
+          <div class="flex flex-col items-center justify-center w-full max-w-lg mx-auto">
+            <img class="object-cover w-full rounded-md h-72 xl:h-80" src="https://images.unsplash.com/photo-1603320409990-02d834987237?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="T-Shirt">
+            <h4 class="mt-2 text-lg font-medium text-gray-700 dark:text-gray-200">T-shirt with a motif</h4>
+            <p class="text-blue-500">$16.55</p>
+
+            <button class="flex items-center justify-center w-full px-2 py-2 mt-4 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-gray-800 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mx-1" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+              </svg>
+              <span class="mx-1">Add to cart</span>
+            </button>
+          </div>
+
+          <div class="flex flex-col items-center justify-center w-full max-w-lg mx-auto">
+            <img class="object-cover w-full rounded-md h-72 xl:h-80" src="https://images.unsplash.com/photo-1603320410149-db26b12d5c2b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80" alt="T-Shirt">
+            <h4 class="mt-2 text-lg font-medium text-gray-700 dark:text-gray-200">Art T-shirt</h4>
+            <p class="text-blue-500">$12.55</p>
+
+            <button class="flex items-center justify-center w-full px-2 py-2 mt-4 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-gray-800 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mx-1" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+              </svg>
+              <span class="mx-1">Add to cart</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

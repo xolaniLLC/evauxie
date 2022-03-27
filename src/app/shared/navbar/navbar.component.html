@@ -154,7 +154,7 @@
   <header class="relative bg-white">
     <div class="p-4 bg-indigo-600">
       <div class="items-center text-right items-end content-end justify-end justify-items-end right-14" *ngIf="isConnected === 0">
-        <span class="mx-5 font-semibold text-white">Are you a seller? click here to <a class="underline">sign in</a> or click here to <a class="underline">sign up</a></span>
+        <span class="mx-5 font-semibold text-white">Are you a seller and don't have an account yet? <a routerLink="../register-vendor" class="underline">Create one here</a></span>
         <button routerLink="../login-customer" class="font-bold mx-2 my-2 bg-white transition duration-150 ease-in-out hover:bg-gray-100 hover:text-indigo-600 rounded text-indigo-700 px-8 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-700"><a>Login</a></button>
         <button routerLink="../register-customer" class="mx-2 my-2 bg-transparent transition duration-150 ease-in-out hover:bg-gray-100 hover:text-indigo-600 font-bold rounded border border-white text-white px-8 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-700">Not a member? Register</button>
       </div>
@@ -561,6 +561,8 @@
               <a href="./forum" class="flex items-center text-base font-semibold text-gray-700 hover:text-indigo-600">Forum</a>
 
               <a href="./blogs-posts" class="flex items-center text-base font-semibold text-gray-700 hover:text-indigo-600">Blogs Posts</a>
+
+              <a *ngIf="currentUser && currentUser.typeUtilisateur === 'vendor'" href="./company-management" class="flex items-center text-base font-semibold text-gray-700 hover:text-indigo-600">Company management</a>
             </div>
           </div>
         </div>

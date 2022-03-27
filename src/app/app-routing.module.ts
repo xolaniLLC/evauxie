@@ -23,6 +23,8 @@ import {MailboxComponent} from "./mailbox/mailbox.component";
 import {PaymentComponent} from "./planning-tools/payment/payment.component";
 import {ApercuMailComponent} from "./mailbox/apercu-mail/apercu-mail.component";
 import {RegisterVendorComponent} from "./register-vendor/register-vendor.component";
+import {CompanyManagementComponent} from "./company-management/company-management.component";
+import {MyCompanyComponent} from "./company-management/my-company/my-company.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -36,6 +38,8 @@ const routes: Routes = [
   { path: 'profil/:id', component: ProfilComponent },
   { path: 'mailbox', canActivate: [AuthGuardService], component: MailboxComponent },
   { path: 'mailbox/:id', canActivate: [AuthGuardService], component: ApercuMailComponent },
+  { path: 'company-management', component: CompanyManagementComponent },
+  { path: 'company-management/my-company', canActivate: [AuthGuardService], component: MyCompanyComponent },
   { path: 'planning-tools', component: PlanningToolsComponent },
   { path: 'planning-tools/my-events', canActivate: [PlanningToolsGuardService], component: MyEventsComponent },
   { path: 'planning-tools/checklist', canActivate: [PlanningToolsGuardService], component: ChecklistComponent },

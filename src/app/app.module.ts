@@ -38,6 +38,9 @@ import { ApercuMailComponent } from './mailbox/apercu-mail/apercu-mail.component
 import { WriteMessageComponent } from './shared/write-message/write-message.component';
 import { MiniatureMessageComponent } from './shared/miniature-message/miniature-message.component';
 import { RegisterVendorComponent } from './register-vendor/register-vendor.component';
+import { CompanyManagementComponent } from './company-management/company-management.component';
+import { MenuCompanyManagementComponent } from './shared/menu-company-management/menu-company-management.component';
+import { MyCompanyComponent } from './company-management/my-company/my-company.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +77,10 @@ import { RegisterVendorComponent } from './register-vendor/register-vendor.compo
     ApercuMailComponent,
     WriteMessageComponent,
     MiniatureMessageComponent,
-    RegisterVendorComponent
+    RegisterVendorComponent,
+    CompanyManagementComponent,
+    MenuCompanyManagementComponent,
+    MyCompanyComponent
   ],
     imports: [
         BrowserModule,

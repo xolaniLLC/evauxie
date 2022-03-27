@@ -26,7 +26,7 @@ export class RegisterVendorComponent implements OnInit {
   registerEmail(form: any) {
     this.isLoading = true;
     const user: Utilisateur = new Utilisateur(form.value.nom.toLocaleLowerCase(), form.value.email.toLocaleLowerCase(), 'email', 'vendor');
-    user.country = form.value.user;
+    user.country = form.value.country;
     user.phone = form.value.phone;
 
     this.authService.signUpUser(user, form.value.passwordRegister).then(
