@@ -41,6 +41,7 @@ import { RegisterVendorComponent } from './register-vendor/register-vendor.compo
 import { CompanyManagementComponent } from './company-management/company-management.component';
 import { MenuCompanyManagementComponent } from './shared/menu-company-management/menu-company-management.component';
 import { MyCompanyComponent } from './company-management/my-company/my-company.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { MyCompanyComponent } from './company-management/my-company/my-company.c
         BrowserModule,
         AppRoutingModule,
         FormsModule,
-      EditorModule
+      EditorModule,
+      ReactiveFormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]
