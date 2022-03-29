@@ -1,4 +1,5 @@
 import {ToolsService} from "../services/tools.service";
+import {Faq} from "./faq";
 
 export class Company {
 
@@ -14,13 +15,15 @@ export class Company {
   categorie: string;
   verifier: string;
   misAjour: string;
-  photo: string;
+  phototheque: any[];
   logo: string;
-  faq: any;
   nom: string;
   phone: string;
+  faq: Faq[];
+  price: string[];
+  sousCategorie: string;
 
-  constructor(public administrateur: any[]) {
+  constructor(public administrateurs: any[]) {
     const gid = new ToolsService();
     this.nom = '';
     this.id = gid.generateId(23);
@@ -34,8 +37,11 @@ export class Company {
     this.categorie = '';
     this.verifier = '';
     this.misAjour = '';
-    this.photo = '';
+    this.phototheque = [];
     this.logo = '';
     this.phone = '';
+    this.faq = [];
+    this.price = ['0', '0'];
+    this.sousCategorie = '';
   }
 }

@@ -25,6 +25,7 @@ import {ApercuMailComponent} from "./mailbox/apercu-mail/apercu-mail.component";
 import {RegisterVendorComponent} from "./register-vendor/register-vendor.component";
 import {CompanyManagementComponent} from "./company-management/company-management.component";
 import {MyCompanyComponent} from "./company-management/my-company/my-company.component";
+import {VenuesComponent} from "./venues/venues.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -49,6 +50,7 @@ const routes: Routes = [
   { path: 'planning-tools/payment', canActivate: [PlanningToolsGuardService], component: PaymentComponent },
   { path: 'new-topic', canActivate: [AuthGuardService], component: NewTopicComponent },
   { path: 'topic/:id', component: TopicComponent },
+  { path: 'venues', component: VenuesComponent },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
 

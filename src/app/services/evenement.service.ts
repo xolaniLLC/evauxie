@@ -4,6 +4,7 @@ import {Evenement} from "../models/evenement";
 import {Task} from "../models/task";
 import {Guest} from "../models/guest";
 import {Depense} from "../models/depense";
+import {Company} from "../models/company";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,92 @@ import {Depense} from "../models/depense";
 export class EvenementService {
 
   constructor() { }
+
+  async isLikeCompany(company: Company) {
+    return new Promise<boolean>((resolve, reject) => {
+      this.getMyCurrentEvent().then(
+        (data1) => {
+          if(data1.length > 0) {
+            if(data1[0].companyLike.includes(company.id))
+              resolve(true);
+            else
+              resolve(false);
+          }
+        }, (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async isSolliciteCompany(company: Company) {
+    return new Promise<boolean>((resolve, reject) => {
+      this.getMyCurrentEvent().then(
+        (data1) => {
+          if(data1.length > 0) {
+            if(data1[0].companySollicite.includes(company.id))
+              resolve(true);
+            else
+              resolve(false);
+          }
+        }, (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async solliciteCompany(company: Company) {
+    return new Promise<void>((resolve, reject) => {
+      let currentEvent: any = null;
+      this.getMyCurrentEvent().then(
+        (data1) => {
+          if(data1.length > 0) {
+            currentEvent = data1[0];
+            if(data1[0].companySollicite.includes(company.id))
+              currentEvent.companySollicite.splice(data1[0].companySollicite.indexOf(company.id), 1);
+            else
+              currentEvent.companySollicite.push(company.id);
+          }
+          this.updateEvent(currentEvent).then(
+            () => {
+              resolve();
+            }, (error) => {
+              reject(error);
+            }
+          );
+        }, (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async likeCompany(company: Company) {
+    return new Promise<void>((resolve, reject) => {
+      let currentEvent: any = null;
+      this.getMyCurrentEvent().then(
+        (data1) => {
+          if(data1.length > 0) {
+            currentEvent = data1[0];
+            if(data1[0].companyLike.includes(company.id))
+              currentEvent.companyLike.splice(data1[0].companyLike.indexOf(company.id), 1);
+            else
+              currentEvent.companyLike.push(company.id);
+          }
+          this.updateEvent(currentEvent).then(
+            () => {
+              resolve();
+            }, (error) => {
+              reject(error);
+            }
+          );
+        }, (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
 
   async ajouterDepense(dep: Depense) {
     return new Promise<void>((resolve, reject) => {
@@ -223,6 +310,23 @@ export class EvenementService {
     return new Promise<Evenement[]>((resolve, reject) => {
       // @ts-ignore
       firebase.firestore().collection('evenements').where('auteur', '==', idUser).onSnapshot(
+        (docRef) => {
+          const result: Evenement[] = [];
+          docRef.forEach(function (doc) {
+            result.push(doc.data() as Evenement);
+          });
+          resolve(result as any);
+        }, (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async getMyCurrentEvent() {
+    return new Promise<Evenement[]>((resolve, reject) => {
+      // @ts-ignore
+      firebase.firestore().collection('evenements').where('etat', '==', 1).onSnapshot(
         (docRef) => {
           const result: Evenement[] = [];
           docRef.forEach(function (doc) {

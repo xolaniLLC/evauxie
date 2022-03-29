@@ -42,6 +42,10 @@ import { CompanyManagementComponent } from './company-management/company-managem
 import { MenuCompanyManagementComponent } from './shared/menu-company-management/menu-company-management.component';
 import { MyCompanyComponent } from './company-management/my-company/my-company.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { VenuesComponent } from './venues/venues.component';
+import { BarreSearchComponent } from './shared/barre-search/barre-search.component';
+import { ZoneResultatSearchComponent } from './shared/zone-resultat-search/zone-resultat-search.component';
+import { MiniatureCompanyComponent } from './shared/miniature-company/miniature-company.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +85,11 @@ import {ReactiveFormsModule} from "@angular/forms";
     RegisterVendorComponent,
     CompanyManagementComponent,
     MenuCompanyManagementComponent,
-    MyCompanyComponent
+    MyCompanyComponent,
+    VenuesComponent,
+    BarreSearchComponent,
+    ZoneResultatSearchComponent,
+    MiniatureCompanyComponent
   ],
     imports: [
         BrowserModule,

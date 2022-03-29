@@ -4,6 +4,8 @@ import {MessageService} from "../../services/message.service";
 import {AuthentificationService} from "../../services/authentification.service";
 import { Router } from '@angular/router';
 import firebase from "firebase";
+import {CategorieActivite} from "../../models/categorie-activite";
+import {CategoriesService} from "../../services/categories.service";
 
 @Component({
   selector: 'app-navbar',
@@ -20,8 +22,10 @@ export class NavbarComponent implements OnInit {
   currentUser: any = null;
   messagesNonLus: any[] = [];
   userDropdown = false;
+  categories: CategorieActivite[] = [];
+  sousCategoriesVenue: CategorieActivite[] = [];
 
-  constructor(private messageService: MessageService, private userService: UserService, private authService: AuthentificationService, private router: Router) { }
+  constructor(private categorieService: CategoriesService, private messageService: MessageService, private userService: UserService, private authService: AuthentificationService, private router: Router) { }
 
   ngOnInit(): void {
     this.authService.isAuthenticated().then(
@@ -41,6 +45,18 @@ export class NavbarComponent implements OnInit {
             }
           );
         } else { this.isConnected = 0; }
+      }
+    );
+
+    this.categorieService.getCategoriesActivites().then(
+      (data) => {
+        this.categories = data;
+      }
+    )
+
+    this.categorieService.getSousCategoriesActivites('318a527a244caec0556dae').then(
+      (data) => {
+        this.sousCategoriesVenue = data;
       }
     )
   }

@@ -13,16 +13,8 @@ export class MenuCompanyManagementComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    if(this.router.url.includes('checklist')) {
+    if(this.router.url.includes('notices')) {
       this.menu = 2;
-    } else if(this.router.url.includes('vendors')) {
-      this.menu = 3;
-    } else if(this.router.url.includes('guest')) {
-      this.menu = 4;
-    } else if(this.router.url.includes('budget')) {
-      this.menu = 5;
-    } else if(this.router.url.includes('payment')) {
-      this.menu = 6;
     } else {
       this.menu = 1;
     }
