@@ -2,4 +2,21 @@
 
 <app-menu-planning-tools></app-menu-planning-tools>
 
+<section>
+  <div class="container px-6 py-8 mx-auto">
+    <div class="lg:flex lg:-mx-2">
+      <div class="space-y-3 lg:w-1/5 lg:px-2 lg:space-y-4">
+        <a href="./planning-tools/vendors-manager" class="{{categorieSelect === '' ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-500 dark:text-gray-300'}} cursor-pointer block font-medium hover:underline">All types</a>
+        <ng-container *ngFor="let cat of categories">
+          <a href="./planning-tools/vendors-manager?categorie={{cat.id}}" class="block font-medium {{categorieSelect === cat.id ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-500 dark:text-gray-300'}} cursor-pointer hover:underline">{{cat.titre}}</a>
+        </ng-container>
+      </div>
+
+      <div class="mt-6 lg:mt-0 lg:px-2 lg:w-4/5 ">
+        <app-zone-resultat-search text="{{textSearch}}" pays="{{paysSelect}}" categorie="{{categorieSelect}}"></app-zone-resultat-search>
+      </div>
+    </div>
+  </div>
+</section>
+
 <app-footer></app-footer>

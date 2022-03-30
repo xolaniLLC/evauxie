@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import {CategoriesService} from "../services/categories.service";
-import {CategorieActivite} from "../models/categorie-activite";
 import {ActivatedRoute} from "@angular/router";
+import {CategorieActivite} from "../models/categorie-activite";
 
 @Component({
-  selector: 'app-venues',
-  templateUrl: './venues.component.html',
-  styleUrls: ['./venues.component.scss']
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss']
 })
-export class VenuesComponent implements OnInit {
+export class SearchComponent implements OnInit {
 
-  categorieVenues: CategorieActivite[] = [];
+  categories: CategorieActivite[] = [];
   categorieSelect = '';
   paysSelect = '';
   textSearch = '';
@@ -25,10 +25,9 @@ export class VenuesComponent implements OnInit {
     if(this.activatedRoute.snapshot.queryParams['textSearch'])
       this.categorieSelect = this.activatedRoute.snapshot.queryParams['textSearch'];
 
-    this.categorieService.getSousCategoriesActivites('318a527a244caec0556dae').then(
+    this.categorieService.getAllCategoriesActivites().then(
       (data) => {
-        this.categorieVenues = data;
-        if(this.categorieSelect === '') { this.categorieSelect = this.categorieVenues[0].id; }
+        this.categories = data;
       }
     );
   }

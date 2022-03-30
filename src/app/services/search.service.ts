@@ -13,16 +13,16 @@ export class SearchService {
     return new Promise<Company[]>((resolve, reject) => {
       // @ts-ignore
       firebase.firestore().collection('companies')
-        //.where('verifier',  '!=', ' ')
         .where('misAjour',  '==', '')
-        .where('categorie', categorie ? '==' : '!=', categorie ? categorie : '@!#')
-        //.where('pays', pays ? '==' : '!=', pays ? pays : '@!#')
-        .where('nom', texte ? 'array-contains' : '!=', texte ? texte : '@!#')
+        .where(categorie ? 'categorie' : 'misAjour', '==', categorie ? categorie : '')
+        .where(pays ? 'pays' : 'misAjour', '==', '')
+        .where(texte ? 'nom' : 'misAjour', texte ? 'array-contains' : '==', texte ? texte : '')
         .onSnapshot(
         (docRef) => {
           const result: Company[] = [];
           docRef.forEach(function (doc) {
-            result.push(doc.data() as Company);
+            if((doc.data() as Company).date !== '')
+              result.push(doc.data() as Company);
           });
           resolve(result as any);
         }, (error) => {

@@ -43,6 +43,12 @@ export class ApercuMailComponent implements OnInit {
               }
             );
           });
+
+          if(!this.currentMessage.read.includes(firebase.auth().currentUser?.email as string)) {
+            const tmp = this.currentMessage;
+            tmp.read.push(firebase.auth().currentUser?.email as string);
+            this.messageService.updateMessage(tmp).then();
+          }
         }
       }
     );

@@ -12,7 +12,7 @@ export class BlogComponent implements OnInit {
   listeBlog: Blog[] = [];
   isLoading = true;
   page = 0;
-  nbreLimitEltPrPage = 6
+  nbreLimitEltPrPage = 6;
 
   constructor(private blogService: BlogService) { }
 

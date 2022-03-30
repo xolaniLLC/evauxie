@@ -68,4 +68,21 @@ export class CategoriesService {
       );
     });
   }
+
+  async getAllCategoriesActivites() {
+    return new Promise<CategorieActivite[]>((resolve, reject) => {
+      // @ts-ignore
+      firebase.firestore().collection('categories_activites').onSnapshot(
+        (docRef) => {
+          const result: CategorieActivite[] = [];
+          docRef.forEach(function (doc) {
+            result.push(doc.data() as CategorieActivite);
+          });
+          resolve(result as any);
+        }, (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
 }

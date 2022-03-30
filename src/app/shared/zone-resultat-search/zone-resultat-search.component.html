@@ -14,6 +14,51 @@
   </div>
 </div>
 
+<div *ngIf="listeResultat.length === 0" class="text-gray-400 text-center">
+  <svg id="react2"  class="inline"  width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_1017_212)">
+      <path d="M20.75 40.001C31.7957 40.001 40.75 31.0467 40.75 20.001C40.75 8.95528 31.7957 0.000976562 20.75 0.000976562C9.7043 0.000976562 0.75 8.95528 0.75 20.001C0.75 31.0467 9.7043 40.001 20.75 40.001Z" fill="#FFE17D"/>
+      <path d="M13.9757 20.001C13.0849 20.001 12.3628 19.2788 12.3628 18.3881V17.0978C12.3628 16.207 13.0849 15.4849 13.9757 15.4849C14.8665 15.4849 15.5886 16.207 15.5886 17.0978V18.3881C15.5886 19.2788 14.8665 20.001 13.9757 20.001Z" fill="#7D5046"/>
+      <path d="M13.9757 15.4849C13.8652 15.4849 13.7574 15.4962 13.6531 15.5174V17.7429C13.6531 18.2774 14.0864 18.7106 14.6208 18.7106C15.1553 18.7106 15.5885 18.2774 15.5885 17.7429V17.0978C15.5885 16.2069 14.8665 15.4849 13.9757 15.4849Z" fill="#9C6846"/>
+      <path d="M27.5243 20.001C26.6335 20.001 25.9114 19.2788 25.9114 18.3881V17.0978C25.9114 16.207 26.6335 15.4849 27.5243 15.4849C28.415 15.4849 29.1372 16.207 29.1372 17.0978V18.3881C29.1372 19.2788 28.415 20.001 27.5243 20.001Z" fill="#7D5046"/>
+      <path d="M27.5242 15.4849C27.4138 15.4849 27.306 15.4962 27.2017 15.5174V17.7429C27.2017 18.2774 27.6349 18.7106 28.1694 18.7106C28.7038 18.7106 29.1371 18.2774 29.1371 17.7429V17.0978C29.1371 16.2069 28.415 15.4849 27.5242 15.4849Z" fill="#9C6846"/>
+      <path d="M14.2959 29.8396C14.1006 29.8396 13.9046 29.769 13.7496 29.6266C13.422 29.3248 13.4006 28.8148 13.7024 28.4869C15.3392 26.7079 17.9734 25.646 20.7474 25.646C23.5228 25.646 26.1563 26.7083 27.7925 28.4872C28.0943 28.8148 28.0729 29.3251 27.7453 29.6266C27.4183 29.9284 26.9073 29.9079 26.6055 29.579C25.2692 28.1261 23.0792 27.2589 20.7474 27.2589C18.4162 27.2589 16.2262 28.1261 14.8892 29.5793C14.7307 29.7521 14.5132 29.8396 14.2959 29.8396Z" fill="#AA7346"/>
+      <path d="M23.6532 37.0977C12.6075 37.0977 3.6532 28.1434 3.6532 17.0977C3.6532 12.3143 5.33453 7.92496 8.1357 4.4834C3.62992 8.15059 0.75 13.7386 0.75 20.0009C0.75 31.0466 9.7043 40.0009 20.75 40.0009C27.0124 40.0009 32.6004 37.1209 36.2677 32.6151C32.826 35.4163 28.4366 37.0977 23.6532 37.0977Z" fill="#FFD164"/>
+    </g>
+    <defs>
+      <clipPath id="clip0_1017_212">
+        <rect width="40" height="40" fill="white" transform="translate(0.75 0.000976562)"/>
+      </clipPath>
+    </defs>
+  </svg>
+
+  <h3 class="py-3">No results</h3>
+</div>
+
 <div class="grid grid-cols-1 mt-8 {{typePrint === 'images' ? 'gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : ''}}">
-  <app-miniature-company skin="{{typePrint}}" id="{{result.id}}" *ngFor="let result of listeResultat"></app-miniature-company>
+  <app-miniature-company skin="{{typePrint}}" id="{{result.id}}" *ngFor="let result of listeResultat | slice:(page * nbreLimitEltPrPage):((page * nbreLimitEltPrPage) + nbreLimitEltPrPage)"></app-miniature-company>
+</div>
+
+<div class="mx-auto container py-10" *ngIf="listeResultat.length > nbreLimitEltPrPage">
+  <ul class="flex justify-center items-center">
+    <li>
+            <span (click)="page > 0 ? (page = page - 1) : ''" class="cursor-pointer p-1 flex rounded transition duration-150 ease-in-out text-base leading-tight font-bold text-gray-500 hover:text-indigo-700 focus:outline-none mr-1 sm:mr-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" />
+                    <polyline points="15 6 9 12 15 18" />
+                </svg>
+            </span>
+    </li>
+    <li *ngFor="let elt of [].constructor(recupNombreEntier(listeResultat.length / nbreLimitEltPrPage)); let i = index">
+      <span (click)="page = i" class="{{page === i ? 'text-white bg-indigo-600' : 'text-indigo-600 hover:bg-indigo-600 hover:text-white focus:outline-none cursor-pointer'}} flex  text-base leading-tight font-bold shadow transition duration-150 ease-in-out mx-2 sm:mx-4 rounded px-3 py-2 ">{{i + 1}}</span>
+    </li>
+    <li>
+            <span (click)="(page + 1) < recupNombreEntier(listeResultat.length / nbreLimitEltPrPage) ? (page = page + 1) : ''" class="flex cursor-pointer rounded transition duration-150 ease-in-out text-base leading-tight font-bold text-gray-500 hover:text-indigo-700 p-1 focus:outline-none ml-1 sm:ml-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" />
+                    <polyline points="9 6 15 12 9 18" />
+                </svg>
+            </span>
+    </li>
+  </ul>
 </div>

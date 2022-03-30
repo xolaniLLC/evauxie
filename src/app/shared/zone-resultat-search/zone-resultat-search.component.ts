@@ -12,9 +12,12 @@ export class ZoneResultatSearchComponent implements OnInit {
   @Input() categorie = '';
   @Input() pays = '';
   @Input() text = '';
+  @Input() excluCategorie = '';
 
   typePrint = '';
   listeResultat: Company[] = [];
+  page = 0;
+  nbreLimitEltPrPage = 8;
 
   constructor(private searchService: SearchService) { }
 
@@ -23,9 +26,17 @@ export class ZoneResultatSearchComponent implements OnInit {
 
     this.searchService.getCompaniesVerified(this.categorie, this.pays, this.text).then(
       (data) => {
-        this.listeResultat = data;
+        const pointe = this;
+        data.forEach(function (doc) {
+          if(doc.categorie !== pointe.excluCategorie)
+            pointe.listeResultat.push(doc);
+        });
       }
     )
+  }
+
+  recupNombreEntier(nbr: number) { //Par excès
+    return Math.ceil(nbr);
   }
 
 }

@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+
+<header id="up" class="bg-center bg-fixed bg-no-repeat bg-center bg-cover relative">
+  <div class="relative h-fit w-full flex items-center justify-start bg-cover bg-center" [style]="'background-image:url(assets/images/ill_27.jpg);'">
+    <div class="absolute top-0 right-0 bottom-0 left-0 bg-black opacity-75"></div>
+    <main class="px-10 lg:px-24 py-20" style="z-index: 1">
+      <div class="lg:w-auto custom md:mt-0 h-full flex px-4 md:px-0  z-10 justify-center items-center md:items-start flex-col md:pl-20 lg:px-20 2xl:px-44">
+        <p class="text-xl sm:text-2xl xl:text-4xl text-center md:text-left font-semibold leading-6 xl:leading-10 text-gray-100 md:w-96 2xl:w-2/3" >Vendors</p>
+        <p class="mt-4 md:w-80 lg:w-2/3 xl:w-3/4 text-center md:text-left  text-base leading-normal text-gray-200" >Consulted the list of sellers of the platform.</p>
+      </div>
+    </main>
+  </div>
+</header>
+
+<div class="py-8">
+  <app-barre-search></app-barre-search>
+</div>
+
+
+<section>
+  <div class="container px-6 py-8 mx-auto">
+    <div class="lg:flex lg:-mx-2">
+      <div class="space-y-3 lg:w-1/5 lg:px-2 lg:space-y-4">
+        <a href="./vendors" class="{{categorieSelect === '' ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-500 dark:text-gray-300'}} cursor-pointer block font-medium hover:underline">All types</a>
+        <ng-container *ngFor="let cat of categories">
+          <a href="./vendors?categorie={{cat.id}}" *ngIf="cat.id !== '318a527a244caec0556dae'" class="block font-medium {{categorieSelect === cat.id ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-500 dark:text-gray-300'}} cursor-pointer hover:underline">{{cat.titre}}</a>
+        </ng-container>
+      </div>
+
+      <div class="mt-6 lg:mt-0 lg:px-2 lg:w-4/5 ">
+        <app-zone-resultat-search text="{{textSearch}}" pays="{{paysSelect}}" categorie="{{categorieSelect}}"></app-zone-resultat-search>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

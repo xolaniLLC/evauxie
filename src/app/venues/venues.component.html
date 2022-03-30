@@ -17,16 +17,15 @@
 </div>
 
 
-<section class="bg-white dark:bg-gray-900">
+<section>
   <div class="container px-6 py-8 mx-auto">
     <div class="lg:flex lg:-mx-2">
       <div class="space-y-3 lg:w-1/5 lg:px-2 lg:space-y-4"> <!-- text-blue-600 dark:text-blue-500 -->
-        <a (click)="categorieSelect = '318a527a244caec0556dae'" class="{{categorieSelect === '318a527a244caec0556dae' ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-500 dark:text-gray-300'}} cursor-pointer block font-medium hover:underline">All types</a>
-        <a (click)="categorieSelect = cat.id" class="block font-medium {{categorieSelect === cat.id ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-500 dark:text-gray-300'}} cursor-pointer hover:underline" *ngFor="let cat of categorieVenues">{{cat.titre}}</a>
+        <a href="./venues?categorie={{cat.id}}" class="block font-medium {{categorieSelect === cat.id ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-500 dark:text-gray-300'}} cursor-pointer hover:underline" *ngFor="let cat of categorieVenues">{{cat.titre}}</a>
       </div>
 
       <div class="mt-6 lg:mt-0 lg:px-2 lg:w-4/5 ">
-        <app-zone-resultat-search categorie="{{categorieSelect}}"></app-zone-resultat-search>
+        <app-zone-resultat-search text="{{textSearch}}" pays="{{paysSelect}}" categorie="{{categorieSelect}}"></app-zone-resultat-search>
       </div>
     </div>
   </div>

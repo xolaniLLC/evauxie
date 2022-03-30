@@ -46,6 +46,11 @@ import { VenuesComponent } from './venues/venues.component';
 import { BarreSearchComponent } from './shared/barre-search/barre-search.component';
 import { ZoneResultatSearchComponent } from './shared/zone-resultat-search/zone-resultat-search.component';
 import { MiniatureCompanyComponent } from './shared/miniature-company/miniature-company.component';
+import { CompanyComponent } from './company/company.component';
+import { MiniativeGiveNoticeComponent } from './shared/miniative-give-notice/miniative-give-notice.component';
+import { AvisCompanyComponent } from './shared/avis-company/avis-company.component';
+import { VendorsComponent } from './vendors/vendors.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +94,12 @@ import { MiniatureCompanyComponent } from './shared/miniature-company/miniature-
     VenuesComponent,
     BarreSearchComponent,
     ZoneResultatSearchComponent,
-    MiniatureCompanyComponent
+    MiniatureCompanyComponent,
+    CompanyComponent,
+    MiniativeGiveNoticeComponent,
+    AvisCompanyComponent,
+    VendorsComponent,
+    SearchComponent
   ],
     imports: [
         BrowserModule,

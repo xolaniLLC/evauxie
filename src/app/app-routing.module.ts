@@ -26,6 +26,9 @@ import {RegisterVendorComponent} from "./register-vendor/register-vendor.compone
 import {CompanyManagementComponent} from "./company-management/company-management.component";
 import {MyCompanyComponent} from "./company-management/my-company/my-company.component";
 import {VenuesComponent} from "./venues/venues.component";
+import {CompanyComponent} from "./company/company.component";
+import {VendorsComponent} from "./vendors/vendors.component";
+import {SearchComponent} from "./search/search.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -40,6 +43,7 @@ const routes: Routes = [
   { path: 'mailbox', canActivate: [AuthGuardService], component: MailboxComponent },
   { path: 'mailbox/:id', canActivate: [AuthGuardService], component: ApercuMailComponent },
   { path: 'company-management', component: CompanyManagementComponent },
+  { path: 'company/:id', component: CompanyComponent },
   { path: 'company-management/my-company', canActivate: [AuthGuardService], component: MyCompanyComponent },
   { path: 'planning-tools', component: PlanningToolsComponent },
   { path: 'planning-tools/my-events', canActivate: [PlanningToolsGuardService], component: MyEventsComponent },
@@ -51,6 +55,8 @@ const routes: Routes = [
   { path: 'new-topic', canActivate: [AuthGuardService], component: NewTopicComponent },
   { path: 'topic/:id', component: TopicComponent },
   { path: 'venues', component: VenuesComponent },
+  { path: 'vendors', component: VendorsComponent },
+  { path: 'search', component: SearchComponent },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
 
