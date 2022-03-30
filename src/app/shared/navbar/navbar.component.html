@@ -32,90 +32,40 @@
               </li>
 
               <li class="flow-root">
-                <a href="./planning-tools/vendors-manager" class="-m-2 p-2 block text-gray-500"> Guest lists </a>
+                <a href="./planning-tools/guests-lists" class="-m-2 p-2 block text-gray-500"> Guest lists </a>
               </li>
 
               <li class="flow-root">
-                <a href="#" class="-m-2 p-2 block text-gray-500"> Vendor manager </a>
+                <a href="./planning-tools/vendors-manager" class="-m-2 p-2 block text-gray-500"> Vendor manager </a>
               </li>
 
               <li class="flow-root">
-                <a href="#" class="-m-2 p-2 block text-gray-500"> Budget </a>
+                <a href="./planning-tools/budget" class="-m-2 p-2 block text-gray-500"> Budget </a>
               </li>
 
               <li class="flow-root">
-                <a href="#" class="-m-2 p-2 block text-gray-500"> Sweaters </a>
-              </li>
-
-              <li class="flow-root">
-                <a href="#" class="-m-2 p-2 block text-gray-500"> T-Shirts </a>
-              </li>
-
-              <li class="flow-root">
-                <a href="#" class="-m-2 p-2 block text-gray-500"> Jackets </a>
-              </li>
-
-              <li class="flow-root">
-                <a href="#" class="-m-2 p-2 block text-gray-500"> Activewear </a>
-              </li>
-
-              <li class="flow-root">
-                <a href="#" class="-m-2 p-2 block text-gray-500"> Browse All </a>
+                <a href="./planning-tools/payment" class="-m-2 p-2 block text-gray-500"> Payment </a>
               </li>
             </ul>
           </div>
 
           <div>
-            <p id="women-accessories-heading-mobile" class="font-medium text-gray-900">Accessories</p>
+            <p id="women-accessories-heading-mobile" class="font-medium text-gray-900">Reception</p>
             <ul role="list" aria-labelledby="women-accessories-heading-mobile" class="mt-6 flex flex-col space-y-6">
-              <li class="flow-root">
-                <a href="#" class="-m-2 p-2 block text-gray-500"> Watches </a>
-              </li>
-
-              <li class="flow-root">
-                <a href="#" class="-m-2 p-2 block text-gray-500"> Wallets </a>
-              </li>
-
-              <li class="flow-root">
-                <a href="#" class="-m-2 p-2 block text-gray-500"> Bags </a>
-              </li>
-
-              <li class="flow-root">
-                <a href="#" class="-m-2 p-2 block text-gray-500"> Sunglasses </a>
-              </li>
-
-              <li class="flow-root">
-                <a href="#" class="-m-2 p-2 block text-gray-500"> Hats </a>
-              </li>
-
-              <li class="flow-root">
-                <a href="#" class="-m-2 p-2 block text-gray-500"> Belts </a>
+              <li class="flow-root" *ngFor="let sous of sousCategoriesVenue">
+                <a href="./venues?categorie={{sous.id}}" class="-m-2 p-2 block text-gray-500"> {{sous.titre}} </a>
               </li>
             </ul>
           </div>
 
           <div>
-            <p id="women-brands-heading-mobile" class="font-medium text-gray-900">Brands</p>
+            <p id="women-brands-heading-mobile" class="font-medium text-gray-900">Vendors on the platform</p>
             <ul role="list" aria-labelledby="women-brands-heading-mobile" class="mt-6 flex flex-col space-y-6">
-              <li class="flow-root">
-                <a href="#" class="-m-2 p-2 block text-gray-500"> Full Nelson </a>
-              </li>
-
-              <li class="flow-root">
-                <a href="#" class="-m-2 p-2 block text-gray-500"> My Way </a>
-              </li>
-
-              <li class="flow-root">
-                <a href="#" class="-m-2 p-2 block text-gray-500"> Re-Arranged </a>
-              </li>
-
-              <li class="flow-root">
-                <a href="#" class="-m-2 p-2 block text-gray-500"> Counterfeit </a>
-              </li>
-
-              <li class="flow-root">
-                <a href="#" class="-m-2 p-2 block text-gray-500"> Significant Other </a>
-              </li>
+              <ng-container *ngFor="let cat of categories">
+                <li class="flow-root" *ngIf="cat.titre.toLocaleLowerCase() !== 'venue'">
+                  <a href="./vendors/?categorie={{cat.id}}" class="-m-2 p-2 block text-gray-500"> {{cat.titre}} </a>
+                </li>
+              </ng-container>
             </ul>
           </div>
         </div>
@@ -124,29 +74,16 @@
 
       <div class="border-t border-gray-200 py-6 px-4 space-y-6">
         <div class="flow-root">
-          <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Company</a>
+          <a href="./forum" class="-m-2 p-2 block font-medium text-gray-900">Forum</a>
         </div>
 
         <div class="flow-root">
-          <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Stores</a>
+          <a href="./blogs-posts" class="-m-2 p-2 block font-medium text-gray-900">Blogs Posts</a>
         </div>
-      </div>
 
-      <div class="border-t border-gray-200 py-6 px-4 space-y-6">
         <div class="flow-root">
-          <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Sign in</a>
+          <a *ngIf="currentUser && currentUser.typeUtilisateur === 'vendor'" href="./company-management" class="-m-2 p-2 block font-medium text-gray-900">Company management</a>
         </div>
-        <div class="flow-root">
-          <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Create account</a>
-        </div>
-      </div>
-
-      <div class="border-t border-gray-200 py-6 px-4">
-        <a href="#" class="-m-2 p-2 flex items-center">
-          <img src="https://tailwindui.com/img/flags/flag-canada.svg" alt="" class="w-5 h-auto block flex-shrink-0">
-          <span class="ml-3 block text-base font-medium text-gray-900"> CAD </span>
-          <span class="sr-only">, change currency</span>
-        </a>
       </div>
     </div>
   </div>
