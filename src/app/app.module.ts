@@ -51,6 +51,7 @@ import { MiniativeGiveNoticeComponent } from './shared/miniative-give-notice/min
 import { AvisCompanyComponent } from './shared/avis-company/avis-company.component';
 import { VendorsComponent } from './vendors/vendors.component';
 import { SearchComponent } from './search/search.component';
+import { EAdminComponent } from './e-admin/e-admin.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import { SearchComponent } from './search/search.component';
     MiniativeGiveNoticeComponent,
     AvisCompanyComponent,
     VendorsComponent,
-    SearchComponent
+    SearchComponent,
+    EAdminComponent
   ],
     imports: [
         BrowserModule,

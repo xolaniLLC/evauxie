@@ -29,6 +29,7 @@ import {VenuesComponent} from "./venues/venues.component";
 import {CompanyComponent} from "./company/company.component";
 import {VendorsComponent} from "./vendors/vendors.component";
 import {SearchComponent} from "./search/search.component";
+import {EAdminComponent} from "./e-admin/e-admin.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -57,6 +58,7 @@ const routes: Routes = [
   { path: 'venues', component: VenuesComponent },
   { path: 'vendors', component: VendorsComponent },
   { path: 'search', component: SearchComponent },
+  { path: 'e-admin', canActivate: [AuthGuardService], component: EAdminComponent },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
 

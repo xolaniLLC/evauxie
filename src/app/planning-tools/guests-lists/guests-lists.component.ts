@@ -21,6 +21,7 @@ export class GuestsListsComponent implements OnInit {
   liste_invite_select: Guest[] = [];
   currentCategorySelect: number | any = null;
   menuOption = '';
+  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
   constructor(private eventService: EvenementService, private alertService: AlertService, private userService: UserService) { }
 
