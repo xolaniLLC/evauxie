@@ -6,6 +6,8 @@ import {CategoriesService} from "../../services/categories.service";
 import {WriteMailService} from "../../services/write-mail.service";
 import {EvenementService} from "../../services/evenement.service";
 import {AlertService} from "../../services/alert.service";
+import {AvisCompany} from "../../models/avis-company";
+import {AvisCompanyService} from "../../services/avis-company.service";
 
 @Component({
   selector: 'app-miniature-company',
@@ -20,8 +22,9 @@ export class MiniatureCompanyComponent implements OnInit {
   categorie: CategorieActivite | any = null;
   isLike: boolean | any = null;
   isSollicite: boolean | any = null;
+  avisCurrentCompany: AvisCompany[] = [];
 
-  constructor(private alertService: AlertService, private evenementService: EvenementService, private companyService: CompanyService, private categorieService: CategoriesService, private writeMailService: WriteMailService) { }
+  constructor(private avisCompanyService: AvisCompanyService, private alertService: AlertService, private evenementService: EvenementService, private companyService: CompanyService, private categorieService: CategoriesService, private writeMailService: WriteMailService) { }
 
   ngOnInit(): void {
     this.companyService.getCompanyWitchId(this.id).then(
@@ -31,6 +34,12 @@ export class MiniatureCompanyComponent implements OnInit {
         this.categorieService.getCategorieWitchId(this.currentCompany.categorie).then(
           (data) => {
             this.categorie = data;
+          }
+        );
+
+        this.avisCompanyService.getAvisWitchIdCompany(this.currentCompany.id).then(
+          (docRef) => {
+            this.avisCurrentCompany = docRef;
           }
         );
 
@@ -47,6 +56,14 @@ export class MiniatureCompanyComponent implements OnInit {
         );
       }
     );
+  }
+
+  calculMoyenneAvis() {
+    let resultat = 0;
+    for(let i=0; i<this.avisCurrentCompany.length; i++) {
+      resultat += this.avisCurrentCompany[i].note;
+    }
+    return this.avisCurrentCompany.length > 0 ? Math.round(resultat / this.avisCurrentCompany.length) : 0;
   }
 
   updateLikeCompany() {

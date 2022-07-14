@@ -13,6 +13,7 @@ export class SearchComponent implements OnInit {
   categories: CategorieActivite[] = [];
   categorieSelect = '';
   paysSelect = '';
+  villeSelect = '';
   textSearch = '';
 
   constructor(private categorieService: CategoriesService, private activatedRoute: ActivatedRoute) { }

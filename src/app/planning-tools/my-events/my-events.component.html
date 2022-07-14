@@ -31,7 +31,7 @@
       </div>
       <div class="w-full lg:w-2/3 flex flex-col lg:flex-row items-start lg:items-center justify-end">
 
-        <div class="flex items-center lg:border-r border-gray-300 pb-3 lg:pb-0 lg:px-6">
+        <!--div class="flex items-center lg:border-r border-gray-300 pb-3 lg:pb-0 lg:px-6">
           <div class="relative w-32 z-10">
             <div
               class="pointer-events-none text-gray-600 dark:text-gray-400 absolute inset-0 m-auto mr-2 xl:mr-4 z-0 w-5 h-5">
@@ -49,7 +49,7 @@
               <option (click)="currentCategorySelect = 'wedding'" value="wedding">Wedding</option>
             </select>
           </div>
-        </div>
+        </div-->
 
         <div class="lg:ml-6 flex items-center">
           <button (click)="modalHandler(true)" class="{{liste_my_event.length === 0 ? 'animate-pulse' : ''}} items-center bg-indigo-600 transition duration-150 ease-in-out focus:outline-none border border-transparent focus:border-gray-800 focus:shadow-outline-gray hover:bg-gray-300 rounded text-white px-5 h-8 flex items-center text-sm">
@@ -83,9 +83,6 @@
             Description</th>
           <th
             class="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
-            Category</th>
-          <th
-            class="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
             Date</th>
           <th
             class="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
@@ -97,8 +94,7 @@
         </thead>
         <tbody>
         <ng-container *ngFor="let event of liste_my_event">
-          <tr *ngIf="event.categorie === currentCategorySelect || currentCategorySelect === ''"
-              [ngClass]="list_event_select.includes(event)  ? 'border-b bg-gray-100 border-gray-300 h-24' : 'border-b bg-white border-gray-300 h-24' ">
+          <tr [ngClass]="list_event_select.includes(event)  ? 'border-b bg-gray-100 border-gray-300 h-24' : 'border-b bg-white border-gray-300 h-24' ">
             <td
               class="pl-8 pr-6 text-left whitespace-no-wrap text-sm text-gray-800 dark:text-gray-100 tracking-normal leading-4">
               <input type="checkbox" [checked]="list_event_select.includes(event)"
@@ -111,11 +107,6 @@
             <td
               class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
               {{event.description}}</td>
-            <td class="pr-6 whitespace-no-wrap">
-              <div class="flex items-center">
-                <a href="#" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300">{{event.categorie}}</a>
-              </div>
-            </td>
             <td
               class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
               {{event.dateEvenement | date:"MMMM dd, yyyy"}}</td>
@@ -171,13 +162,6 @@
           <label for="dateSelect" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Date event <span class="text-rose-600">*</span></label>
           <div class="relative mb-5 mt-2">
             <input id="dateSelect" name="dateSelect" ngModel required type="date" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Date" />
-          </div>
-          <label for="categorie" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Category event <span class="text-rose-600">*</span></label>
-          <div class="relative mb-5 mt-2">
-            <select id="categorie" name="categorie" required ngModel class="bg-transparent mb-8 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
-              <option selected value="">Select category</option>
-              <option value="wedding">Wedding</option>
-            </select>
           </div>
           <label for="description" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Description</label>
           <div class="relative mb-5 mt-2">

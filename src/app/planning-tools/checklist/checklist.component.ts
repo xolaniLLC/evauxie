@@ -107,7 +107,7 @@ export class ChecklistComponent implements OnInit {
 
   addTask(form: any) {
     this.isLoading = true;
-    const tmp = new Task(this.event_en_cours[0].id, form.value.titre, form.value.date, firebase.auth().currentUser?.email, form.value.categorie, '', form.value.description, form.value.sommes);
+    const tmp = new Task(this.event_en_cours[0].id, form.value.titre, form.value.date, firebase.auth().currentUser?.email, ' ', '', form.value.description, 0);
     this.eventService.ajouterTache(tmp).then(
       () => {
         this.isLoading = false;

@@ -93,7 +93,7 @@ export class MyEventsComponent implements OnInit {
 
   addMyEvent(form: any) {
     this.isLoading = true;
-    const tmp = new Evenement(form.value.titre, form.value.dateSelect, firebase.auth().currentUser?.email, form.value.categorie, this.liste_my_event.length === 0 ? 1 : 0, form.value.description);
+    const tmp = new Evenement(form.value.titre, form.value.dateSelect, firebase.auth().currentUser?.email, ' ', this.liste_my_event.length === 0 ? 1 : 0, form.value.description);
     this.eventService.ajouterEvenement(tmp).then(
       () => {
         this.alertService.print('Operation successfully completed', 'success');

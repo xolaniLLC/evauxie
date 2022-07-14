@@ -11,7 +11,7 @@
 
     <form #form="ngForm" (ngSubmit)="sendMessage(form, i, modalWrite.reponse ? modalWrite.reponse : '')">
       <label for="destinataires" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">To</label>
-      <input [readOnly]="modalWrite.destinataires" id="destinataires" name="destinataires" [ngModel]="modalWrite.destinataires" required class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Name1@customer.com, Name2@customer.com" />
+      <input [readOnly]="modalWrite.destinataires" [type]="modalWrite.destinataires ? 'password' : 'text'" id="destinataires" name="destinataires" [ngModel]="modalWrite.destinataires" required class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Name1@customer.com, Name2@customer.com" />
       <label for="objet" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Objet</label>
       <input id="objet" name="objet" [ngModel]="modalWrite.objet" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Evauxie" />
       <editor class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full items-center text-sm rounded"

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {SafeResourceUrl} from "@angular/platform-browser";
 import firebase from "firebase";
+import {Topic} from "../models/topic";
+import {Pays} from "../models/pays";
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +51,23 @@ export class ApiService {
           );
         });
       }
+    });
+  }
+
+  async getPays() {
+    return new Promise<Pays[]>((resolve, reject) => {
+      // @ts-ignore
+      firebase.firestore().collection('pays').onSnapshot(
+        (docRef) => {
+          const result: Topic[] = [];
+          docRef.forEach(function (doc) {
+            result.push(doc.data() as Topic);
+          });
+          resolve(result as any);
+        }, (error) => {
+          reject(error);
+        }
+      );
     });
   }
 }

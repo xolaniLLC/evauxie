@@ -77,7 +77,7 @@ export class CompanyComponent implements OnInit {
     for(let i=0; i<this.avisCurrentCompany.length; i++) {
       resultat += this.avisCurrentCompany[i].note;
     }
-    return resultat / this.avisCurrentCompany.length;
+    return this.avisCurrentCompany.length > 0 ? Math.round(resultat / this.avisCurrentCompany.length) : 0;
   }
 
   goNext() {

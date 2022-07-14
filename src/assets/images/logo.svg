@@ -1,1 +1,29 @@
-<svg id="Logo_complet" data-name="Logo complet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510.63 155.3"><defs><style>.cls-1{fill:#f97316;stroke:#f97316;}.cls-1,.cls-2,.cls-3{stroke-miterlimit:10;}.cls-1,.cls-2{stroke-width:3px;}.cls-2,.cls-3{fill:#4f46e5;stroke:#4f46e5;}.cls-3{font-size:98px;font-family:MongolianBaiti, Mongolian Baiti;}</style></defs><title>logo</title><g id="Symbole"><path class="cls-1" d="M103.57,266.75l-3.68,5.65L55.75,244,50.5,250l6.46,10L44,264.16l0,7.58,18.87-4.88,4.83,5.85L35.13,282.85l6.08-43.24L55.57,233Z" transform="translate(-33.31 -200.35)"/><path class="cls-1" d="M115.91,280.59l-3.54-5.74L156.89,247l-3.26-7.33-11.84,1.57q.9-6.72,1.81-13.45l-6.84-3.26-3.63,19.15-7.35,1.89,4.69-33.78L167,235.71l-.15,15.8Z" transform="translate(-33.31 -200.35)"/><path class="cls-2" d="M114,269l-6.75.07-.87-52.49-8-1-4.76,11L83.05,218l-6.32,4.18,14.54,13-2.17,7.27L62.57,221l39.34-19,13.46,8.27Z" transform="translate(-33.31 -200.35)"/><path class="cls-2" d="M101.07,289.25l3.69-5.65L148.89,312l5.25-6.07-6.46-10.05,12.95-4.08,0-7.58-18.87,4.88L137,283.29l32.57-10.14-6.08,43.24L149.08,323Z" transform="translate(-33.31 -200.35)"/><path class="cls-2" d="M88.74,275.41l3.54,5.74L47.76,309,51,316.32l11.84-1.57q-.9,6.72-1.81,13.45l6.84,3.26q1.8-9.58,3.62-19.15l7.35-1.89L74.17,344.2,37.63,320.29l.15-15.8Z" transform="translate(-33.31 -200.35)"/><path class="cls-1" d="M90.66,287l6.74-.07q.43,26.24.88,52.49l8,1,4.77-11L121.59,338l6.32-4.18-14.54-13,2.18-7.27L142.07,335l-39.33,19-13.46-8.27Z" transform="translate(-33.31 -200.35)"/></g><text id="Texte" class="cls-3" transform="translate(188.25 105.83)">Evauxie</text></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Logo_complet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 510.6 155.3" style="enable-background:new 0 0 510.6 155.3;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FDA172;stroke:#FDA172;stroke-width:3;stroke-miterlimit:10;}
+	.st1{fill:#505B8E;stroke:#505B8E;stroke-width:3;stroke-miterlimit:10;}
+	.st2{fill:#4F46E5;}
+	.st3{font-family:'MongolianBaiti';}
+	.st4{font-size:98px;}
+	.st5{fill:#505B8E;stroke:#505B8E;stroke-miterlimit:10;}
+</style>
+<g id="Symbole">
+	<path class="st0" d="M70.3,66.4L66.6,72L22.4,43.6l-5.3,6l6.5,10l-13,4.2v7.6l18.9-4.9l4.8,5.9L1.8,82.5l6.1-43.2l14.4-6.6
+		L70.3,66.4z"/>
+	<path class="st0" d="M82.6,80.2l-3.5-5.7l44.5-27.9l-3.3-7.3l-11.8,1.6c0.6-4.5,1.2-9,1.8-13.4l-6.8-3.3l-3.6,19.1l-7.4,1.9
+		l4.7-33.8l36.5,23.9l-0.1,15.8L82.6,80.2z"/>
+	<path class="st1" d="M80.7,68.6l-6.8,0.1l-0.9-52.5l-8-1l-4.8,11l-10.6-8.6l-6.3,4.2l14.5,13l-2.2,7.3L29.3,20.6l39.3-19l13.5,8.3
+		L80.7,68.6z"/>
+	<path class="st1" d="M67.8,88.9l3.7-5.6l44.1,28.4l5.3-6.1l-6.5-10l12.9-4.1v-7.6l-18.9,4.9l-4.8-5.8l32.6-10.1l-6.1,43.2
+		l-14.4,6.6L67.8,88.9z"/>
+	<path class="st1" d="M55.4,75.1l3.5,5.7l-44.5,27.9l3.2,7.3l11.8-1.6c-0.6,4.5-1.2,9-1.8,13.5l6.8,3.3c1.2-6.4,2.4-12.8,3.6-19.1
+		l7.3-1.9l-4.7,33.8L4.3,119.9l0.2-15.8L55.4,75.1z"/>
+	<path class="st0" d="M57.4,86.6l6.7-0.1c0.3,17.5,0.6,35,0.9,52.5l8,1l4.8-11l10.5,8.6l6.3-4.2l-14.5-13l2.2-7.3l26.5,21.4
+		l-39.3,19L56,145.4L57.4,86.6z"/>
+</g>
+<text transform="matrix(1 0 0 1 188.25 105.83)" class="st2 st3 st4">Evauxie</text>
+<text id="Texte" transform="matrix(1 0 0 1 188.25 105.83)" class="st5 st3 st4">Evauxie</text>
+</svg>

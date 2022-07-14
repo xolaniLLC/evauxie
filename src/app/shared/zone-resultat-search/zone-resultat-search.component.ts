@@ -13,6 +13,7 @@ export class ZoneResultatSearchComponent implements OnInit {
   @Input() pays = '';
   @Input() text = '';
   @Input() excluCategorie = '';
+  @Input() ville = '';
 
   typePrint = '';
   listeResultat: Company[] = [];
@@ -24,7 +25,7 @@ export class ZoneResultatSearchComponent implements OnInit {
   ngOnInit(): void {
     this.typePrint = 'list';
 
-    this.searchService.getCompaniesVerified(this.categorie, this.pays, this.text).then(
+    this.searchService.getCompaniesVerified(this.categorie, this.pays, this.text, this.ville).then(
       (data) => {
         const pointe = this;
         data.forEach(function (doc) {

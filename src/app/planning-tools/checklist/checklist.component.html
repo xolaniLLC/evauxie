@@ -101,9 +101,6 @@
             Description</th>
           <th
             class="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
-            Category</th>
-          <th
-            class="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
             Date task</th>
           <th
             class="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
@@ -129,11 +126,6 @@
             <td
               class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
               {{task.description}}</td>
-            <td class="pr-6 whitespace-no-wrap">
-              <div class="flex items-center">
-                <a href="#" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300">{{task.categorie}}</a>
-              </div>
-            </td>
             <td
               class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
               {{task.dateTaf | date:"MMMM dd, yyyy"}}</td>
@@ -186,28 +178,6 @@
           <label for="date" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Date for doing the task <span class="text-rose-600">*</span></label>
           <div class="relative mb-5 mt-2">
             <input id="date" name="date" ngModel required type="date" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Date" />
-          </div>
-          <label for="sommes" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Price of the task</label>
-          <input id="sommes" type="number" ngModel name="sommes" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Price..." />
-          <label for="categorie" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Category of the task <span class="text-rose-600">*</span></label>
-          <div class="relative mb-5 mt-2">
-            <select id="categorie" name="categorie" required ngModel class="bg-transparent mb-8 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
-              <option selected value="">Select category</option>
-              <option value="accommodations">Accommodations</option>
-              <option value="budget">Budget</option>
-              <option value="dress_and_attire">Dress and Attire</option>
-              <option value="engagement">Engagement</option>
-              <option value="guests">Guests</option>
-              <option value="honeymoon">Honeymoon</option>
-              <option value="invitations">Invitations</option>
-              <option value="jewelry">Jewelry</option>
-              <option value="legal">Legal</option>
-              <option value="other">Other</option>
-              <option value="planning">Planning</option>
-              <option value="registry">Registry</option>
-              <option value="rehearsal">Rehearsal</option>
-              <option value="vendors">Vendors</option>
-            </select>
           </div>
           <label for="description" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Description of the task</label>
           <div class="relative mb-5 mt-2">

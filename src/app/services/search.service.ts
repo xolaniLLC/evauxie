@@ -9,13 +9,14 @@ export class SearchService {
 
   constructor() { }
 
-  async getCompaniesVerified(categorie: string, pays: string, texte: string) {
+  async getCompaniesVerified(categorie: string, pays: string, texte: string, ville: string) {
     return new Promise<Company[]>((resolve, reject) => {
       // @ts-ignore
       firebase.firestore().collection('companies')
         .where('misAjour',  '==', '')
         .where(categorie ? 'categorie' : 'misAjour', '==', categorie ? categorie : '')
         .where(pays ? 'pays' : 'misAjour', '==', '')
+        .where(pays ? 'ville' : 'misAjour', '==', '')
         .where(texte ? 'nom' : 'misAjour', texte ? 'array-contains' : '==', texte ? texte : '')
         .onSnapshot(
         (docRef) => {

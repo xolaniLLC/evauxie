@@ -21,7 +21,7 @@
             <div class="py-4 sm:py-6 md:py-8">
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-6 xl:px-10 gap-y-8 gap-x-12 2xl:gap-x-28">
                 <div class="w-full">
-                  <p class="text-xs md:text-sm font-medium leading-none text-gray-500 uppercase">Total estimated cost</p>
+                  <p class="text-xs md:text-sm font-medium leading-none text-gray-500 uppercase">TOTAL PAID</p>
                   <input (change)="saveNewEstimatBudget(currentEvent.estimationBudget)" class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-3 text-gray-800 mt-3 md:mt-5" [(ngModel)]="currentEvent.estimationBudget" />
                   <div class="flex flex-col md:w-64">
                     <div class="w-full flex justify-end">
@@ -52,8 +52,8 @@
                   <p class="mt-1.5 text-xs leading-3 text-gray-400">For {{currentCategorySelect ? currentCategorySelect : 'all'}} category</p>
                 </div>
                 <div class="w-full">
-                  <p class="text-xs md:text-sm font-medium leading-none text-gray-500 uppercase">Paid</p>
-                  <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-3 text-gray-800 mt-3 md:mt-5">{{recupTotalDepense().pd}}</p>
+                  <p class="text-xs md:text-sm font-medium leading-none text-gray-500 uppercase">Difference</p>
+                  <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-3 text-gray-800 mt-3 md:mt-5">{{recupTotalDepense().ec - recupTotalDepense().fc}}</p>
                   <div class="flex flex-col md:w-64">
                     <div class="w-full flex justify-end">
                       <div class="flex items-center">
@@ -163,12 +163,15 @@
           <th
             class="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
             Final cost</th>
-          <th
+          <!--th
             class="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
-            Paid</th>
+            Paid</th-->
           <th
             class="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
           Category</th>
+          <th
+            class="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
+            Date</th>
           <td
             class="text-gray-600 dark:text-gray-400 font-normal pr-8 text-left text-sm tracking-normal leading-4">
             Options</td>
@@ -195,10 +198,10 @@
               class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
               {{dep.coutFinal}}
             </td>
-            <td
+            <!--td
               class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
               {{dep.paye}}
-            </td>
+            </td-->
             <td class="pr-6 whitespace-no-wrap">
               <div class="flex items-center">
                 <a href="#" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300">{{dep.categorie}}</a>
@@ -249,10 +252,10 @@
             class="text-sm pr-6 whitespace-no-wrap font-semibold text-gray-800 dark:text-gray-100 tracking-normal leading-4">
             {{recupTotalDepense().fc}}
           </td>
-          <td
+          <!--td
             class="text-sm pr-6 whitespace-no-wrap font-semibold text-gray-800 dark:text-gray-100 tracking-normal leading-4">
             {{recupTotalDepense().pd}}
-          </td>
+          </td-->
           <td class="pr-6 whitespace-no-wrap">
             <div class="flex items-center">
               <a href="#" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300">{{currentCategorySelect ? currentCategorySelect : 'All'}}</a>
@@ -284,8 +287,8 @@
           <input id="coutEstime" name="coutEstime" ngModel type="number" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Sum" />
           <label for="coutFinal" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Final cost</label>
           <input id="coutFinal" name="coutFinal" ngModel type="number" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Sum" />
-          <label for="paye" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Paid</label>
-          <input id="paye" name="paye" ngModel type="number" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Sum" />
+          <!--label for="paye" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Paid</label>
+          <input id="paye" name="paye" ngModel type="number" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Sum" /-->
           <label for="categorie" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Category <span class="text-rose-600">*</span></label>
           <div class="relative mb-5 mt-2">
             <select id="categorie" name="categorie" required ngModel class="bg-transparent mb-8 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
@@ -338,14 +341,33 @@
             </button>
           </div>
           <div class="px-4 md:px-10 pt-3 pb-7">
-            <form class="mt-11" #form1="ngForm" (ngSubmit)="updateDepense(form1)">
-              <div class="flex items-center space-x-9">
-                <input placeholder="Title" required name="titre" id="titreUpdate" ngModel="{{currentDepenseUpdate.titre}}" class="focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
-                <input placeholder="Estimated cost" name="coutEstime" ngModel="{{currentDepenseUpdate.coutEstime}}" type="number" min="0" class="focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
-              </div>
-              <div class="flex items-center space-x-9 mt-8">
-                <input placeholder="Final cost" name="coutFinal" ngModel="{{currentDepenseUpdate.coutFinal}}" type="number" min="0" class="focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
-                <input placeholder="Paid" name="paye" ngModel="{{currentDepenseUpdate.paye}}" type="number" min="0" class="focus:ring-2 focus:ring-gray-400 w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+            <form #form1="ngForm" (ngSubmit)="updateDepense(form1)">
+              <div class="grid gap-6 mb-6 lg:grid-cols-2">
+                <div>
+                  <label for="titreUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Title</label>
+                  <input placeholder="{{currentDepenseUpdate.titre}}" required name="titre" id="titreUpdate" ngModel="{{currentDepenseUpdate.titre}}" class="focus:ring-2 focus:ring-gray-400 focus:outline-none placeholder-gray-500 w-full py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+                </div>
+                <div>
+                  <label for="categorieUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Last name</label>
+                  <select id="categorieUpdate" name="categorie" required ngModel="{{currentDepenseUpdate.categorie}}" class="bg-transparent text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full flex items-center py-3 px-3 text-sm border-gray-300 rounded border">
+                    <option selected value="">Select category</option>
+                    <option value="accomodation">Accomodation</option>
+                    <option value="budget">Budget</option>
+                    <option value="beauty">Beauty</option>
+                    <option value="guests">Guests</option>
+                    <option value="dress_&_attire">Dress & Attire</option>
+                    <option value="jewelery">Jewelery</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="coutEstimeUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Estimated cost</label>
+                  <input placeholder="{{currentDepenseUpdate.coutEstime}}" name="coutEstime" id="coutEstimeUpdate" ngModel="{{currentDepenseUpdate.coutEstime}}" type="number" min="0" class="focus:ring-2 focus:ring-gray-400 w-full focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+                </div>
+                <div>
+                  <label for="coutFinalUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Final cost</label>
+                  <input placeholder="{{currentDepenseUpdate.coutFinal}}" name="coutFinal" id="coutFinalUpdate" ngModel="{{currentDepenseUpdate.coutFinal}}" type="number" min="0" class="focus:ring-2 focus:ring-gray-400 w-full focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+                </div>
               </div>
               <div class="flex items-center justify-between mt-9">
                 <a role="button" aria-label="close button"  (click)="modalUpdateBtn()" class="cursor-pointer focus:ring-2 focus:ring-offset-2 focus:bg-gray-600 focus:ring-gray-600 focus:outline-none px-6 py-3 bg-gray-600 hover:bg-gray-500 shadow rounded text-sm text-white">Cancel</a>

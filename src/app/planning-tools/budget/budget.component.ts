@@ -126,7 +126,8 @@ export class BudgetComponent implements OnInit {
     tmp.titre = form.value.titre;
     tmp.coutEstime = form.value.coutEstime;
     tmp.coutFinal = form.value.coutFinal;
-    tmp.paye = form.value.paye;
+    tmp.categorie = form.value.categorie;
+    //tmp.paye = form.value.paye;
     this.eventService.updateDepense(tmp).then(
       () => {
         this.depenses.splice(this.depenses.indexOf(this.currentDepenseUpdate), 1);
