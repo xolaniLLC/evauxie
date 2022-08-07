@@ -7,7 +7,7 @@ import firebase from "firebase";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'evauxie';
+  title = 'Evauxie';
 
   constructor() {
     const firebaseConfig = {
