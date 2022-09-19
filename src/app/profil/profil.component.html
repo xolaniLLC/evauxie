@@ -43,12 +43,12 @@
             <h2 class="mb-3 xl:mb-0 xl:mr-4 text-2xl text-gray-800 dark:text-gray-100 font-medium tracking-normal capitalize">{{currentUser.nom}}</h2>
             <div *ngIf="currentUser.typeUtilisateur === 'vendor'" class="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full">Pro</div>
           </div>
-          <p class="text-center xl:text-left mt-2 text-sm tracking-normal text-gray-600 dark:text-gray-400 leading-5">{{currentEvent ? 'Hi everyone, my current event starts in ' +
+          <!--p class="text-center xl:text-left mt-2 text-sm tracking-normal text-gray-600 dark:text-gray-400 leading-5">{{currentEvent ? 'Hi everyone, my current event starts in ' +
              getTimeRemaining(currentEvent.dateEvenement).jours + ' days : ' +
               getTimeRemaining(currentEvent.dateEvenement).heures + ' hr : ' +
               getTimeRemaining(currentEvent.dateEvenement).minutes + ' mn : ' +
               getTimeRemaining(currentEvent.dateEvenement).seconds + ' sc'
-            : 'Hi everyone, I use evauxie to manage my event!'}}</p>
+            : 'Hi everyone, I use evauxie to manage my event!'}}</p-->
         </div>
         <div class="xl:px-10 xl:border-l xl:border-r w-full py-5 flex items-start justify-center xl:w-1/3">
           <div class="mr-6 xl:mr-10">
@@ -78,7 +78,7 @@
 </div>
 </section>
 
-<section *ngIf="currentUser">
+<!--section *ngIf="currentUser">
   <div class="flex items-center justify-center w-full py-8">
     <div class="items-center justify-center md:w-2/3">
       <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
@@ -129,6 +129,6 @@
       </div>
     </div>
   </div>
-</section>
+</section-->
 
 <app-footer></app-footer>

@@ -5,15 +5,74 @@
 <section>
   <div class="container px-6 py-8 mx-auto">
     <div class="lg:flex lg:-mx-2">
-      <div class="space-y-3 lg:w-1/5 lg:px-2 lg:space-y-4">
+      <!--div class="space-y-3 lg:w-1/5 lg:px-2 lg:space-y-4">
         <a href="./planning-tools/vendors-manager" class="{{categorieSelect === '' ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-500 dark:text-gray-300'}} cursor-pointer block font-medium hover:underline">All types</a>
         <ng-container *ngFor="let cat of categories">
           <a href="./planning-tools/vendors-manager?categorie={{cat.id}}" class="block font-medium {{categorieSelect === cat.id ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-500 dark:text-gray-300'}} cursor-pointer hover:underline">{{cat.titre}}</a>
         </ng-container>
-      </div>
+      </div-->
 
-      <div class="mt-6 lg:mt-0 lg:px-2 lg:w-4/5 ">
-        <app-zone-resultat-search text="{{textSearch}}" pays="{{paysSelect}}" categorie="{{categorieSelect}}"></app-zone-resultat-search>
+      <div class="mt-6 lg:mt-0 lg:px-2 w-full"> <!--  lg:w-4/5  -->
+        <div class="w-full bg-white dark:bg-gray-800 py-5 flex flex-col xl:flex-row items-start xl:items-center justify-between space-y-3">
+          <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
+            <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">Favourite Vendors</h2>
+          </div>
+          <div class="flex items-center" role="group">
+            <button (click)="typePrint = 'list'" type="button" class="{{typePrint === 'list' ? 'text-gray-50 bg-indigo-600 border border-indigo-600 hover:bg-indigo-500 hover:border-indigo-500 hover:text-white focus:ring-white focus:text-white' : 'text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-indigo-600 focus:z-10 focus:ring-2 focus:ring-indigo-600 focus:text-indigo-600'}} inline-flex items-center py-2 px-4 text-sm font-medium rounded-l-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 w-4 h-4 fill-current" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+              </svg>List
+            </button>
+            <button (click)="typePrint = 'images'" type="button" class="{{typePrint === 'images' ? 'text-gray-50 bg-indigo-600 border border-indigo-600 hover:bg-indigo-500 hover:border-indigo-500 hover:text-white focus:ring-white focus:text-white' : 'text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-indigo-600 focus:z-10 focus:ring-2 focus:ring-indigo-600 focus:text-indigo-600'}} focus:z-10 focus:ring-2 inline-flex items-center py-2 px-4 text-sm font-medium rounded-r-md">
+              <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 w-4 h-4 fill-current" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+              </svg>Images
+            </button>
+          </div>
+          <div class="lg:hidden w-full relative mt-2 md:mt-4">
+            <div class="absolute inset-0 m-auto mr-4 z-0 w-6 h-6">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-selector" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#a0aec0" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" />
+                <polyline points="8 9 12 5 16 9" />
+                <polyline points="16 15 12 19 8 15" />
+              </svg>
+            </div>
+            <form #form="ngForm">
+              <select ngModel (ngModelChange)="currentTabSelect = form.value.opm" name="opm" aria-label="Selected tab" class="focus:outline-none form-select block w-full p-3 border border-gray-300 rounded text-gray-600 dark:text-gray-400 appearance-none bg-transparent relative z-10">
+                <option class="text-sm text-gray-600 dark:text-gray-400" value="liked" [selected]="currentTabSelect === 'liked'" (click)="currentTabSelect = 'liked'">Liked Venodors</option>
+                <option class="text-sm text-gray-600 dark:text-gray-400" value="hired" [selected]="currentTabSelect === 'hired'" (click)="currentTabSelect = 'hired'">Hired vendors</option>
+              </select>
+            </form>
+          </div>
+          <ul class="hidden lg:flex items-center lg:mt-6 xl:mt-0">
+            <li (click)="currentTabSelect = 'liked'" class="cursor-pointer font-normal flex justify-center items-center py-2 px-4 rounded mr-4 xl:mr-0 xl:ml-0 {{ currentTabSelect === 'liked' ? 'text-indigo-700 bg-gray-200' : 'text-gray-500 hover:bg-gray-200'}} dark:bg-gray-700 dark:text-indigo-600 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-red-500">
+                <path d="M9.653 16.915l-.005-.003-.019-.01a20.759 20.759 0 01-1.162-.682 22.045 22.045 0 01-2.582-1.9C4.045 12.733 2 10.352 2 7.5a4.5 4.5 0 018-2.828A4.5 4.5 0 0118 7.5c0 2.852-2.044 5.233-3.885 6.82a22.049 22.049 0 01-3.744 2.582l-.019.01-.005.003h-.002a.739.739 0 01-.69.001l-.002-.001z" />
+              </svg>
+              &nbsp;
+              Liked Venodors</li>
+            <li (click)="currentTabSelect = 'hired'" class="cursor-pointer font-normal flex justify-center items-center py-2 px-4 rounded {{ currentTabSelect === 'hired' ? 'text-indigo-700 bg-gray-200' : 'text-gray-500 hover:bg-gray-200'}} mr-4 sm:mr-0 md:mr-0 lg:mr-0 xl:mr-0 sm:ml-4 md:ml-4 lg:ml-4 xl:ml-4 dark:hover:bg-gray-700 dark:text-gray-400 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-green-700">
+                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+              </svg>
+              &nbsp;
+              Hired vendors</li>
+          </ul>
+        </div>
+        <p class="text-gray-500 font-light text-center py-10 text-xl" *ngIf="event_en_cours && ((currentTabSelect === 'liked' && event_en_cours.companyLike.length === 0) || (currentTabSelect === 'hired' && event_en_cours.companySollicite.length === 0))">
+          No items displayed
+        </p>
+        <div *ngIf="event_en_cours" class="grid grid-cols-1 mt-8 {{typePrint === 'images' ? 'gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : ''}}">
+          <div class="p-3 border border-gray-300 rounded" *ngFor="let cy of currentTabSelect === 'liked' ? event_en_cours.companyLike : event_en_cours.companySollicite">
+            <app-miniature-company skin="{{typePrint}}" id="{{cy}}"></app-miniature-company>
+            <form #form1="ngForm">
+              <select [disabled]="isLoading" [ngModel]="event_en_cours.companySollicite.includes(cy) ? 'hired' : 'not_hired'" (ngModelChange)="updateEtatEvent(event_en_cours, cy, form1.value.etat)" name="etat" aria-label="Selected tab" class="{{form1.value.etat === 'hired' ? 'bg-green-500' : 'bg-red-500'}} focus:outline-none form-select block w-full p-3 border border-gray-300 rounded-lg mt-3 text-white dark:text-gray-400 appearance-none relative z-10">
+                <option value="hired" class="text-sm text-gray-700 bg-white dark:text-gray-400" [selected]="event_en_cours.companySollicite.includes(cy)">Hired</option>
+                <option value="not_hired" class="text-sm text-gray-700 bg-white dark:text-gray-400" [selected]="!event_en_cours.companySollicite.includes(cy)">Not committed</option>
+              </select>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>

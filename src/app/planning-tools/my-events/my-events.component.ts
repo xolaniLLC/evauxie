@@ -3,6 +3,10 @@ import firebase from "firebase";
 import {EvenementService} from "../../services/evenement.service";
 import {Evenement} from "../../models/evenement";
 import {AlertService} from "../../services/alert.service";
+import {Task} from "../../models/task";
+import {ForumService} from "../../services/forum.service";
+import {Topic} from "../../models/topic";
+import {AuthentificationService} from "../../services/authentification.service";
 
 @Component({
   selector: 'app-my-events',
@@ -12,13 +16,15 @@ import {AlertService} from "../../services/alert.service";
 export class MyEventsComponent implements OnInit {
 
   liste_my_event: Evenement[] = [];
-  event_en_cours: Evenement[] = [];
-  currentCategorySelect = '';
+  event_en_cours: Evenement | any;
   isLoading = false;
   menuOption = '';
   list_event_select: Evenement[] = [];
 
-  constructor(private eventService: EvenementService, private alertService: AlertService) { }
+  liste_task_en_cours: Task[] = [];
+  listeTopics: Topic[] = [];
+
+  constructor(private authService: AuthentificationService, private forumService: ForumService, private eventService: EvenementService, private alertService: AlertService) { }
 
   ngOnInit(): void {
 
@@ -27,12 +33,85 @@ export class MyEventsComponent implements OnInit {
         this.liste_my_event = result;
         const pointe = this;
         this.liste_my_event.forEach(function (evt) {
-          if (evt.etat === 1)
-            pointe.event_en_cours.push(evt as Evenement);
+          if (evt.etat === 1) {
+            pointe.event_en_cours = evt as Evenement;
+            pointe.eventService.getTaskEvents(evt.id).then(
+              (data) => {
+                data.forEach(function (task) {
+                  if(task.etat === '') {
+                    pointe.liste_task_en_cours.push(task);
+                  }
+                });
+              }
+            );
+          }
         });
       }
     );
+
+    /* Topic */
+    this.authService.isAuthenticated().then(
+      (data) => {
+        if(data) {
+          this.forumService.getTopicsWitchIdUser(firebase.auth().currentUser?.email).then(
+            (result) => {
+              this.listeTopics = result;
+            }
+          );
+        }
+      }
+    );
+    /* Fin Topic */
   }
+
+  /* TASK */
+  deleteTask(task: Task) {
+    this.isLoading = true;
+    this.eventService.deleteTask(task).then(
+      () => {
+        this.isLoading = false;
+        this.alertService.print('Operation done', 'success');
+        this.liste_task_en_cours.splice(this.liste_task_en_cours.indexOf(task), 1);
+      }, (error) => {
+        this.isLoading = false;
+        this.alertService.print(error, 'danger');
+      }
+    );
+  }
+
+  updateEtatTask(task: Task) {
+    this.isLoading = true;
+    if(task.etat === '') { task.etat = (new Date()).toString(); } else { task.etat = ''; }
+    this.eventService.updateTask(task).then(
+      () => {
+        this.isLoading = false;
+        this.liste_task_en_cours.splice(this.liste_task_en_cours.indexOf(task), 1);
+        this.alertService.print('Operation done', 'success');
+      }, (error) => {
+        this.isLoading = false;
+        this.alertService.print(error, 'danger');
+      }
+    );
+  }
+
+  /* Fin TASK */
+
+  /* Budget */
+
+  saveNewEstimatBudget(somme: any) {
+    this.isLoading = true;
+    this.event_en_cours.estimationBudget = somme;
+    this.eventService.updateEvent(this.event_en_cours).then(
+      () => {
+        this.isLoading = false;
+        this.alertService.print('Operation done', 'success');
+      }, (error) => {
+        this.isLoading = false;
+        this.alertService.print(error, 'danger');
+      }
+    );
+  }
+  /* Fin Budget */
 
   deleteAll() {
     if (confirm('Do you really want to remove these elements?')) {

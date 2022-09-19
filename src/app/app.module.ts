@@ -52,6 +52,7 @@ import { AvisCompanyComponent } from './shared/avis-company/avis-company.compone
 import { VendorsComponent } from './vendors/vendors.component';
 import { SearchComponent } from './search/search.component';
 import { EAdminComponent } from './e-admin/e-admin.component';
+import { MiniatureProfilUserComponent } from './shared/miniature-profil-user/miniature-profil-user.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { EAdminComponent } from './e-admin/e-admin.component';
     AvisCompanyComponent,
     VendorsComponent,
     SearchComponent,
-    EAdminComponent
+    EAdminComponent,
+    MiniatureProfilUserComponent
   ],
     imports: [
         BrowserModule,

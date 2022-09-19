@@ -22,6 +22,7 @@ export class Company {
   faq: Faq[];
   price: string[];
   sousCategorie: string;
+  eventEnCours: string[];
 
   constructor(public administrateurs: any[]) {
     const gid = new ToolsService();
@@ -43,5 +44,6 @@ export class Company {
     this.faq = [];
     this.price = ['0', '0'];
     this.sousCategorie = '';
+    this.eventEnCours = [];
   }
 }

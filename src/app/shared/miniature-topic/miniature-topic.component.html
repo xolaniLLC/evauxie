@@ -3,9 +3,9 @@
     <img [src]="currentUser.photo ? currentUser.photo : 'assets/images/user.png'" alt="" class="w-16 h-16 rounded-full" />
     <div class="flex items-start justify-between w-full">
       <div class="pl-3 w-full">
-        <p routerLink="../topic/{{currentTopic.id}}" class="hover:text-indigo-600 hover:cursor-pointer font-bold text-xl leading-5 text-gray-900">{{currentTopic.titre}}</p>
+        <a href="../topic/{{currentTopic.id}}" class="block hover:text-indigo-600 hover:cursor-pointer font-bold text-xl leading-5 text-gray-900">{{currentTopic.titre}}</a>
         <p class="text-sm leading-normal pt-2 text-gray-500">
-          <span routerLink="../profil/{{currentUser.email}}" class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">{{currentUser.nom}}</span> in
+          <a href="../profil/{{currentUser.email}}" class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">{{currentUser.nom}}</a> in
           <span class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">{{currentTopic.categorie}}</span>,
           on {{currentTopic.date | date:"MMMM dd, yyyy"}} at {{currentTopic.date | date:"hh:mm"}}
         </p>
@@ -16,23 +16,11 @@
     </div>
   </div>
   <div class="px-2">
-    <p routerLink="../topic/{{currentTopic.id}}" class="overflow-hidden whitespace-nowrap overflow-ellipsis text-sm leading-5 py-4 text-gray-800 cursor-pointer overflow-ellipsis">{{getPureTexte(currentTopic.contenu)}}</p>
+    <a href="../topic/{{currentTopic.id}}" class="block overflow-hidden whitespace-nowrap overflow-ellipsis text-sm leading-5 py-4 text-gray-800 cursor-pointer overflow-ellipsis">{{getPureTexte(currentTopic.contenu)}}</a>
     <div class="flex items-center">
       <div class="flex items-center flex-no-wrap w-full justify-start">
-        <div class="w-12 h-12 bg-cover bg-center rounded-md">
-          <img src="https://tuk-cdn.s3.amazonaws.com/assets/components/avatars/a_4_0.png" alt="" class="h-full w-full overflow-hidden object-cover rounded-full border-2 border-white dark:border-gray-700 shadow" />
-        </div>
-        <div class="w-12 h-12 bg-cover rounded-md -ml-2">
-          <img src="https://tuk-cdn.s3.amazonaws.com/assets/components/avatars/a_4_1.png" alt="" class="h-full w-full overflow-hidden object-cover rounded-full border-2 border-white dark:border-gray-700 shadow" />
-        </div>
-        <div class="w-12 h-12 bg-cover rounded-md bg-center -ml-2">
-          <img src="https://tuk-cdn.s3.amazonaws.com/assets/components/avatars/a_4_2.png" alt="" class="h-full w-full overflow-hidden object-cover rounded-full border-2 border-white dark:border-gray-700 shadow" />
-        </div>
-        <div class="w-12 h-12 bg-cover rounded-md -ml-2">
-          <img src="https://tuk-cdn.s3.amazonaws.com/assets/components/avatars/a_4_3.png" alt="" class="h-full w-full overflow-hidden object-cover object-center rounded-full border-2 border-white dark:border-gray-700 shadow" />
-        </div>
-        <div class="w-12 h-12 bg-cover rounded-md -ml-2">
-          <img src="https://tuk-cdn.s3.amazonaws.com/assets/components/avatars/a_4_4.png" alt="" class="h-full w-full overflow-hidden object-cover object-center rounded-full border-2 border-white dark:border-gray-700 shadow" />
+        <div class="w-12 h-12 bg-cover bg-center rounded-md {{i !== 0 ? '-ml-2' : ''}}" *ngFor="let user of currentUserComment; let i = index">
+          <app-miniature-profil-user [idUser]="user.email" skin="circle"></app-miniature-profil-user>
         </div>
       </div>
 
@@ -72,9 +60,9 @@
     <img [src]="currentUser.photo ? currentUser.photo : 'assets/images/user.png'" alt="" class="w-16 h-16 rounded-full" />
     <div class="flex items-start justify-between w-full">
       <div class="pl-3 w-full">
-        <p routerLink="../topic/{{currentTopic.id}}" class="hover:text-indigo-600 hover:cursor-pointer font-bold text-xl leading-5 text-gray-900">{{currentTopic.titre}}</p>
+        <a href="../topic/{{currentTopic.id}}" class="hover:text-indigo-600 hover:cursor-pointer font-bold text-xl leading-5 text-gray-900">{{currentTopic.titre}}</a>
         <p class="text-sm leading-normal pt-2 text-gray-500">
-          <span routerLink="../profil/{{currentUser.email}}" class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">{{currentUser.nom}}</span> in
+          <a href="../profil/{{currentUser.email}}" class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">{{currentUser.nom}}</a> in
           <span class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">{{currentTopic.categorie}}</span>,
           on {{currentTopic.date | date:"MMMM dd, yyyy"}} at {{currentTopic.date | date:"hh:mm"}}
         </p>
