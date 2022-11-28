@@ -22,6 +22,22 @@ export class CompanyService {
     });
   }
 
+  async getCompanyWitchIdUser(id: any) {
+    return new Promise<Company[]>((resolve, reject) => {
+      firebase.firestore().collection('companies').where('administrateurs', "array-contains", id).get().then(
+        (docRef) => {
+          const result: Company[] = [];
+          docRef.forEach(function (doc) {
+            result.push(doc.data() as Company);
+          });
+          resolve(result as any);
+        }, (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
   async getCompanies() {
     return new Promise<Company[]>((resolve, reject) => {
       // @ts-ignore

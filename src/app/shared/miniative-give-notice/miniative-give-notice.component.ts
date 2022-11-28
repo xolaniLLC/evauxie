@@ -31,12 +31,12 @@ export class MiniativeGiveNoticeComponent implements OnInit {
 
   send() {
     this.isConnected = null;
-    this.avisCompanyService.addAvis(new AvisCompany(this.idCompany, this.note + 1, this.texte, firebase.auth().currentUser?.email as string)).then(
+    this.avisCompanyService.addAvis(new AvisCompany(this.idCompany, this.note, this.texte, firebase.auth().currentUser?.email as string)).then(
       () => {
         this.note = 0;
         this.texte = '';
         this.isConnected = true;
-        this.alertService.print('Notice sent with success', 'success');
+        //this.alertService.print('Notice sent with success', 'success');
       }, (error) => {
         this.alertService.print(error, 'danger');
       }

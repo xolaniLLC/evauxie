@@ -53,6 +53,14 @@ import { VendorsComponent } from './vendors/vendors.component';
 import { SearchComponent } from './search/search.component';
 import { EAdminComponent } from './e-admin/e-admin.component';
 import { MiniatureProfilUserComponent } from './shared/miniature-profil-user/miniature-profil-user.component';
+import { InformationsCompanyComponent } from './shared/informations-company/informations-company.component';
+import { DashboardVendorComponent } from './planning-tools/dashboard-vendor/dashboard-vendor.component';
+import { AccountVendorComponent } from './planning-tools/account-vendor/account-vendor.component';
+import { ReviewVendorComponent } from './planning-tools/review-vendor/review-vendor.component';
+import { MiniatureEventComponent } from './shared/miniature-event/miniature-event.component';
+import { DashboardComponent } from './planning-tools/dashboard/dashboard.component';
+import { VitrineVendorComponent } from './planning-tools/vitrine-vendor/vitrine-vendor.component';
+import { BookingManagerComponent } from './planning-tools/booking-manager/booking-manager.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +111,15 @@ import { MiniatureProfilUserComponent } from './shared/miniature-profil-user/min
     VendorsComponent,
     SearchComponent,
     EAdminComponent,
-    MiniatureProfilUserComponent
+    MiniatureProfilUserComponent,
+    InformationsCompanyComponent,
+    DashboardVendorComponent,
+    AccountVendorComponent,
+    ReviewVendorComponent,
+    MiniatureEventComponent,
+    DashboardComponent,
+    VitrineVendorComponent,
+    BookingManagerComponent
   ],
     imports: [
         BrowserModule,

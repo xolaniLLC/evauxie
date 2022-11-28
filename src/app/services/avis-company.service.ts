@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {CommentaireBlog} from "../models/commentaire-blog";
 import firebase from "firebase";
 import {AvisCompany} from "../models/avis-company";
+import {Utilisateur} from "../models/utilisateur";
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,19 @@ export class AvisCompanyService {
           });
           resolve(result as any);
         }, (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async updateAvis(avis: AvisCompany) {
+    return new Promise<void>((resolve, reject) => {
+      firebase.firestore().collection('avis_companies').doc(avis.id).set(Object.assign({}, avis)).then(
+        () => {
+          resolve();
+        },
+        (error) => {
           reject(error);
         }
       );

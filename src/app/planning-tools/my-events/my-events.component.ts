@@ -35,83 +35,11 @@ export class MyEventsComponent implements OnInit {
         this.liste_my_event.forEach(function (evt) {
           if (evt.etat === 1) {
             pointe.event_en_cours = evt as Evenement;
-            pointe.eventService.getTaskEvents(evt.id).then(
-              (data) => {
-                data.forEach(function (task) {
-                  if(task.etat === '') {
-                    pointe.liste_task_en_cours.push(task);
-                  }
-                });
-              }
-            );
           }
         });
       }
     );
-
-    /* Topic */
-    this.authService.isAuthenticated().then(
-      (data) => {
-        if(data) {
-          this.forumService.getTopicsWitchIdUser(firebase.auth().currentUser?.email).then(
-            (result) => {
-              this.listeTopics = result;
-            }
-          );
-        }
-      }
-    );
-    /* Fin Topic */
   }
-
-  /* TASK */
-  deleteTask(task: Task) {
-    this.isLoading = true;
-    this.eventService.deleteTask(task).then(
-      () => {
-        this.isLoading = false;
-        this.alertService.print('Operation done', 'success');
-        this.liste_task_en_cours.splice(this.liste_task_en_cours.indexOf(task), 1);
-      }, (error) => {
-        this.isLoading = false;
-        this.alertService.print(error, 'danger');
-      }
-    );
-  }
-
-  updateEtatTask(task: Task) {
-    this.isLoading = true;
-    if(task.etat === '') { task.etat = (new Date()).toString(); } else { task.etat = ''; }
-    this.eventService.updateTask(task).then(
-      () => {
-        this.isLoading = false;
-        this.liste_task_en_cours.splice(this.liste_task_en_cours.indexOf(task), 1);
-        this.alertService.print('Operation done', 'success');
-      }, (error) => {
-        this.isLoading = false;
-        this.alertService.print(error, 'danger');
-      }
-    );
-  }
-
-  /* Fin TASK */
-
-  /* Budget */
-
-  saveNewEstimatBudget(somme: any) {
-    this.isLoading = true;
-    this.event_en_cours.estimationBudget = somme;
-    this.eventService.updateEvent(this.event_en_cours).then(
-      () => {
-        this.isLoading = false;
-        this.alertService.print('Operation done', 'success');
-      }, (error) => {
-        this.isLoading = false;
-        this.alertService.print(error, 'danger');
-      }
-    );
-  }
-  /* Fin Budget */
 
   deleteAll() {
     if (confirm('Do you really want to remove these elements?')) {

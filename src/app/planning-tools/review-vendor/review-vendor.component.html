@@ -1,0 +1,17 @@
+<app-navbar xmlns="http://www.w3.org/1999/html"></app-navbar>
+
+<app-menu-company-management></app-menu-company-management>
+
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+  <ng-container *ngFor="let avis of avisCurrentCompany; let i = index">
+    <app-avis-company idAvis="{{avis.id}}" ></app-avis-company>
+    <div class="mt-6 {{isLoading ? 'opacity-50' : ''}}" *ngIf="!avis.reponseCompany">
+      <label for="input_rep_{{i}}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">write a reply</label>
+      <input type="text" id="input_rep_{{i}}" class="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      <button [disabled]="isLoading" (click)="repAvis(i, avis)" type="submit" class="p-2.5 mt-3 text-sm font-medium text-white bg-indigo-500 rounded-lg border border-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send</button>
+    </div>
+  </ng-container>
+
+</section>
+
+<app-footer></app-footer>

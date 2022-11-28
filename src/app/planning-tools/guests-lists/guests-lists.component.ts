@@ -78,7 +78,7 @@ export class GuestsListsComponent implements OnInit {
 
   updateGuest(gt: Guest, newEtat: number) {
     this.isLoading = true;
-    gt.etat = newEtat;
+    gt.etat = Number(newEtat);
     this.eventService.updateGuest(gt).then(
       () => {
         this.isLoading = false;

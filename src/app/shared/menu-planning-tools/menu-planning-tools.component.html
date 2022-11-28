@@ -1,54 +1,68 @@
-<section class="border-b border-t border-gray-200 dark:border-gray-700 pt-3">
-  <div class="mx-auto container  2xl:mx-auto 2xl:container">
+<section class="border-b border-t border-gray-200 dark:border-gray-700 pt-3" *ngIf="currentUser && currentUser.typeUtilisateur === 'customer'">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <ul class="flex flex-wrap -mb-px w-full">
-      <li class="mr-2">
-        <a routerLink="../my-events" class="inline-flex py-4 px-4 text-sm font-medium text-center {{menu === 1 ? 'text-indigo-600 border-indigo-600 active dark:text-indigo-500 dark:border-indigo-500' : 'text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'}} rounded-t-lg border-b-2 group">
-          <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 w-5 h-5 {{menu === 1 ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300'}}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <li class="flex">
+        <a routerLink="../dashboard" class="py-2  px-6 text-sm font-medium text-center {{menu === 0 ? 'text-indigo-600 border-indigo-600 active dark:text-indigo-500 dark:border-indigo-500' : 'text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'}} rounded-t-lg border-b-2 group">
+          <svg xmlns="http://www.w3.org/2000/svg" class="inline w-8 h-8 {{menu === 0 ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300'}}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+          </svg>
+          <h3 class="mt-2">Dashboard</h3>
+        </a>
+      </li>
+      <li class="flex">
+        <a routerLink="../my-events" class="py-2 px-6 text-sm font-medium text-center {{menu === 1 ? 'text-indigo-600 border-indigo-600 active dark:text-indigo-500 dark:border-indigo-500' : 'text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'}} rounded-t-lg border-b-2 group">
+          <svg xmlns="http://www.w3.org/2000/svg" class="inline w-8 h-8 {{menu === 1 ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300'}}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>My Events
+          </svg>
+          <h3 class="mt-2">My Events</h3>
         </a>
       </li>
-      <li class="mr-2">
-        <a routerLink="../checklist" class="inline-flex py-4 px-4 text-sm font-medium text-center {{menu === 2 ? 'text-indigo-600 border-indigo-600 active dark:text-indigo-500 dark:border-indigo-500' : 'text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'}} rounded-t-lg border-b-2 group">
-          <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 w-5 h-5 {{menu === 2 ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300'}}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <li class="flex">
+        <a routerLink="../checklist" class="py-2 px-6 text-sm font-medium text-center {{menu === 2 ? 'text-indigo-600 border-indigo-600 active dark:text-indigo-500 dark:border-indigo-500' : 'text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'}} rounded-t-lg border-b-2 group">
+          <svg xmlns="http://www.w3.org/2000/svg" class="inline w-8 h-8 {{menu === 2 ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300'}}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-          </svg>Checklist
+          </svg>
+          <h3 class="mt-2">Checklist</h3>
         </a>
       </li>
-      <li class="mr-2">
-        <a routerLink="../vendors-manager" class="inline-flex py-4 px-4 text-sm font-medium text-center {{menu === 3 ? 'text-indigo-600 border-indigo-600 active dark:text-indigo-500 dark:border-indigo-500' : 'text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'}} rounded-t-lg border-b-2 group">
-          <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 w-5 h-5 {{menu === 3 ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300'}}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <li class="flex">
+        <a routerLink="../vendors-manager" class="py-2 px-6 text-sm font-medium text-center {{menu === 3 ? 'text-indigo-600 border-indigo-600 active dark:text-indigo-500 dark:border-indigo-500' : 'text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'}} rounded-t-lg border-b-2 group">
+          <svg xmlns="http://www.w3.org/2000/svg" class="inline w-8 h-8 {{menu === 3 ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300'}}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>Vendors Manager
+          </svg>
+          <h3 class="mt-2">Vendors Manager</h3>
         </a>
       </li>
-      <li class="mr-2">
-        <a routerLink="../guests-lists" class="inline-flex py-4 px-4 text-sm font-medium text-center {{menu === 4 ? 'text-indigo-600 border-indigo-600 active dark:text-indigo-500 dark:border-indigo-500' : 'text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'}} rounded-t-lg border-b-2 group">
-          <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 w-5 h-5 {{menu === 4 ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300'}}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <li class="flex">
+        <a routerLink="../guests-lists" class="py-2 px-6 text-sm font-medium text-center {{menu === 4 ? 'text-indigo-600 border-indigo-600 active dark:text-indigo-500 dark:border-indigo-500' : 'text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'}} rounded-t-lg border-b-2 group">
+          <svg xmlns="http://www.w3.org/2000/svg" class="inline w-8 h-8 {{menu === 4 ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300'}}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-          </svg>Guests Lists
+          </svg>
+          <h3 class="mt-2">Guests Lists</h3>
         </a>
       </li>
-      <li class="mr-2">
-        <a routerLink="../budget" class="inline-flex py-4 px-4 text-sm font-medium text-center {{menu === 5 ? 'text-indigo-600 border-indigo-600 active dark:text-indigo-500 dark:border-indigo-500' : 'text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'}} rounded-t-lg border-b-2 group">
-          <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 w-5 h-5 {{menu === 5 ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300'}}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <li class="flex">
+        <a routerLink="../budget" class="py-2 px-6 text-sm font-medium text-center {{menu === 5 ? 'text-indigo-600 border-indigo-600 active dark:text-indigo-500 dark:border-indigo-500' : 'text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'}} rounded-t-lg border-b-2 group">
+          <svg xmlns="http://www.w3.org/2000/svg" class="inline w-8 h-8 {{menu === 5 ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300'}}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-          </svg>Budget
+          </svg>
+          <h3 class="mt-2">Budget</h3>
         </a>
       </li>
-      <li class="mr-2">
-        <a routerLink="../payment" class="inline-flex py-4 px-4 text-sm font-medium text-center {{menu === 6 ? 'text-indigo-600 border-indigo-600 active dark:text-indigo-500 dark:border-indigo-500' : 'text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'}} rounded-t-lg border-b-2 group">
-          <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 w-5 h-5 {{menu === 6 ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300'}}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <li class="flex">
+        <a routerLink="../payment" class="py-2 px-6 text-sm font-medium text-center {{menu === 6 ? 'text-indigo-600 border-indigo-600 active dark:text-indigo-500 dark:border-indigo-500' : 'text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'}} rounded-t-lg border-b-2 group">
+          <svg xmlns="http://www.w3.org/2000/svg" class="inline w-8 h-8 {{menu === 6 ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300'}}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-          </svg>Payments
+          </svg>
+          <h3 class="mt-2">Payments</h3>
         </a>
       </li>
     </ul>
   </div>
 </section>
 
-<section>
-  <div class="my-10 mx-auto container bg-center bg-fixed bg-no-repeat bg-center bg-cover relative rounded-lg">
+<section *ngIf="currentUser && currentUser.typeUtilisateur === 'customer'">
+  <div class="my-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-center bg-fixed bg-no-repeat bg-center bg-cover relative rounded-lg">
     <div class="flex flex-col items-center py-4 rounded-lg bg-cover" [style]="'background-image:url(assets/images/ill_25.png);'">
       <div class="absolute top-0 right-0 bottom-0 left-0 bg-black opacity-75 rounded-lg"></div>
       <div class="lg:flex-row p-4 lg:p-8 justify-between items-start lg:items-stretch w-full z-10">

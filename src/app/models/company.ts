@@ -21,6 +21,7 @@ export class Company {
   phone: string;
   faq: Faq[];
   price: string[];
+  devise: string;
   sousCategorie: string;
   eventEnCours: string[];
 
@@ -41,6 +42,7 @@ export class Company {
     this.phototheque = [];
     this.logo = '';
     this.phone = '';
+    this.devise = '';
     this.faq = [];
     this.price = ['0', '0'];
     this.sousCategorie = '';

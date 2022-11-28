@@ -1,6 +1,17 @@
+<a href="../company/{{currentCompany.id}}" *ngIf="currentCompany &&  skin === 'images-simple'" class="relative items-start h-40 flex w-full rounded-lg shadow-md bg-cover bg-center" >
+  <div class="absolute h-full w-full bg-cover bg-center rounded-lg" style="backgroundImage: url({{currentCompany.phototheque.length > 0 ? currentCompany.phototheque[0] : 'assets/images/ill_14.png'}})"></div>
+  <div class="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-b from-gray-700 rounded-lg"></div>
+  <div class="p-2 text-left" style="z-index: 1">
+    <div class="flex-1 min-w-0">
+      <p class="text-xl font-bold truncate text-white">
+        {{currentCompany.nom}}
+      </p>
+    </div>
+  </div>
+</a>
 
 <div *ngIf="currentCompany &&  skin === 'images'" class="max-w-xs mx-auto overflow-hidden bg-white rounded-lg border border-gray-200 dark:bg-gray-800">
-  <div class="px-4 py-2" routerLink="../company/{{currentCompany.id}}" >
+  <a class="px-4 py-2 block" href="../company/{{currentCompany.id}}" >
     <h1 class="tracking-normal text-xl lg:text-2xl font-bold text-gray-800 capitalize dark:text-white cursor-pointer hover:text-indigo-600">{{currentCompany.nom}}</h1>
     <p class="mt-1 text-sm text-gray-600 dark:text-gray-400 h-16 overflow-hidden overflow-ellipsis">{{getPureTexte(currentCompany.description)}}</p>
     <div class="flex lg:items-center items-start flex-col lg:flex-row">
@@ -13,13 +24,13 @@
         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
       </svg>
 
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline text-gray-400" viewBox="0 0 20 20" fill="currentColor" *ngFor="let et of [].constructor(5 - calculMoyenneAvis())">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline text-gray-400" viewBox="0 0 20 20" fill="currentColor" *ngFor="let et of [].constructor(calculMoyenneAvis() <= 5 ? 5 - calculMoyenneAvis() : 0)">
         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
       </svg>
     </div>
-  </div>
+  </a>
 
-  <img routerLink="../company/{{currentCompany.id}}"  class="object-cover w-full h-48 mt-2" src="{{currentCompany.phototheque[0]}}" alt="">
+  <img routerLink="../company/{{currentCompany.id}}"  class="object-cover w-full h-48 mt-2" src="{{currentCompany.phototheque.length > 0 ? currentCompany.phototheque[0] : 'assets/images/ill_14.png'}}" alt="">
 
   <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
     <div class="flex">
@@ -67,7 +78,7 @@
             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
           </svg>
 
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline text-gray-400" viewBox="0 0 20 20" fill="currentColor" *ngFor="let et of [].constructor(5 - calculMoyenneAvis())">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline text-gray-400" viewBox="0 0 20 20" fill="currentColor" *ngFor="let et of [].constructor(calculMoyenneAvis() <= 5 ? 5 - calculMoyenneAvis() : 0)">
             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
           </svg>
         </div>
@@ -95,7 +106,7 @@
     </div>
   </div>
   <div routerLink="../company/{{currentCompany.id}}" class="relative w-full h-40 lg:h-auto lg:w-1/2 rounded-t lg:rounded-t-none lg:rounded-r inline-block">
-    <img class="w-full h-full absolute inset-0 object-cover rounded-t lg:rounded-r lg:rounded-t-none" src="{{currentCompany.phototheque[0]}}" alt="" />
+    <img class="w-full h-full absolute inset-0 object-cover rounded-t lg:rounded-r lg:rounded-t-none" src="{{currentCompany.phototheque.length > 0 ? currentCompany.phototheque[0] : 'assets/images/ill_14.png'}}" alt="" />
   </div>
 </div>
 

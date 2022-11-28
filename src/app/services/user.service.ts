@@ -21,4 +21,17 @@ export class UserService {
       );
     });
   }
+
+  async updateUser(user: Utilisateur) {
+    return new Promise<void>((resolve, reject) => {
+      firebase.firestore().collection('comptes').doc(user.email).set(Object.assign({}, user)).then(
+        () => {
+          resolve();
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
 }

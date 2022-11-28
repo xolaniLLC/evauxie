@@ -16,7 +16,7 @@ export class MenuPlanningToolsComponent implements OnInit {
   isList: any;
   isMenu: boolean = false;
   isSearch: boolean = false;
-  menu = 0;
+  menu = -1;
   event_en_cours: Evenement[] = [];
   currentUser: Utilisateur | any;
   liste_my_event: Evenement[] = [];
@@ -25,7 +25,9 @@ export class MenuPlanningToolsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.router.url.includes('my-events')) {
+    if(this.router.url.includes('dashboard')) {
+      this.menu = 0;
+    } else if(this.router.url.includes('my-events')) {
       this.menu = 1;
     } else if(this.router.url.includes('checklist')) {
       this.menu = 2;

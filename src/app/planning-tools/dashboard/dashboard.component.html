@@ -1,0 +1,164 @@
+<app-navbar xmlns="http://www.w3.org/1999/html"></app-navbar>
+
+<app-menu-planning-tools></app-menu-planning-tools>
+
+<section class="max-w-7xl mx-auto flex space-x-5">
+  <div class="w-2/4 w-full lg:space-y-4">
+    <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
+      <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">CheckList</h2>
+    </div>
+    <p *ngIf="!event_en_cours" class="font-light text-2xl text-gray-400">
+      No event
+    </p>
+    <div class="space-y-2 border-gray-300 border rounded-xl px-5 py-5 h-80" *ngIf="event_en_cours">
+      <p *ngIf="liste_task_en_cours.length === 0" class="font-light text-2xl text-gray-400">
+        No task
+      </p>
+      <div *ngFor="let task of liste_task_en_cours.slice(0,3)" class="bg-white border-gray-300 border dark:bg-gray-800 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between px-3 sm:px-3 rounded-xl">
+        <div class="flex items-center mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
+          <div class="relative w-10 h-10 rounded">
+            <svg (click)="updateEtatTask(task)" class="text-gray-400 hover:text-green-700 hover:cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="ml-2">
+            <h2 class="text-gray-800 dark:text-gray-100 text-xl font-light">{{task.titre}}</h2>
+            <p class="font-normal text-xs text-gray-600 dark:text-gray-400 cursor-pointer hover:text-gray-700">
+              <span class="text-orange-600">{{task.dateTaf | date:"MMMM dd, yyyy"}}</span>
+            </p>
+          </div>
+        </div>
+        <div>
+          <button (click)="deleteTask(task)" class="ml-2 sm:ml-3 font-normal focus:outline-none transition duration-150 ease-in-out text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-red-500 hover:text-red-700">
+              <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div *ngIf="liste_task_en_cours.length > 0" class="text-right mt-3">
+        <a routerLink="../../planning-tools/checklist" class="text-indigo-600 font-medium">View all</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="md:w-2/4 w-full lg:space-y-4">
+    <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
+      <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">Budget</h2>
+    </div>
+    <p *ngIf="!event_en_cours" class="font-light text-2xl text-gray-400">
+      No event
+    </p>
+    <div class="space-y-2 border-gray-300 border rounded-xl px-5 py-5 h-80" *ngIf="event_en_cours">
+      <div class="w-full">
+        <p class="text-xs md:text-sm font-medium leading-none text-gray-500 uppercase">TOTAL PAID</p>
+        <input (change)="saveNewEstimatBudget(event_en_cours.estimationBudget)" class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-3 text-gray-800 mt-1" [(ngModel)]="event_en_cours.estimationBudget" />
+        <div class="flex flex-col md:w-64">
+          <div class="w-full flex justify-start">
+            <div class="flex items-center">
+              <p class="text-xs leading-none text-green-600">Click on the sum to modify it</p>
+            </div>
+          </div>
+        </div>
+      </div> <br>
+      <div class="w-full">
+        <p class="text-xs md:text-sm font-medium leading-none text-gray-500 uppercase">Final cost</p>
+        <input readonly (change)="saveNewEstimatBudget(event_en_cours.estimationBudget)" class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-3 text-gray-800 mt-1" [ngModel]="recupTotalDepense().fc" />
+      </div> <br>
+      <div class="w-full">
+        <p class="text-xs md:text-sm font-medium leading-none text-gray-500 uppercase">Difference</p>
+        <input readonly (change)="saveNewEstimatBudget(event_en_cours.estimationBudget)" class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-3 text-gray-800 mt-1" [ngModel]="(recupTotalDepense().ec - recupTotalDepense().fc)" />
+      </div>
+      <div *ngIf="liste_task_en_cours.length > 0" class="text-right mt-3">
+        <a routerLink="../../planning-tools/budget" class="text-indigo-600 font-medium">View all</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto flex space-x-5 mt-8">
+  <div class="md:w-2/4 lg:space-y-4">
+    <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
+      <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">My providers</h2>
+    </div>
+    <p *ngIf="!event_en_cours" class="font-light text-2xl text-gray-400">
+      No event
+    </p>
+    <div class="border-gray-300 border rounded-xl px-5 py-5 h-80" *ngIf="event_en_cours">
+      <p *ngIf="event_en_cours.companySollicite.length === 0" class="font-light text-2xl text-gray-400">
+        No element
+      </p>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+        <div class="p-3 border border-gray-300 rounded-xl" *ngFor="let cy of (event_en_cours.companySollicite).slice(0,4)">
+          <app-miniature-company skin="images-simple" id="{{cy}}"></app-miniature-company>
+          <form #form1="ngForm">
+            <select [disabled]="isLoading || companyBooked.includes(cy.toString())" [ngModel]="companyBooked.includes(cy.toString()) ? 'alreadyBooked' : (event_en_cours.companySollicite.includes(cy) ? 'hired' : 'not_hired')" (ngModelChange)="updateEtatEvent(event_en_cours, cy.toString(), form1.value.etat)" name="etat" aria-label="Selected tab" class="{{companyBooked.includes(cy.toString()) ? 'bg-orange-500' : (form1.value.etat === 'hired' ? 'bg-green-500' : 'bg-red-500')}} focus:outline-none form-select block w-full p-3 border border-gray-300 rounded-lg mt-3 text-white dark:text-gray-400 appearance-none relative z-10">
+              <option *ngIf="companyBooked.includes(cy.toString())" value="alreadyBooked" class="text-sm text-gray-700 bg-white dark:text-gray-400" [selected]="event_en_cours.companySollicite.includes(cy)">Already booked</option>
+              <option value="hired" class="text-sm text-gray-700 bg-white dark:text-gray-400" [selected]="event_en_cours.companySollicite.includes(cy)">Hired</option>
+              <option value="not_hired" class="text-sm text-gray-700 bg-white dark:text-gray-400" [selected]="!event_en_cours.companySollicite.includes(cy)">Not committed</option>
+            </select>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="event_en_cours && event_en_cours.companySollicite.length > 0" class="text-left mt-3">
+        <a routerLink="../../planning-tools/vendors-manager" class="text-indigo-600 font-medium">See all my providers</a>
+      </div>
+    </div>
+  </div>
+  <div class="md:w-2/4 lg:space-y-4">
+    <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
+      <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">My guests</h2>
+    </div>
+    <p *ngIf="!event_en_cours" class="font-light text-2xl text-gray-400">
+      No event
+    </p>
+    <div class="space-y-2 border-gray-300 border rounded-xl px-5 py-5 h-80" *ngIf="event_en_cours">
+      <p *ngIf="liste_guest_en_cours.length === 0" class="font-light text-2xl text-gray-400">
+        No guest
+      </p>
+      <ng-container *ngFor="let guest of liste_guest_en_cours.slice(0,4); let  i = index">
+        <div class="bg-white border-gray-300 border dark:bg-gray-800 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between px-3 sm:px-3 rounded-xl">
+          <div class="flex items-center mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
+            <div class="relative w-10 h-10 rounded">
+              <img src="{{liste_profil_invite.length === liste_guest_en_cours.length && liste_profil_invite[i].photo ? liste_profil_invite[i].photo : 'assets/images/user.png'}}"
+                   alt="" class="h-full w-full rounded-full overflow-hidden shadow" />
+            </div>
+            <div class="ml-2">
+              <h2 class="text-gray-800 dark:text-gray-100 text-xl font-light">{{guest.nom}}</h2>
+              <p class="font-normal text-xs text-gray-600 dark:text-gray-400 cursor-pointer hover:text-gray-700">
+                <span class="text-orange-600">{{guest.phone}}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div *ngIf="liste_task_en_cours.length > 0" class="text-right mt-3">
+        <a routerLink="../../planning-tools/guests-lists" class="text-indigo-600 font-medium">View all</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto my-7" *ngIf="event_en_cours">
+  <div class="md:flex justify-start md:gap-4 mb-8">
+    <div class="h-16 w-16 mb-4 lg:mb-0 mr-4">
+      <img src="{{currentUser && currentUser.photo ? currentUser.photo : 'assets/images/user.png'}}" alt="" class="h-full w-full rounded-full overflow-hidden shadow" />
+    </div>
+    <form #form="ngForm" class="w-full">
+      <input routerLink="../../new-topic" type="text" placeholder="Ask a question..Start a Discussion" class="placeholder-gray-600 w-full p-4 h-16 place-items-center border border-gray-400 rounded-md focus:outline-none" />
+    </form>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto" *ngIf="event_en_cours">
+  <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
+    <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">View RECENT DISCUSSION</h2>
+  </div>
+  <p class="text-gray-500 font-light text-left py-10 text-xl" *ngIf="listeTopics.length === 0">
+    No items displayed
+  </p>
+  <div>
+    <app-miniature-topic skin="item" idTopic="{{topic.id}}" *ngFor="let topic of listeTopics"></app-miniature-topic>
+  </div>
+</section>
+<app-footer></app-footer>

@@ -1,0 +1,230 @@
+<app-navbar></app-navbar>
+
+<app-menu-company-management></app-menu-company-management>
+
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+  <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
+    <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">Booking</h2>
+  </div>
+</section>
+
+<div class="border-b border-gray-200 dark:border-gray-700 pt-3">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <ul class="flex flex-wrap -mb-px w-full">
+      <li class="flex">
+        <a (click)="sousmenu = 0" class="cursor-pointer py-2 px-6 text-sm font-medium text-center {{sousmenu === 0 ? 'text-indigo-600 border-indigo-600 active dark:text-indigo-500 dark:border-indigo-500' : 'text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'}} rounded-t-lg border-b-2 group">
+          <h3 class="mt-2">All</h3>
+        </a>
+      </li>
+      <li class="flex">
+        <a (click)="sousmenu = 1" class="cursor-pointer py-2 px-6 text-sm font-medium text-center {{sousmenu === 1 ? 'text-indigo-600 border-indigo-600 active dark:text-indigo-500 dark:border-indigo-500' : 'text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'}} rounded-t-lg border-b-2 group">
+          <h3 class="mt-2">Ongoing</h3>
+        </a>
+      </li>
+      <li class="flex">
+        <a (click)="sousmenu = 2" class="cursor-pointer py-2 px-6 text-sm font-medium text-center {{sousmenu === 2 ? 'text-indigo-600 border-indigo-600 active dark:text-indigo-500 dark:border-indigo-500' : 'text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'}} rounded-t-lg border-b-2 group">
+          <h3 class="mt-2">Upcoming</h3>
+        </a>
+      </li>
+      <li class="flex">
+        <a (click)="sousmenu = 3" class="cursor-pointer py-2 px-6 text-sm font-medium text-center {{sousmenu === 3 ? 'text-indigo-600 border-indigo-600 active dark:text-indigo-500 dark:border-indigo-500' : 'text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'}} rounded-t-lg border-b-2 group">
+          <h3 class="mt-2">Pending</h3>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+  <div class="space-y-2 px-5 py-5 h-96">
+  <ng-container *ngFor="let event of eventBooked, let i = index;">
+    <div class="bg-white border-gray-300 border dark:bg-gray-800 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between px-3 sm:px-3 rounded-xl">
+      <div class="flex items-center mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
+        <div class="relative h-20 w-20 rounded">
+          <img class="rounded-full object-cover border-white dark:border-gray-700 border-2 bg-gray-400"
+               [src]="userBooked.length > i && userBooked[i].photo !== '' ? userBooked[i].photo : 'assets/images/user.png'"
+               alt="Profil" />
+        </div>
+        <div class="ml-4">
+          <h2 class="text-gray-800 dark:text-gray-100 text-xl font-light">{{event.titre}}</h2>
+          <p class="font-normal text-2xl text-gray-600 dark:text-gray-400 cursor-pointer hover:text-gray-700">
+            <span class="text-orange-600 text-base">{{event.dateEvenement | date:"MMMM dd, yyyy"}}</span>
+          </p>
+          <button (click)="requestPrice(event.auteur)" class="text-xs font-semibold text-indigo-600 uppercase transition-colors duration-200 transform bg-white rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">Contact Cutomer</button>
+        </div>
+      </div>
+    </div>
+    <div class="flex space-x-5 pt-10">
+      <div class="w-2/4 w-full lg:space-y-4">
+        <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
+          <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">CheckList <span (click)="currentIdEventSelect = event.id; modalHandler(true)" class="float-right text-xl text-indigo-600 cursor-pointer">+ Add New</span></h2>
+
+        </div>
+        <!--p *ngIf="!event_en_cours" class="font-light text-2xl text-gray-400">
+          No event
+        </p-->
+        <div class="space-y-2 border-gray-300 border rounded-xl px-5 py-5 h-80">
+          <!--p *ngIf="liste_task_en_cours.length === 0" class="font-light text-2xl text-gray-400">
+            No task
+          </p-->
+          <ng-container *ngFor="let task of liste_task_en_cours">
+            <div *ngIf="task.idEvenement === event.id" class="bg-white border-gray-300 border dark:bg-gray-800 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between px-3 sm:px-3 rounded-xl">
+              <div class="flex items-center mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
+                <div class="relative w-10 h-10 rounded">
+                  <svg (click)="updateEtatTask(task)" class="text-gray-400 hover:text-green-700 hover:cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="ml-2">
+                  <h2 class="text-gray-800 dark:text-gray-100 text-xl font-light">{{task.titre}}</h2>
+                  <p class="font-normal text-xs text-gray-600 dark:text-gray-400 cursor-pointer hover:text-gray-700">
+                    <span class="text-orange-600">{{task.dateTaf | date:"MMMM dd, yyyy"}}</span>
+                  </p>
+                </div>
+              </div>
+              <div>
+                <button (click)="deleteTask(task)" class="ml-2 sm:ml-3 font-normal focus:outline-none transition duration-150 ease-in-out text-sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-red-500 hover:text-red-700">
+                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="md:w-2/4 lg:space-y-4">
+        <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
+          <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">Details <span (click)="currentIdEventSelect = event.id; modalHandler2(true)" class="float-right text-xl text-indigo-600 cursor-pointer">+ Add New</span></h2>
+        </div>
+        <!--p *ngIf="!event_en_cours" class="font-light text-2xl text-gray-400">
+          No event
+        </p-->
+        <div class="space-y-2 border-gray-300 border rounded-xl px-5 py-5 h-80">
+          <!--p *ngIf="liste_guest_en_cours.length === 0" class="font-light text-2xl text-gray-400">
+            No guest
+          </p-->
+          <ng-container *ngFor="let detail of detailsEvent">
+            <div *ngIf="detail.idEvenement === event.id" class="bg-white border-gray-300 border dark:bg-gray-800 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between px-3 sm:px-3 rounded-xl">
+              <div class="flex items-center mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
+                <div class="ml-2">
+                  <h2 class="text-gray-800 dark:text-gray-100 text-xl font-light">{{detail.titre}}</h2>
+                  <p class="font-normal text-sm text-gray-400 dark:text-gray-400 cursor-pointer hover:text-gray-700">
+                    {{detail.description}}
+                  </p>
+                </div>
+              </div>
+              <div>
+                <button (click)="deleteDetail(detail)" class="ml-2 sm:ml-3 font-normal focus:outline-none transition duration-150 ease-in-out text-sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-red-500 hover:text-red-700">
+                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+</div>
+</section>
+
+<section>
+  <div class="py-12 bg-black bg-opacity-75 transition duration-150 ease-in-out flex top-0 bottom-0 right-0 left-0 fixed z-50 w-full h-full hidden" id="modal">
+    <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
+      <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
+        <form #form="ngForm" (ngSubmit)="addTask(form)">
+          <div class="w-full flex justify-start text-gray-600 mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="52" height="52" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            </svg>
+          </div>
+          <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Information about the task</h1>
+          <label for="titre" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Name of the task <span class="text-rose-600">*</span></label>
+          <input id="titre" ngModel name="titre" required class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Title..." />
+          <label for="date" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Date for doing the task <span class="text-rose-600">*</span></label>
+          <div class="relative mb-5 mt-2">
+            <input id="date" name="date" ngModel required type="date" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Date" />
+          </div>
+          <label for="description" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Description of the task</label>
+          <div class="relative mb-5 mt-2">
+            <div class="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+            </div>
+            <textarea rows="3" id="description" name="description" ngModel class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full pt-2 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Write..."></textarea>
+          </div>
+          <div class="flex items-center justify-start w-full">
+            <button [disabled]="form.invalid || isLoading" type="submit" class="disabled:bg-gray-300 disabled:text-gray-600 focus:outline-none transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">
+              <svg *ngIf="isLoading" role="status" class="inline mr-3 w-4 h-4 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+              </svg>
+              Add task
+            </button>
+            <a class="focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm cursor-pointer" (click)="modalHandler(false)">Cancel</a>
+          </div>
+          <a class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out" (click)="modalHandler(false)">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-label="Close" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" />
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </a>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="py-12 bg-black bg-opacity-75 transition duration-150 ease-in-out flex top-0 bottom-0 right-0 left-0 fixed z-50 w-full h-full hidden" id="modal2">
+    <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
+      <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
+        <form #form1="ngForm" (ngSubmit)="addDetail(form1)">
+          <div class="w-full flex justify-start text-gray-600 mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="52" height="52" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            </svg>
+          </div>
+          <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Information about the detail</h1>
+          <label for="title" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Title of detail <span class="text-rose-600">*</span></label>
+          <input id="title" ngModel name="title" required class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Title..." />
+          <label for="descrip" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Description of the detail</label>
+          <div class="relative mb-5 mt-2">
+            <div class="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+            </div>
+            <textarea rows="3" id="descrip" name="descrip" ngModel class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full pt-2 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Write..."></textarea>
+          </div>
+          <div class="flex items-center justify-start w-full">
+            <button [disabled]="form1.invalid || isLoading" type="submit" class="disabled:bg-gray-300 disabled:text-gray-600 focus:outline-none transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">
+              <svg *ngIf="isLoading" role="status" class="inline mr-3 w-4 h-4 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+              </svg>
+              Add detail
+            </button>
+            <a class="focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm cursor-pointer" (click)="modalHandler2(false)">Cancel</a>
+          </div>
+          <a class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out" (click)="modalHandler2(false)">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-label="Close" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" />
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </a>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div>
+  <p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br>
+</div>
+<app-footer></app-footer>

@@ -24,6 +24,6 @@ export class AppComponent {
     firebase.initializeApp(firebaseConfig);
 
     // Activation de la persistance de donnée
-    firebase.firestore().enablePersistence();
+    //firebase.firestore().enablePersistence();
   }
 }

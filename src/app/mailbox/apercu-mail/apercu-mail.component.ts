@@ -7,6 +7,8 @@ import {UserService} from "../../services/user.service";
 import {Utilisateur} from "../../models/utilisateur";
 import {Evenement} from "../../models/evenement";
 import {WriteMailService} from "../../services/write-mail.service";
+import {CompanyService} from "../../services/company.service";
+import {AlertService} from "../../services/alert.service";
 
 @Component({
   selector: 'app-apercu-mail',
@@ -22,7 +24,7 @@ export class ApercuMailComponent implements OnInit {
   tooltip_status = -1;
   writeMail = false;
 
-  constructor(public writeMailService: WriteMailService, private messageService: MessageService, private activatedRoute: ActivatedRoute, private userService: UserService) { }
+  constructor(public alertService: AlertService, public companyService: CompanyService, public writeMailService: WriteMailService, private messageService: MessageService, private activatedRoute: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit(): void {
     this.messageService.getMessageWitchId(this.activatedRoute.snapshot.paramMap.get('id')).then(
@@ -56,6 +58,28 @@ export class ApercuMailComponent implements OnInit {
 
   openWrite(dest: any, reponse: any) {
     this.writeMailService.new(dest, '', '', reponse);
+  }
+
+  comptNombreOccurance(texte: string, caractere: string) {
+    return texte.split(caractere).length - 1;
+  }
+
+  validBook(idCompany: string, idEvent: string) {
+    console.log(idCompany + '@' + idEvent);
+    this.companyService.getCompanyWitchId(idCompany).then(
+      (data) => {
+        if(data.eventEnCours.includes(idEvent)) {
+          this.alertService.print('Event already booked', 'warning');
+        } else {
+          data.eventEnCours.push(idEvent);
+          this.companyService.updateCompany(data).then(
+            () => {
+              this.alertService.print('Operation done', 'success');
+            }
+          );
+        }
+      }
+    );
   }
 
 }

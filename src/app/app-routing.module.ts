@@ -30,6 +30,12 @@ import {CompanyComponent} from "./company/company.component";
 import {VendorsComponent} from "./vendors/vendors.component";
 import {SearchComponent} from "./search/search.component";
 import {EAdminComponent} from "./e-admin/e-admin.component";
+import {DashboardVendorComponent} from "./planning-tools/dashboard-vendor/dashboard-vendor.component";
+import {ReviewVendorComponent} from "./planning-tools/review-vendor/review-vendor.component";
+import {DashboardComponent} from "./planning-tools/dashboard/dashboard.component";
+import {VitrineVendorComponent} from "./planning-tools/vitrine-vendor/vitrine-vendor.component";
+import {AccountVendorComponent} from "./planning-tools/account-vendor/account-vendor.component";
+import {BookingManagerComponent} from "./planning-tools/booking-manager/booking-manager.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -43,16 +49,20 @@ const routes: Routes = [
   { path: 'profil/:id', component: ProfilComponent },
   { path: 'mailbox', canActivate: [AuthGuardService], component: MailboxComponent },
   { path: 'mailbox/:id', canActivate: [AuthGuardService], component: ApercuMailComponent },
-  { path: 'company-management', component: CompanyManagementComponent },
   { path: 'company/:id', component: CompanyComponent },
-  { path: 'company-management/my-company', canActivate: [AuthGuardService], component: MyCompanyComponent },
   { path: 'planning-tools', component: PlanningToolsComponent },
+  { path: 'planning-tools/dashboard', canActivate: [AuthGuardService], component: DashboardComponent },
   { path: 'planning-tools/my-events', canActivate: [AuthGuardService], component: MyEventsComponent },
   { path: 'planning-tools/checklist', canActivate: [AuthGuardService], component: ChecklistComponent },
   { path: 'planning-tools/vendors-manager', canActivate: [AuthGuardService], component: VendorsManagerComponent },
   { path: 'planning-tools/guests-lists', canActivate: [AuthGuardService], component: GuestsListsComponent },
   { path: 'planning-tools/budget', canActivate: [AuthGuardService], component: BudgetComponent },
   { path: 'planning-tools/payment', canActivate: [AuthGuardService], component: PaymentComponent },
+  { path: 'planning-tools/dashboard-vendor', canActivate: [AuthGuardService], component: DashboardVendorComponent },
+  { path: 'planning-tools/my-showcase', canActivate: [AuthGuardService], component: VitrineVendorComponent },
+  { path: 'planning-tools/review-vendor', canActivate: [AuthGuardService], component: ReviewVendorComponent },
+  { path: 'planning-tools/account-vendor', canActivate: [AuthGuardService], component: AccountVendorComponent },
+  { path: 'planning-tools/booking-manager', canActivate: [AuthGuardService], component: BookingManagerComponent },
   { path: 'new-topic', canActivate: [AuthGuardService], component: NewTopicComponent },
   { path: 'topic/:id', component: TopicComponent },
   { path: 'venues', component: VenuesComponent },

@@ -5,6 +5,8 @@ import {Task} from "../models/task";
 import {Guest} from "../models/guest";
 import {Depense} from "../models/depense";
 import {Company} from "../models/company";
+import {TaskVendor} from "../models/task-vendor";
+import {DetailEvent} from "../models/detail-event";
 
 @Injectable({
   providedIn: 'root'
@@ -237,6 +239,58 @@ export class EvenementService {
     });
   }
 
+  async deleteTaskVendor(task: TaskVendor) {
+    return new Promise<void>((resolve, reject) => {
+      firebase.firestore().collection('tachesVendeurs').doc(task.id).delete().then(
+        () => {
+          resolve();
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async updateTaskVendor(tache: TaskVendor) {
+    return new Promise<void>((resolve, reject) => {
+      firebase.firestore().collection('tachesVendeurs').doc(tache.id).set(Object.assign({}, tache)).then(
+        () => {
+          resolve();
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async deleteDetailEvent(detail: DetailEvent) {
+    return new Promise<void>((resolve, reject) => {
+      firebase.firestore().collection('detailEvent').doc(detail.id).delete().then(
+        () => {
+          resolve();
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async ajouterDetail(detail: DetailEvent) {
+    return new Promise<void>((resolve, reject) => {
+      firebase.firestore().collection('detailEvent').doc(detail.id).set(Object.assign({}, detail)).then(
+        () => {
+          resolve();
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
   async ajouterTache(tache: Task) {
     return new Promise<void>((resolve, reject) => {
       firebase.firestore().collection('taches').doc(tache.id).set(Object.assign({}, tache)).then(
@@ -258,6 +312,53 @@ export class EvenementService {
           const result: Task[] = [];
           docRef.forEach(function (doc) {
             result.push(doc.data() as Task);
+          });
+          resolve(result as any);
+        }, (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async getDetailEventsVendor(auteur: string) {
+    return new Promise<DetailEvent[]>((resolve, reject) => {
+      // @ts-ignore
+      firebase.firestore().collection('detailEvent').where('auteur', '==', auteur).onSnapshot(
+        (docRef) => {
+          const result: DetailEvent[] = [];
+          docRef.forEach(function (doc) {
+            result.push(doc.data() as DetailEvent);
+          });
+          resolve(result as any);
+        }, (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async ajouterTacheVendeur(tache: TaskVendor) {
+    return new Promise<void>((resolve, reject) => {
+      firebase.firestore().collection('tachesVendeurs').doc(tache.id).set(Object.assign({}, tache)).then(
+        () => {
+          resolve();
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async getTaskEventsVendor(auteur: string) {
+    return new Promise<TaskVendor[]>((resolve, reject) => {
+      // @ts-ignore
+      firebase.firestore().collection('tachesVendeurs').where('auteur', '==', auteur).onSnapshot(
+        (docRef) => {
+          const result: TaskVendor[] = [];
+          docRef.forEach(function (doc) {
+            result.push(doc.data() as TaskVendor);
           });
           resolve(result as any);
         }, (error) => {
@@ -326,7 +427,24 @@ export class EvenementService {
   async getMyCurrentEvent() {
     return new Promise<Evenement[]>((resolve, reject) => {
       // @ts-ignore
-      firebase.firestore().collection('evenements').where('etat', '==', 1).onSnapshot(
+      firebase.firestore().collection('evenements').where('auteur', '==', firebase.auth().currentUser?.email).where('etat', '==', 1).onSnapshot(
+        (docRef) => {
+          const result: Evenement[] = [];
+          docRef.forEach(function (doc) {
+            result.push(doc.data() as Evenement);
+          });
+          resolve(result as any);
+        }, (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async getMyEventsBooked(idCompany: string) {
+    return new Promise<Evenement[]>((resolve, reject) => {
+      // @ts-ignore
+      firebase.firestore().collection('evenements').where('companySollicite', 'array-contains', idCompany).onSnapshot(
         (docRef) => {
           const result: Evenement[] = [];
           docRef.forEach(function (doc) {

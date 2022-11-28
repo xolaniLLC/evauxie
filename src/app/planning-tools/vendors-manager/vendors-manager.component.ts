@@ -5,6 +5,10 @@ import {CategorieActivite} from "../../models/categorie-activite";
 import {EvenementService} from "../../services/evenement.service";
 import {AlertService} from "../../services/alert.service";
 import {Evenement} from "../../models/evenement";
+import {WriteMailService} from "../../services/write-mail.service";
+import {Company} from "../../models/company";
+import {CompanyService} from "../../services/company.service";
+import {AvisCompany} from "../../models/avis-company";
 
 @Component({
   selector: 'app-vendors-manager',
@@ -20,8 +24,9 @@ export class VendorsManagerComponent implements OnInit {
   event_en_cours: Evenement | any;
   typePrint = 'images';
   isLoading = false;
+  companyBooked: string[] = [];
 
-  constructor(private eventService: EvenementService, private alertService: AlertService, private categorieService: CategoriesService, private activatedRoute: ActivatedRoute) { }
+  constructor(private companyService: CompanyService, private writeMailService: WriteMailService, private eventService: EvenementService, private alertService: AlertService, private categorieService: CategoriesService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.eventService.getMyEvents().then(
@@ -31,6 +36,16 @@ export class VendorsManagerComponent implements OnInit {
         this.liste_my_event.forEach(function (evt) {
           if (evt.etat === 1) {
             pointe.event_en_cours = evt;
+
+            pointe.event_en_cours.companySollicite.forEach(function (dc: any) {
+              pointe.companyService.getCompanyWitchId(dc).then(
+                (data) => {
+                  if(data.eventEnCours.includes(pointe.event_en_cours.id)) {
+                    pointe.companyBooked.push(data.id);
+                  }
+                }
+              );
+            });
           }
         });
       }
@@ -47,6 +62,14 @@ export class VendorsManagerComponent implements OnInit {
     this.categorieService.getAllCategoriesActivites().then(
       (data) => {
         this.categories = data;
+      }
+    );
+  }
+
+  requestBooked(idCompany: string, idEvent: string) {
+    this.companyService.getCompanyWitchId(idCompany).then(
+      (data) => {
+        this.writeMailService.new(data.administrateurs as any, 'Request book #' + data.id + '@' + idEvent + '#', 'Hello! We are interested in your service at your facility. Could you manage us for our event? Thank you!', '');
       }
     );
   }
