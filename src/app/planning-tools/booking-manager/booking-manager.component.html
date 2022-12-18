@@ -36,8 +36,8 @@
 </div>
 
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
-  <div class="space-y-2 px-5 py-5 h-96">
-  <ng-container *ngFor="let event of eventBooked, let i = index;">
+  <div class="space-y-2 px-1 py-2">
+  <div *ngFor="let event of eventBooked, let i = index;" class="border-gray-300 border px-5 py-5 rounded-xl">
     <div class="bg-white border-gray-300 border dark:bg-gray-800 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between px-3 sm:px-3 rounded-xl">
       <div class="flex items-center mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
         <div class="relative h-20 w-20 rounded">
@@ -126,7 +126,7 @@
         </div>
       </div>
     </div>
-  </ng-container>
+  </div>
 
 </div>
 </section>

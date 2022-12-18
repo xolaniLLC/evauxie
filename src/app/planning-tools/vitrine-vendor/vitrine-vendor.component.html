@@ -107,7 +107,7 @@
             <form #form="ngForm" (ngSubmit)="save()">
               <div class="grid grid-cols-1 gap-6 mt-4 md:grid-cols-2">
                 <div>
-                  <label class="text-gray-700 dark:text-gray-200" for="name">Name of the company *</label>
+                  <label class="text-gray-700 dark:text-gray-200" for="name">Name of company *</label>
                   <input id="name" name="name" [(ngModel)]="currentCompany.nom" required type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                 </div>
 
@@ -146,14 +146,20 @@
 
             <form #form="ngForm" (ngSubmit)="save()">
               <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+
                 <div>
-                  <label class="text-gray-700 dark:text-gray-200" for="codePostal">Postal code</label>
-                  <input id="codePostal" name="codePostal" [(ngModel)]="currentCompany.codePostal" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                  <label class="text-gray-700 dark:text-gray-200" for="adresse">Address *</label>
+                  <input required id="adresse" type="text" name="adresse" [(ngModel)]="currentCompany.adresse" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                 </div>
 
                 <div>
-                  <label class="text-gray-700 dark:text-gray-200" for="adresse">Adress *</label>
-                  <input required id="adresse" type="text" name="adresse" [(ngModel)]="currentCompany.adresse" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                  <label class="text-gray-700 dark:text-gray-200" for="ville">City *</label>
+                  <input id="ville" required [(ngModel)]="currentCompany.ville" name="ville" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                </div>
+
+                <div>
+                  <label class="text-gray-700 dark:text-gray-200" for="codePostal">Postal code</label>
+                  <input id="codePostal" name="codePostal" [(ngModel)]="currentCompany.codePostal" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                 </div>
 
                 <div>
@@ -418,11 +424,6 @@
                 </div>
 
                 <div>
-                  <label class="text-gray-700 dark:text-gray-200" for="ville">City *</label>
-                  <input id="ville" required [(ngModel)]="currentCompany.ville" name="ville" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-                </div>
-
-                <div>
                   <label class="text-gray-700 dark:text-gray-200" for="phone">Company phone number *</label>
                   <input id="phone" required [(ngModel)]="currentCompany.phone" placeholder="+123 456 789" name="phone" type="tel" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                 </div>
@@ -602,7 +603,7 @@
               <form #form="ngForm" (ngSubmit)="save()">
                 <div class="grid grid-cols-1 gap-6 mt-4 md:grid-cols-2">
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="name_0">Name of the company *</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="name_0">Name of company *</label>
                     <input id="name_0" name="name" [(ngModel)]="currentCompany.nom" required type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                   </div>
 
@@ -638,7 +639,7 @@
             </div>
 
             <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
-              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">The prices</h2>
+              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Price range</h2>
               <form #form="ngForm" (ngSubmit)="save()">
                 <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                   <div>
@@ -652,7 +653,7 @@
                   </div>
 
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="devise">Devise * &nbsp;</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="devise">Currency * &nbsp;</label>
                     <select [(ngModel)]="currentCompany.devise" required name="devise" id="devise_0" class="block border border-gray-200 rounded-md mt-2 px-4 py-2 font-medium text-gray-700 bg-transparent dark:text-gray-500 focus:outline-none">
                       <option value="xaf">FCFA (xaf)</option>
                       <option value="xof">FCFA (xof)</option>
@@ -669,18 +670,24 @@
 
               <form #form="ngForm" (ngSubmit)="save()">
                 <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+
+                  <div>
+                    <label class="text-gray-700 dark:text-gray-200" for="adresse_0">Address *</label>
+                    <input required id="adresse_0" type="text" name="adresse" [(ngModel)]="currentCompany.adresse" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                  </div>
+
+                  <div>
+                    <label class="text-gray-700 dark:text-gray-200" for="ville_0">City *</label>
+                    <input disabled id="ville_0" required [(ngModel)]="currentCompany.ville" name="ville" type="text" class="disabled:bg-gray-200 disabled:text-gray-400 block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                  </div>
+
                   <div>
                     <label class="text-gray-700 dark:text-gray-200" for="codePostal_0">Postal code</label>
                     <input id="codePostal_0" name="codePostal" [(ngModel)]="currentCompany.codePostal" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                   </div>
 
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="adresse_0">Adress *</label>
-                    <input required id="adresse_0" type="text" name="adresse" [(ngModel)]="currentCompany.adresse" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-                  </div>
-
-                  <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="pays_0">Country *</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="pays_0">City *</label>
                     <select disabled required [(ngModel)]="currentCompany.pays" name="pays" id="pays_0" class="disabled:bg-gray-200 disabled:text-gray-400 block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                       <option value="" selected="selected">Choose a country</option>
 
@@ -939,12 +946,6 @@
 
                     </select>
                   </div>
-
-                  <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="ville_0">City *</label>
-                    <input disabled id="ville_0" required [(ngModel)]="currentCompany.ville" name="ville" type="text" class="disabled:bg-gray-200 disabled:text-gray-400 block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-                  </div>
-
                   <div>
                     <label class="text-gray-700 dark:text-gray-200" for="phone_0">Company phone number *</label>
                     <input id="phone_0" required [(ngModel)]="currentCompany.phone" placeholder="+123 456 789" name="phone" type="tel" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
