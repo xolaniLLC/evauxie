@@ -1,5 +1,5 @@
 <div *ngIf="currentBlog && skin === 'item'" class="hover:cursor-pointer">
-  <img  class="hover:scale-105 hover:transition-transform" src="{{currentBlog && extractImage(currentBlog.contenu) !== '' ? extractImage(currentBlog.contenu) : 'assets/images/ill_14.png'}}" alt="woman smiling" />
+  <div class="hover:bg-auto hover:transition-transform w-full h-56 rounded-md bg-center bg-cover" style="background-image: url({{currentBlog && extractImage(currentBlog.contenu) !== '' ? extractImage(currentBlog.contenu) : 'assets/images/ill_14.png'}})"></div>
   <a href="../article/{{currentBlog.id}}" class="block text-xl font-semibold leading-5 mt-8 text-gray-800">{{currentBlog.titre}}</a>
   <div class="mt-6 flex items-center cursor-pointer">
     <a href="../article/{{currentBlog.id}}" class="pr-3 text-base font-medium leading-4 underline text-gray-800">Read the article</a>
@@ -34,8 +34,8 @@
   </button>
 </div-->
 
-<div class="w-60 h-60 relative m-5" *ngIf="currentBlog && skin === 'suggestion'">
-  <div class="w-full h-full absolute bg-black opacity-75"></div>
+<div class="w-60 h-60 relative m-5 rounded-md" *ngIf="currentBlog && skin === 'suggestion'">
+  <div class="w-full h-full absolute bg-black opacity-75 rounded-md"></div>
   <div>
     <p class="p-6 text-xs font-medium leading-3 text-white absolute top-0 right-0">{{currentBlog.date | date:"MMMM dd, yyyy"}}</p>
     <div class="absolute bottom-0 left-0 p-6">
@@ -49,7 +49,7 @@
       </a>
     </div>
   </div>
-  <img class="w-60 h-60" src="{{currentBlog && extractImage(currentBlog.contenu) !== '' ? extractImage(currentBlog.contenu) : 'assets/images/ill_14.png'}}" alt="chair" />
+  <div class="hover:bg-auto hover:transition-transform w-60 h-60 rounded-md bg-center bg-cover" style="background-image: url({{currentBlog && extractImage(currentBlog.contenu) !== '' ? extractImage(currentBlog.contenu) : 'assets/images/ill_14.png'}})"></div>
 </div>
 
 

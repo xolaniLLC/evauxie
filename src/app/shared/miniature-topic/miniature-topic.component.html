@@ -55,21 +55,19 @@
   </div>
 </div>
 
-<div class="lg:mr-7 lg:mb-0 mb-7 bg-white p-6 border-b" *ngIf="currentTopic && currentUser && skin === 'suggestion'">
-  <div class="flex items-center border-gray-200 pb-1" *ngIf="currentUser">
-    <img [src]="currentUser.photo ? currentUser.photo : 'assets/images/user.png'" alt="" class="w-16 h-16 rounded-full" />
-    <div class="flex items-start justify-between w-full">
-      <div class="pl-3 w-full">
-        <a href="../topic/{{currentTopic.id}}" class="hover:text-indigo-600 hover:cursor-pointer font-bold text-xl leading-5 text-gray-900">{{currentTopic.titre}}</a>
-        <p class="text-sm leading-normal pt-2 text-gray-500">
-          <a href="../profil/{{currentUser.email}}" class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">{{currentUser.nom}}</a> in
-          <span class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">{{currentTopic.categorie}}</span>,
-          on {{currentTopic.date | date:"MMMM dd, yyyy"}} at {{currentTopic.date | date:"hh:mm"}}
-        </p>
-      </div>
+<div  *ngIf="currentTopic && currentUser && skin === 'suggestion'" class="space-y-5 py-5">
+  <a href="../article/{{currentTopic.id}}"  class="block h-fit bg-white border rounded border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 p-5">
+    <div class="p-3">
+      <h5 class="mb-2 text-sm font-medium text-gray-800 truncate">{{currentTopic.titre}}</h5>
+      <p class="mb-3 text-xs font-normal text-gray-700 dark:text-gray-400">{{extractTextPure(currentTopic.contenu).slice(0, 95) + '...'}}</p>
     </div>
-  </div>
-  <div class="px-2">
+  </a>
+  <div class="grid grid-cols-8">
+    <app-miniature-avatar-user class="col-span-2" idUser="{{currentTopic.auteur}}"></app-miniature-avatar-user>
+    <div class="col-span-6">
+      <app-miniature-name-user idUser="{{currentTopic.auteur}}"></app-miniature-name-user>
+      <h6 class="text-xs">{{currentTopic.date | date : 'EEEE dd MMM YYY'}}</h6>
+    </div>
   </div>
 </div>
 

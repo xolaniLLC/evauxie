@@ -17,7 +17,7 @@ export class WriteMailService {
     this.modals.splice(index, 1);
   }
 
-  new(destinataires: string, objet: string, message: string, reponse: string) {
+  new(destinataires: any, objet: string, message: string, reponse: string) {
     this.modals.push(
       {
         destinataires: destinataires,

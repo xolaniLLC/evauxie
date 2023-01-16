@@ -5,7 +5,7 @@
         <div class="flex items-center">
           <!-- Search input on desktop screen -->
           <div class="mx-10 md:block">
-            <div  class="grid md:grid-cols-5 sm:grid-cols-1 gap-5 bg-white rounded flex items-center w-full py-3 px-5 border border-gray-200">
+            <div  class="grid md:grid-cols-4 sm:grid-cols-1 gap-5 bg-white rounded flex items-center w-full py-3 px-5 border border-gray-200">
               <a class="text-2xl font-bold text-gray-800 transition-colors duration-200 transform dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300">Search</a>
 
               <div class="mt-1 relative">
@@ -24,14 +24,6 @@
                   <ng-container *ngFor="let pays of listePays">
                     <option value="{{pays.nom}}" selected="selected" class="font-semibold capitalize">{{pays.nom}}</option>
                     <option value="{{pays.nom + ':' + ville}}" class="capitalize italic font-light" selected="selected" *ngFor="let ville of pays.villes">{{ville}}</option>
-                  </ng-container>
-                </select>
-              </div>
-              <div class="select">
-                <select [(ngModel)]="searchRate" name="" id="3" class="text-sm outline-none focus:outline-none bg-transparent">
-                  <option value="0" selected="selected">All notice</option>
-                  <ng-container *ngFor="let note of [1,2,3,4,5]">
-                    <option value="{{note}}" selected="selected" class="font-semibold capitalize">{{note}}/5</option>
                   </ng-container>
                 </select>
               </div>

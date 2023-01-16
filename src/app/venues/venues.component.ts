@@ -13,24 +13,24 @@ export class VenuesComponent implements OnInit {
   categorieVenues: CategorieActivite[] = [];
   categorieSelect = '';
   paysSelect = '';
+  affordbilitySelect = '';
+  townSelect = '';
+  ratingSelect = '';
   textSearch = '';
 
-  constructor(private categorieService: CategoriesService, private activatedRoute: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private categorieService: CategoriesService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     if(this.activatedRoute.snapshot.queryParams['categorie'])
       this.categorieSelect = this.activatedRoute.snapshot.queryParams['categorie'];
     if(this.activatedRoute.snapshot.queryParams['pays'])
-      this.categorieSelect = this.activatedRoute.snapshot.queryParams['pays'];
+      this.paysSelect = this.activatedRoute.snapshot.queryParams['pays'];
     if(this.activatedRoute.snapshot.queryParams['textSearch'])
-      this.categorieSelect = this.activatedRoute.snapshot.queryParams['textSearch'];
-
-    this.categorieService.getSousCategoriesActivites('318a527a244caec0556dae').then(
-      (data) => {
-        this.categorieVenues = data;
-        if(this.categorieSelect === '') { this.categorieSelect = this.categorieVenues[0].id; }
-      }
-    );
+      this.textSearch = this.activatedRoute.snapshot.queryParams['textSearch'];
+    if(this.activatedRoute.snapshot.queryParams['ville'])
+      this.townSelect = this.activatedRoute.snapshot.queryParams['ville'];
+    if(this.activatedRoute.snapshot.queryParams['rating'])
+      this.ratingSelect = this.activatedRoute.snapshot.queryParams['rating'];
   }
 
 }

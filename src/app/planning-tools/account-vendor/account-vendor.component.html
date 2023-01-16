@@ -17,18 +17,24 @@
         <div>
           <div *ngIf="sousMenu === 1" class="space-y-5">
             <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
-              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Information account</h2>
+              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Account information</h2>
 
               <form #form="ngForm" (ngSubmit)="save()" *ngIf="currentUser">
                 <div class="grid grid-cols-1 gap-6 mt-4 md:grid-cols-2">
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="name">Name of you account *</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="name">Name of contact person *</label>
                     <input [disabled]="isLoading" id="name" name="name" [(ngModel)]="currentUser.nom" required type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                   </div>
 
                   <div>
                     <label class="text-gray-700 dark:text-gray-200" for="phone">Phone number *</label>
                     <input [disabled]="isLoading" id="phone" name="phone" [(ngModel)]="currentUser.phone" required type="tel" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 mt-4">
+                  <div>
+                    <label class="text-gray-700 dark:text-gray-200" for="email">Email adress *</label>
+                    <input [disabled]="true" id="email" name="email" [(ngModel)]="currentUser.email" required type="text" class="disabled:bg-gray-200 disabled:text-gray-500 block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                   </div>
                 </div>
               </form>
@@ -197,5 +203,6 @@
   </div>
 </section>
 
+<br><p></p><br>
 
 <app-footer></app-footer>

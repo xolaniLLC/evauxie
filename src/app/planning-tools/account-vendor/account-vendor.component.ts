@@ -39,7 +39,7 @@ export class AccountVendorComponent implements OnInit {
     );
   }
 
-  save() { console.log(this.currentUser.nom);
+  save() {
     this.isLoading = true;
     this.userService.updateUser(this.currentUser).then(
       () => {

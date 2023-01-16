@@ -5,8 +5,8 @@
     <div class="absolute top-0 right-0 bottom-0 left-0 bg-black opacity-75"></div>
     <main class="px-10 lg:px-24 py-20" style="z-index: 1">
       <div class="lg:w-auto custom md:mt-0 h-full flex px-4 md:px-0  z-10 justify-center items-center md:items-start flex-col md:pl-20 lg:px-20 2xl:px-44">
-        <p class="text-xl sm:text-2xl xl:text-4xl text-center md:text-left font-semibold leading-6 xl:leading-10 text-gray-100 md:w-96 2xl:w-2/3" >List of posts from evauxie blog</p>
-        <p class="mt-4 md:w-80 lg:w-2/3 xl:w-3/4 text-center md:text-left  text-base leading-normal text-gray-200" >Check out the different posts in the blob and comment on the ones you find interesting.</p>
+        <p class="text-xl sm:text-2xl xl:text-4xl text-center md:text-left font-semibold leading-6 xl:leading-10 text-gray-100 w-full" >Our blog posts</p>
+        <p class="mt-4 w-full text-center md:text-left  text-base leading-normal text-gray-200" >Check out some interesting ideas to help you achieve your perfect event</p>
         <button class="invisible mt-6 shrink-0 w-full md:w-auto  lg:mt-8 py-2 md:py-3 px-10 flex justify-center duration-700  items-center text-base border-2 border-white transition hover:-translate-y-1 hover:bg-gray-100 hover:text-gray-800 font-medium text-white">
           Let's go
         </button>
@@ -31,37 +31,6 @@
       <div class="my-6 lg:my-9 container mx-auto px-10 flex flex-col md:flex-row items-start md:items-center justify-between pb-4 border-b border-gray-300">
         <div>
           <h4 class="text-3xl font-bold leading-tight text-gray-800 dark:text-gray-100">Blogs</h4>
-          <ul class="flex flex-col md:flex-row items-start md:items-center text-gray-600 dark:text-gray-400 text-sm mt-3">
-            <li class="flex items-center mr-4 text-xl">
-              <div class="mr-1">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-paperclip" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
-                </svg>
-              </div>
-              <span>All</span>
-            </li>
-            <li class="flex items-center mr-4 mt-4 md:mt-0 text-xl">
-              <div class="mr-1">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trending-up" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" />
-                  <polyline points="3 17 9 11 13 15 21 7" />
-                  <polyline points="14 7 21 7 21 14" />
-                </svg>
-              </div>
-              <span>Most popular</span>
-            </li>
-            <li class="flex items-center mt-4 md:mt-0 text-xl">
-              <div class="mr-1">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plane-departure" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <span>Recent</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-
         </div>
       </div>
     </div>
@@ -69,7 +38,7 @@
     <div>
       <!--div class="py-4 w-full"-->
       <div class="my-6 px-10 lg:my-10 mx-auto flex flex-col md:flex-row items-center md:items-center justify-between pb-4">
-        <div class="items-center justify-center grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 space-x-5 space-y-5">
+        <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5">
           <app-miniature-blog [idBlog]="blog.id" skin="item" *ngFor="let blog of listeBlog | slice:(page * nbreLimitEltPrPage):((page * nbreLimitEltPrPage) + nbreLimitEltPrPage)"></app-miniature-blog>
         </div>
       </div>

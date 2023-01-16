@@ -27,7 +27,7 @@ export class LoginCustomerComponent implements OnInit {
     this.isLoading = true;
     this.authService.GoogleAuth().then(
       () => {
-        this.location.back();
+        this.router.navigate(['/planning-tools']);
       },
       (error) => {
         this.isLoading = false;
@@ -40,7 +40,7 @@ export class LoginCustomerComponent implements OnInit {
     this.isLoading = true;
     this.authService.signInUser(form.value.email, form.value.password).then(
       () => {
-        this.location.back();
+        this.router.navigate(['/planning-tools']);
       },
       (error) => {
         this.isLoading = false;

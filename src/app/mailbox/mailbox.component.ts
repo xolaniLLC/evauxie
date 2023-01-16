@@ -5,6 +5,8 @@ import firebase from "firebase";
 import {UserService} from "../services/user.service";
 import {Utilisateur} from "../models/utilisateur";
 import {AlertService} from "../services/alert.service";
+import {WriteMailService} from "../services/write-mail.service";
+import {CompanyService} from "../services/company.service";
 
 @Component({
   selector: 'app-mailbox',
@@ -12,9 +14,10 @@ import {AlertService} from "../services/alert.service";
   styleUrls: ['./mailbox.component.scss']
 })
 export class MailboxComponent implements OnInit {
-
-  mesMessagesRecu: Message[] = [];
-  mesMessagesEnvoyer: Message[] = [];
+  isList: any;
+  elementSelect: any[] = [];
+  mesMessagesNonLu: Message[] = [];
+  mesMessagesLu: Message[] = [];
   currentEmailUser: any = firebase.auth().currentUser?.email;
   msgNonLu = 0;
   currentIndexMessage = -1;
@@ -28,7 +31,7 @@ export class MailboxComponent implements OnInit {
   currentMessageOpen: Message | any;
   writeMail = false;
 
-  constructor(private messageService: MessageService, private userService: UserService, private alertService: AlertService) { }
+  constructor(private companyService: CompanyService, private writeMailService: WriteMailService, private messageService: MessageService, private userService: UserService, private alertService: AlertService) { }
 
   ngOnInit(): void {
 
@@ -40,21 +43,69 @@ export class MailboxComponent implements OnInit {
 
     this.messageService.getMesMessagesRecu().then(
       (result) => {
-        this.mesMessagesRecu = result;
-        for(let i=0; i<this.mesMessagesRecu.length; i++) {
-          if(!this.mesMessagesRecu[i].read.includes(this.currentEmailUser)) { this.msgNonLu++; }
+        for(let i=0; i<result.length; i++) {
+          if(result[i].read.includes(this.currentEmailUser)) {
+            this.mesMessagesLu.push(result[i]);
+          } else { this.mesMessagesNonLu.push(result[i]); }
         }
       });
+  }
 
-    this.messageService.getMesMessagesEnvoyer().then(
-      (result1) => {
-        this.mesMessagesEnvoyer = result1;
+  openWrite(dest: any, reponse: any) {
+    this.writeMailService.new([dest], '', '', reponse);
+  }
+
+  checkAll(event: any) {
+    if(this.elementSelect.length === (this.viewElement === 'inbox' ? this.mesMessagesLu.length : this.mesMessagesNonLu.length)) {
+      this.elementSelect = [];
+    } else {
+      for(let i = 0; i < (this.viewElement === 'inbox' ? this.mesMessagesLu.length : this.mesMessagesNonLu.length); i++) {
+        this.elementSelect.push((this.viewElement === 'inbox' ? this.mesMessagesLu[i].id : this.mesMessagesNonLu[i].id));
       }
-    );
+    }
   }
 
   getPureTexte(brute: any) {
     return brute.toString().replace(/<[^>]*>/g, '').replace('&nbsp;', '');
+  }
+
+  invalidBook(dest: any) {
+    const tmp: Message = this.currentMessageOpen;
+    tmp.objet = this.currentMessageOpen.objet.replace(this.currentMessageOpen.objet.slice(this.currentMessageOpen.objet.indexOf('#'), this.currentMessageOpen.objet.length), '(Reject)');
+    this.messageService.updateMessage(tmp).then(
+      () => {
+        this.currentMessageOpen = tmp;
+        this.writeMailService.new([this.currentMessageOpen.auteur], 'Impossible to accept your request', 'I could not accept this request because', this.currentMessageOpen.id);
+      }
+    );
+  }
+
+  validBook(idCompany: string, idEvent: string) {
+    this.companyService.getCompanyWitchId(idCompany).then(
+      (data) => {
+        if(data.eventEnCours.includes(idEvent)) {
+          this.alertService.print('Event already booked', 'warning');
+        } else {
+          data.eventEnCours.push(idEvent);
+          this.companyService.updateCompany(data).then(
+            () => {
+              const tmp: Message = this.currentMessageOpen;
+              tmp.objet = this.currentMessageOpen.objet.replace(this.currentMessageOpen.objet.slice(this.currentMessageOpen.objet.indexOf('#'), this.currentMessageOpen.objet.length), '(Reject)');
+              this.messageService.updateMessage(tmp).then(
+                () => {
+                  this.currentMessageOpen = tmp;
+                  this.alertService.print('Operation done', 'success');
+                }
+            );
+            }
+          );
+        }
+      }
+    );
+  }
+
+  comptNombreOccurance(texte: string, caractere: string) {
+    return texte.split(caractere).length - 1;
   }
 
   make_all_massage() {
@@ -77,26 +128,28 @@ export class MailboxComponent implements OnInit {
     );
   }
 
-  updateReadMessage(message: Message) {
-    this.isLoading = true;
-    let tmpMsg = this.mesMessagesRecu[this.currentIndexMessage];
-    tmpMsg.read.push(firebase.auth().currentUser?.email as String | any);
-    this.messageService.updateMessage(tmpMsg).then(
-      () => {
-        this.isLoading = false;
-        this.alertService.print('Operation successfully completed', 'success');
-      }, (error) => {
-        this.isLoading = false;
-        this.alertService.print(error, 'danger');
+  markMessageCommeLu() {
+    for(let i=0; i<this.elementSelect.length; i++) {
+      for(let j=0; j<this.mesMessagesNonLu.length; j++) {
+        if(this.mesMessagesNonLu[j].id === this.elementSelect[i].id) {
+          this.updateReadMessage(this.mesMessagesNonLu[j]);
+        }
       }
-    );
+    }
   }
 
-  repondreMessage() {
+  markCurrentMessageRead() {
+    if(!this.currentMessageOpen.read.includes(firebase.auth().currentUser?.email as string)) {
+      const tmp = this.currentMessageOpen;
+      tmp.read.push(firebase.auth().currentUser?.email as string);
+      this.messageService.updateMessage(tmp).then();
+    }
+  }
+
+  updateReadMessage(message: Message) {
     this.isLoading = true;
-    let tmpMsg = new Message(firebase.auth().currentUser?.email, this.mesMessagesRecu[this.currentIndexMessage].objet, [this.mesMessagesRecu[this.currentIndexMessage].auteur], this.reponseText, '');
-    tmpMsg.reponse = this.mesMessagesRecu[this.currentIndexMessage].id;
-    this.messageService.envoyerMessage(tmpMsg).then(
+    message.read.push(firebase.auth().currentUser?.email as String | any);
+    this.messageService.updateMessage(message).then(
       () => {
         this.isLoading = false;
         this.alertService.print('Operation successfully completed', 'success');

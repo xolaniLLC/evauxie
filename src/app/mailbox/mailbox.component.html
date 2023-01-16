@@ -7,118 +7,118 @@
   </p>
 </section>
 
-<section>
-  <div class="sm:px-6 w-full">
-    <div class="px-4 md:px-10 py-4 md:py-7">
-      <div class="flex items-center justify-between">
-        <p class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">MailBox</p>
-        <div class="py-3 px-4 flex items-center text-sm font-medium leading-none text-gray-600 bg-gray-200 hover:bg-gray-300 cursor-pointer rounded">
-          <p>Type of message:</p>
-          <select class="focus:outline-none bg-transparent ml-1">
-            <option (click)="viewTypeMessage = ''" class="text-sm text-indigo-800">All</option>
-            <option (click)="viewTypeMessage = 'vendor'" class="text-sm text-indigo-800">Vendor Messages</option>
-            <option (click)="viewTypeMessage = 'private'" class="text-sm text-indigo-800">Private Maessages</option>
-            <option (click)="viewTypeMessage = 'admin'" class="text-sm text-indigo-800">Admin Messages</option>
-          </select>
-        </div>
+<section class="p-5">
+  <div class="grid md:grid-cols-7 md:gap-3 grid-cols-1 gap-2">
+    <div class="md:col-span-1 border-r border-gray-300 justify-center px-3">
+      <div class="border-b border-gray-300 py-3">
+        <button (click)="viewElement = 'inbox'; currentMessageOpen = null" type="button" class="w-full {{viewElement === 'inbox' ? 'text-white bg-indigo-500 hover:bg-indigo-800' : 'text-indigo-500 border border-indigo-500 bg-transparent hover:bg-indigo-100'}} focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Inbox {{mesMessagesLu.length}}</button>
+        <br>
+        <button (click)="viewElement = 'unread'; currentMessageOpen = null" type="button" class="w-full {{viewElement !== 'inbox' ? 'text-white bg-indigo-500 hover:bg-indigo-800' : 'text-indigo-500 border border-indigo-500 bg-transparent hover:bg-indigo-100'}} focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Unread {{mesMessagesNonLu.length}}</button>
+      </div>
+      <div class="space-y-3 text-sm py-5 text-right">
+        <a class="inline-block cursor-pointer hover:text-indigo-700">&nbsp;Customer&nbsp;Messages&nbsp;</a>
+        <a class="inline-block cursor-pointer hover:text-indigo-700">&nbsp;Private&nbsp;Messages&nbsp;</a>
+        <a class="inline-block cursor-pointer hover:text-indigo-700">&nbsp;Admin&nbsp;Messages&nbsp;</a>
       </div>
     </div>
-    <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
-      <div class="sm:flex items-center justify-between">
-        <div class="flex items-center">
-          <a class="py-2 px-8 " *ngIf="isLoading">
-            <svg width="20" height="20" role="status" class="inline mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"></path>
-              <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"></path>
-            </svg>
-          </a>
-          <a (click)="viewElement = 'inbox'">
-            <div class="py-2 px-8 cursor-pointer {{ viewElement === 'inbox' ? 'bg-indigo-100 text-indigo-700' : 'text-gray-600 hover:text-indigo-700 hover:bg-indigo-100'}} rounded-full">
-              <p>Inbox</p>
+    <div class="md:col-span-6">
+      <ng-container>
+        <div *ngIf="currentMessageOpen">
+          <div class="flex items-center justify-start cursor-pointer" (click)="currentMessageOpen = null">
+            <button type="button" class="mr-3  font-medium text-black">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                <path fill-rule="evenodd" d="M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z" clip-rule="evenodd" />
+              </svg>
+            </button>
+            <h2 class="text-2xl">
+              Go back
+            </h2>
+          </div>
+          <div class="p-5">
+            <h2 class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800 capitalize">
+              {{currentMessageOpen.objet ? (currentMessageOpen.objet.split('#').length > 1 && currentMessageOpen.objet.includes('@') ? currentMessageOpen.objet.split('#')[0] : currentMessageOpen.objet) : '...'}}
+            </h2>
+            <p class="mt-2">
+              message sent at {{currentMessageOpen.date | date:"HH:mm dd MMM, yyyy"}}
+            </p>
+            <div class="bg-gray-100 grid md:grid-cols-12 gap-2 rounded-3xl m-8 p-8">
+              <app-miniature-avatar-user class="md:col-span-1" [idUser]="currentMessageOpen.auteur"></app-miniature-avatar-user>
+              <div class="md:col-span-11">
+                <app-miniature-name-user [idUser]="currentMessageOpen.auteur"></app-miniature-name-user>
+                <p class="my-4" [innerHTML]="currentMessageOpen.message"></p>
+                <button (click)="openWrite(currentMessageOpen.auteur, currentMessageOpen.id)" type="button" class="float-right font-bold text-xl text-black bg-orange-700 hover:bg-blue-800  hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-base px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Reply</button>
+                <button (click)="invalidBook(currentMessageOpen.auteur)" *ngIf="comptNombreOccurance(currentMessageOpen.objet, '#') === 2 && comptNombreOccurance(currentMessageOpen.objet, '@') === 1" type="button" class="float-left font-bold text-base text-white bg-red-700 hover:bg-red-900 hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Reject the reservation for this event</button>
+                <button (click)="validBook(currentMessageOpen.objet.split('#')[1].split('@')[0], currentMessageOpen.objet.split('#')[1].split('@')[1])" *ngIf="comptNombreOccurance(currentMessageOpen.objet, '#') === 2 && comptNombreOccurance(currentMessageOpen.objet, '@') === 1" type="button" class="float-left font-bold text-base text-black bg-orange-700 hover:bg-blue-800 hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Confirm booking for this event</button>
+              </div>
             </div>
-          </a>
-          <a (click)="viewElement = 'unread'">
-            <div class="py-2 px-8 cursor-pointer {{ viewElement === 'unread' ? 'bg-indigo-100 text-indigo-700' : 'text-gray-600 hover:text-indigo-700 hover:bg-indigo-100'}} rounded-full ml-4 sm:ml-8">
-              <p>Unread</p>
-            </div>
-          </a>
-          <a (click)="viewElement = 'send'">
-            <div class="py-2 px-8 cursor-pointer {{ viewElement === 'send' ? 'bg-indigo-100 text-indigo-700' : 'text-gray-600 hover:text-indigo-700 hover:bg-indigo-100'}} rounded-full ml-4 sm:ml-8">
-              <p>Send</p>
-            </div>
-          </a>
+          </div>
         </div>
-
-        <button (click)="make_all_massage()" *ngIf="listeMessageSelect.length > 0" class="mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
-          <p class="text-sm font-medium leading-none text-white">Mark as read/unread</p>
-        </button>
-        <!--button class="mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
-          <p routerLink="../mailbox" [queryParams]="{write: '@' }" class="text-sm font-medium leading-none text-white">New message</p>
-        </button-->
-      </div>
-      <div class="mt-7 overflow-x-auto">
-        <p class="text-gray-500 font-light text-center" *ngIf="(viewElement === 'send' && mesMessagesEnvoyer.length === 0) || (viewElement !== 'send' && mesMessagesRecu.length === 0)">
-          No items to display
+      </ng-container>
+      <ng-container *ngIf="!currentMessageOpen">
+        <h1 class="text-2xl font-semibold uppercase">{{viewElement}}</h1>
+        <p class="py-8 pl-8 pr-6 text-2xl font-light text-gray-400" *ngIf="viewElement === 'inbox' ? mesMessagesLu.length === 0 : mesMessagesNonLu.length === 0">
+          No content
         </p>
-        <table class="w-full whitespace-nowrap">
-          <tbody>
-          <ng-container *ngFor="let message of (viewElement === 'send' ? mesMessagesEnvoyer :  mesMessagesRecu)">
-            <tr routerLink="../mailbox/{{message.id}}" *ngIf="(viewElement === 'unread' && !message.read.includes(currentEmailUser) || viewElement !== 'unread') && (viewTypeMessage === '' || message.typeMessage.includes(viewTypeMessage))" class="hover:bg-gray-50 cursor-pointer h-16 border rounded {{!message.read.includes(currentEmailUser) && viewElement !== 'send' ? 'bg-gray-100 border-gray-200' : 'bg-transparent border-gray-100'}}">
-              <td>
-                <div class="ml-5">
-                  <div class="bg-gray-200 rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
-                    <input [checked]="listeMessageSelect.includes(message)" type="checkbox" class="checkbox opacity-0 absolute cursor-pointer w-full h-full"
-                           (change)="listeMessageSelect.includes(message) ? listeMessageSelect.splice(listeMessageSelect.indexOf(message), 1) : listeMessageSelect.push(message)"/>
-                    <div class="check-icon hidden bg-indigo-700 text-white rounded-sm">
-                      <svg class="icon icon-tabler icon-tabler-check" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z"></path>
-                        <path d="M5 12l5 5l10 -10"></path>
-                      </svg>
+        <div class="mx-auto container bg-white" *ngIf="viewElement === 'inbox' ? mesMessagesLu.length > 0 : mesMessagesNonLu.length > 0">
+          <div class="flex flex-col lg:flex-row p-4 lg:p-8 justify-between items-start lg:items-stretch w-full">
+            <div class="w-full lg:w-1/3 flex flex-col lg:flex-row items-start lg:items-center">
+              <div class="flex items-center">
+                <input (change)="checkAll($event)" type="checkbox" [checked]="elementSelect.length === (viewElement === 'inbox' ? mesMessagesLu.length : mesMessagesNonLu.length)"
+                       class="cursor-pointer relative w-5 h-5 border rounded border-gray-400 bg-white dark:bg-gray-800 outline-none" />
+                <span class="pl-6">Select all</span>
+              </div>
+            </div>
+            <div class="w-full lg:w-2/3 flex flex-col lg:flex-row items-start lg:items-center justify-end">
+              <div class="lg:ml-6 flex items-center">
+                <button (click)="markMessageCommeLu()" *ngIf="viewElement === 'inbox'" [disabled]="elementSelect.length === 0"
+                        class="disabled:opacity-50 bg-transparent transition duration-150 ease-in-out focus:outline-none border border-transparent focus:border-gray-800 focus:shadow-outline-gray hover:bg-gray-300 rounded-full text-gray-800 px-7 border border-gray-800 h-10 flex items-center text-sm">
+                  Mark as read
+                </button>
+                <div
+                  class="{{elementSelect.length === 0 ? 'opacity-50' : ''}} text-gray-800 ml-4 cursor-pointer focus:outline-none border border-transparent focus:border-gray-800 focus:shadow-outline-gray transition duration-150 ease-in-out hover:bg-indigo-600 items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
+                    <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.256 1.478l-.209-.035-1.005 13.07a3 3 0 01-2.991 2.77H8.084a3 3 0 01-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 01-.256-1.478A48.567 48.567 0 017.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 013.369 0c1.603.051 2.815 1.387 2.815 2.951zm-6.136-1.452a51.196 51.196 0 013.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 00-6 0v-.113c0-.794.609-1.428 1.364-1.452zm-.355 5.945a.75.75 0 10-1.5.058l.347 9a.75.75 0 101.499-.058l-.346-9zm5.48.058a.75.75 0 10-1.498-.058l-.347 9a.75.75 0 001.5.058l.345-9z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="overflow-x-scroll xl:overflow-x-hidden">
+            <table class="w-full bg-white dark:bg-gray-800">
+              <tbody class="border-l-8 border-indigo-700 border-t-2">
+              <ng-container *ngFor="let message of viewElement === 'inbox' ? mesMessagesLu : mesMessagesNonLu">
+                <tr (click)="currentMessageOpen = message; markCurrentMessageRead()"
+                    class="{{elementSelect.includes(message.id)  ? 'bg-orange-300 h-24' : 'bg-gray-50 h-24'}} cursor-pointer"
+                >
+                  <td
+                    class="pl-8 pr-6 text-left whitespace-no-wrap text-sm text-gray-800 dark:text-gray-100 tracking-normal leading-4">
+                    <input type="checkbox" [checked]="elementSelect.includes(message.id)"
+                           class="cursor-pointer relative w-5 h-5 border rounded border-gray-400 bg-white dark:bg-gray-800 outline-none"
+                           (change)="elementSelect.includes(message.id) ? elementSelect.push(message.id) : elementSelect.splice(elementSelect.indexOf(message.id), 1)"
+                    />
+
+                  </td>
+                  <td class="pr-4 whitespace-no-wrap">
+                    <div class="flex items-center">
+                      <app-miniature-avatar-user [idUser]="message.auteur"></app-miniature-avatar-user>
+                      <div class="ml-2 truncate text-gray-800 dark:text-gray-100 tracking-normal leading-4 text-sm">
+                        <app-miniature-name-user [idUser]="message.auteur"></app-miniature-name-user>
+                        <p class="truncate mt-2" [innerHTML]="message.message"></p>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </td>
-              <td class="">
-                <div class="flex items-center pl-5">
-                  <p class="text-base font-semibold leading-none text-gray-900 mr-2 overflow-ellipsis overflow-hidden max-w-sm capitalize">{{viewElement === 'send' ? message.destinataires : message.auteur}}</p>
-                </div>
-              </td>
-              <td class="">
-                <div class="flex items-center pl-5">
-                  <p class="text-base font-semibold leading-none text-gray-900 mr-2 overflow-ellipsis overflow-hidden max-w-sm capitalize">{{message.objet}}</p>
-                </div>
-              </td>
-              <td class="pl-24">
-                <p class="text-base font-medium leading-none text-gray-700 mr-2 overflow-ellipsis overflow-hidden max-w-2xl capitalize">{{getPureTexte(message.message)}}</p>
-              </td>
-              <td class="pl-5">
-                <button class="py-3 px-3 text-sm focus:outline-none leading-none text-white bg-orange-100 hover:bg-orange-200 rounded">{{message.date | date:"MMMM dd, yyyy ⋅ HH:mm"}}</button>
-              </td>
-              <!--td>
-                <div class="relative px-5 pt-2">
-                  <button class="focus:outline-none" (click)="menuOption === '' ? menuOption = message.id : menuOption = ''">
-                    <svg class="dropbtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M4.16667 10.8332C4.62691 10.8332 5 10.4601 5 9.99984C5 9.5396 4.62691 9.1665 4.16667 9.1665C3.70643 9.1665 3.33334 9.5396 3.33334 9.99984C3.33334 10.4601 3.70643 10.8332 4.16667 10.8332Z" stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M10 10.8332C10.4602 10.8332 10.8333 10.4601 10.8333 9.99984C10.8333 9.5396 10.4602 9.1665 10 9.1665C9.53976 9.1665 9.16666 9.5396 9.16666 9.99984C9.16666 10.4601 9.53976 10.8332 10 10.8332Z" stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M15.8333 10.8332C16.2936 10.8332 16.6667 10.4601 16.6667 9.99984C16.6667 9.5396 16.2936 9.1665 15.8333 9.1665C15.3731 9.1665 15 9.5396 15 9.99984C15 10.4601 15.3731 10.8332 15.8333 10.8332Z" stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </button>
-                  <div *ngIf="menuOption === message.id" class="bg-white shadow w-24 absolute z-30 right-0 mr-6">
-                    <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                      <p>Edit</p>
-                    </div>
-                    <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                      <p>Delete</p>
-                    </div>
-                  </div>
-                </div>
-              </td-->
-            </tr>
-            <tr class="h-3"></tr>
-          </ng-container>
-          </tbody>
-        </table>
-      </div>
+                  </td>
+                  <td
+                    class="text-sm font-semibold whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
+                    {{message.date | date:"MMM dd, yy ⋅ HH:mm"}}
+                    {{getNombreJoursRestant(message.date)}}
+                  </td>
+                </tr>
+              </ng-container>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </ng-container>
     </div>
   </div>
 </section>

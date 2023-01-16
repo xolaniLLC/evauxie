@@ -7,8 +7,8 @@
       <div class="absolute top-0 right-0 bottom-0 left-0 bg-black opacity-75"></div>
       <main class="px-10 lg:px-24 py-20" style="z-index: 1">
         <div class="lg:w-auto custom md:mt-0 h-full flex px-4 md:px-0  z-10 justify-center items-center md:items-start flex-col md:pl-20 lg:px-20 2xl:px-44">
-          <p class="text-xl sm:text-2xl xl:text-4xl text-center md:text-left font-semibold leading-6 xl:leading-10 text-gray-100 md:w-96 2xl:w-2/3" >EVENT Planning Tools</p>
-          <p class="mt-4 md:w-80 lg:w-2/3 xl:w-3/4 text-center md:text-left  text-base leading-normal text-gray-200" >Organize and plan your event with ease.</p>
+          <p class="text-xl sm:text-2xl xl:text-4xl text-center md:text-left font-semibold leading-6 xl:leading-10 text-gray-100 md:w-full" >Event Planning Tools</p>
+          <p class="mt-4 w-full text-center md:text-left  text-base leading-normal text-gray-200" >Organize and plan your event with ease.</p>
           <button routerLink="../register-customer" class="mt-6 shrink-0 w-full md:w-auto  lg:mt-8 py-2 md:py-3 px-10 flex justify-center duration-700  items-center text-base border-2 border-white transition hover:-translate-y-1 hover:bg-gray-100 hover:text-gray-800 font-medium text-white">
             Get started
           </button>
@@ -17,7 +17,7 @@
     </div>
   </header>
 
-  <section class="px-10">
+  <section class="max-w-7xl mx-auto">
     <div class="mx-auto container bg-white pt-16">
       <div class="px-4 lg:px-0">
         <div role="contentinfo" class="flex items-center flex-col px-4">
@@ -26,48 +26,26 @@
         </div>
       </div>
     </div>
-    <div class="container py-12 mt-12 mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 pt-6 gap-8">
-      <div class="bg-center bg-fixed bg-no-repeat bg-center bg-cover relative rounded-lg">
-        <div class="flex flex-col items-center py-16 md:py-12 rounded-lg bg-cover" [style]="'background-image:url(assets/images/ill_21.jpg);'">
-          <div class="absolute top-0 right-0 bottom-0 left-0 bg-black opacity-75 rounded-lg"></div>
-          <div class="w-full flex items-center justify-center z-10">
-            <div class="flex flex-col items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-              </svg>
-              <p class="mt-2 text-xs sm:text-sm md:text-base font-semibold text-center text-white">Checklist</p>
-            </div>
-          </div>
-          <div class="flex items-center text-center mt-7 z-10">
-            <div class="container px-10">
-              <p class="text-xs text-gray-300">
-                Get the ultimate wedding checklist to make sure everything gets done
-              </p>
-              <p class="mt-2 text-base sm:text-lg md:text-xl 2xl:text-2xl text-gray-50">
-                <button class="hover:bg-gray-50 hover:text-indigo-600 mx-2 my-2 bg-transparent transition duration-150 ease-in-out focus:outline-none rounded text-white border border-white px-8 py-3 text-sm">Make Checklist</button>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="container py-12 mt-12 mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 pt-6 gap-8">
       <div class="bg-center bg-fixed bg-no-repeat bg-center bg-cover relative rounded-lg">
         <div class="flex flex-col items-center py-16 md:py-12 rounded-lg bg-cover" [style]="'background-image:url(assets/images/ill_22.jpg);'">
           <div class="absolute top-0 right-0 bottom-0 left-0 bg-black opacity-75 rounded-lg"></div>
           <div class="w-full flex items-center justify-center z-10">
             <div class="flex flex-col items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-24 w-24 text-white">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
               </svg>
-              <p class="mt-2 text-xs sm:text-sm md:text-base font-semibold text-center text-white">Vendor Manager</p>
+
+              <p class="mt-2 text-xs sm:text-sm md:text-base font-semibold text-center text-white">My Event</p>
             </div>
           </div>
           <div class="flex items-center text-center mt-7 z-10">
             <div class="container px-10">
               <p class="text-xs text-gray-300">
-                Find, manage and send messages to your favorite vendors on the platform.
+                Find and manage your event on the platform.
               </p>
               <p class="mt-2 text-base sm:text-lg md:text-xl 2xl:text-2xl text-gray-50">
-                <button class="hover:bg-gray-50 hover:text-indigo-600 mx-2 my-2 bg-transparent transition duration-150 ease-in-out focus:outline-none rounded text-white border border-white px-8 py-3 text-sm">Get yours vendors</button>
+                <button routerLink="../login-customer" class="hover:bg-gray-50 hover:text-indigo-600 mx-2 my-2 bg-transparent transition duration-150 ease-in-out focus:outline-none rounded text-white border border-white px-8 py-3 text-sm">Start yours event</button>
               </p>
             </div>
           </div>
@@ -90,7 +68,7 @@
                 Get the ultimate wedding checklist to make sure everything gets done
               </p>
               <p class="mt-2 text-base sm:text-lg md:text-xl 2xl:text-2xl text-gray-50">
-                <button class="hover:bg-gray-50 hover:text-indigo-600 mx-2 my-2 bg-transparent transition duration-150 ease-in-out focus:outline-none rounded text-white border border-white px-8 py-3 text-sm">Managing your budget</button>
+                <button routerLink="../login-customer" class="hover:bg-gray-50 hover:text-indigo-600 mx-2 my-2 bg-transparent transition duration-150 ease-in-out focus:outline-none rounded text-white border border-white px-8 py-3 text-sm">Managing your budget</button>
               </p>
             </div>
           </div>
@@ -113,7 +91,7 @@
                 Seamlessly manage your guest list for all of your wedding events
               </p>
               <p class="mt-2 text-base sm:text-lg md:text-xl 2xl:text-2xl text-gray-50">
-                <button class="hover:bg-gray-50 hover:text-indigo-600 mx-2 my-2 bg-transparent transition duration-150 ease-in-out focus:outline-none rounded text-white border border-white px-8 py-3 text-sm">Manage your guest list</button>
+                <button routerLink="../login-customer" class="hover:bg-gray-50 hover:text-indigo-600 mx-2 my-2 bg-transparent transition duration-150 ease-in-out focus:outline-none rounded text-white border border-white px-8 py-3 text-sm">Manage your guest list</button>
               </p>
             </div>
           </div>
@@ -122,41 +100,84 @@
     </div>
   </section>
 
-  <section class="py-20 2xl:px-0 lg:px-12 px-4 2xl:mx-auto 2xl:container" id="presentation-my-events">
-    <div class="md:flex items-center justify-between w-full">
-      <div class="xl:w-1/3 md:w-1/2 w-full">
-        <h1 role="heading" class="focus:outline-none md:w-60 font-bold md:text-6xl text-4xl leading-tight text-gray-800">My<span class="font-normal italic"> Events </span></h1>
-        <p role="contentinfo" class="focus:outline-none text-base leading-6 mt-8 text-gray-600 2xl:pr-24 xl:pr-0 pr-12">Create your events on the platform and manage them intelligently with our intuitive and dynamic modules at your disposal.</p>
-        <div class="mt-10">
-          <a href="../planning-tools/my-events" class="flex items-center md:p-3 p-1 focus:outline-none text-xl font-medium leading-5 text-gray-800 focus:ring-2 focus:ring-offset-2 focus:ring-gray-700">
-            Create my event
-            <svg class="ml-8" width="45" height="40" viewBox="0 0 45 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M11.2113 33.7887C11.0161 33.9839 11.0157 34.3009 11.2157 34.4911C13.956 37.0978 17.3821 38.8765 21.0982 39.6157C24.9778 40.3874 28.9991 39.9913 32.6537 38.4776C36.3082 36.9638 39.4318 34.4004 41.6294 31.1114C43.827 27.8224 45 23.9556 45 20C45 16.0444 43.827 12.1776 41.6294 8.8886C39.4318 5.59961 36.3082 3.03616 32.6537 1.52241C28.9991 0.00865715 24.9778 -0.38741 21.0982 0.384294C17.3821 1.12346 13.956 2.90221 11.2157 5.50886C11.0157 5.69911 11.0161 6.01609 11.2113 6.21127C11.4065 6.40645 11.7225 6.4059 11.9227 6.21592C14.523 3.74892 17.7711 2.06527 21.2932 1.36468C24.9789 0.631541 28.7993 1.00781 32.2711 2.44591C35.743 3.88401 38.7105 6.31934 40.7983 9.44394C42.8861 12.5685 44.0004 16.2421 44.0004 20C44.0004 23.7579 42.8861 27.4315 40.7983 30.5561C38.7105 33.6807 35.743 36.116 32.2711 37.5541C28.7993 38.9922 24.9789 39.3685 21.2932 38.6353C17.7711 37.9347 14.523 36.2511 11.9227 33.7841C11.7225 33.5941 11.4065 33.5935 11.2113 33.7887Z"
-                fill="#1F2937"
-              />
-              <path d="M1 20H29" stroke="#1F2937" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M21 28L29 20" stroke="#1F2937" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M21 12L29 20" stroke="#1F2937" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </a>
-        </div>
-      </div>
-      <div class="xl:w-4/6 md:w-1/2 w-full xl:pl-48">
-        <p role="contentinfo" class="focus:outline-none text-base leading-6 mb-8 text-gray-600 md:mt-0 mt-10">“Don’t get carried away with super-short paragraphs. The secret to one-sentence paragraphs is to use them like a spice: A pinch of cumin can make a meal more savory, but I don’t want to eat a plateful of the stuff.”</p>
-        <div class="w-full">
-          <img src="assets/images/ill_20.jpeg" alt="Purple flowers on a book" class="lg:w-3/5 xl:w-3/5 w-full rounded" />
-          <div class="flex items-center mt-8">
-            <p role="contentinfo" class="text-xl focus:outline-none font-semibold leading-5 text-gray-700">Picture description</p>
-            <p role="contentinfo" class="text-xl focus:outline-none italic font-italic leading-5 pl-2 text-gray-700">Specification</p>
+  <section id="presentation-my-events" class="max-w-7xl mx-auto">
+    <div class="py-12">
+      <div class="lg:flex items-center justify-center lg:space-x-12 2xl:space-x-6">
+        <div class="">
+          <p class="lg:text-4xl text-3xl font-extrabold leading-9 text-gray-800">My Events</p>
+          <p class="text-lg leading-7 text-gray-600 mt-4 xl:w-7/12 w-full">
+            Create your events on the platform and manage them intelligently with our intuitive and dynamic modules at your disposal. </p>
+          <div class="lg:hidden lg:w-3/5 xl:w-3/5 w-full lg:mt-0 mt-6">
+            <img src="assets/images/ill_20.jpeg" alt="ongoing meeting" class="w-full obejct-fit object-center object-fill h-full" />
           </div>
+          <div class="mt-6 md:mt-10 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 lg:mt-6 2xl:mt-12">
+            <div class="flex items-center">
+              <div class="w-16 h-16 relative">
+                <div class=" flex-shrink-0 z-20  w-16 h-16 flex items-center justify-center mt-2 mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+              <div class="flex items-start flex-col ml-6 pt-8">
+                <h2 class="text-lg font-semibold leading-4 text-gray-800">Contact professionals</h2>
+                <p class="lg:w-40 2xl:w-52 text-base leading-6 mt-2 text-gray-600">Easily find and message vendors right from your WeddingWire account.</p>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div class="w-16 h-16 relative">
+                <div class=" flex-shrink-0 z-20  w-16 h-16 flex items-center justify-center mt-2 mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                    <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+              <div class="flex items-start flex-col ml-6 pt-8">
+                <h2 class="text-lg font-semibold leading-4 text-gray-800">Don't rely on memory</h2>
+                <p class="lg:w-40 2xl:w-52 text-base leading-6 mt-2 text-gray-600">Add notes and details about each vendor for later reference.</p>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div class="w-16 h-16 relative">
+                <div class=" flex-shrink-0 z-20  w-16 h-16 flex items-center justify-center mt-2 mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+              <div class="flex items-start flex-col ml-6 pt-8">
+                <h2 class="text-lg font-semibold leading-4 text-gray-800">Save your favorites</h2>
+                <p class="lg:w-40 2xl:w-52 text-base leading-6 mt-2 text-gray-600">Compare vendors with pricing and reviews to help you decide.</p>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div class="w-16 h-16 relative">
+                <div class=" flex-shrink-0 z-20  w-16 h-16 flex items-center justify-center mt-2 mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                  </svg>
+                </div>
+              </div>
+              <div class="flex items-start flex-col ml-6 pt-8">
+                <h2 class="text-lg font-semibold leading-4 text-gray-800">So what are you waiting for?</h2>
+                <p class="lg:w-40 2xl:w-52 text-base leading-6 mt-2 text-gray-600">Start with an unprecedented experience.</p>
+                <p class="mt-2 text-base sm:text-lg md:text-xl 2xl:text-2xl text-gray-50">
+                  <button class="hover:bg-indigo-600 hover:text-white my-2 bg-transparent transition duration-150 ease-in-out focus:outline-none rounded text-indigo-600 border border-indigo-600 px-8 py-3 text-sm">Get your vendors</button>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hidden lg:block lg:w-3/5 xl:w-3/5 w-full lg:mt-0 mt-6">
+          <img src="assets/images/ill_20.jpeg" alt="ongoing meeting" class="w-full obejct-fit object-center object-fill h-full rounded-xl" />
         </div>
       </div>
     </div>
   </section>
 
-  <section id="presentation-vendor-manager">
-    <div class="xl:mx-auto xl:container  xl:px-20 md:px-6 px-4 py-12">
+  <section id="presentation-vendor-manager" class="max-w-7xl mx-auto">
+    <div class="py-12">
       <div class="lg:flex items-center justify-center lg:space-x-12 2xl:space-x-6">
         <div class="">
           <p class="lg:text-4xl text-3xl font-extrabold leading-9 text-gray-800">Vendor Manager</p>
@@ -231,145 +252,77 @@
     </div>
   </section>
 
-  <section class="px-6 xl:px-0 mx-auto container py-2" id="presentation-guests-lists">
-    <div class="">
-      <div class="">
-        <div class="lg:flex flex-wrap items-center">
-          <div class="lg:w-1/3 w-full pb-6 md:pb-0 md:pr-6">
-            <div class="w-full">
-              <h1 class="text-2xl lg:text-4xl font-bold text-indigo-900 tracking-wider lg:w-11/12 leading-relaxed capitalize">Managing your guest list</h1>
-              <div class="py-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="2" viewBox="0 0 60 2" fill="none">
-                  <rect width="60" height="2" fill="#E53E3E"></rect>
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="lg:w-2/3 w-full md:mt-10 lg:mt-0">
-            <div class="slider">
-              <div class="slide-ana">
-                <div class="lg:flex" style="transform: translateX(0%)">
-                  <div class="">
-                    <div class="relative h-96">
-                      <img class="absolute inset-0 object-cover object-center w-full h-full rounded" src="assets/images/ill_29.jpg" alt="" />
-                    </div>
-                    <div class="py-6 border-b border-gray-200">
-                      <h2 class="text-2xl text-indigo-900 font-bold capitalize">Add guests to your event</h2>
-                      <p class="py-3 text-sm text-gray-700 leading-7">You can add as many guests as you want to your event on our intuitive and smart module.</p>
-                    </div>
-                  </div>
-                  <div class="hidden lg:block lg:ml-8">
-                    <div class="relative h-96">
-                      <img class="absolute inset-0 object-cover object-center w-full h-full rounded" src="assets/images/ill_30.jpeg" alt="" />
-                    </div>
-                    <div class="py-6 border-b border-gray-200">
-                      <h2 class="text-2xl text-indigo-900 font-bold">Define guest status</h2>
-                      <p class="py-3 text-sm text-gray-700 leading-7">You can add the response of your guests on the platform in one click and in an efficient way.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="lg:flex" style="transform: translateX(100%)">
-                  <div class="">
-                    <div class="relative h-96">
-                      <img class="absolute inset-0 object-cover object-center w-full h-full" src="https://cdn.tuk.dev/assets/components/111220/events/eventsection1.png" alt="" />
-                    </div>
-                    <div class="py-6 border-b border-gray-200">
-                      <h2 class="text-2xl text-indigo-900 font-bold">Policy Level Decisions</h2>
-                      <p class="py-3 text-sm text-gray-700 leading-7">Our mission is to help people visualize, create & maintain beautiful homes. We bring to you inspiring visuals of cool homes and spaces.</p>
-                      <p class="text-sm text-red-600">Tuesday, 12th August, 2020</p>
-                      <div class="pt-6">
-                        <div class="flex justify-between w-full items-center text-gray-600 text-sm pl-2 pr-6">
-                          <div class="flex items-center">
-                            <div>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                                <circle cx="9" cy="9" r="7.5" stroke="#718096" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></circle>
-                                <path d="M9 4.8335V9.00016L11.5 11.5002" stroke="#718096" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
-                              </svg>
-                            </div>
-                            <p class="pl-1">4:00pm to 6:00pm</p>
-                          </div>
-                          <div class="flex items-center pl-2">
-                            <div>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 16 18" fill="none">
-                                <circle cx="8" cy="8.1665" r="2.5" stroke="#718096" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></circle>
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7141 12.8806L9.17831 16.4164C8.86602 16.729 8.44227 16.9047 8.0004 16.9047C7.55852 16.9047 7.13478 16.729 6.82248 16.4164L3.28581 12.8806C0.682416 10.2771 0.682489 6.05602 3.28597 3.45258C5.88946 0.84914 10.1105 0.84914 12.714 3.45258C15.3175 6.05602 15.3175 10.2771 12.7141 12.8806Z" stroke="#718096" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
-                              </svg>
-                            </div>
-                            <p class="pl-1">Manhattan, NY</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="hidden lg:block lg:ml-8">
-                    <div class="relative h-96">
-                      <img class="absolute inset-0 object-cover object-center w-full h-full" src="https://cdn.tuk.dev/assets/components/111220/events/eventsection2.png" alt="" />
-                    </div>
-                    <div class="py-6 border-b border-gray-200">
-                      <h2 class="text-2xl text-indigo-900 font-bold">Policy Level Decisions</h2>
-                      <p class="py-3 text-sm text-gray-700 leading-7">Our mission is to help people visualize, create & maintain beautiful homes. We bring to you inspiring visuals of cool homes and spaces.</p>
-                      <p class="text-sm text-red-600">Tuesday, 12th August, 2020</p>
-                      <div class="pt-6">
-                        <div class="flex justify-between w-full items-center text-gray-600 text-sm pl-2 pr-6">
-                          <div class="flex items-center">
-                            <div>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                                <circle cx="9" cy="9" r="7.5" stroke="#718096" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></circle>
-                                <path d="M9 4.8335V9.00016L11.5 11.5002" stroke="#718096" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
-                              </svg>
-                            </div>
-                            <p class="pl-1">4:00pm to 6:00pm</p>
-                          </div>
-                          <div class="flex items-center pl-2">
-                            <div>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 16 18" fill="none">
-                                <circle cx="8" cy="8.1665" r="2.5" stroke="#718096" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></circle>
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7141 12.8806L9.17831 16.4164C8.86602 16.729 8.44227 16.9047 8.0004 16.9047C7.55852 16.9047 7.13478 16.729 6.82248 16.4164L3.28581 12.8806C0.682416 10.2771 0.682489 6.05602 3.28597 3.45258C5.88946 0.84914 10.1105 0.84914 12.714 3.45258C15.3175 6.05602 15.3175 10.2771 12.7141 12.8806Z" stroke="#718096" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
-                              </svg>
-                            </div>
-                            <p class="pl-1">Manhattan, NY</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!--section class="py-5 bg-white" id="presentation-payment">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="lg:text-center">
-        <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Complicated to manage your providers?</h2>
-        <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">Payment management</p>
-        <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">Thanks to this module, you have the possibility to manage your providers easily with several options of your choice.</p>
-      </div>
-    </div>
-  </section-->
-
-  <section id="presentation-budget">
-    <div class="xl:mx-auto xl:container  xl:px-20 md:px-6 px-4 py-2">
+  <section id="presentation-guests-lists" class="max-w-7xl mx-auto">
+    <div class="py-12">
       <div class="lg:flex items-center justify-center lg:space-x-12 2xl:space-x-6">
         <div class="">
-          <p class="lg:text-4xl text-3xl font-extrabold leading-9 text-gray-800">Manage your Budget</p>
+          <p class="lg:text-4xl text-3xl font-extrabold leading-9 text-gray-800">Managing your guest list</p>
           <p class="text-lg leading-7 text-gray-600 mt-4 xl:w-7/12 w-full">
-            <span class="text-indigo-600 font-bold">Track your expenses, </span> <br>
-            List and keep track of your event expenses to help you stay on budget.
-          </p>
-          <p class="mt-2 text-base sm:text-lg md:text-xl 2xl:text-2xl text-gray-50">
-            <button class="hover:bg-indigo-600 hover:text-white my-2 bg-transparent transition duration-150 ease-in-out focus:outline-none rounded text-indigo-600 border border-indigo-600 px-8 py-3 text-sm">Add your expences</button>
-          </p>
+            Our mission is to help people visualize, create & maintain beautiful homes. We bring to you inspiring visuals of cool homes and spaces </p>
           <div class="lg:hidden lg:w-3/5 xl:w-3/5 w-full lg:mt-0 mt-6">
-            <img src="assets/images/ill_17.png.jpg" alt="ongoing meeting" class="w-full obejct-fit object-center object-fill h-full" />
+            <img src="assets/images/ill_29.jpg" alt="ongoing meeting" class="w-full obejct-fit object-center object-fill h-full" />
+          </div>
+          <div class="mt-6 md:mt-10 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 lg:mt-6 2xl:mt-12">
+            <div class="flex items-center">
+              <div class="w-16 h-16 relative">
+                <div class=" flex-shrink-0 z-20  w-16 h-16 flex items-center justify-center mt-2 mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+              <div class="flex items-start flex-col ml-6 pt-8">
+                <h2 class="text-lg font-semibold leading-4 text-gray-800">Contact professionals</h2>
+                <p class="lg:w-40 2xl:w-52 text-base leading-6 mt-2 text-gray-600">Easily find and message vendors right from your WeddingWire account.</p>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div class="w-16 h-16 relative">
+                <div class=" flex-shrink-0 z-20  w-16 h-16 flex items-center justify-center mt-2 mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                    <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+              <div class="flex items-start flex-col ml-6 pt-8">
+                <h2 class="text-lg font-semibold leading-4 text-gray-800">Don't rely on memory</h2>
+                <p class="lg:w-40 2xl:w-52 text-base leading-6 mt-2 text-gray-600">Add notes and details about each vendor for later reference.</p>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div class="w-16 h-16 relative">
+                <div class=" flex-shrink-0 z-20  w-16 h-16 flex items-center justify-center mt-2 mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+              <div class="flex items-start flex-col ml-6 pt-8">
+                <h2 class="text-lg font-semibold leading-4 text-gray-800">Save your favorites</h2>
+                <p class="lg:w-40 2xl:w-52 text-base leading-6 mt-2 text-gray-600">Compare vendors with pricing and reviews to help you decide.</p>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div class="w-16 h-16 relative">
+                <div class=" flex-shrink-0 z-20  w-16 h-16 flex items-center justify-center mt-2 mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                  </svg>
+                </div>
+              </div>
+              <div class="flex items-start flex-col ml-6 pt-8">
+                <h2 class="text-lg font-semibold leading-4 text-gray-800">So what are you waiting for?</h2>
+                <p class="lg:w-40 2xl:w-52 text-base leading-6 mt-2 text-gray-600">Start with an unprecedented experience.</p>
+                <p class="mt-2 text-base sm:text-lg md:text-xl 2xl:text-2xl text-gray-50">
+                  <button class="hover:bg-indigo-600 hover:text-white my-2 bg-transparent transition duration-150 ease-in-out focus:outline-none rounded text-indigo-600 border border-indigo-600 px-8 py-3 text-sm">Get your vendors</button>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="hidden lg:block lg:w-3/5 xl:w-3/5 w-full lg:mt-0 mt-6">
-          <img src="assets/images/ill_17.png" alt="ongoing meeting" class="w-full obejct-fit object-center object-fill h-full rounded-xl" />
+          <img src="assets/images/ill_29.jpg" alt="ongoing meeting" class="w-full obejct-fit object-center object-fill h-full rounded-xl" />
         </div>
       </div>
     </div>
@@ -445,20 +398,31 @@
     </div>
   </section>
 
-  <section class="bg-center bg-fixed bg-no-repeat bg-center bg-cover relative">
-    <div class="relative h-fit w-full flex items-center justify-center bg-cover bg-center" [style]="'background-image:url(assets/images/ill_18.jpg);'">
-      <div class="absolute top-0 right-0 bottom-0 left-0 bg-black opacity-75"></div>
-      <main class="px-10 lg:px-24 py-20" style="z-index: 1">
-        <div class="w-auto custom h-full flex px-4 justify-center items-center md:items-center flex-col px-20">
-          <p class="text-xl sm:text-2xl xl:text-4xl text-center md:text-center font-semibold leading-6 xl:leading-10 text-gray-100 w-full" >Create your free Evauxie account to start planning</p>
-          <p class="mt-4 md:w-80 lg:w-2/3 xl:w-3/4 text-center md:text-center  text-base leading-normal text-gray-200" >While you’re working on your wedding website, you should also start thinking about the guest list.</p>
-          <button routerLink="../register-customer" class="mt-6 shrink-0 w-full md:w-auto  lg:mt-8 py-2 md:py-3 px-10 flex justify-center duration-700  items-center text-base border-2 border-white transition hover:-translate-y-1 hover:bg-gray-100 hover:text-gray-800 font-medium text-white">
-            Sign Up
-          </button>
+  <section id="presentation-budget" class="max-w-7xl mx-auto">
+    <div class="py-2">
+      <div class="lg:flex items-center justify-center lg:space-x-12 2xl:space-x-6">
+        <div class="">
+          <p class="lg:text-4xl text-3xl font-extrabold leading-9 text-gray-800">Manage your Budget</p>
+          <p class="text-lg leading-7 text-gray-600 mt-4 xl:w-7/12 w-full">
+            <span class="text-indigo-600 font-bold">Track your expenses, </span> <br>
+            List and keep track of your event expenses to help you stay on budget.
+          </p>
+          <p class="mt-2 text-base sm:text-lg md:text-xl 2xl:text-2xl text-gray-50">
+            <button class="hover:bg-indigo-600 hover:text-white my-2 bg-transparent transition duration-150 ease-in-out focus:outline-none rounded text-indigo-600 border border-indigo-600 px-8 py-3 text-sm">Add your expences</button>
+          </p>
+          <div class="lg:hidden lg:w-3/5 xl:w-3/5 w-full lg:mt-0 mt-6">
+            <img src="assets/images/ill_17.png.jpg" alt="ongoing meeting" class="w-full obejct-fit object-center object-fill h-full" />
+          </div>
         </div>
-      </main>
+        <div class="hidden lg:block lg:w-3/5 xl:w-3/5 w-full lg:mt-0 mt-6">
+          <img src="assets/images/ill_17.png" alt="ongoing meeting" class="w-full obejct-fit object-center object-fill h-full rounded-xl" />
+        </div>
+      </div>
     </div>
   </section>
 
-  <app-footer></app-footer>
 </section>
+
+<br><br><br><br><br>
+
+<app-footer></app-footer>

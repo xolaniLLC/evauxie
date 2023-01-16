@@ -24,6 +24,8 @@ export class NavbarComponent implements OnInit {
   userDropdown = false;
   categories: CategorieActivite[] = [];
   sousCategoriesVenue: CategorieActivite[] = [];
+  isLoadingCat = true;
+  isLoadingSousCatVenu = true;
 
   constructor(private categorieService: CategoriesService, private messageService: MessageService, private userService: UserService, private authService: AuthentificationService, private router: Router) { }
 
@@ -31,10 +33,10 @@ export class NavbarComponent implements OnInit {
     this.authService.isAuthenticated().then(
       (val) => {
         if(val) {
-          this.isConnected = 1;
           const tmpData: any = firebase.auth().currentUser?.email;
           this.userService.getInfosUserWitchId(tmpData).then(
             (data) => {
+              this.isConnected = 1;
               this.currentUser = data;
 
               this.messageService.getMesMessagesNonLus().then(
@@ -51,12 +53,14 @@ export class NavbarComponent implements OnInit {
     this.categorieService.getCategoriesActivites().then(
       (data) => {
         this.categories = data;
+        this.isLoadingCat = false;
       }
     )
 
     this.categorieService.getSousCategoriesActivites('318a527a244caec0556dae').then(
       (data) => {
         this.sousCategoriesVenue = data;
+        this.isLoadingSousCatVenu = false;
       }
     )
   }

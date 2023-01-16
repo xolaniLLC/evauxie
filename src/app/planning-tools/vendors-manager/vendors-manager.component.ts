@@ -40,7 +40,7 @@ export class VendorsManagerComponent implements OnInit {
             pointe.event_en_cours.companySollicite.forEach(function (dc: any) {
               pointe.companyService.getCompanyWitchId(dc).then(
                 (data) => {
-                  if(data.eventEnCours.includes(pointe.event_en_cours.id)) {
+                  if(data.eventEnCours.includes(pointe.event_en_cours.id) && data.verifier) {
                     pointe.companyBooked.push(data.id);
                   }
                 }
@@ -69,7 +69,12 @@ export class VendorsManagerComponent implements OnInit {
   requestBooked(idCompany: string, idEvent: string) {
     this.companyService.getCompanyWitchId(idCompany).then(
       (data) => {
-        this.writeMailService.new(data.administrateurs as any, 'Request book #' + data.id + '@' + idEvent + '#', 'Hello! We are interested in your service at your facility. Could you manage us for our event? Thank you!', '');
+        this.writeMailService.new(data.administrateurs as any, 'Request book #' + data.id + '@' + idEvent + '#',
+          'Hello! We are interested in your service at your facility.' +
+          'Delivery date : \n' +
+          'Agreed price of service : \n' +
+          'Description of service : \n',
+          '');
       }
     );
   }

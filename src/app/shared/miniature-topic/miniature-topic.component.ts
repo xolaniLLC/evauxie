@@ -54,6 +54,10 @@ export class MiniatureTopicComponent implements OnInit {
     );
   }
 
+  extractTextPure(text: string) : string {
+    return text.replace(/<([^>])*>/g,'').replace(/\&nbsp;/g, '');
+  }
+
   minEcouler(date: any): number {
 
     const startDate = new Date(date);

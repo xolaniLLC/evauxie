@@ -91,6 +91,7 @@ export class MiniatureCompanyComponent implements OnInit {
   }
 
   requestPrice() {
+    this.updateLikeCompany();
     this.writeMailService.new(this.currentCompany.administrateurs, 'Request pricing', 'Hello everyone! We are interested in your service at your facility. Could you please send us some information about your packages? Thank you!', '');
   }
 

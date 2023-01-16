@@ -67,7 +67,7 @@
       </div> <br>
       <div class="w-full">
         <p class="text-xs md:text-sm font-medium leading-none text-gray-500 uppercase">Difference</p>
-        <input readonly (change)="saveNewEstimatBudget(event_en_cours.estimationBudget)" class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-3 text-gray-800 mt-1" [ngModel]="(recupTotalDepense().ec - recupTotalDepense().fc)" />
+        <input readonly (change)="saveNewEstimatBudget(event_en_cours.estimationBudget)" class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-3 text-gray-800 mt-1" [ngModel]="(event_en_cours.estimationBudget - recupTotalDepense().fc)" />
       </div>
       <div *ngIf="liste_task_en_cours.length > 0" class="text-right mt-3">
         <a routerLink="../../planning-tools/budget" class="text-indigo-600 font-medium">View all</a>
@@ -161,4 +161,7 @@
     <app-miniature-topic skin="item" idTopic="{{topic.id}}" *ngFor="let topic of listeTopics"></app-miniature-topic>
   </div>
 </section>
+
+<br><br><br><br>
+
 <app-footer></app-footer>

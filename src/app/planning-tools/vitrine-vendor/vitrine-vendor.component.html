@@ -2,11 +2,18 @@
 
 <app-menu-company-management></app-menu-company-management>
 
-<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+<section *ngIf="isLoadingCompany" class="text-center p-20">
+  <svg  role="status" class="inline mr-3 h-24 w-24 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+  </svg>
+</section>
+
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10" *ngIf="!isLoadingCompany">
   <div class="grid grid-cols-2 grid-rows-1">
-    <h2 (click)="addSousCategorie()" class="float-left text-2xl font-bold text-gray-800 dark:text-gray-100">Your companie</h2>
+    <h2 class="float-left text-2xl font-bold text-gray-800 dark:text-gray-100">Your companie</h2>
     <div>
-      <button [disabled]="listCompany.length > 0" (click)="addNewCompany()" class="{{listCompany.length === 0 ? 'animate-pulse' : ''}} disabled:bg-gray-400 disabled:text-gray-200 w-fit float-right px-4 py-2 font-semibold tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80">
+      <button *ngIf="listCompany.length === 0" [disabled]="listCompany.length === 0" (click)="addNewCompany()" class="{{listCompany.length === 0 ? 'animate-pulse' : ''}} disabled:bg-gray-400 disabled:text-gray-200 w-fit float-right px-4 py-2 font-semibold tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80">
         + Add a new company
       </button>
     </div>
@@ -53,7 +60,7 @@
   </div>
 </section>
 
-<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-gray-600 body-font" *ngIf="currentCompany && !currentCompany.date">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-gray-600 body-font" *ngIf="!isLoadingCompany && currentCompany && !currentCompany.date">
   <div class="container mx-auto flex flex-wrap">
     <h2 class="float-left text-2xl font-bold text-gray-800 dark:text-gray-100">List of your companies</h2>
     <div class="flex flex-wrap w-full px-5 py-5">
@@ -436,13 +443,13 @@
             <form #form="ngForm" (ngSubmit)="save()">
               <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                 <div>
-                  <label class="text-gray-700 dark:text-gray-200" for="priceMin">$ *</label>
-                  <input required id="priceMin" min="1" max="3" maxlength="1" name="text" [(ngModel)]="currentCompany.price[0]" type="number" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                  <label class="text-gray-700 dark:text-gray-200" for="priceMin">Min *</label>
+                  <input required id="priceMin" min="1" maxlength="1" name="text" [(ngModel)]="currentCompany.price[0]" type="number" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                 </div>
 
                 <div>
-                  <label class="text-gray-700 dark:text-gray-200" for="priceMax">$$ *</label>
-                  <input required id="priceMax" min="2" max="4" maxlength="1" type="number" name="priceMax" [(ngModel)]="currentCompany.price[1]" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                  <label class="text-gray-700 dark:text-gray-200" for="priceMax">Max *</label>
+                  <input required id="priceMax" min="1" maxlength="1" type="number" name="priceMax" [(ngModel)]="currentCompany.price[1]" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                 </div>
 
                 <div>
@@ -450,6 +457,15 @@
                   <select [(ngModel)]="currentCompany.devise" required name="devise" id="devise" class="mt-2 block border border-gray-200 rounded-md px-4 py-2 font-medium text-gray-700 bg-transparent dark:text-gray-500 focus:outline-none">
                     <option value="xaf">FCFA (xaf)</option>
                     <option value="xof">FCFA (xof)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="text-gray-700 dark:text-gray-200" for="devise">Affordability * &nbsp;</label>
+                  <select [(ngModel)]="currentCompany.affordbility" required name="affordbility" id="affordbility" class="block border border-gray-200 rounded-md mt-2 px-4 py-2 font-medium text-gray-700 bg-transparent dark:text-gray-500 focus:outline-none">
+                    <option value="xaf">Cheap</option>
+                    <option value="xof">Affordable</option>
+                    <option value="xof">Expensive</option>
                   </select>
                 </div>
               </div>
@@ -467,17 +483,68 @@
 
               <fieldset class="my-3 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1">
                 <div *ngFor="let cat of categoriesActivity" class="flex items-center mb-4">
-                  <input (click)="currentCompany.categorie = cat.id" id="country-option-{{cat.id}}" type="radio" name="categorie-{{cat.id}}" value="{{cat.id}}" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-indigo-300 dark:focus:ring-indigo-600 dark:focus:bg-indigo-600 dark:bg-gray-700 dark:border-gray-600" [checked]="currentCompany.categorie === cat.id ? true : false">
+                  <input [disabled]="sousCategorisActivity.length > 0" (click)="currentCompany.categorie = cat.id; getSousCategorieElement(cat.id);" id="country-option-{{cat.id}}" type="radio" name="categorie-{{cat.id}}" value="{{cat.id}}" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-indigo-300 dark:focus:ring-indigo-600 dark:focus:bg-indigo-600 dark:bg-gray-700 dark:border-gray-600" [checked]="currentCompany.categorie === cat.id ? true : false">
                   <label for="country-option-{{cat.id}}" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 capitalize">
                     {{cat.titre}}
                   </label>
                 </div>
               </fieldset>
-
+              <div class="my-3 border-t border-gray-500 py-5" *ngIf="sousCategorisActivity.length > 0">
+                <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1">
+                  <h3 class="font-medium text-indigo-700">Choose a sub-category</h3>
+                  <span class="font-semibold text-red-700 cursor-pointer" (click)="sousCategorisActivity = []">Cancel</span>
+                </div>
+                <fieldset class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 py-5">
+                  <div *ngFor="let cat of sousCategorisActivity" class="flex items-center mb-4">
+                    <input (click)="currentCompany.categorie = cat.id" id="country-option-{{cat.id}}" type="radio" name="categorie-{{cat.id}}" value="{{cat.id}}" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-indigo-300 dark:focus:ring-indigo-600 dark:focus:bg-indigo-600 dark:bg-gray-700 dark:border-gray-600" [checked]="currentCompany.categorie === cat.id">
+                    <label for="country-option-{{cat.id}}" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 capitalize">
+                      {{cat.titre}}
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
             </form>
           </div>
         </div>
+
         <div *ngIf="stepMake === 2" class="space-y-5">
+          <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
+            <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Photo profil</h2>
+            <div class="mb-2"> <span>Change the profile picture of your company</span>
+              <form [formGroup]="uploadForm">
+                <div class="my-3 relative h-56 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
+                  <div class="absolute">
+                    <div class="flex flex-col items-center ">
+                      <svg *ngIf="isUploadLogoProfil" role="status" class="inline mr-3 h-24 w-24 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+                        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+                      </svg>
+                      <svg *ngIf="!isUploadLogoProfil && currentCompany && !currentCompany.logo" xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <img *ngIf="!isUploadLogoProfil && currentCompany && currentCompany.logo" class="rounded-full h-24 w-24 object-cover border-white dark:border-gray-700 border-2 bg-gray-400"
+                           [src]="currentCompany.logo"
+                           alt="Profil" />
+                      <span *ngIf="!isUploadLogoProfil" class="block text-gray-400 font-normal">Drag your photos here</span> <span *ngIf="!isUploadLogoProfil" class="block text-gray-400 font-normal">or</span>
+                      <div *ngIf="!isUploadLogoProfil" class="flex space-x-2">
+                        <button type="button" class="focus:outline-none text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-semibold rounded-lg text-base px-3 py-2">Add photos</button>
+                      </div>
+                    </div>
+                  </div> <input type="file" accept="image/*" formControlName="fileProfil" (change)="onImageProfilChange($event)" multiple class="h-full w-full opacity-0" name="file">
+                </div>
+                <div class="flex justify-between items-center text-gray-400"> <span>Accepted file type:.png, .jpg, .gif</span>
+                  <span class="flex items-center ">
+                      <svg *ngIf="!currentCompany.logo" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      </svg>
+                      <svg *ngIf="currentCompany.logo" (click)="currentCompany.logo = ''" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-700 hover:text-red-500">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                      </svg>
+                    </span>
+                </div>
+              </form>
+            </div>
+          </div>
           <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
             <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Photo library</h2>
             <div class="mb-2"> <span>Add at least 8 photos of your company, they will be displayed on your window</span>
@@ -485,10 +552,14 @@
                 <div class="my-3 relative h-56 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
                   <div class="absolute">
                     <div class="flex flex-col items-center ">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                      <svg *ngIf="isUploadPhototeque" role="status" class="inline mr-3 h-24 w-24 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+                        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+                      </svg>
+                      <svg *ngIf="!isUploadPhototeque" xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
-                      <span class="block text-gray-400 font-normal">Drag your photos here</span> <span class="block text-gray-400 font-normal">or</span> <button type="button" class="focus:outline-none text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-semibold rounded-lg text-base px-3 py-2 m-2 dark:bg-indigo-500 dark:hover:bg-indigo-600 dark:focus:ring-indigo-800">Add photos</button> </div>
+                      <span *ngIf="!isUploadPhototeque" class="block text-gray-400 font-normal">Drag your photos here</span> <span *ngIf="!isUploadPhototeque" class="block text-gray-400 font-normal">or</span> <button *ngIf="!isUploadPhototeque" type="button" class="focus:outline-none text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-semibold rounded-lg text-base px-3 py-2 m-2 dark:bg-indigo-500 dark:hover:bg-indigo-600 dark:focus:ring-indigo-800">Add photos</button> </div>
                   </div> <input type="file" accept="image/*" formControlName="file" (change)="onImageChange($event)" multiple class="h-full w-full opacity-0" name="file">
                 </div>
                 <div class="flex justify-between items-center text-gray-400"> <span>Accepted file type:.png, .jpg, .gif</span> <span class="flex items-center ">
@@ -498,23 +569,20 @@
               </form>
             </div>
             <div class="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" *ngIf="currentCompany">
-              <div *ngFor="let img of imgFile; let i = index;" class="flex flex-col items-center justify-center w-full max-w-lg mx-auto">
-                <img class="object-cover w-full rounded-md h-72 xl:h-80" src="{{img}}" alt="T-Shirt">
-                <button class="flex items-center justify-center w-full px-2 py-2 mt-4 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-red-500 rounded-md hover:bg-red-400 focus:outline-none focus:bg-red-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-1" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                  </svg>
-                  <span class="mx-1" (click)="removePhotoTmp(i)">Remove</span>
-                </button>
-              </div>
               <div *ngFor="let img of currentCompany.phototheque; let i = index;" class="flex flex-col items-center justify-center w-full max-w-lg mx-auto">
                 <img class="object-cover w-full rounded-md h-72 xl:h-80" src="{{img}}" alt="T-Shirt">
-                <button class="flex items-center justify-center w-full px-2 py-2 mt-4 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-orange-500 rounded-md hover:bg-orange-400 focus:outline-none focus:bg-orange-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-1" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                  </svg>
-                  <span class="mx-1" (click)="removePhoto(i)">Remove</span>
-                </button>
+                <div class="flex space-x-2">
+                  <button (click)="definePrimaryPicture(i)" title="Define as main picture" *ngIf="i !== 0" class="items-center justify-center w-full px-2 py-2 mt-4 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-indigo-700 rounded-md hover:bg-red-400 focus:outline-none focus:bg-red-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 mx-1">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 11.25l-3-3m0 0l-3 3m3-3v7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </button>
+                  <button (click)="removePhoto(i)" class="items-center justify-center w-full px-2 py-2 mt-4 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-red-500 rounded-md hover:bg-red-400 focus:outline-none focus:bg-red-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-1" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -576,7 +644,7 @@
   </div>
 </section>
 
-<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5" *ngIf="currentCompany && currentCompany.date">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5" *ngIf="!isLoadingCompany && currentCompany && currentCompany.date">
   <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Information about the selected company</h2>
   <div *ngIf="!currentCompany.verify" id="alert-border-5" class="flex p-4 my-4 bg-gray-100 border-t-4 border-gray-500 dark:bg-gray-700" role="alert">
     <svg class="flex-shrink-0 w-5 h-5 text-gray-700 dark:text-gray-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
@@ -643,13 +711,13 @@
               <form #form="ngForm" (ngSubmit)="save()">
                 <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="priceMin_0">$ *</label>
-                    <input required id="priceMin_0" min="1" max="3" maxlength="1"  name="text" [(ngModel)]="currentCompany.price[0]" type="number" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                    <label class="text-gray-700 dark:text-gray-200" for="priceMin_0">Min *</label>
+                    <input required id="priceMin_0" min="1" maxlength="1"  name="text" [(ngModel)]="currentCompany.price[0]" type="number" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                   </div>
 
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="priceMax_0">$$ *</label>
-                    <input required id="priceMax_0" min="2" max="4" maxlength="1" type="number" name="priceMax" [(ngModel)]="currentCompany.price[1]" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                    <label class="text-gray-700 dark:text-gray-200" for="priceMax_0">Max *</label>
+                    <input required id="priceMax_0" min="1" maxlength="1" type="number" name="priceMax" [(ngModel)]="currentCompany.price[1]" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                   </div>
 
                   <div>
@@ -659,6 +727,49 @@
                       <option value="xof">FCFA (xof)</option>
                     </select>
                   </div>
+
+                  <div>
+                    <label class="text-gray-700 dark:text-gray-200" for="devise">Affordability * &nbsp;</label>
+                    <select [(ngModel)]="currentCompany.affordbility" required name="affordbility" id="affordbility_0" class="block border border-gray-200 rounded-md mt-2 px-4 py-2 font-medium text-gray-700 bg-transparent dark:text-gray-500 focus:outline-none">
+                      <option value="xaf">Cheap</option>
+                      <option value="xof">Affordable</option>
+                      <option value="xof">Expensive</option>
+                    </select>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
+              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Sector of activity</h2>
+
+              <p *ngIf="categoriesActivity.length === 0" class="text-gray-500 text-sm py-1">
+                No sector of activity for the moment
+              </p>
+
+              <form #form="ngForm" (ngSubmit)="save()">
+
+                <fieldset class="my-3 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1">
+                  <div *ngFor="let cat of categoriesActivity" class="flex items-center mb-4">
+                    <input [disabled]="sousCategorisActivity.length > 0" (click)="currentCompany.categorie = cat.id; getSousCategorieElement(cat.id);" id="country-option-{{cat.id}}" type="radio" name="categorie-{{cat.id}}" value="{{cat.id}}" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-indigo-300 dark:focus:ring-indigo-600 dark:focus:bg-indigo-600 dark:bg-gray-700 dark:border-gray-600" [checked]="currentCompany.categorie === cat.id">
+                    <label for="country-option-{{cat.id}}" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 capitalize">
+                      {{cat.titre}}
+                    </label>
+                  </div>
+                </fieldset>
+                <div class="my-3 border-t border-gray-500 py-5" *ngIf="sousCategorisActivity.length > 0">
+                  <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1">
+                    <h3 class="font-medium text-indigo-700">Choose a sub-category</h3>
+                    <span class="font-semibold text-red-700 cursor-pointer" (click)="sousCategorisActivity = []">Cancel</span>
+                  </div>
+                  <fieldset class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 py-5">
+                    <div *ngFor="let cat of sousCategorisActivity" class="flex items-center mb-4">
+                      <input (click)="currentCompany.categorie = cat.id" id="country-option-{{cat.id}}" type="radio" name="categorie-{{cat.id}}" value="{{cat.id}}" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-indigo-300 dark:focus:ring-indigo-600 dark:focus:bg-indigo-600 dark:bg-gray-700 dark:border-gray-600" [checked]="currentCompany.categorie === cat.id">
+                      <label for="country-option-{{cat.id}}" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 capitalize">
+                        {{cat.titre}}
+                      </label>
+                    </div>
+                  </fieldset>
                 </div>
               </form>
             </div>
@@ -687,7 +798,7 @@
                   </div>
 
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="pays_0">City *</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="pays_0">Country *</label>
                     <select disabled required [(ngModel)]="currentCompany.pays" name="pays" id="pays_0" class="disabled:bg-gray-200 disabled:text-gray-400 block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                       <option value="" selected="selected">Choose a country</option>
 
@@ -998,16 +1109,57 @@
 
           <div *ngIf="sousMenu === 4" class="space-y-5">
             <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
+              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Photo profil</h2>
+              <div class="mb-2"> <span>Change the profile picture of your company</span>
+                <form [formGroup]="uploadForm">
+                  <div class="my-3 relative h-56 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
+                    <div class="absolute">
+                      <div class="flex flex-col items-center ">
+                        <svg *ngIf="isUploadLogoProfil" role="status" class="inline mr-3 h-24 w-24 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+                          <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+                        </svg>
+                        <svg *ngIf="!isUploadLogoProfil && currentCompany && !currentCompany.logo" xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <img *ngIf="!isUploadLogoProfil && currentCompany && currentCompany.logo" class="rounded-full h-24 w-24 object-cover border-white dark:border-gray-700 border-2 bg-gray-400"
+                             [src]="currentCompany.logo"
+                             alt="Profil" />
+                        <span *ngIf="!isUploadLogoProfil" class="block text-gray-400 font-normal">Drag your photos here</span> <span *ngIf="!isUploadLogoProfil" class="block text-gray-400 font-normal">or</span>
+                        <div *ngIf="!isUploadLogoProfil" class="flex space-x-2">
+                          <button type="button" class="focus:outline-none text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-semibold rounded-lg text-base px-3 py-2">Add photos</button>
+                        </div>
+                      </div>
+                    </div> <input type="file" accept="image/*" formControlName="fileProfil" (change)="onImageProfilChange($event)" multiple class="h-full w-full opacity-0" name="file">
+                  </div>
+                  <div class="flex justify-between items-center text-gray-400"> <span>Accepted file type:.png, .jpg, .gif</span>
+                    <span class="flex items-center ">
+                      <svg *ngIf="!currentCompany.logo" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      </svg>
+                      <svg *ngIf="currentCompany.logo" (click)="currentCompany.logo = ''" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-700 hover:text-red-500">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                      </svg>
+                    </span>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
               <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Photo library</h2>
               <div class="mb-2"> <span>Add at least 8 photos of your company, they will be displayed on your window</span>
                 <form [formGroup]="uploadForm">
                   <div class="my-3 relative h-56 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
                     <div class="absolute">
                       <div class="flex flex-col items-center ">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                        <svg *ngIf="isUploadPhototeque" role="status" class="inline mr-3 h-24 w-24 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+                          <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+                        </svg>
+                        <svg *ngIf="!isUploadPhototeque" xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
-                        <span class="block text-gray-400 font-normal">Drag your photos here</span> <span class="block text-gray-400 font-normal">or</span> <button type="button" class="focus:outline-none text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-semibold rounded-lg text-base px-3 py-2 m-2 dark:bg-indigo-500 dark:hover:bg-indigo-600 dark:focus:ring-indigo-800">Add photos</button> </div>
+                        <span *ngIf="!isUploadPhototeque" class="block text-gray-400 font-normal">Drag your photos here</span> <span *ngIf="!isUploadPhototeque" class="block text-gray-400 font-normal">or</span> <button *ngIf="!isUploadPhototeque" type="button" class="focus:outline-none text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-semibold rounded-lg text-base px-3 py-2 m-2 dark:bg-indigo-500 dark:hover:bg-indigo-600 dark:focus:ring-indigo-800">Add photos</button> </div>
                     </div> <input type="file" accept="image/*" formControlName="file" (change)="onImageChange($event)" multiple class="h-full w-full opacity-0" name="file">
                   </div>
                   <div class="flex justify-between items-center text-gray-400"> <span>Accepted file type:.png, .jpg, .gif</span> <span class="flex items-center ">
@@ -1017,23 +1169,20 @@
                 </form>
               </div>
               <div class="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" *ngIf="currentCompany">
-                <div *ngFor="let img of imgFile; let i = index;" class="flex flex-col items-center justify-center w-full max-w-lg mx-auto">
-                  <img class="object-cover w-full rounded-md h-72 xl:h-80" src="{{img}}" alt="T-Shirt">
-                  <button class="flex items-center justify-center w-full px-2 py-2 mt-4 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-red-500 rounded-md hover:bg-red-400 focus:outline-none focus:bg-red-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-1" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                    <span class="mx-1" (click)="removePhotoTmp(i)">Remove</span>
-                  </button>
-                </div>
                 <div *ngFor="let img of currentCompany.phototheque; let i = index;" class="flex flex-col items-center justify-center w-full max-w-lg mx-auto">
                   <img class="object-cover w-full rounded-md h-72 xl:h-80" src="{{img}}" alt="T-Shirt">
-                  <button class="flex items-center justify-center w-full px-2 py-2 mt-4 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-orange-500 rounded-md hover:bg-orange-400 focus:outline-none focus:bg-orange-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-1" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                    <span class="mx-1" (click)="removePhoto(i)">Remove</span>
-                  </button>
+                  <div class="flex space-x-2">
+                    <button (click)="definePrimaryPicture(i)" title="Define as main picture" *ngIf="i !== 0" class="items-center justify-center w-full px-2 py-2 mt-4 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-indigo-700 rounded-md hover:bg-red-400 focus:outline-none focus:bg-red-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 mx-1">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 11.25l-3-3m0 0l-3 3m3-3v7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </button>
+                    <button (click)="removePhoto(i)" class="items-center justify-center w-full px-2 py-2 mt-4 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-red-500 rounded-md hover:bg-red-400 focus:outline-none focus:bg-red-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-1" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1056,5 +1205,7 @@
     </div>
   </div>
 </section>
+
+<br><br><br><br><br>
 
 <app-footer></app-footer>

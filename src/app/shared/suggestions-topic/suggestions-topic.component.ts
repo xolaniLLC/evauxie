@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Topic} from "../../models/topic";
 import {ForumService} from "../../services/forum.service";
 
@@ -9,16 +9,35 @@ import {ForumService} from "../../services/forum.service";
 })
 export class SuggestionsTopicComponent implements OnInit {
 
+  @Input() skin = 'lateral';
   listeTopics: Topic[] = [];
+  isLoading = true;
 
   constructor(private forumService: ForumService) { }
 
   ngOnInit(): void {
     this.forumService.getTopics().then(
       (result) => {
-        this.listeTopics = result;
+        this.isLoading =false;
+        let pointe = this;
+        result.forEach(function (doc) {
+          pointe.listeTopics.push(doc);
+        });
       }
     );
+  }
+
+  extractTextPure(text: string) : string {
+    return text.replace(/<([^>])*>/g,'').replace(/\&nbsp;/g, '');
+  }
+
+  extractImage(brute: string) {
+    let result = '';
+    let e1 = brute.split('img src="');
+    if(e1.length > 1) {
+      result = e1[1].split('"')[0];
+    }
+    return result;
   }
 
 }

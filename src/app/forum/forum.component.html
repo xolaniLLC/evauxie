@@ -5,8 +5,8 @@
     <div class="absolute top-0 right-0 bottom-0 left-0 bg-black opacity-75"></div>
     <main class="px-10 lg:px-24 py-20" style="z-index: 1">
       <div class="lg:w-auto custom md:mt-0 h-full flex px-4 md:px-0  z-10 justify-center items-center md:items-start flex-col md:pl-20 lg:px-20 2xl:px-44">
-        <p class="text-xl sm:text-2xl xl:text-4xl text-center md:text-left font-semibold leading-6 xl:leading-10 text-gray-100 md:w-96 2xl:w-2/3" >Start Your Discussion</p>
-        <p class="mt-4 md:w-80 lg:w-2/3 xl:w-3/4 text-center md:text-left  text-base leading-normal text-gray-200" >Ask questions and get answers with the help of other engaged couples.</p>
+        <p class="text-xl sm:text-2xl xl:text-4xl text-center md:text-left font-semibold leading-6 xl:leading-10 text-gray-100 w-full" >Start Your Discussion</p>
+        <p class="mt-4 w-full text-center md:text-left  text-base leading-normal text-gray-200" >Ask questions and get answers with the help of other engaged couples.</p>
         <button routerLink="../new-topic" class="mt-6 shrink-0 w-full md:w-auto  lg:mt-8 py-2 md:py-3 px-10 flex justify-center duration-700  items-center text-base border-2 border-white transition hover:-translate-y-1 hover:bg-gray-100 hover:text-gray-800 font-medium text-white">
           Start Discussion
         </button>
@@ -34,46 +34,9 @@
           <p *ngIf="listeTopics.length === 0" class="py-6 text-gray-500">
             No discussion at this time
           </p>
-          <ul *ngIf="listeTopics.length > 0" class="flex flex-col md:flex-row items-start md:items-center text-gray-600 dark:text-gray-400 text-sm mt-3">
-            <li class="flex items-center mr-4 text-xl">
-              <div class="mr-1">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-paperclip" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
-                </svg>
-              </div>
-              <span>All</span>
-            </li>
-            <li class="flex items-center mr-4 mt-4 md:mt-0 text-xl">
-              <div class="mr-1">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trending-up" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" />
-                  <polyline points="3 17 9 11 13 15 21 7" />
-                  <polyline points="14 7 21 7 21 14" />
-                </svg>
-              </div>
-              <span>Most popular</span>
-            </li>
-            <li class="flex items-center mt-4 md:mt-0 text-xl">
-              <div class="mr-1">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plane-departure" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <span>Recent Discussion</span>
-            </li>
-          </ul>
         </div>
         <div>
           <div class="relative inline-block text-left py-6">
-            <div>
-              <button (click)="printMenuCategorie ? printMenuCategorie = false : printMenuCategorie = true" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="menu-button" aria-expanded="true" aria-haspopup="true">
-                Select the category to display
-                <!-- Heroicon name: solid/chevron-down -->
-                <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-              </button>
-            </div>
 
             <ul *ngIf="printMenuCategorie"
                 class="p-2 w-40 border-r bg-white absolute rounded right-0 shadow top-0 mt-16 ">

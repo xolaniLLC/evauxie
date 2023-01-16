@@ -38,6 +38,23 @@ export class CompanyService {
     });
   }
 
+  async getAllCompanies() {
+    return new Promise<Company[]>((resolve, reject) => {
+      // @ts-ignore
+      firebase.firestore().collection('companies').onSnapshot(
+        (docRef) => {
+          const result: Company[] = [];
+          docRef.forEach(function (doc) {
+            result.push(doc.data() as Company);
+          });
+          resolve(result as any);
+        }, (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
   async getCompanies() {
     return new Promise<Company[]>((resolve, reject) => {
       // @ts-ignore

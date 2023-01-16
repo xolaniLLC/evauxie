@@ -13,6 +13,9 @@ export class VendorsComponent implements OnInit {
   categories: CategorieActivite[] = [];
   categorieSelect = '';
   paysSelect = '';
+  affordbilitySelect = '';
+  townSelect = '';
+  ratingSelect = '';
   textSearch = '';
 
   constructor(private categorieService: CategoriesService, private activatedRoute: ActivatedRoute) { }
@@ -21,15 +24,19 @@ export class VendorsComponent implements OnInit {
     if(this.activatedRoute.snapshot.queryParams['categorie'])
       this.categorieSelect = this.activatedRoute.snapshot.queryParams['categorie'];
     if(this.activatedRoute.snapshot.queryParams['pays'])
-      this.categorieSelect = this.activatedRoute.snapshot.queryParams['pays'];
+      this.paysSelect = this.activatedRoute.snapshot.queryParams['pays'];
     if(this.activatedRoute.snapshot.queryParams['textSearch'])
-      this.categorieSelect = this.activatedRoute.snapshot.queryParams['textSearch'];
+      this.textSearch = this.activatedRoute.snapshot.queryParams['textSearch'];
+    if(this.activatedRoute.snapshot.queryParams['ville'])
+      this.townSelect = this.activatedRoute.snapshot.queryParams['ville'];
+    if(this.activatedRoute.snapshot.queryParams['rating'])
+      this.ratingSelect = this.activatedRoute.snapshot.queryParams['rating'];
+    if(this.activatedRoute.snapshot.queryParams['affordbility'])
+      this.affordbilitySelect = this.activatedRoute.snapshot.queryParams['affordbility'];
+  }
 
-    this.categorieService.getCategoriesActivites().then(
-      (data) => {
-        this.categories = data;
-      }
-    );
+  transformToNumber(numberString: string): number {
+    return Number(numberString);
   }
 
 }

@@ -1,1 +1,148 @@
-<p>e-admin works!</p>
+<app-navbar></app-navbar>
+
+<section *ngIf="isAdmin === 1" class="max-w-7xl mx-auto py-5 text-left flex space-x-5 items-center">
+  <button (click)="boutton_back()">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
+    </svg>
+  </button>
+  <a href="e-admin#gestion-compagnie" class="text-xl hover:underline">Company management</a>
+  <a href="e-admin#gestion-categorie" class="text-xl hover:underline">Company categorie</a>
+</section>
+
+<section *ngIf="isAdmin === -1" class="max-w-7xl mx-auto py-20 text-center">
+  <svg role="status" class="inline w-20 h-20 text-indigo-700 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+  </svg>
+</section>
+
+<section *ngIf="isAdmin === 0" class="max-w-7xl mx-auto py-20">
+  <p class="text-2xl text-center text-gray-500 items-center justify-center">
+    You do not have access to this page, please contact an administrator
+  </p>
+</section>
+
+<section id="gestion-compagnie" *ngIf="isAdmin === 1" class="max-w-7xl mx-auto py-5">
+  <h1 tabindex="0" class="mb-5 focus:outline-none text-4xl lg:text-4xl font-normal leading-tight text-gray-800 lg:w-7/12 md:w-9/12 xl:w-5/12">Gestion compagnies</h1>
+
+  <svg *ngIf="isLoadCom" role="status" class="w-10 h-10 text-indigo-700 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+  </svg>
+
+  <div *ngIf="!isLoadCom">
+    <div *ngFor="let compagnie of company" class="w-full bg-gray-200 dark:bg-gray-900 py-10">
+      <div class="container mx-auto px-6 flex items-start justify-center">
+        <div class="w-full">
+          <!-- Card is full width. Use in 12 col grid for best view. -->
+          <!-- Card code block start -->
+          <div class="mx-auto w-full p-5 lg:p-10 bg-white dark:bg-gray-800 shadow rounded">
+            <div class="flex flex-col lg:flex-row items-start lg:items-center mb-8">
+              <h1 class="mr-12 text-xl lg:text-2xl text-gray-800 dark:text-gray-100 font-bold lg:w-1/2">{{compagnie.nom}}</h1>
+              <div class="flex flex-col md:flex-row items-start md:items-center space-x-5">
+                <div (click)="updateEtatCompany(compagnie)" class="hover:opacity-75 mt-4 lg:mt-0 mr-0 xl:mr-8 text-sm cursor-pointer {{ compagnie.verifier ? 'bg-red-100 text-red-500' : 'bg-indigo-100 text-indigo-700'}} dark:text-indigo-600 rounded font-medium py-2 w-48 flex justify-center">{{compagnie.verifier ? 'Deactivate the company' : 'Activate the company'}}</div>
+                <div (click)="writeEmailToUser(compagnie.administrateurs[0])" class="hover:opacity-75 cursor-pointer mt-4 lg:mt-0 mr-0 lg:mr-4 xl:mr-8 text-sm bg-orange-300 text-white rounded font-medium py-2 w-48 flex justify-center">Write a &nbsp; <app-miniature-name-user [idUser]="compagnie.administrateurs[0]"></app-miniature-name-user></div>
+              </div>
+            </div>
+            <div class="items-start lg:items-center space-y-8 my-5">
+              <div class="w-full">
+                <div class="flex items-center space-x-5">
+                  <div class="w-12 h-12 rounded">
+                    <app-miniature-avatar-user [idUser]="compagnie.administrateurs[0]"></app-miniature-avatar-user>
+                  </div>
+                  <div class="ml-2">
+                    <h5 class="text-gray-800 dark:text-gray-100 font-medium text-base"><app-miniature-name-user [idUser]="compagnie.administrateurs[0]"></app-miniature-name-user></h5>
+                    <a href="mailto:{{compagnie.administrateurs[0]}}" class="text-orange-500 text-xs">{{compagnie.administrateurs[0]}}</a>
+                    <p class="text-gray-600 dark:text-gray-400 text-xs font-normal">Company create the <span class="text-indigo-700 font-medium">{{compagnie.date | date : 'EEEE dd MMMM YYYY'}}</span></p>
+                  </div>
+                </div>
+                <p class="mt-5 text-sm text-gray-600 dark:text-gray-400 font-normal" [innerHTML]="compagnie.description"></p>
+              </div>
+              <div class="w-full flex flex-col lg:flex-row items-start lg:items-center">
+                <div class="mr-12 flex lg:block items-center lg:mr-6 xl:mr-12 mt-5 lg:mt-0">
+                  <h2 class="text-gray-600 dark:text-gray-400 font-bold text-xl lg:text-2xl leading-6 mb-1 lg:text-center">Country</h2>
+                  <p class="ml-2 lg:ml-0 text-gray-800 dark:text-gray-100 text-xl leading-5 text-center">{{compagnie.pays}}</p>
+                </div>
+                <div class="mr-12 flex lg:block lg:mr-6 xl:mr-12 mt-5 lg:mt-0">
+                  <h2 class="text-gray-600 dark:text-gray-400 font-bold text-xl lg:text-2xl leading-6 mb-1 lg:text-center">Category</h2>
+                  <p class="ml-2 lg:ml-0 text-gray-800 dark:text-gray-100 text-xl leading-5 text-center"><app-console-information-model [idCategorie]="compagnie.categorie"></app-console-information-model></p>
+                </div>
+                <div class="mt-5 flex lg:block lg:mt-0">
+                  <a href="tel:{{compagnie.phone}}" class="block text-gray-600 dark:text-gray-400 font-bold text-xl lg:text-2xl leading-6 mb-1 lg:text-center">Phone number</a>
+                  <p class="ml-2 lg:ml-0 text-gray-800 dark:text-gray-100 text-xl leading-5 text-center">{{compagnie.phone}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="w-full py-6 my-10">
+              <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between">
+                <div class="text-xs text-center w-full bg-indigo-100 text-indigo-700 dark:text-indigo-600 rounded font-medium p-3 lg:mr-3">{{compagnie.affordbility}}</div>
+                <div class="mt-4 text-center w-full lg:mt-0 text-xs bg-red-200 text-red-500 rounded font-medium p-3 space-x-5"><span *ngFor="let prix of compagnie.price; let i = index">{{prix}}{{i%2 !== 0 ? '' : ' - '}}</span></div>
+              </div>
+              <div class="mt-6 mb-8 w-full bg-gray-100 dark:bg-gray-700 rounded p-4 relative">
+                <ul>
+                  <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Ville : {{compagnie.ville}}</li>
+                  <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal my-4">- Code postal : {{compagnie.codePostal}}</li>
+                  <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Devise : {{compagnie.devise}}</li>
+                  <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Adresse : {{compagnie.adresse}}</li>
+                  <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Site web : <a href="{{compagnie.siteWeb}}">{{compagnie.siteWeb}}</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="flex flex-col lg:flex-row items-start lg:items-center">
+              <div *ngIf="compagnie.logo" class="border-2 border-white dark:border-gray-700 shadow rounded-full w-full h-52 hover:absolute hover:h-1/2 hover:w-1/2">
+                <img class="w-full h-full overflow-hidden object-cover rounded-full" src="{{compagnie.logo}}" alt="Logo company" />
+              </div>
+              <div *ngFor="let tof of compagnie.phototheque; let i = index" class="border-2 border-white dark:border-gray-700 shadow w-full h-52 hover:absolute hover:h-1/2 hover:w-1/2">
+                <img class="w-full h-full overflow-hidden object-cover rounded-md" src="{{tof}}" alt="photo {{i}}" />
+              </div>
+            </div>
+          </div>
+          <!-- Card code block end -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="gestion-categorie" *ngIf="isAdmin === 1" class="max-w-7xl mx-auto py-5">
+  <h1 tabindex="0" class="mb-5 focus:outline-none text-4xl lg:text-4xl font-normal leading-tight text-gray-800 lg:w-7/12 md:w-9/12 xl:w-5/12">Gestion categorie</h1>
+
+  <svg *ngIf="isLoadCat" role="status" class="w-10 h-10 text-indigo-700 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+  </svg>
+
+  <div *ngIf="!isLoadCat" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+    <div (click)="addCat()" class="block w-full p-6 bg-yellow-400 border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <h3 class="text-xl block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ajouter nouvelle catégorie</h3> <br>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    </div>
+    <div *ngFor="let cat of categoriesActivity" class="block w-full p-6 {{ cat.parent ? 'bg-orange-500' : 'bg-white'}} border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <input placeholder="Nom de la catégorie" (ngModelChange)="updateNameCategorie($event, cat)" [title]="cat.id" type="text" ngModel="{{cat.titre}}" class="placeholder:font-light w-full border-none bg-transparent text-base font-bold tracking-tight text-gray-900" />
+      <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Catégorie parent</label>
+      <select [ngModel]="cat.parent" (ngModelChange)="updateParentCategorie($event, cat)" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <option value="">...</option>
+        <option *ngFor="let cat of categoriesActivity" [value]="cat.id">{{cat.titre}}</option>
+      </select>
+
+      <div class="flex space-x-2 py-2">
+        <button (click)="deleteCategorie(cat.id)" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+          </svg>
+        </button>
+        <button id="loading_{{cat.id}}" disabled type="button" class="hidden text-sm font-medium text-gray-900 items-center">
+          <svg aria-hidden="true" role="status" class="inline w-4 h-4 text-gray-200 animate-spin dark:text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#1C64F2"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+

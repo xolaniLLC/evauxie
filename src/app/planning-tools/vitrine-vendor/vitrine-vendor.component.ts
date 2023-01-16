@@ -11,6 +11,7 @@ import {FormBuilder} from "@angular/forms";
 import {ApiService} from "../../services/api.service";
 import firebase from "firebase";
 import {Faq} from "../../models/faq";
+import {ToolsService} from "../../services/tools.service";
 
 @Component({
   selector: 'app-vitrine-vendor',
@@ -24,20 +25,21 @@ export class VitrineVendorComponent implements OnInit {
   listCompany: Company[] = [];
   currentCompany: any;
   stepMake = 0;
-  imgFile: any[] = [];
+  imgFile: any;
+  imgProfilFile: any;
   uploadForm = this.formBuilder.group({
-    file: ['']
+    file: [''],
+    fileProfil: ['']
   });
   isLoading = false;
+  isLoadingCompany = true;
   categoriesActivity: CategorieActivite[] = [];
   sousMenu = 1;
+  isUploadLogoProfil = false;
+  isUploadPhototeque = false;
+  sousCategorisActivity: CategorieActivite[] = [];
 
   constructor(private router: Router, private userService: UserService, private categorieService: CategoriesService, private alertService: AlertService, private companyService: CompanyService, private sanitizer: DomSanitizer, private formBuilder: FormBuilder, private apiService: ApiService) {
-  }
-
-  addSousCategorie() {
-    const tmp: any = prompt('Nom de la sous categorie');
-    this.categorieService.ajouterCategorieActivite(new CategorieActivite(tmp.toString() as string, '318a527a244caec0556dae'));
   }
 
   ngOnInit(): void {
@@ -47,22 +49,33 @@ export class VitrineVendorComponent implements OnInit {
           this.slider = document.getElementById("slider");
           this.defaultTransform=0;
 
-          this.categorieService.getCategoriesActivites().then(
-            (data) => {
-              this.categoriesActivity = data;
-            }
-          );
-
           this.companyService.getCompanies().then(
             (docRef) => {
+              this.isLoadingCompany = false;
               for(let i=0; i<docRef.length; i++) {
                 if(!docRef[i].date)
                   this.listCompany.unshift(docRef[i]);
                 else
                   this.listCompany.push(docRef[i]);
 
-                if(i === docRef.length - 1)
+                if(i === docRef.length - 1) {
                   this.currentCompany = this.listCompany[0];
+                  this.categorieService.getCategorieWitchId(this.currentCompany.categorie).then(
+                    (mmm) => {
+                      if(mmm.parent) {
+                        this.getSousCategorieElement(mmm.parent);
+                      }
+                    }
+                  );
+                  this.categorieService.getCategoriesActivites().then(
+                    (data) => {
+                      const pointe = this;
+                      data.forEach(function (doc) {
+                        pointe.categoriesActivity.push(doc);
+                      });
+                    }
+                  );
+                }
               }
 
             }
@@ -74,6 +87,17 @@ export class VitrineVendorComponent implements OnInit {
     );
   }
 
+  getSousCategorieElement(idCategorie: string) {
+    if(idCategorie) {
+      this.sousCategorisActivity = [];
+      this.categorieService.getSousCategoriesActivites(idCategorie).then(
+        (data) => {
+          this.sousCategorisActivity = data;
+        }
+      );
+    }
+  }
+
   recupNomCategorie(idCategorie: string) {
     let result = '';
     for(let i=0; i<this.categoriesActivity.length; i++)
@@ -82,12 +106,15 @@ export class VitrineVendorComponent implements OnInit {
     return result;
   }
 
-  removePhotoTmp(i: number) {
-    this.imgFile.splice(i, 1);
-  }
-
   removePhoto(i: number) {
     this.currentCompany.phototheque.splice(i, 1);
+  }
+
+  definePrimaryPicture(i: number) {
+    const tmp1 = this.currentCompany.phototheque[i];
+    const tmp2 = this.currentCompany.phototheque[0];
+    this.currentCompany.phototheque[0] = tmp1;
+    this.currentCompany.phototheque[i] = tmp2;
   }
 
   onImageChange(e: any) {
@@ -98,7 +125,42 @@ export class VitrineVendorComponent implements OnInit {
       reader.readAsDataURL(file);
 
       reader.onload = () => {
-        this.imgFile.push(reader.result as string);
+        this.imgFile = reader.result as string;
+        const gid = new ToolsService();
+        const tmpName = gid.generateId(23);
+        this.isUploadPhototeque = true;
+        this.apiService.addImageForAdresseId(tmpName.toString(), 'company/' + this.currentCompany.id + '/logo', this.sanitizer.bypassSecurityTrustResourceUrl(this.imgFile).toString()).then(
+          (roaning) => {
+            this.currentCompany.phototheque.push(roaning);
+            this.isUploadPhototeque = false;
+          }
+        )
+        this.uploadForm.patchValue({
+          imgSrc: reader.result
+        });
+      };
+    }
+  }
+
+  onImageProfilChange(e: any) {
+
+    const reader = new FileReader();
+
+    if(e.target.files && e.target.files.length) {
+      const [file] = e.target.files;
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        this.imgProfilFile = reader.result as string;
+        const gid = new ToolsService();
+        const tmpName = gid.generateId(23);
+        this.isUploadLogoProfil = true;
+        this.apiService.addImageForAdresseId(tmpName.toString(), 'company/' + this.currentCompany.id + '/phototheque', this.sanitizer.bypassSecurityTrustResourceUrl(this.imgProfilFile).toString()).then(
+          (roaning) => {
+            this.currentCompany.logo = roaning;
+            this.isUploadLogoProfil = false;
+          }
+        )
         this.uploadForm.patchValue({
           imgSrc: reader.result
         });
@@ -128,39 +190,15 @@ export class VitrineVendorComponent implements OnInit {
         );
       }
     } else {
-      if(this.imgFile.length > 0) {
-        let tmpTof = [];
-        for(let i=0; i<this.imgFile.length; i++) {
-          tmpTof.push(this.sanitizer.bypassSecurityTrustResourceUrl(this.imgFile[i]).toString());
+      this.companyService.updateCompany(this.currentCompany).then(
+        () => {
+          this.isLoading = false;
+          this.stepMake += 1;
+        }, (error) => {
+          this.isLoading = false;
+          this.alertService.print(error, 'danger');
         }
-        this.apiService.addAllImageForAdresseId( 'company/' + this.currentCompany.id + '/phototheque', tmpTof).then(
-          (docRef: string[]) => {
-            const pointe = this;
-            docRef.forEach(function (doc) {
-              pointe.currentCompany.phototheque.push(doc);
-            });
-            this.imgFile = [];
-            this.companyService.updateCompany(this.currentCompany).then(
-              () => {
-                this.isLoading = false;
-                this.stepMake += 1;
-              }, (error) => {
-                this.isLoading = false;
-                this.alertService.print(error, 'danger');
-              }
-            );
-          });
-      } else {
-        this.companyService.updateCompany(this.currentCompany).then(
-          () => {
-            this.isLoading = false;
-            this.stepMake += 1;
-          }, (error) => {
-            this.isLoading = false;
-            this.alertService.print(error, 'danger');
-          }
-        );
-      }
+      );
     }
   }
 

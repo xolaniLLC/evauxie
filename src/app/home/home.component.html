@@ -5,18 +5,16 @@
     <div class="absolute top-0 right-0 bottom-0 left-0 bg-black opacity-75"></div>
     <main class="px-10 lg:px-24 py-44" style="z-index: 1">
       <div class="sm:text-center lg:text-left">
-        <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-7xl">
-          <span class="block inline text-gray-50">Get ready to plan</span> <br>
-          <span class="block text-indigo-600 inline">Your perfect event with us</span>
+        <h1 class="text-4xl tracking-tight font-normal capitalize text-gray-900 sm:text-5xl md:text-7xl">
+          <span class="block inline text-gray-50">Get ready to plan Your</span> <br>
+          <span class="block text-orange-600 inline">perfect event&nbsp;</span>
+          <span class="block text-gray-50 inline">with us</span>
         </h1>
-        <p class="mt-3 text-base text-gray-100 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-7 md:text-xl lg:mx-0">Ready to plan your event and find your perfect vendors?</p>
-        <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start" *ngIf="currentEmailUser === ''">
-          <div class="rounded-md shadow">
-            <a routerLink="../register-customer" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"> Create your account </a>
-          </div>
-          <div class="mt-3 sm:mt-0 sm:ml-3">
-            <a routerLink="../login-customer" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10"> Login you </a>
-          </div>
+        <h2 class="mt-3 text-base text-gray-100 sm:mt-5 sm:text-lg  sm:mx-auto md:mt-7 md:text-2xl lg:mx-0">Ready to plan your event and find your perfect vendors?</h2>
+        <div class="space-x-8 flex absolute right-0 bottom-16 sm:bottom-5 left-0 m-5 sm:mt-8  justify-center" *ngIf="currentEmailUser === ''">
+          <a routerLink="../register-customer" class="w-fit sm:flex md:flex items-center justify-center px-5 md:px-16 py-3 border border-transparent text-base font-bold rounded-full text-white bg-orange-500 hover:bg-orange-300 hover:opacity-80"> Sign up </a>
+
+          <a routerLink="../login-customer" class="w-fit sm:flex md:flex items-center justify-center px-5 md:px-16 py-3 border border-transparent text-base font-bold rounded-full text-white bg-orange-500 hover:bg-orange-300 hover:opacity-80"> Login </a>
         </div>
       </div>
     </main>
@@ -24,10 +22,15 @@
 </header>
 
 <section>
-  <div class="mx-auto container pt-16">
+  <div class="pb-6 flex items-center sm:flex-row flex-wrap justify-center">
+    <div tabindex="0" class="focus:outline-none h-16 w-16 lg:mb-0 mr-4 absolute">
+      <img src="assets/images/icon-6.png" alt="man avatar" class="h-full w-full rounded-full overflow-hidden shadow-sm bg-white">
+    </div>
+  </div>
+  <div class="mx-auto container pt-5">
     <div class="px-4 lg:px-0">
       <div role="contentinfo" class="flex items-center flex-col px-4">
-        <h1 tabindex="0" class="focus:outline-none text-4xl lg:text-4xl pt-4 font-extrabold text-center leading-tight text-gray-800 lg:w-7/12 md:w-9/12 xl:w-5/12">Find the perfect team for your event</h1>
+        <h1 tabindex="0" class="focus:outline-none text-4xl lg:text-4xl pt-4 font-normal text-center leading-tight text-gray-800">Find the perfect team for your event</h1>
         <p tabindex="0" class="focus:outline-none mt-8 uppercase text-sm text-center text-gray-500 leading-none">Search among our many vendors in various places to find your perfect team.</p>
       </div>
     </div>
@@ -37,35 +40,34 @@
 
 </section>
 
-<section class="text-gray-600 body-font">
-  <div class="mx-auto container pt-16">
+<section class="container max-w-7xl mx-auto px-2">
+  <div class="mx-auto container pt-8 text-gray-600 body-font">
     <div class="px-4 lg:px-0">
       <div role="contentinfo" class="flex items-center flex-col px-4">
-        <h1 tabindex="0" class="focus:outline-none text-4xl lg:text-4xl pt-4 font-extrabold text-center leading-tight text-gray-800 lg:w-7/12 md:w-9/12 xl:w-5/12">Our Featured Vendors</h1>
-        <div tabindex="0" class="focus:outline-none mt-8 uppercase text-sm text-center text-gray-500 leading-none space-y-3 text-xl">
-          <p>Remove</p>
-          <p class="text-indigo-600">Put some numbers first</p>
-          <p class="text-orange-500">Put blog post after.</p>
-        </div>
+        <h1 tabindex="0" class="focus:outline-none text-4xl lg:text-4xl pt-4 font-normal text-center leading-tight text-gray-800 lg:w-7/12 md:w-9/12 xl:w-5/12">Our Featured Vendors</h1>
       </div>
     </div>
   </div>
 
-  <div class="container px-5 py-10 mx-auto flex flex-wrap">
-    <div class="md:w-2/3 w-full mx-auto">
-      <div class="flex flex-wrap w-full bg-black opacity-80 py-32 px-10 relative">
-        <img alt="gallery" class="w-full object-cover h-full object-top block absolute inset-0" src="assets/images/ill_3.jpg">
-
+  <div class="mt-5 flex flex-wrap">
+    <div class="md:w-1/3 w-full px-1">
+      <div class="flex flex-wrap w-full h-full relative">
+        <img alt="gallery" class="rounded-md w-full object-cover h-full object-top block absolute inset-0" src="assets/images/ill_3.jpg">
       </div>
-      <div class="flex flex-wrap -mx-2">
-        <div class="px-2 w-full md:w-1/2 sm:my-2">
-          <div class="flex flex-wrap w-full bg-black opacity-80 sm:py-24 py-16 sm:px-10 px-6 relative">
-            <img alt="gallery" class="w-full object-cover h-full object-top block absolute inset-0" src="assets/images/ill_2.jpg">
+    </div>
+    <div class="md:w-2/3 w-full">
+      <div class="w-full py-32 px-10 relative">
+        <img alt="gallery" class="rounded-md w-full object-cover h-full object-top block absolute inset-0" src="assets/images/ill_33.jpg">
+      </div>
+      <div class="flex flex-wrap pt-1">
+        <div class="w-full md:w-1/2 pr-1">
+          <div class="flex flex-wrap w-full py-32 px-10 relative">
+            <img alt="gallery" class="rounded-md w-full object-cover h-full object-top block absolute inset-0" src="assets/images/ill_2.jpg">
           </div>
         </div>
-        <div class="px-2 w-full md:w-1/2 sm:my-2">
-          <div class="flex flex-wrap w-full bg-black opacity-80 sm:py-24 py-16 sm:px-10 px-6 relative">
-            <img alt="gallery" class="w-full object-cover h-full object-top block absolute inset-0" src="assets/images/ill_1.jpg">
+        <div class="w-full md:w-1/2">
+          <div class="flex flex-wrap w-full py-32 px-10 relative">
+            <img alt="gallery" class="rounded-md w-full object-cover h-full object-top block absolute inset-0" src="assets/images/ill_1.jpg">
           </div>
         </div>
       </div>
@@ -73,8 +75,29 @@
   </div>
 </section>
 
-<section class="mx-auto container w-full flex xl:flex-row flex-col justify-between items-start mt-12 px-6 lg:px-0">
-  <div class="md:px-8 px-4 md:px-0 lg:px-16 mt-10 xl:mt-0 h-full xl:w-2/4 w-full flex justify-center items-center bg-gradient-to-l from-orange-400 to-orange-500 mx-3">
+<section class="max-w-7xl mx-auto container px-2">
+  <div class="py-10 flex-col items-center justify-center">
+    <div class="mx-auto container bg-white">
+      <div class="px-4 lg:px-0">
+        <div role="contentinfo" class="flex items-center flex-col px-4">
+          <h1 tabindex="0" class="focus:outline-none text-4xl lg:text-4xl font-normal text-center leading-tight text-gray-800 lg:w-7/12 md:w-9/12 xl:w-5/12">Our Blog Posts</h1>
+          <p tabindex="0" class="focus:outline-none mt-8 uppercase text-sm text-center text-gray-500 leading-none">Read on the latest trends and advice on event planning</p>
+        </div>
+      </div>
+    </div>
+    <div class="py-8">
+      <app-suggestions-article skin="card-home"></app-suggestions-article>
+    </div>
+    <div tabindex="0" class="focus:outline-none mt-8 uppercase text-sm text-center text-gray-500 leading-none text-xl space-y-3">
+      <p>
+        <a href="./blog" type="button" class="text-white rounded-md bg-indigo-600 hover:bg-orange-500 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View all blog post</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="md:space-x-2 px-2 max-w-7xl mx-auto container w-full flex xl:flex-row flex-col justify-between items-start my-6">
+  <div class="h-full  w-full justify-center items-center bg-gradient-to-l from-orange-400 to-orange-500">
     <div class="flex flex-col lg:justify-start justify-center items-center my-10">
       <div>
         <p class="md:text-2xl text-lg font-semibold text-center lg:text-left leading-normal text-white">Get it touch with us,</p>
@@ -84,12 +107,12 @@
       </div>
       <div class="mt-8 flex flex-row justify-start items-center space-x-4">
         <div class="">
-          <button class="btn focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-800 text-xs lg:text-base border border-white py-2 px-4 md:py-4 md:px-8 text-white rounded-sm hover:bg-white hover:text-indigo-700">Contact us</button>
+          <a href="#contact_form"  class="block btn focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-800 text-xs lg:text-base border border-white py-2 px-4 md:py-4 md:px-8 text-white rounded-sm hover:bg-white hover:text-indigo-700">Contact us</a>
         </div>
       </div>
     </div>
   </div>
-  <div class="md:px-8 px-4 md:px-0 lg:px-16 mt-10 xl:mt-0 h-full xl:w-2/4 w-full flex justify-center items-center bg-gradient-to-l from-indigo-600 to-indigo-700 mx-3">
+  <div class="h-full  w-full justify-center items-center bg-gradient-to-l from-indigo-600 to-indigo-700">
     <div class="flex flex-col lg:justify-start justify-center items-center my-10">
       <div>
         <p class="md:text-2xl text-lg font-semibold text-center lg:text-left leading-normal text-white">Do you want to work with us?</p>
@@ -99,7 +122,7 @@
       </div>
       <div class="mt-8 flex flex-row justify-start items-center space-x-4">
         <div class="">
-          <button class="btn focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-800 text-xs lg:text-base border border-white py-2 px-4 md:py-4 md:px-8 text-white rounded-sm hover:bg-white hover:text-indigo-700">Join our team</button>
+          <a [routerLink]="currentEmailUser ? '../planning-tools' : '../register-vendor'" class="block btn focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-800 text-xs lg:text-base border border-white py-2 px-4 md:py-4 md:px-8 text-white rounded-sm hover:bg-white hover:text-indigo-700">Join our team</a>
         </div>
       </div>
     </div>
@@ -107,61 +130,103 @@
 </section>
 
 <section>
-  <div class="py-10 flex-col items-center justify-center px-4">
+  <div class="flex flex-col justify-center">
+    <!-- Code block starts -->
+    <div>
+      <div class="bg-center h-fit bg-fixed bg-no-repeat bg-center bg-cover relative">
+        <div class="relative py-28 h-fit w-full flex items-center justify-center text-left bg-cover bg-center" [style]="'background-image:url(assets/images/ill_19.jpg);'">
+          <div class="absolute top-0 right-0 bottom-0 left-0 bg-black opacity-75"></div>
+          <main class="px-10 grid md:grid-cols-8 grid-cols-1 md:gap-5" style="z-index: 1">
+            <div class="justify-center text-right col-span-2">
+              <div class="h-32 w-32 inline-block">
+                <img src="https://tuk-cdn.s3.amazonaws.com/assets/components/avatars/a_3_7.png" alt="" class="h-full w-full rounded-full overflow-hidden shadow" />
+              </div>
+              <br>
+              <span class="text-2xl text-white font-medium">Peter Clark</span>
+            </div>
+            <div class="col-span-1 text-right md:visible invisible">
+              <svg xmlns="http://www.w3.org/2000/svg" class="inline-block text-orange-500 w-20 h-20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M3.691 6.292C5.094 4.771 7.217 4 10 4h1v2.819l-.804.161c-1.37.274-2.323.813-2.833 1.604A2.902 2.902 0 0 0 6.925 10H10a1 1 0 0 1 1 1v7c0 1.103-.897 2-2 2H3a1 1 0 0 1-1-1v-5l.003-2.919c-.009-.111-.199-2.741 1.688-4.789zM20 20h-6a1 1 0 0 1-1-1v-5l.003-2.919c-.009-.111-.199-2.741 1.688-4.789C16.094 4.771 18.217 4 21 4h1v2.819l-.804.161c-1.37.274-2.323.813-2.833 1.604A2.902 2.902 0 0 0 17.925 10H21a1 1 0 0 1 1 1v7c0 1.103-.897 2-2 2z"/></svg>
+            </div>
+            <div class="col-span-5 text-white w-full text-xl font-light text-center">
+              Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. Duis et ipsum et libero sagittis sagittis vel ac diam.
+              Nullam non tortor semper, sollicitudin augue non,
+              egestas est.
+              Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. Duis et ipsum et libero sagittis sagittis vel ac diam.
+              Nullam non tortor semper, sollicitudin augue non,
+              egestas est.
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--section>
+  <div class="flex flex-col justify-center">
+    <div>
+      <div class="bg-center h-fit bg-fixed bg-no-repeat bg-center bg-cover relative">
+        <div class="relative py-28 h-fit w-full flex items-center justify-center text-left bg-cover bg-center" [style]="'background-image:url(assets/images/ill_19.jpg);'">
+          <div class="absolute top-0 right-0 bottom-0 left-0 bg-black opacity-75"></div>
+          <main class="px-10" style="z-index: 1">
+            <div role="contentinfo" class="flex items-center flex-col px-4 text-white">
+              <h1 tabindex="0" class="focus:outline-none text-4xl lg:text-4xl font-normal text-center leading-tight lg:w-7/12 md:w-9/12 xl:w-5/12">Some numbers</h1>
+              <br>
+              <p tabindex="0" class="focus:outline-none mt-8 uppercase text-sm text-center text-gray-500 leading-none">WITH OUR LARGE LIST OF TRUSTED VENDORS, OUR CLIENTS HAVE SUCCESSFUL AND PROSPEROUS EVENTS</p>
+            </div>
+            <br><br>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div class="text-center text-white">
+                <span class="italic text-5xl">
+                  <app-miniature-slow-increment-number [number]="320"></app-miniature-slow-increment-number>
+                </span> <br>
+                <span class="font-light text-2xl">successful bookings</span>
+              </div>
+              <div class="text-center text-white">
+                <span class="italic text-5xl">
+                  <app-miniature-slow-increment-number [number]="156"></app-miniature-slow-increment-number>
+                </span> <br>
+                <span class="font-light text-2xl">Sastified clients</span>
+              </div>
+              <div class="text-center text-white">
+                <span class="italic text-5xl">
+                  <app-miniature-slow-increment-number [number]="594"></app-miniature-slow-increment-number>
+                </span> <br>
+                <span class="font-light text-2xl">Trusted partners</span>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </div>
+</section-->
+
+<section class="max-w-7xl mx-auto container px-2">
+  <div class="py-10 flex-col items-center justify-center">
     <div class="mx-auto container bg-white">
       <div class="px-4 lg:px-0">
         <div role="contentinfo" class="flex items-center flex-col px-4">
-          <h1 tabindex="0" class="focus:outline-none text-4xl lg:text-4xl pt-4 font-extrabold text-center leading-tight text-gray-800 lg:w-7/12 md:w-9/12 xl:w-5/12">Our Blog Posts.</h1>
-          <div tabindex="0" class="focus:outline-none mt-8 uppercase text-sm text-center text-gray-500 leading-none text-xl space-y-3">
-            <p>Read on the latest trends and advice on event planning</p>
-            <p>
-              <a href="./forum" type="button" class="text-white bg-indigo-600 hover:bg-orange-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View all blog post</a>
-            </p>
-          </div>
+          <h1 tabindex="0" class="focus:outline-none text-4xl lg:text-4xl font-normal text-center leading-tight text-gray-800 lg:w-7/12 md:w-9/12 xl:w-5/12">Our Forums.</h1>
+          <p tabindex="0" class="focus:outline-none mt-8 uppercase text-sm text-center text-gray-500 leading-none">Discover the latest exchanges between the platform's users and event organizers.</p>
         </div>
       </div>
     </div>
-    <div class="pt-10">
-      <app-suggestions-article skin="card-home"></app-suggestions-article>
+    <div class="py-8">
+      <app-suggestions-topic skin="card-home"></app-suggestions-topic>
     </div>
-  </div>
-</section>
-
-<section>
-  <div class="pb-16  flex flex-col items-center justify-center">
-    <!-- Code block starts -->
-    <div>
-      <div class="mx-auto container bg-white pt-16">
-        <div class="px-4 lg:px-0">
-          <div role="contentinfo" class="flex items-center flex-col px-4">
-            <h1 tabindex="0" class="focus:outline-none text-4xl lg:text-4xl pt-4 font-extrabold text-center leading-tight text-gray-800 lg:w-7/12 md:w-9/12 xl:w-5/12">Some numbers</h1>
-            <p tabindex="0" class="focus:outline-none mt-8 uppercase text-sm text-center text-gray-500 leading-none">WITH OUR LARGE LIST OF TRUSTED VENDORS, OUR CLIENTS HAVE SUCCESSFUL AND PROSPEROUS EVENTS.</p>
-          </div>
-        </div>
-      </div>
-      <div class="md:mt-14 mt-4 relative sm:flex items-center justify-center">
-        <img src="https://i.ibb.co/KjrPCyW/map.png" alt="world map image" class="w-full xl:h-full h-96 object-cover object-fill sm:block hidden" />
-        <img src="https://i.ibb.co/SXKj9Mf/map-bg.png" alt="mobile-image" class="sm:hidden -mt-10 block w-full h-96 object-cover object-fill absolute z-0" />
-
-        <div class="shadow-lg xl:p-6 p-4 sm:w-auto w-full bg-white sm:absolute relative z-20 sm:mt-0 mt-4 left-0 xl:ml-56 sm:ml-12 xl:-mt-40 sm:-mt-12">
-          <p class="text-3xl font-semibold text-gray-800">20K+</p>
-          <p class="text-base leading-4 xl:mt-4 mt-2 text-gray-600">Successful bookings</p>
-        </div>
-        <div class="shadow-lg xl:p-6 p-4 w-48 sm:w-auto w-full bg-white sm:absolute relative z-20 sm:mt-0 mt-4 xl:mt-80 sm:mt-56 xl:-ml-0 sm:-ml-12">
-          <p class="text-3xl font-semibold text-gray-800">8K+</p>
-          <p class="text-base leading-4 xl:mt-4 mt-2 text-gray-600">Sastified clients</p>
-        </div>
-        <div class="shadow-lg xl:p-6 p-4 sm:w-auto w-full bg-white sm:absolute relative z-20 md:mt-0 sm:-mt-5 mt-4 right-0 xl:mr-56 sm:mr-24">
-          <p class="text-3xl font-semibold text-gray-800">15K+</p>
-          <p class="text-base leading-4 xl:mt-4 mt-2 text-gray-600">Trusted partners</p>
-        </div>
-      </div>
+    <div tabindex="0" class="focus:outline-none mt-8 uppercase text-sm text-center text-gray-500 leading-none text-xl space-y-3">
+      <p>
+        <a href="./forum" type="button" class="text-white rounded-md bg-indigo-600 hover:bg-orange-500 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View all forum</a>
+      </p>
     </div>
   </div>
 </section>
 
-<section>
-  <div class="py-4 lg:py-8 relative">
+<section class="mt-10 bg-orange-800" id="contact_form">
+  <div class="relative">
     <img src="assets/images/ill_12.png" class="h-2/5 lg:h-full w-full lg:w-1/2 absolute inset-0 object-cover object-center xl:block hidden" alt="map" />
     <div class="xl:mx-auto xl:container relative">
       <div class="flex flex-wrap xl:mx-auto xl:container">
@@ -196,38 +261,38 @@
             </div>
           </div>
         </div>
-        <div class="w-full lg:w-1/2 xl:pt-10 lg:pl-24">
-          <div class="flex flex-col items-start xl:justify-start 2xl:justify-end xl:px-0 px-4">
-            <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold tracking-wider text-indigo-700">Evauxie Contact Form</h1>
-            <div class="w-full 2xl:w-8/12 mt-3">
-              <h2 class="text-gray-800 text-base md:text-lg leading-8 tracking-wider">Send us a message for your persnalized event bookings!</h2>
+        <div class="w-full lg:w-1/2 xl:pt-10 lg:px-24 px-5">
+          <div class="flex flex-col items-center justify-center xl:px-0">
+            <h1 class="text-4xl font-normal tracking-wider text-white">Evauxie Contact Form</h1>
+            <div class="w-full mt-3">
+              <h2 class="text-white w-full text-center text-sm leading-8 tracking-wider">Send us a message for your persnalized event bookings!</h2>
               <form #form="ngForm" (ngSubmit)="saveNewContact(form)">
                 <div class="md:flex items-center md:space-x-5 mt-2">
-                  <div class="mt-4 md:mt-8">
-                    <p class="text-gray-800 text-base font-medium">Full Name</p>
-                    <input name="fullName" id="fullName" ngModel required class="mt-3 text-base border-2 w-full hover:border-indigo-600 focus:border-indigo-600 focus:outline-none border-black py-2 pl-4 text-gray-800" type="text" placeholder="Evenxa" />
+                  <div class="mt-4 md:mt-8 w-full">
+                    <p class="text-white text-base font-medium">Full Name</p>
+                    <input name="fullName" id="fullName" ngModel required class="mt-3 text-base border-b w-full bg-transparent hover:border-indigo-600 focus:border-indigo-600 focus:outline-none border-white py-2 pl-4 text-gray-800" type="text" placeholder="" />
                   </div>
-                  <div class="mt-4 md:mt-8">
-                    <p class="text-gray-800 text-base font-medium">Email Address</p>
-                    <input required name="email" id="email" ngModel class="mt-3 text-base border-2 w-full hover:border-indigo-600 focus:border-indigo-600 focus:outline-none border-black py-2 pl-4 text-gray-800" type="email" placeholder="Whrite..." />
+                  <div class="mt-4 md:mt-8 w-full">
+                    <p class="text-white text-base font-medium">Email Address</p>
+                    <input required name="email" id="email" ngModel class="mt-3 text-base border-b w-full bg-transparent hover:border-indigo-600 focus:border-indigo-600 focus:outline-none border-white py-2 pl-4 text-gray-800" type="email" placeholder="" />
                   </div>
                 </div>
-                <div class="md:flex items-center md:space-x-5">
-                  <div class="mt-4 md:mt-8">
-                    <p class="text-gray-800 text-base font-medium">Phone</p>
-                    <input required name="phone" id="phone" ngModel class="mt-3 text-base border-2 w-full hover:border-indigo-600 focus:border-indigo-600 focus:outline-none border-black py-2 pl-4 text-gray-800" type="text" placeholder="+237 123 456 789" />
+                <div class="md:flex items-center md:space-x-5 w-full">
+                  <div class="mt-4 md:mt-8 w-full">
+                    <p class="text-white text-base font-medium">Phone</p>
+                    <input required name="phone" id="phone" ngModel class="mt-3 text-base border-b w-full bg-transparent hover:border-indigo-600 focus:border-indigo-600 focus:outline-none border-white py-2 pl-4 text-gray-800" type="text" placeholder="" />
                   </div>
-                  <div class="mt-4 md:mt-8">
-                    <p class="text-gray-800 text-base font-medium">Event type</p>
-                    <input required name="typeEvent" id="typeEvent" ngModel class="mt-3 text-base border-2 w-full hover:border-indigo-600 focus:border-indigo-600 focus:outline-none border-black py-2 pl-4 text-gray-800" type="text" placeholder="Whrite..." />
+                  <div class="mt-4 md:mt-8 w-full">
+                    <p class="text-white text-base font-medium">Event type</p>
+                    <input required name="typeEvent" id="typeEvent" ngModel class="mt-3 text-base border-b w-full bg-transparent hover:border-indigo-600 focus:border-indigo-600 focus:outline-none border-white py-2 pl-4 text-gray-800" type="text" placeholder="" />
                   </div>
                 </div>
                 <div class="mt-4 md:mt-8">
-                  <p class="text-gray-800 text-base font-medium">Message</p>
-                  <textarea required name="message" id="message" ngModel class="mt-3 text-base border-2 w-full resize-none hover:border-indigo-600 focus:border-indigo-600 focus:outline-none border-black xl:h-30 py-2 pl-4 text-gray-800" type="text" placeholder="Write us something..."></textarea>
+                  <p class="text-white text-base font-medium">Message</p>
+                  <textarea required name="message" id="message" ngModel class="mt-3 text-base border-b w-full bg-transparent resize-none hover:border-indigo-600 focus:border-indigo-600 focus:outline-none border-white xl:h-30 py-2 pl-4 text-gray-800" type="text" placeholder=""></textarea>
                 </div>
                 <div class="py-5">
-                  <button [disabled]="form.invalid || isLoadingSendContact" type="submit" class="disabled:bg-gray-300 disabled:text-gray-600 py-3 md:py-5 px-5 md:px-10 bg-gray-900 text-white hover:opacity-90 ease-in duration-150 text-sm md:text-lg tracking-wider font-semibold">
+                  <button [disabled]="form.invalid || isLoadingSendContact" type="submit" class="disabled:bg-gray-100 disabled:text-gray-600 py-3 px-5 rounded-2xl bg-gray-900 text-white hover:opacity-90 ease-in duration-150 text-sm md:text-lg tracking-wider font-semibold">
                     <svg *ngIf="isLoadingSendContact" role="status" class="inline mr-3 w-4 h-4 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
                       <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
@@ -243,6 +308,5 @@
     </div>
   </div>
 </section>
-<br> <br>
 
 <app-footer></app-footer>
