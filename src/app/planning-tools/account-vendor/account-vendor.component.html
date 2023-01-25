@@ -4,49 +4,49 @@
 
 
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-  <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Information about the selected company</h2>
+  <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">{{'24.1' | translate}}</h2>
 
   <div class="container px-6 py-8 mx-auto">
     <div class="lg:flex lg:-mx-2">
       <div class="space-y-3 lg:w-1/5 lg:px-2 lg:space-y-4">
-        <a (click)="sousMenu = 1" class="block font-medium cursor-pointer {{sousMenu === 1 ? 'text-indigo-600' : 'text-gray-500'}} dark:text-gray-300 hover:underline">Information account</a>
-        <a (click)="sousMenu = 2" class="block font-medium cursor-pointer {{sousMenu === 2 ? 'text-indigo-600' : 'text-gray-500'}} dark:text-gray-300 hover:underline">The Right Plan for your business</a>
+        <a (click)="sousMenu = 1" class="block font-medium cursor-pointer {{sousMenu === 1 ? 'text-indigo-600' : 'text-gray-500'}} dark:text-gray-300 hover:underline">{{'24.2' | translate}}</a>
+        <a (click)="sousMenu = 2" class="block font-medium cursor-pointer {{sousMenu === 2 ? 'text-indigo-600' : 'text-gray-500'}} dark:text-gray-300 hover:underline">{{'24.3' | translate}}</a>
       </div>
 
       <div class="mt-6 lg:mt-0 lg:px-2 lg:w-4/5 ">
         <div>
           <div *ngIf="sousMenu === 1" class="space-y-5">
             <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
-              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Account information</h2>
+              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">{{'24.2' | translate}}</h2>
 
               <form #form="ngForm" (ngSubmit)="save()" *ngIf="currentUser">
                 <div class="grid grid-cols-1 gap-6 mt-4 md:grid-cols-2">
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="name">Name of contact person *</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="name">{{'24.5' | translate}} *</label>
                     <input [disabled]="isLoading" id="name" name="name" [(ngModel)]="currentUser.nom" required type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                   </div>
 
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="phone">Phone number *</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="phone">{{'24.6' | translate}} *</label>
                     <input [disabled]="isLoading" id="phone" name="phone" [(ngModel)]="currentUser.phone" required type="tel" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                   </div>
                 </div>
                 <div class="grid grid-cols-1 mt-4">
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="email">Email adress *</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="email">{{'24.7' | translate}} *</label>
                     <input [disabled]="true" id="email" name="email" [(ngModel)]="currentUser.email" required type="text" class="disabled:bg-gray-200 disabled:text-gray-500 block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                   </div>
                 </div>
               </form>
               <div class="py-6">
-                <a (click)="!isLoading ? presentResetPassword() : null" class="cursor-pointer text-indigo-600 dark:text-gray-200 font-bold {{isLoading ? 'opacity-50' : ''}}">Reset password</a>
+                <a (click)="!isLoading ? presentResetPassword() : null" class="cursor-pointer text-indigo-600 dark:text-gray-200 font-bold {{isLoading ? 'opacity-50' : ''}}">{{'24.8' | translate}}</a>
               </div>
             </div>
           </div>
 
           <div *ngIf="sousMenu === 2" class="space-y-5">
             <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
-              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">The Right Plan for your business</h2>
+              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">{{'24.3' | translate}}</h2>
 
               <section class="px-6 xl:px-0">
                 <div class="mx-auto container">

@@ -9,6 +9,7 @@ import {CompanyService} from "../services/company.service";
 import {Company} from "../models/company";
 import {WriteMailService} from "../services/write-mail.service";
 import {Location} from "@angular/common";
+import {GroupForum} from "../models/group-forum";
 
 @Component({
   selector: 'app-e-admin',
@@ -18,8 +19,10 @@ import {Location} from "@angular/common";
 export class EAdminComponent implements OnInit {
 
   categoriesActivity: CategorieActivite[] = [];
+  groupeForum: GroupForum[] = [];
   company: Company[] = [];
   isLoadCat = true;
+  isLoadGF = true;
   isLoadCom = true;
   isAdmin = -1;
 
@@ -35,6 +38,13 @@ export class EAdminComponent implements OnInit {
             (data) => {
               this.isLoadCat = false;
               this.categoriesActivity = data;
+            }
+          );
+
+          this.categorieService.getAllGroupForumActivites().then(
+            (data) => {
+              this.isLoadGF = false;
+              this.groupeForum = data;
             }
           );
 
@@ -99,6 +109,37 @@ export class EAdminComponent implements OnInit {
 
   deleteCategorie(idCategorie: string) {
     this.categorieService.deleteCategorieActivite(idCategorie).then(
+      () => {
+        this.alertService.print('Opération effectué', 'success');
+        this.ngOnInit();
+      }
+    );
+  }
+
+  addGroupForum() {
+    this.groupeForum.unshift(new GroupForum('', ''));
+  }
+
+  updateParentGroupForum(event: any, groupeForum: GroupForum) {
+    groupeForum.parent = event;
+    this.categorieService.addGroupForum(groupeForum).then(
+      () => {
+        this.alertService.print('Opération effectué', 'success');
+      }
+    );
+  }
+
+  updateNameGroupForum(event: any, groupeForum: GroupForum) {
+    groupeForum.titre = event;
+    this.categorieService.addGroupForum(groupeForum).then(
+      () => {
+        this.alertService.print('Opération effectué', 'success');
+      }
+    );
+  }
+
+  deleteGroupForum(idGroupForum: string) {
+    this.categorieService.deleteGroupForumActivite(idGroupForum).then(
       () => {
         this.alertService.print('Opération effectué', 'success');
         this.ngOnInit();

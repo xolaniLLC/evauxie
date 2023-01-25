@@ -427,7 +427,7 @@ export class EvenementService {
   async getMyCurrentEvent() {
     return new Promise<Evenement[]>((resolve, reject) => {
       // @ts-ignore
-      firebase.firestore().collection('evenements').where('auteur', '==', firebase.auth().currentUser?.email).where('etat', '==', 1).onSnapshot(
+      firebase.firestore().collection('evenements').where('auteur', '==', firebase.auth().currentUser?.email ? firebase.auth().currentUser?.email : 'null').where('etat', '==', 1).onSnapshot(
         (docRef) => {
           const result: Evenement[] = [];
           docRef.forEach(function (doc) {

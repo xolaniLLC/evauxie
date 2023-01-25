@@ -1,0 +1,9 @@
+[debug] [2023-01-25T08:17:22.799Z] ----------------------------------------------------------------------
+[debug] [2023-01-25T08:17:22.805Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\seffi\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js logout
+[debug] [2023-01-25T08:17:22.807Z] CLI Version:   11.9.0
+[debug] [2023-01-25T08:17:22.807Z] Platform:      win32
+[debug] [2023-01-25T08:17:22.807Z] Node Version:  v16.17.0
+[debug] [2023-01-25T08:17:22.810Z] Time:          Wed Jan 25 2023 09:17:22 GMT+0100 (heure normale d’Afrique de l’Ouest)
+[debug] [2023-01-25T08:17:22.811Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-01-25T08:17:23.009Z] >>> [apiv2][query] GET https://accounts.google.com/o/oauth2/revoke token=1%2F%2F03s7rLd8rdSOMCgYIARAAGAMSNwF-L9IrbV2j1ESlAL0EyelvsRpAkEnoeP8RD02w54krV0dao3h52jbqFAuSjQMTcMR30c3NyLg

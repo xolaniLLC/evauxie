@@ -2,7 +2,7 @@
   <div class="hover:bg-auto hover:transition-transform w-full h-56 rounded-md bg-center bg-cover" style="background-image: url({{currentBlog && extractImage(currentBlog.contenu) !== '' ? extractImage(currentBlog.contenu) : 'assets/images/ill_14.png'}})"></div>
   <a href="../article/{{currentBlog.id}}" class="block text-xl font-semibold leading-5 mt-8 text-gray-800">{{currentBlog.titre}}</a>
   <div class="mt-6 flex items-center cursor-pointer">
-    <a href="../article/{{currentBlog.id}}" class="pr-3 text-base font-medium leading-4 underline text-gray-800">Read the article</a>
+    <a href="../article/{{currentBlog.id}}" class="pr-3 text-base font-medium leading-4 underline text-gray-800">{{'14.1' | translate}}</a>
     <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M1 5H15" stroke="#1F2937" stroke-linecap="round" stroke-linejoin="round" />
       <path d="M11 9L15 5" stroke="#1F2937" stroke-linecap="round" stroke-linejoin="round" />
@@ -42,7 +42,7 @@
       <h2 class="text-xl font-semibold 5 text-white overflow-hidden whitespace-nowrap overflow-ellipsis w-48 capitalize">{{currentBlog.titre}}</h2>
       <p class="text-base leading-4 text-white mt-2 overflow-hidden whitespace-nowrap overflow-ellipsis w-48">{{getPureTexte(currentBlog.contenu)}}</p>
       <a class="focus:outline-none focus:underline flex items-center mt-4 cursor-pointer text-white hover:text-gray-200 hover:underline">
-        <a href="../article/{{currentBlog.id}}" class="pr-2 text-sm font-medium leading-none">Read More</a>
+        <a href="../article/{{currentBlog.id}}" class="pr-2 text-sm font-medium leading-none">{{'14.2' | translate}}</a>
         <svg class="fill-stroke" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M5.75 12.5L10.25 8L5.75 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>

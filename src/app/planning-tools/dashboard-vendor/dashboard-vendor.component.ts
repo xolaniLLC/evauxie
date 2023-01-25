@@ -24,7 +24,7 @@ import {TaskVendor} from "../../models/task-vendor";
 export class DashboardVendorComponent implements OnInit {
 
   eventBooked: Evenement[] = [];
-  currentCompany: Company | any;
+  currentCompany!: Company;
   listeTopics: Topic[] = [];
   nbAvisCompanyNotReponse = 0;
   messagesNonLus: any[] = [];

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import firebase from "firebase";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import firebase from "firebase";
 export class AppComponent {
   title = 'Evauxie';
 
-  constructor() {
+  constructor(public translate: TranslateService) {
     const firebaseConfig = {
       apiKey: "AIzaSyDAgqtHK_yJRXYKGdPriPSuweunoyIKADk",
       authDomain: "evauxie.firebaseapp.com",
@@ -25,5 +26,14 @@ export class AppComponent {
 
     // Activation de la persistance de donnée
     //firebase.firestore().enablePersistence();
+
+    if(!localStorage.getItem('language')) {
+      const langValid : string[] = ['en', 'fr'];
+      translate.addLangs(langValid);
+      translate.setDefaultLang(langValid.includes(translate.getBrowserLang() as string) ? translate.getBrowserLang() as string : 'en');
+      localStorage.setItem('language', translate.getDefaultLang());
+    } else {
+      translate.setDefaultLang(localStorage.getItem('language') as string);
+    }
   }
 }

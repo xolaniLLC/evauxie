@@ -18,6 +18,7 @@ export class MailboxComponent implements OnInit {
   elementSelect: any[] = [];
   mesMessagesNonLu: Message[] = [];
   mesMessagesLu: Message[] = [];
+  mesMessagesSend: Message[] = [];
   currentEmailUser: any = firebase.auth().currentUser?.email;
   msgNonLu = 0;
   currentIndexMessage = -1;
@@ -44,9 +45,13 @@ export class MailboxComponent implements OnInit {
     this.messageService.getMesMessagesRecu().then(
       (result) => {
         for(let i=0; i<result.length; i++) {
-          if(result[i].read.includes(this.currentEmailUser)) {
-            this.mesMessagesLu.push(result[i]);
-          } else { this.mesMessagesNonLu.push(result[i]); }
+          if(result[i].auteur === firebase.auth().currentUser?.email) {
+            this.mesMessagesSend.push(result[i]);
+          } else {
+            if(result[i].read.includes(this.currentEmailUser)) {
+              this.mesMessagesLu.push(result[i]);
+            } else { this.mesMessagesNonLu.push(result[i]); }
+          }
         }
       });
   }
@@ -56,11 +61,11 @@ export class MailboxComponent implements OnInit {
   }
 
   checkAll(event: any) {
-    if(this.elementSelect.length === (this.viewElement === 'inbox' ? this.mesMessagesLu.length : this.mesMessagesNonLu.length)) {
+    if(this.elementSelect.length === (this.viewElement === 'inbox' ? this.mesMessagesLu.length : (this.viewElement === 'unread' ? this.mesMessagesNonLu.length : (this.viewElement === 'send' ? this.mesMessagesSend.length : 0)))) {
       this.elementSelect = [];
     } else {
-      for(let i = 0; i < (this.viewElement === 'inbox' ? this.mesMessagesLu.length : this.mesMessagesNonLu.length); i++) {
-        this.elementSelect.push((this.viewElement === 'inbox' ? this.mesMessagesLu[i].id : this.mesMessagesNonLu[i].id));
+      for(let i = 0; i < (this.viewElement === 'inbox' ? this.mesMessagesLu.length : (this.viewElement === 'unread' ? this.mesMessagesNonLu.length : (this.viewElement === 'send' ? this.mesMessagesSend.length : 0))); i++) {
+        this.elementSelect.push((this.viewElement === 'inbox' ? this.mesMessagesLu[i].id : (this.viewElement === 'unread' ? this.mesMessagesNonLu[i].id : (this.viewElement === 'send' ? this.mesMessagesSend[i].id : null))));
       }
     }
   }

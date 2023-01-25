@@ -11,15 +11,15 @@
 
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10" *ngIf="!isLoadingCompany">
   <div class="grid grid-cols-2 grid-rows-1">
-    <h2 class="float-left text-2xl font-bold text-gray-800 dark:text-gray-100">Your companie</h2>
+    <h2 class="float-left text-2xl font-bold text-gray-800 dark:text-gray-100">{{'21.1' | translate}}</h2>
     <div>
       <button *ngIf="listCompany.length === 0" [disabled]="listCompany.length === 0" (click)="addNewCompany()" class="{{listCompany.length === 0 ? 'animate-pulse' : ''}} disabled:bg-gray-400 disabled:text-gray-200 w-fit float-right px-4 py-2 font-semibold tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80">
-        + Add a new company
+        + Add
       </button>
     </div>
   </div>
 
-  <div *ngIf="listCompany.length > 0 && listCompany[0].date === ''">
+  <!--div *ngIf="listCompany.length > 0 && listCompany[0].date === ''">
     <div class="flex items-center justify-center w-full h-full py-5 sm:py-8">
       <div class="w-full relative flex items-center justify-center">
         <button style="z-index: 5" aria-label="slide backward" class="text-gray-900 absolute left-0 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer" (click)="goPrev()">
@@ -57,12 +57,12 @@
         </button>
       </div>
     </div>
-  </div>
+  </div-->
 </section>
 
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-gray-600 body-font" *ngIf="!isLoadingCompany && currentCompany && !currentCompany.date">
   <div class="container mx-auto flex flex-wrap">
-    <h2 class="float-left text-2xl font-bold text-gray-800 dark:text-gray-100">List of your companies</h2>
+    <!--h2 class="float-left text-2xl font-bold text-gray-800 dark:text-gray-100">List of your companies</h2-->
     <div class="flex flex-wrap w-full px-5 py-5">
       <div class="sm:w-full md:w-1/5 md:pr-10 sm:py-4 md:py-6">
         <div class="flex relative pb-12">
@@ -75,8 +75,8 @@
             </svg>
           </div>
           <div class="flex-grow pl-4">
-            <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">STEP 1</h2>
-            <p class="leading-relaxed">Basic information.</p>
+            <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">{{'21.43' | translate}}</h2>
+            <p class="leading-relaxed">{{'21.44' | translate}}</p>
           </div>
         </div>
         <div class="flex relative pb-12">
@@ -84,48 +84,45 @@
             <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
           </div>
           <div class="flex-shrink-0 w-10 h-10 rounded-full {{stepMake >= 2 ? 'bg-indigo-500 text-white' : 'bg-gray-200 text-gray-400'}} inline-flex items-center justify-center relative z-10">
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
             </svg>
           </div>
           <div class="flex-grow pl-4">
-            <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">STEP 2</h2>
-            <p class="leading-relaxed">Media library.</p>
+            <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">{{'21.45' | translate}}</h2>
+            <p class="leading-relaxed">{{'21.46' | translate}}</p>
           </div>
         </div>
         <div class="flex relative">
           <div class="flex-shrink-0 w-10 h-10 rounded-full {{stepMake === 3 ? 'bg-indigo-500 text-white' : 'bg-gray-200 text-gray-400'}} inline-flex items-center justify-center relative z-10">
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-              <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-              <path d="M22 4L12 14.01l-3-3"></path>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 512 512"><path fill="currentColor" d="M23 24v464h18V386.9c152.3 29.4 277.6 29.4 430 0V488h18V24h-18v16h-23v32h23v32h-23v32h23v232.6c-153.3 29.9-276.7 29.9-430 0V104h23V72H41V24H23zm41 48h32V40H64v32zm32 0v32h32V72H96zm32 0h32V40h-32v32zm32 0v32h32V72h-32zm32 0h32V40h-32v32zm32 0v32h32V72h-32zm32 0h32V40h-32v32zm32 0v32h32V72h-32zm32 0h32V40h-32v32zm32 0v32h32V72h-32zm32 0h32V40h-32v32zm32 0v32h32V72h-32zm0 32h-32v32h32v-32zm-64 0h-32v32h32v-32zm-64 0h-32v32h32v-32zm-64 0h-32v32h32v-32zm-64 0h-32v32h32v-32zm-64 0H64v32h32v-32z"/></svg>
           </div>
           <div class="flex-grow pl-4">
-            <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">FINISH</h2>
-            <p class="leading-relaxed">FAQ.</p>
+            <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">{{'21.47' | translate}}</h2>
+            <p class="leading-relaxed">{{'21.48' | translate}}</p>
           </div>
         </div>
       </div>
       <div class="sm:w-full md:w-4/5 md:py-6">
         <div *ngIf="stepMake === 1" class="space-y-5">
           <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
-            <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Company information</h2>
+            <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">{{'21.4' | translate}}</h2>
 
             <form #form="ngForm" (ngSubmit)="save()">
               <div class="grid grid-cols-1 gap-6 mt-4 md:grid-cols-2">
                 <div>
-                  <label class="text-gray-700 dark:text-gray-200" for="name">Name of company *</label>
+                  <label class="text-gray-700 dark:text-gray-200" for="name">{{'21.5' | translate}} *</label>
                   <input id="name" name="name" [(ngModel)]="currentCompany.nom" required type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                 </div>
 
                 <div class="invisible">
-                  <label class="text-gray-700 dark:text-gray-200" for="webSite">Company website</label>
+                  <label class="text-gray-700 dark:text-gray-200" for="webSite">{{'21.41' | translate}}</label>
                   <input id="webSite" name="webSite" [(ngModel)]="currentCompany.webSite" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                 </div>
               </div>
 
               <div class="mt-4">
-                <label class="text-gray-700 dark:text-gray-200" for="description">Description *</label>
+                <label class="text-gray-700 dark:text-gray-200" for="description">{{'21.6' | translate}} *</label>
                 <editor class="mt-2"
                         id="description"
                         required
@@ -149,289 +146,36 @@
             </form>
           </div>
           <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
-            <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Company's contact information</h2>
+            <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">{{'21.18' | translate}}</h2>
 
             <form #form="ngForm" (ngSubmit)="save()">
               <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
 
                 <div>
-                  <label class="text-gray-700 dark:text-gray-200" for="adresse">Address *</label>
+                  <label class="text-gray-700 dark:text-gray-200" for="adresse">{{'21.19' | translate}} *</label>
                   <input required id="adresse" type="text" name="adresse" [(ngModel)]="currentCompany.adresse" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                 </div>
 
                 <div>
-                  <label class="text-gray-700 dark:text-gray-200" for="ville">City *</label>
+                  <label class="text-gray-700 dark:text-gray-200" for="ville">{{'21.20' | translate}} *</label>
                   <input id="ville" required [(ngModel)]="currentCompany.ville" name="ville" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                 </div>
 
                 <div>
-                  <label class="text-gray-700 dark:text-gray-200" for="codePostal">Postal code</label>
+                  <label class="text-gray-700 dark:text-gray-200" for="codePostal">{{'21.21' | translate}}</label>
                   <input id="codePostal" name="codePostal" [(ngModel)]="currentCompany.codePostal" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                 </div>
 
                 <div>
-                  <label class="text-gray-700 dark:text-gray-200" for="pays">Country *</label>
+                  <label class="text-gray-700 dark:text-gray-200" for="pays">{{'21.22' | translate}} *</label>
                   <select required [(ngModel)]="currentCompany.pays" name="pays" id="pays" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                     <option value="" selected="selected">Choose a country</option>
-
-                    <option value="Afghanistan">Afghanistan </option>
-                    <option value="Afrique_Centrale">Afrique_Centrale </option>
-                    <option value="Afrique_du_sud">Afrique_du_Sud </option>
-                    <option value="Albanie">Albanie </option>
-                    <option value="Algerie">Algerie </option>
-                    <option value="Allemagne">Allemagne </option>
-                    <option value="Andorre">Andorre </option>
-                    <option value="Angola">Angola </option>
-                    <option value="Anguilla">Anguilla </option>
-                    <option value="Arabie_Saoudite">Arabie_Saoudite </option>
-                    <option value="Argentine">Argentine </option>
-                    <option value="Armenie">Armenie </option>
-                    <option value="Australie">Australie </option>
-                    <option value="Autriche">Autriche </option>
-                    <option value="Azerbaidjan">Azerbaidjan </option>
-
-                    <option value="Bahamas">Bahamas </option>
-                    <option value="Bangladesh">Bangladesh </option>
-                    <option value="Barbade">Barbade </option>
-                    <option value="Bahrein">Bahrein </option>
-                    <option value="Belgique">Belgique </option>
-                    <option value="Belize">Belize </option>
-                    <option value="Benin">Benin </option>
-                    <option value="Bermudes">Bermudes </option>
-                    <option value="Bielorussie">Bielorussie </option>
-                    <option value="Bolivie">Bolivie </option>
-                    <option value="Botswana">Botswana </option>
-                    <option value="Bhoutan">Bhoutan </option>
-                    <option value="Boznie_Herzegovine">Boznie_Herzegovine </option>
-                    <option value="Bresil">Bresil </option>
-                    <option value="Brunei">Brunei </option>
-                    <option value="Bulgarie">Bulgarie </option>
-                    <option value="Burkina_Faso">Burkina_Faso </option>
-                    <option value="Burundi">Burundi </option>
-
-                    <option value="Caiman">Caiman </option>
-                    <option value="Cambodge">Cambodge </option>
-                    <option value="Cameroun">Cameroun </option>
-                    <option value="Canada">Canada </option>
-                    <option value="Canaries">Canaries </option>
-                    <option value="Cap_vert">Cap_Vert </option>
-                    <option value="Chili">Chili </option>
-                    <option value="Chine">Chine </option>
-                    <option value="Chypre">Chypre </option>
-                    <option value="Colombie">Colombie </option>
-                    <option value="Comores">Colombie </option>
-                    <option value="Congo">Congo </option>
-                    <option value="Congo_democratique">Congo_democratique </option>
-                    <option value="Cook">Cook </option>
-                    <option value="Coree_du_Nord">Coree_du_Nord </option>
-                    <option value="Coree_du_Sud">Coree_du_Sud </option>
-                    <option value="Costa_Rica">Costa_Rica </option>
-                    <option value="Cote_d_Ivoire">Côte_d_Ivoire </option>
-                    <option value="Croatie">Croatie </option>
-                    <option value="Cuba">Cuba </option>
-
-                    <option value="Danemark">Danemark </option>
-                    <option value="Djibouti">Djibouti </option>
-                    <option value="Dominique">Dominique </option>
-
-                    <option value="Egypte">Egypte </option>
-                    <option value="Emirats_Arabes_Unis">Emirats_Arabes_Unis </option>
-                    <option value="Equateur">Equateur </option>
-                    <option value="Erythree">Erythree </option>
-                    <option value="Espagne">Espagne </option>
-                    <option value="Estonie">Estonie </option>
-                    <option value="Etats_Unis">Etats_Unis </option>
-                    <option value="Ethiopie">Ethiopie </option>
-
-                    <option value="Falkland">Falkland </option>
-                    <option value="Feroe">Feroe </option>
-                    <option value="Fidji">Fidji </option>
-                    <option value="Finlande">Finlande </option>
-                    <option value="France">France </option>
-
-                    <option value="Gabon">Gabon </option>
-                    <option value="Gambie">Gambie </option>
-                    <option value="Georgie">Georgie </option>
-                    <option value="Ghana">Ghana </option>
-                    <option value="Gibraltar">Gibraltar </option>
-                    <option value="Grece">Grece </option>
-                    <option value="Grenade">Grenade </option>
-                    <option value="Groenland">Groenland </option>
-                    <option value="Guadeloupe">Guadeloupe </option>
-                    <option value="Guam">Guam </option>
-                    <option value="Guatemala">Guatemala</option>
-                    <option value="Guernesey">Guernesey </option>
-                    <option value="Guinee">Guinee </option>
-                    <option value="Guinee_Bissau">Guinee_Bissau </option>
-                    <option value="Guinee equatoriale">Guinee_Equatoriale </option>
-                    <option value="Guyana">Guyana </option>
-                    <option value="Guyane_Francaise ">Guyane_Francaise </option>
-
-                    <option value="Haiti">Haiti </option>
-                    <option value="Hawaii">Hawaii </option>
-                    <option value="Honduras">Honduras </option>
-                    <option value="Hong_Kong">Hong_Kong </option>
-                    <option value="Hongrie">Hongrie </option>
-
-                    <option value="Inde">Inde </option>
-                    <option value="Indonesie">Indonesie </option>
-                    <option value="Iran">Iran </option>
-                    <option value="Iraq">Iraq </option>
-                    <option value="Irlande">Irlande </option>
-                    <option value="Islande">Islande </option>
-                    <option value="Israel">Israel </option>
-                    <option value="Italie">italie </option>
-
-                    <option value="Jamaique">Jamaique </option>
-                    <option value="Jan Mayen">Jan Mayen </option>
-                    <option value="Japon">Japon </option>
-                    <option value="Jersey">Jersey </option>
-                    <option value="Jordanie">Jordanie </option>
-
-                    <option value="Kazakhstan">Kazakhstan </option>
-                    <option value="Kenya">Kenya </option>
-                    <option value="Kirghizstan">Kirghizistan </option>
-                    <option value="Kiribati">Kiribati </option>
-                    <option value="Koweit">Koweit </option>
-
-                    <option value="Laos">Laos </option>
-                    <option value="Lesotho">Lesotho </option>
-                    <option value="Lettonie">Lettonie </option>
-                    <option value="Liban">Liban </option>
-                    <option value="Liberia">Liberia </option>
-                    <option value="Liechtenstein">Liechtenstein </option>
-                    <option value="Lituanie">Lituanie </option>
-                    <option value="Luxembourg">Luxembourg </option>
-                    <option value="Lybie">Lybie </option>
-
-                    <option value="Macao">Macao </option>
-                    <option value="Macedoine">Macedoine </option>
-                    <option value="Madagascar">Madagascar </option>
-                    <option value="Madère">Madère </option>
-                    <option value="Malaisie">Malaisie </option>
-                    <option value="Malawi">Malawi </option>
-                    <option value="Maldives">Maldives </option>
-                    <option value="Mali">Mali </option>
-                    <option value="Malte">Malte </option>
-                    <option value="Man">Man </option>
-                    <option value="Mariannes du Nord">Mariannes du Nord </option>
-                    <option value="Maroc">Maroc </option>
-                    <option value="Marshall">Marshall </option>
-                    <option value="Martinique">Martinique </option>
-                    <option value="Maurice">Maurice </option>
-                    <option value="Mauritanie">Mauritanie </option>
-                    <option value="Mayotte">Mayotte </option>
-                    <option value="Mexique">Mexique </option>
-                    <option value="Micronesie">Micronesie </option>
-                    <option value="Midway">Midway </option>
-                    <option value="Moldavie">Moldavie </option>
-                    <option value="Monaco">Monaco </option>
-                    <option value="Mongolie">Mongolie </option>
-                    <option value="Montserrat">Montserrat </option>
-                    <option value="Mozambique">Mozambique </option>
-
-                    <option value="Namibie">Namibie </option>
-                    <option value="Nauru">Nauru </option>
-                    <option value="Nepal">Nepal </option>
-                    <option value="Nicaragua">Nicaragua </option>
-                    <option value="Niger">Niger </option>
-                    <option value="Nigeria">Nigeria </option>
-                    <option value="Niue">Niue </option>
-                    <option value="Norfolk">Norfolk </option>
-                    <option value="Norvege">Norvege </option>
-                    <option value="Nouvelle_Caledonie">Nouvelle_Caledonie </option>
-                    <option value="Nouvelle_Zelande">Nouvelle_Zelande </option>
-
-                    <option value="Oman">Oman </option>
-                    <option value="Ouganda">Ouganda </option>
-                    <option value="Ouzbekistan">Ouzbekistan </option>
-
-                    <option value="Pakistan">Pakistan </option>
-                    <option value="Palau">Palau </option>
-                    <option value="Palestine">Palestine </option>
-                    <option value="Panama">Panama </option>
-                    <option value="Papouasie_Nouvelle_Guinee">Papouasie_Nouvelle_Guinee </option>
-                    <option value="Paraguay">Paraguay </option>
-                    <option value="Pays_Bas">Pays_Bas </option>
-                    <option value="Perou">Perou </option>
-                    <option value="Philippines">Philippines </option>
-                    <option value="Pologne">Pologne </option>
-                    <option value="Polynesie">Polynesie </option>
-                    <option value="Porto_Rico">Porto_Rico </option>
-                    <option value="Portugal">Portugal </option>
-
-                    <option value="Qatar">Qatar </option>
-
-                    <option value="Republique_Dominicaine">Republique_Dominicaine </option>
-                    <option value="Republique_Tcheque">Republique_Tcheque </option>
-                    <option value="Reunion">Reunion </option>
-                    <option value="Roumanie">Roumanie </option>
-                    <option value="Royaume_Uni">Royaume_Uni </option>
-                    <option value="Russie">Russie </option>
-                    <option value="Rwanda">Rwanda </option>
-
-                    <option value="Sahara Occidental">Sahara Occidental </option>
-                    <option value="Sainte_Lucie">Sainte_Lucie </option>
-                    <option value="Saint_Marin">Saint_Marin </option>
-                    <option value="Salomon">Salomon </option>
-                    <option value="Salvador">Salvador </option>
-                    <option value="Samoa_Occidentales">Samoa_Occidentales</option>
-                    <option value="Samoa_Americaine">Samoa_Americaine </option>
-                    <option value="Sao_Tome_et_Principe">Sao_Tome_et_Principe </option>
-                    <option value="Senegal">Senegal </option>
-                    <option value="Seychelles">Seychelles </option>
-                    <option value="Sierra Leone">Sierra Leone </option>
-                    <option value="Singapour">Singapour </option>
-                    <option value="Slovaquie">Slovaquie </option>
-                    <option value="Slovenie">Slovenie</option>
-                    <option value="Somalie">Somalie </option>
-                    <option value="Soudan">Soudan </option>
-                    <option value="Sri_Lanka">Sri_Lanka </option>
-                    <option value="Suede">Suede </option>
-                    <option value="Suisse">Suisse </option>
-                    <option value="Surinam">Surinam </option>
-                    <option value="Swaziland">Swaziland </option>
-                    <option value="Syrie">Syrie </option>
-
-                    <option value="Tadjikistan">Tadjikistan </option>
-                    <option value="Taiwan">Taiwan </option>
-                    <option value="Tonga">Tonga </option>
-                    <option value="Tanzanie">Tanzanie </option>
-                    <option value="Tchad">Tchad </option>
-                    <option value="Thailande">Thailande </option>
-                    <option value="Tibet">Tibet </option>
-                    <option value="Timor_Oriental">Timor_Oriental </option>
-                    <option value="Togo">Togo </option>
-                    <option value="Trinite_et_Tobago">Trinite_et_Tobago </option>
-                    <option value="Tristan da cunha">Tristan de cuncha </option>
-                    <option value="Tunisie">Tunisie </option>
-                    <option value="Turkmenistan">Turmenistan </option>
-                    <option value="Turquie">Turquie </option>
-
-                    <option value="Ukraine">Ukraine </option>
-                    <option value="Uruguay">Uruguay </option>
-
-                    <option value="Vanuatu">Vanuatu </option>
-                    <option value="Vatican">Vatican </option>
-                    <option value="Venezuela">Venezuela </option>
-                    <option value="Vierges_Americaines">Vierges_Americaines </option>
-                    <option value="Vierges_Britanniques">Vierges_Britanniques </option>
-                    <option value="Vietnam">Vietnam </option>
-
-                    <option value="Wake">Wake </option>
-                    <option value="Wallis et Futuma">Wallis et Futuma </option>
-
-                    <option value="Yemen">Yemen </option>
-                    <option value="Yougoslavie">Yougoslavie </option>
-
-                    <option value="Zambie">Zambie </option>
-                    <option value="Zimbabwe">Zimbabwe </option>
-
+                    <option *ngFor="let country of allCountry" value="{{country.code}}"  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{country.name}}</option>
                   </select>
                 </div>
 
                 <div>
-                  <label class="text-gray-700 dark:text-gray-200" for="phone">Company phone number *</label>
+                  <label class="text-gray-700 dark:text-gray-200" for="phone">{{'21.23' | translate}} *</label>
                   <input id="phone" required [(ngModel)]="currentCompany.phone" placeholder="+123 456 789" name="phone" type="tel" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                 </div>
               </div>
@@ -439,21 +183,21 @@
           </div>
 
           <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
-            <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">The prices</h2>
+            <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">{{'21.7' | translate}}</h2>
             <form #form="ngForm" (ngSubmit)="save()">
               <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                 <div>
-                  <label class="text-gray-700 dark:text-gray-200" for="priceMin">Min *</label>
+                  <label class="text-gray-700 dark:text-gray-200" for="priceMin">{{'21.8' | translate}} *</label>
                   <input required id="priceMin" min="1" maxlength="1" name="text" [(ngModel)]="currentCompany.price[0]" type="number" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                 </div>
 
                 <div>
-                  <label class="text-gray-700 dark:text-gray-200" for="priceMax">Max *</label>
+                  <label class="text-gray-700 dark:text-gray-200" for="priceMax">{{'21.9' | translate}} *</label>
                   <input required id="priceMax" min="1" maxlength="1" type="number" name="priceMax" [(ngModel)]="currentCompany.price[1]" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                 </div>
 
                 <div>
-                  <label class="text-gray-700 dark:text-gray-200 block" for="devise">Devise * &nbsp;</label>
+                  <label class="text-gray-700 dark:text-gray-200 block" for="devise">{{'21.10' | translate}} * &nbsp;</label>
                   <select [(ngModel)]="currentCompany.devise" required name="devise" id="devise" class="mt-2 block border border-gray-200 rounded-md px-4 py-2 font-medium text-gray-700 bg-transparent dark:text-gray-500 focus:outline-none">
                     <option value="xaf">FCFA (xaf)</option>
                     <option value="xof">FCFA (xof)</option>
@@ -461,11 +205,11 @@
                 </div>
 
                 <div>
-                  <label class="text-gray-700 dark:text-gray-200" for="devise">Affordability * &nbsp;</label>
+                  <label class="text-gray-700 dark:text-gray-200" for="devise">{{'21.11' | translate}} * &nbsp;</label>
                   <select [(ngModel)]="currentCompany.affordbility" required name="affordbility" id="affordbility" class="block border border-gray-200 rounded-md mt-2 px-4 py-2 font-medium text-gray-700 bg-transparent dark:text-gray-500 focus:outline-none">
-                    <option value="xaf">Cheap</option>
-                    <option value="xof">Affordable</option>
-                    <option value="xof">Expensive</option>
+                    <option value="xaf">{{'21.12' | translate}}</option>
+                    <option value="xof">{{'21.13' | translate}}</option>
+                    <option value="xof">{{'21.14' | translate}}</option>
                   </select>
                 </div>
               </div>
@@ -473,17 +217,17 @@
           </div>
 
           <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
-            <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Sector of activity</h2>
+            <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">{{'21.15' | translate}}</h2>
 
             <p *ngIf="categoriesActivity.length === 0" class="text-gray-500 text-sm py-1">
-              No sector of activity for the moment
+              {{'21.42' | translate}}
             </p>
 
             <form #form="ngForm" (ngSubmit)="save()">
 
               <fieldset class="my-3 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1">
                 <div *ngFor="let cat of categoriesActivity" class="flex items-center mb-4">
-                  <input [disabled]="sousCategorisActivity.length > 0" (click)="currentCompany.categorie = cat.id; getSousCategorieElement(cat.id);" id="country-option-{{cat.id}}" type="radio" name="categorie-{{cat.id}}" value="{{cat.id}}" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-indigo-300 dark:focus:ring-indigo-600 dark:focus:bg-indigo-600 dark:bg-gray-700 dark:border-gray-600" [checked]="currentCompany.categorie === cat.id ? true : false">
+                  <input [disabled]="sousCategorisActivity.length > 0" (click)="currentCompany.categorie = cat.id; getSousCategorieElement(cat.id);" id="country-option-{{cat.id}}" type="radio" name="categorie-{{cat.id}}" value="{{cat.id}}" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-indigo-300 dark:focus:ring-indigo-600 dark:focus:bg-indigo-600 dark:bg-gray-700 dark:border-gray-600" [checked]="currentCompany.categorie === cat.id">
                   <label for="country-option-{{cat.id}}" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 capitalize">
                     {{cat.titre}}
                   </label>
@@ -491,8 +235,8 @@
               </fieldset>
               <div class="my-3 border-t border-gray-500 py-5" *ngIf="sousCategorisActivity.length > 0">
                 <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1">
-                  <h3 class="font-medium text-indigo-700">Choose a sub-category</h3>
-                  <span class="font-semibold text-red-700 cursor-pointer" (click)="sousCategorisActivity = []">Cancel</span>
+                  <h3 class="font-medium text-indigo-700">{{'21.16' | translate}}</h3>
+                  <span class="font-semibold text-red-700 cursor-pointer" (click)="sousCategorisActivity = []">{{'21.17' | translate}}</span>
                 </div>
                 <fieldset class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 py-5">
                   <div *ngFor="let cat of sousCategorisActivity" class="flex items-center mb-4">
@@ -509,8 +253,8 @@
 
         <div *ngIf="stepMake === 2" class="space-y-5">
           <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
-            <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Photo profil</h2>
-            <div class="mb-2"> <span>Change the profile picture of your company</span>
+            <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">{{'21.29' | translate}}</h2>
+            <div class="mb-2"> <span>{{'21.30' | translate}}</span>
               <form [formGroup]="uploadForm">
                 <div class="my-3 relative h-56 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
                   <div class="absolute">
@@ -525,14 +269,14 @@
                       <img *ngIf="!isUploadLogoProfil && currentCompany && currentCompany.logo" class="rounded-full h-24 w-24 object-cover border-white dark:border-gray-700 border-2 bg-gray-400"
                            [src]="currentCompany.logo"
                            alt="Profil" />
-                      <span *ngIf="!isUploadLogoProfil" class="block text-gray-400 font-normal">Drag your photos here</span> <span *ngIf="!isUploadLogoProfil" class="block text-gray-400 font-normal">or</span>
+                      <span *ngIf="!isUploadLogoProfil" class="block text-gray-400 font-normal">{{'21.31' | translate}}</span> <span *ngIf="!isUploadLogoProfil" class="block text-gray-400 font-normal">{{'21.32' | translate}}</span>
                       <div *ngIf="!isUploadLogoProfil" class="flex space-x-2">
-                        <button type="button" class="focus:outline-none text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-semibold rounded-lg text-base px-3 py-2">Add photos</button>
+                        <button type="button" class="focus:outline-none text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-semibold rounded-lg text-base px-3 py-2">{{'21.33' | translate}}</button>
                       </div>
                     </div>
-                  </div> <input type="file" accept="image/*" formControlName="fileProfil" (change)="onImageProfilChange($event)" multiple class="h-full w-full opacity-0" name="file">
+                  </div> <input type="file" accept="image/png, image/jpeg, image/jpg, image/gif" formControlName="fileProfil" (change)="onImageProfilChange($event)" class="h-full w-full opacity-0" name="file">
                 </div>
-                <div class="flex justify-between items-center text-gray-400"> <span>Accepted file type:.png, .jpg, .gif</span>
+                <div class="flex justify-between items-center text-gray-400"> <span>{{'21.35' | translate}}</span>
                   <span class="flex items-center ">
                       <svg *ngIf="!currentCompany.logo" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -546,8 +290,8 @@
             </div>
           </div>
           <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
-            <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Photo library</h2>
-            <div class="mb-2"> <span>Add at least 8 photos of your company, they will be displayed on your window</span>
+            <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">{{'21.36' | translate}}</h2>
+            <div class="mb-2"> <span>{{'21.37' | translate}}</span>
               <form [formGroup]="uploadForm">
                 <div class="my-3 relative h-56 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
                   <div class="absolute">
@@ -559,8 +303,8 @@
                       <svg *ngIf="!isUploadPhototeque" xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
-                      <span *ngIf="!isUploadPhototeque" class="block text-gray-400 font-normal">Drag your photos here</span> <span *ngIf="!isUploadPhototeque" class="block text-gray-400 font-normal">or</span> <button *ngIf="!isUploadPhototeque" type="button" class="focus:outline-none text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-semibold rounded-lg text-base px-3 py-2 m-2 dark:bg-indigo-500 dark:hover:bg-indigo-600 dark:focus:ring-indigo-800">Add photos</button> </div>
-                  </div> <input type="file" accept="image/*" formControlName="file" (change)="onImageChange($event)" multiple class="h-full w-full opacity-0" name="file">
+                      <span *ngIf="!isUploadPhototeque" class="block text-gray-400 font-normal">{{'21.38' | translate}}</span> <span *ngIf="!isUploadPhototeque" class="block text-gray-400 font-normal">{{'21.39' | translate}}</span> <button *ngIf="!isUploadPhototeque" type="button" class="focus:outline-none text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-semibold rounded-lg text-base px-3 py-2 m-2 dark:bg-indigo-500 dark:hover:bg-indigo-600 dark:focus:ring-indigo-800">{{'21.40' | translate}}</button> </div>
+                  </div> <input type="file" accept="image/png, image/jpg, image/jpeg, image/gif" formControlName="file" (change)="onImageChange($event)" class="h-full w-full opacity-0" name="file">
                 </div>
                 <div class="flex justify-between items-center text-gray-400"> <span>Accepted file type:.png, .jpg, .gif</span> <span class="flex items-center ">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
@@ -589,9 +333,9 @@
         </div>
         <div *ngIf="stepMake === 3" class="space-y-5">
           <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
-            <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">FAQ
+            <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">{{'21.26' | translate}}
               <button (click)="addNewFaq()" class="{{currentCompany.faq.length === 0 ? 'animate-pulse' : ''}} text-sm disabled:bg-gray-400 disabled:text-gray-200 w-fit float-right px-4 py-2 font-semibold tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80">
-                + Add new question
+                {{'21.27' | translate}}
               </button>
             </h2>
 
@@ -602,7 +346,10 @@
                     <input type="text" id="email" name="titre_{{i}}" [(ngModel)]="currentCompany.faq[i].titre" class="font-semibold text-gray-700 dark:text-white text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Question..." required>
 
                     <div class="flex items-center">
-                      <p class="text-gray-500 dark:text-gray-300 mx-3">Language</p>
+                      <p class="text-gray-500 dark:text-gray-300 mx-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802" />
+                      </svg>
+                      </p>
                       <select [(ngModel)]="currentCompany.faq[i].langue" name="langue_{{i}}" class="font-medium text-gray-700 bg-transparent dark:text-gray-500 focus:outline-none">
                         <option value="fr">Fr</option>
                         <option value="en">En</option>
@@ -619,7 +366,7 @@
                   <hr class="border-gray-200 dark:border-gray-700">
 
                   <p class="p-8 text-sm text-gray-500 dark:text-gray-300">
-                    <textarea [(ngModel)]="currentCompany.faq[i].reponse" name="message_{{i}}" rows="2" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your answer..." required></textarea>
+                    <textarea [(ngModel)]="currentCompany.faq[i].reponse" name="message_{{i}}" rows="2" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="..." required></textarea>
                   </p>
                 </form>
               </div>
@@ -629,13 +376,13 @@
         <div>
           <form #form="ngForm" (ngSubmit)="save()">
             <div class="justify-end flex mt-6 space-x-5">
-              <a (click)="stepMake > 1 && !isLoading ? (stepMake = stepMake - 1) : ''" class="{{stepMake <= 1 || isLoading ? 'bg-gray-200 text-gray-400' : 'bg-gray-700 text-white hover:bg-gray-600 focus:outline-none focus:bg-gray-600'}} cursor-pointer px-6 py-2 leading-5 transition-colors duration-200 transform rounded-md">Previous</a>
+              <a (click)="stepMake > 1 && !isLoading ? (stepMake = stepMake - 1) : ''" class="{{stepMake <= 1 || isLoading ? 'bg-gray-200 text-gray-400' : 'bg-gray-700 text-white hover:bg-gray-600 focus:outline-none focus:bg-gray-600'}} cursor-pointer px-6 py-2 leading-5 transition-colors duration-200 transform rounded-md">{{'21.50' | translate}}</a>
               <button [disabled]="isLoading" type="submit" class="disabled:bg-gray-400 disabled:bg-gray-200 disabled:text-gray-400 px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">
                 <svg *ngIf="isLoading" role="status" class="inline mr-3 w-4 h-4 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
                   <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
                 </svg>
-                {{stepMake === 3 ? 'Finish' : 'Next'}}</button>
+                {{stepMake === 3 ? ('21.47' | translate) : ('21.51' | translate)}}</button>
             </div>
           </form>
         </div>
@@ -645,11 +392,11 @@
 </section>
 
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5" *ngIf="!isLoadingCompany && currentCompany && currentCompany.date">
-  <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Information about the selected company</h2>
-  <div *ngIf="!currentCompany.verify" id="alert-border-5" class="flex p-4 my-4 bg-gray-100 border-t-4 border-gray-500 dark:bg-gray-700" role="alert">
+  <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">{{'21.2' | translate}}</h2>
+  <div *ngIf="!currentCompany.verifier" id="alert-border-5" class="flex p-4 my-4 bg-gray-100 border-t-4 border-gray-500 dark:bg-gray-700" role="alert">
     <svg class="flex-shrink-0 w-5 h-5 text-gray-700 dark:text-gray-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
     <div class="ml-3 text-sm font-medium text-gray-700 dark:text-gray-300">
-      We will proceed to the verification of your company, after validation, it will be published in the site.
+      {{'21.3' | translate}}
     </div>
   </div>
 
@@ -657,32 +404,32 @@
   <div class="container px-6 py-8 mx-auto">
     <div class="lg:flex lg:-mx-2">
       <div class="space-y-3 lg:w-1/5 lg:px-2 lg:space-y-4">
-        <a (click)="sousMenu = 1" class="block font-medium cursor-pointer {{sousMenu === 1 ? 'text-indigo-600' : 'text-gray-500'}} dark:text-gray-300 hover:underline">Company information</a>
-        <a (click)="sousMenu = 3" class="block font-medium cursor-pointer {{sousMenu === 3 ? 'text-indigo-600' : 'text-gray-500'}} dark:text-blue-500 hover:underline">Frequently asked Questions</a>
-        <a (click)="sousMenu = 4" class="block font-medium cursor-pointer {{sousMenu === 4 ? 'text-indigo-600' : 'text-gray-500'}} dark:text-gray-300 hover:underline">Pictures</a>
+        <a (click)="sousMenu = 1" class="block font-medium cursor-pointer {{sousMenu === 1 ? 'text-indigo-600' : 'text-gray-500'}} dark:text-gray-300 hover:underline">{{'21.4' | translate}}</a>
+        <a (click)="sousMenu = 3" class="block font-medium cursor-pointer {{sousMenu === 3 ? 'text-indigo-600' : 'text-gray-500'}} dark:text-blue-500 hover:underline">{{'21.25' | translate}}</a>
+        <a (click)="sousMenu = 4" class="block font-medium cursor-pointer {{sousMenu === 4 ? 'text-indigo-600' : 'text-gray-500'}} dark:text-gray-300 hover:underline">{{'21.28' | translate}}</a>
       </div>
 
       <div class="mt-6 lg:mt-0 lg:px-2 lg:w-4/5 ">
         <div>
           <div *ngIf="sousMenu === 1" class="space-y-5 mb-5">
             <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
-              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Company information</h2>
+              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">{{'21.4' | translate}}</h2>
 
               <form #form="ngForm" (ngSubmit)="save()">
                 <div class="grid grid-cols-1 gap-6 mt-4 md:grid-cols-2">
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="name_0">Name of company *</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="name_0">{{'21.5' | translate}} *</label>
                     <input id="name_0" name="name" [(ngModel)]="currentCompany.nom" required type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                   </div>
 
                   <div class="invisible">
-                    <label class="text-gray-700 dark:text-gray-200" for="webSite_0">Company website</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="webSite_0">{{'21.41' | translate}}</label>
                     <input id="webSite_0" name="webSite" [(ngModel)]="currentCompany.webSite" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                   </div>
                 </div>
 
                 <div class="mt-4">
-                  <label class="text-gray-700 dark:text-gray-200" for="description_0">Description *</label>
+                  <label class="text-gray-700 dark:text-gray-200" for="description_0">{{'21.6' | translate}} *</label>
                   <editor class="mt-2"
                           id="description_0"
                           required
@@ -707,21 +454,21 @@
             </div>
 
             <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
-              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Price range</h2>
+              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">{{'21.7' | translate}}</h2>
               <form #form="ngForm" (ngSubmit)="save()">
                 <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="priceMin_0">Min *</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="priceMin_0">{{'21.8' | translate}} *</label>
                     <input required id="priceMin_0" min="1" maxlength="1"  name="text" [(ngModel)]="currentCompany.price[0]" type="number" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                   </div>
 
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="priceMax_0">Max *</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="priceMax_0">{{'21.9' | translate}} *</label>
                     <input required id="priceMax_0" min="1" maxlength="1" type="number" name="priceMax" [(ngModel)]="currentCompany.price[1]" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                   </div>
 
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="devise">Currency * &nbsp;</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="devise">{{'21.10' | translate}} * &nbsp;</label>
                     <select [(ngModel)]="currentCompany.devise" required name="devise" id="devise_0" class="block border border-gray-200 rounded-md mt-2 px-4 py-2 font-medium text-gray-700 bg-transparent dark:text-gray-500 focus:outline-none">
                       <option value="xaf">FCFA (xaf)</option>
                       <option value="xof">FCFA (xof)</option>
@@ -729,11 +476,11 @@
                   </div>
 
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="devise">Affordability * &nbsp;</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="devise">{{'21.11' | translate}} * &nbsp;</label>
                     <select [(ngModel)]="currentCompany.affordbility" required name="affordbility" id="affordbility_0" class="block border border-gray-200 rounded-md mt-2 px-4 py-2 font-medium text-gray-700 bg-transparent dark:text-gray-500 focus:outline-none">
-                      <option value="xaf">Cheap</option>
-                      <option value="xof">Affordable</option>
-                      <option value="xof">Expensive</option>
+                      <option value="xaf">{{'21.12' | translate}}</option>
+                      <option value="xof">{{'21.13' | translate}}</option>
+                      <option value="xof">{{'21.14' | translate}}</option>
                     </select>
                   </div>
                 </div>
@@ -741,10 +488,10 @@
             </div>
 
             <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
-              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Sector of activity</h2>
+              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">{{'21.15' | translate}}</h2>
 
               <p *ngIf="categoriesActivity.length === 0" class="text-gray-500 text-sm py-1">
-                No sector of activity for the moment
+                {{'21.42' | translate}}
               </p>
 
               <form #form="ngForm" (ngSubmit)="save()">
@@ -759,8 +506,8 @@
                 </fieldset>
                 <div class="my-3 border-t border-gray-500 py-5" *ngIf="sousCategorisActivity.length > 0">
                   <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1">
-                    <h3 class="font-medium text-indigo-700">Choose a sub-category</h3>
-                    <span class="font-semibold text-red-700 cursor-pointer" (click)="sousCategorisActivity = []">Cancel</span>
+                    <h3 class="font-medium text-indigo-700">{{'21.16' | translate}}</h3>
+                    <span class="font-semibold text-red-700 cursor-pointer" (click)="sousCategorisActivity = []">{{'21.17' | translate}}</span>
                   </div>
                   <fieldset class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 py-5">
                     <div *ngFor="let cat of sousCategorisActivity" class="flex items-center mb-4">
@@ -777,288 +524,35 @@
 
           <div *ngIf="sousMenu === 1" class="space-y-5">
             <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
-              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Company's contact information</h2>
+              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">{{'21.18' | translate}}</h2>
 
               <form #form="ngForm" (ngSubmit)="save()">
                 <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
 
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="adresse_0">Address *</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="adresse_0">{{'21.19' | translate}} *</label>
                     <input required id="adresse_0" type="text" name="adresse" [(ngModel)]="currentCompany.adresse" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                   </div>
 
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="ville_0">City *</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="ville_0">{{'21.20' | translate}} *</label>
                     <input disabled id="ville_0" required [(ngModel)]="currentCompany.ville" name="ville" type="text" class="disabled:bg-gray-200 disabled:text-gray-400 block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                   </div>
 
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="codePostal_0">Postal code</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="codePostal_0">{{'21.21' | translate}}</label>
                     <input id="codePostal_0" name="codePostal" [(ngModel)]="currentCompany.codePostal" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                   </div>
 
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="pays_0">Country *</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="pays_0">{{'21.22' | translate}} *</label>
                     <select disabled required [(ngModel)]="currentCompany.pays" name="pays" id="pays_0" class="disabled:bg-gray-200 disabled:text-gray-400 block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                       <option value="" selected="selected">Choose a country</option>
-
-                      <option value="Afghanistan">Afghanistan </option>
-                      <option value="Afrique_Centrale">Afrique_Centrale </option>
-                      <option value="Afrique_du_sud">Afrique_du_Sud </option>
-                      <option value="Albanie">Albanie </option>
-                      <option value="Algerie">Algerie </option>
-                      <option value="Allemagne">Allemagne </option>
-                      <option value="Andorre">Andorre </option>
-                      <option value="Angola">Angola </option>
-                      <option value="Anguilla">Anguilla </option>
-                      <option value="Arabie_Saoudite">Arabie_Saoudite </option>
-                      <option value="Argentine">Argentine </option>
-                      <option value="Armenie">Armenie </option>
-                      <option value="Australie">Australie </option>
-                      <option value="Autriche">Autriche </option>
-                      <option value="Azerbaidjan">Azerbaidjan </option>
-
-                      <option value="Bahamas">Bahamas </option>
-                      <option value="Bangladesh">Bangladesh </option>
-                      <option value="Barbade">Barbade </option>
-                      <option value="Bahrein">Bahrein </option>
-                      <option value="Belgique">Belgique </option>
-                      <option value="Belize">Belize </option>
-                      <option value="Benin">Benin </option>
-                      <option value="Bermudes">Bermudes </option>
-                      <option value="Bielorussie">Bielorussie </option>
-                      <option value="Bolivie">Bolivie </option>
-                      <option value="Botswana">Botswana </option>
-                      <option value="Bhoutan">Bhoutan </option>
-                      <option value="Boznie_Herzegovine">Boznie_Herzegovine </option>
-                      <option value="Bresil">Bresil </option>
-                      <option value="Brunei">Brunei </option>
-                      <option value="Bulgarie">Bulgarie </option>
-                      <option value="Burkina_Faso">Burkina_Faso </option>
-                      <option value="Burundi">Burundi </option>
-
-                      <option value="Caiman">Caiman </option>
-                      <option value="Cambodge">Cambodge </option>
-                      <option value="Cameroun">Cameroun </option>
-                      <option value="Canada">Canada </option>
-                      <option value="Canaries">Canaries </option>
-                      <option value="Cap_vert">Cap_Vert </option>
-                      <option value="Chili">Chili </option>
-                      <option value="Chine">Chine </option>
-                      <option value="Chypre">Chypre </option>
-                      <option value="Colombie">Colombie </option>
-                      <option value="Comores">Colombie </option>
-                      <option value="Congo">Congo </option>
-                      <option value="Congo_democratique">Congo_democratique </option>
-                      <option value="Cook">Cook </option>
-                      <option value="Coree_du_Nord">Coree_du_Nord </option>
-                      <option value="Coree_du_Sud">Coree_du_Sud </option>
-                      <option value="Costa_Rica">Costa_Rica </option>
-                      <option value="Cote_d_Ivoire">Côte_d_Ivoire </option>
-                      <option value="Croatie">Croatie </option>
-                      <option value="Cuba">Cuba </option>
-
-                      <option value="Danemark">Danemark </option>
-                      <option value="Djibouti">Djibouti </option>
-                      <option value="Dominique">Dominique </option>
-
-                      <option value="Egypte">Egypte </option>
-                      <option value="Emirats_Arabes_Unis">Emirats_Arabes_Unis </option>
-                      <option value="Equateur">Equateur </option>
-                      <option value="Erythree">Erythree </option>
-                      <option value="Espagne">Espagne </option>
-                      <option value="Estonie">Estonie </option>
-                      <option value="Etats_Unis">Etats_Unis </option>
-                      <option value="Ethiopie">Ethiopie </option>
-
-                      <option value="Falkland">Falkland </option>
-                      <option value="Feroe">Feroe </option>
-                      <option value="Fidji">Fidji </option>
-                      <option value="Finlande">Finlande </option>
-                      <option value="France">France </option>
-
-                      <option value="Gabon">Gabon </option>
-                      <option value="Gambie">Gambie </option>
-                      <option value="Georgie">Georgie </option>
-                      <option value="Ghana">Ghana </option>
-                      <option value="Gibraltar">Gibraltar </option>
-                      <option value="Grece">Grece </option>
-                      <option value="Grenade">Grenade </option>
-                      <option value="Groenland">Groenland </option>
-                      <option value="Guadeloupe">Guadeloupe </option>
-                      <option value="Guam">Guam </option>
-                      <option value="Guatemala">Guatemala</option>
-                      <option value="Guernesey">Guernesey </option>
-                      <option value="Guinee">Guinee </option>
-                      <option value="Guinee_Bissau">Guinee_Bissau </option>
-                      <option value="Guinee equatoriale">Guinee_Equatoriale </option>
-                      <option value="Guyana">Guyana </option>
-                      <option value="Guyane_Francaise ">Guyane_Francaise </option>
-
-                      <option value="Haiti">Haiti </option>
-                      <option value="Hawaii">Hawaii </option>
-                      <option value="Honduras">Honduras </option>
-                      <option value="Hong_Kong">Hong_Kong </option>
-                      <option value="Hongrie">Hongrie </option>
-
-                      <option value="Inde">Inde </option>
-                      <option value="Indonesie">Indonesie </option>
-                      <option value="Iran">Iran </option>
-                      <option value="Iraq">Iraq </option>
-                      <option value="Irlande">Irlande </option>
-                      <option value="Islande">Islande </option>
-                      <option value="Israel">Israel </option>
-                      <option value="Italie">italie </option>
-
-                      <option value="Jamaique">Jamaique </option>
-                      <option value="Jan Mayen">Jan Mayen </option>
-                      <option value="Japon">Japon </option>
-                      <option value="Jersey">Jersey </option>
-                      <option value="Jordanie">Jordanie </option>
-
-                      <option value="Kazakhstan">Kazakhstan </option>
-                      <option value="Kenya">Kenya </option>
-                      <option value="Kirghizstan">Kirghizistan </option>
-                      <option value="Kiribati">Kiribati </option>
-                      <option value="Koweit">Koweit </option>
-
-                      <option value="Laos">Laos </option>
-                      <option value="Lesotho">Lesotho </option>
-                      <option value="Lettonie">Lettonie </option>
-                      <option value="Liban">Liban </option>
-                      <option value="Liberia">Liberia </option>
-                      <option value="Liechtenstein">Liechtenstein </option>
-                      <option value="Lituanie">Lituanie </option>
-                      <option value="Luxembourg">Luxembourg </option>
-                      <option value="Lybie">Lybie </option>
-
-                      <option value="Macao">Macao </option>
-                      <option value="Macedoine">Macedoine </option>
-                      <option value="Madagascar">Madagascar </option>
-                      <option value="Madère">Madère </option>
-                      <option value="Malaisie">Malaisie </option>
-                      <option value="Malawi">Malawi </option>
-                      <option value="Maldives">Maldives </option>
-                      <option value="Mali">Mali </option>
-                      <option value="Malte">Malte </option>
-                      <option value="Man">Man </option>
-                      <option value="Mariannes du Nord">Mariannes du Nord </option>
-                      <option value="Maroc">Maroc </option>
-                      <option value="Marshall">Marshall </option>
-                      <option value="Martinique">Martinique </option>
-                      <option value="Maurice">Maurice </option>
-                      <option value="Mauritanie">Mauritanie </option>
-                      <option value="Mayotte">Mayotte </option>
-                      <option value="Mexique">Mexique </option>
-                      <option value="Micronesie">Micronesie </option>
-                      <option value="Midway">Midway </option>
-                      <option value="Moldavie">Moldavie </option>
-                      <option value="Monaco">Monaco </option>
-                      <option value="Mongolie">Mongolie </option>
-                      <option value="Montserrat">Montserrat </option>
-                      <option value="Mozambique">Mozambique </option>
-
-                      <option value="Namibie">Namibie </option>
-                      <option value="Nauru">Nauru </option>
-                      <option value="Nepal">Nepal </option>
-                      <option value="Nicaragua">Nicaragua </option>
-                      <option value="Niger">Niger </option>
-                      <option value="Nigeria">Nigeria </option>
-                      <option value="Niue">Niue </option>
-                      <option value="Norfolk">Norfolk </option>
-                      <option value="Norvege">Norvege </option>
-                      <option value="Nouvelle_Caledonie">Nouvelle_Caledonie </option>
-                      <option value="Nouvelle_Zelande">Nouvelle_Zelande </option>
-
-                      <option value="Oman">Oman </option>
-                      <option value="Ouganda">Ouganda </option>
-                      <option value="Ouzbekistan">Ouzbekistan </option>
-
-                      <option value="Pakistan">Pakistan </option>
-                      <option value="Palau">Palau </option>
-                      <option value="Palestine">Palestine </option>
-                      <option value="Panama">Panama </option>
-                      <option value="Papouasie_Nouvelle_Guinee">Papouasie_Nouvelle_Guinee </option>
-                      <option value="Paraguay">Paraguay </option>
-                      <option value="Pays_Bas">Pays_Bas </option>
-                      <option value="Perou">Perou </option>
-                      <option value="Philippines">Philippines </option>
-                      <option value="Pologne">Pologne </option>
-                      <option value="Polynesie">Polynesie </option>
-                      <option value="Porto_Rico">Porto_Rico </option>
-                      <option value="Portugal">Portugal </option>
-
-                      <option value="Qatar">Qatar </option>
-
-                      <option value="Republique_Dominicaine">Republique_Dominicaine </option>
-                      <option value="Republique_Tcheque">Republique_Tcheque </option>
-                      <option value="Reunion">Reunion </option>
-                      <option value="Roumanie">Roumanie </option>
-                      <option value="Royaume_Uni">Royaume_Uni </option>
-                      <option value="Russie">Russie </option>
-                      <option value="Rwanda">Rwanda </option>
-
-                      <option value="Sahara Occidental">Sahara Occidental </option>
-                      <option value="Sainte_Lucie">Sainte_Lucie </option>
-                      <option value="Saint_Marin">Saint_Marin </option>
-                      <option value="Salomon">Salomon </option>
-                      <option value="Salvador">Salvador </option>
-                      <option value="Samoa_Occidentales">Samoa_Occidentales</option>
-                      <option value="Samoa_Americaine">Samoa_Americaine </option>
-                      <option value="Sao_Tome_et_Principe">Sao_Tome_et_Principe </option>
-                      <option value="Senegal">Senegal </option>
-                      <option value="Seychelles">Seychelles </option>
-                      <option value="Sierra Leone">Sierra Leone </option>
-                      <option value="Singapour">Singapour </option>
-                      <option value="Slovaquie">Slovaquie </option>
-                      <option value="Slovenie">Slovenie</option>
-                      <option value="Somalie">Somalie </option>
-                      <option value="Soudan">Soudan </option>
-                      <option value="Sri_Lanka">Sri_Lanka </option>
-                      <option value="Suede">Suede </option>
-                      <option value="Suisse">Suisse </option>
-                      <option value="Surinam">Surinam </option>
-                      <option value="Swaziland">Swaziland </option>
-                      <option value="Syrie">Syrie </option>
-
-                      <option value="Tadjikistan">Tadjikistan </option>
-                      <option value="Taiwan">Taiwan </option>
-                      <option value="Tonga">Tonga </option>
-                      <option value="Tanzanie">Tanzanie </option>
-                      <option value="Tchad">Tchad </option>
-                      <option value="Thailande">Thailande </option>
-                      <option value="Tibet">Tibet </option>
-                      <option value="Timor_Oriental">Timor_Oriental </option>
-                      <option value="Togo">Togo </option>
-                      <option value="Trinite_et_Tobago">Trinite_et_Tobago </option>
-                      <option value="Tristan da cunha">Tristan de cuncha </option>
-                      <option value="Tunisie">Tunisie </option>
-                      <option value="Turkmenistan">Turmenistan </option>
-                      <option value="Turquie">Turquie </option>
-
-                      <option value="Ukraine">Ukraine </option>
-                      <option value="Uruguay">Uruguay </option>
-
-                      <option value="Vanuatu">Vanuatu </option>
-                      <option value="Vatican">Vatican </option>
-                      <option value="Venezuela">Venezuela </option>
-                      <option value="Vierges_Americaines">Vierges_Americaines </option>
-                      <option value="Vierges_Britanniques">Vierges_Britanniques </option>
-                      <option value="Vietnam">Vietnam </option>
-
-                      <option value="Wake">Wake </option>
-                      <option value="Wallis et Futuma">Wallis et Futuma </option>
-
-                      <option value="Yemen">Yemen </option>
-                      <option value="Yougoslavie">Yougoslavie </option>
-
-                      <option value="Zambie">Zambie </option>
-                      <option value="Zimbabwe">Zimbabwe </option>
-
+                      <option *ngFor="let country of allCountry" value="{{country.code}}"  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{country.name}}</option>
                     </select>
                   </div>
                   <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="phone_0">Company phone number *</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="phone_0">{{'21.23' | translate}} *</label>
                     <input id="phone_0" required [(ngModel)]="currentCompany.phone" placeholder="+123 456 789" name="phone" type="tel" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                   </div>
                 </div>
@@ -1069,9 +563,9 @@
 
           <div *ngIf="sousMenu === 3" class="space-y-5">
             <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
-              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">FAQ
+              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">{{'21.26' | translate}}
                 <button (click)="addNewFaq()" class="{{currentCompany.faq.length === 0 ? 'animate-pulse' : ''}} text-sm disabled:bg-gray-400 disabled:text-gray-200 w-fit float-right px-4 py-2 font-semibold tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80">
-                  + Add new question
+                  {{'21.27' | translate}}
                 </button>
               </h2>
 
@@ -1082,7 +576,11 @@
                       <input type="text" id="titre_{{i}}" name="titre_{{i}}" [(ngModel)]="currentCompany.faq[i].titre" class="font-semibold text-gray-700 dark:text-white text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Question..." required>
 
                       <div class="flex items-center">
-                        <p class="text-gray-500 dark:text-gray-300 mx-3">Language</p>
+                        <p class="text-gray-500 dark:text-gray-300 mx-3">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802" />
+                          </svg>
+                        </p>
                         <select [(ngModel)]="currentCompany.faq[i].langue" name="langue_{{i}}" class="font-medium text-gray-700 bg-transparent dark:text-gray-500 focus:outline-none">
                           <option value="fr">Fr</option>
                           <option value="en">En</option>
@@ -1109,8 +607,8 @@
 
           <div *ngIf="sousMenu === 4" class="space-y-5">
             <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
-              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Photo profil</h2>
-              <div class="mb-2"> <span>Change the profile picture of your company</span>
+              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">{{'21.29' | translate}}</h2>
+              <div class="mb-2"> <span>{{'21.30' | translate}}</span>
                 <form [formGroup]="uploadForm">
                   <div class="my-3 relative h-56 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
                     <div class="absolute">
@@ -1125,14 +623,14 @@
                         <img *ngIf="!isUploadLogoProfil && currentCompany && currentCompany.logo" class="rounded-full h-24 w-24 object-cover border-white dark:border-gray-700 border-2 bg-gray-400"
                              [src]="currentCompany.logo"
                              alt="Profil" />
-                        <span *ngIf="!isUploadLogoProfil" class="block text-gray-400 font-normal">Drag your photos here</span> <span *ngIf="!isUploadLogoProfil" class="block text-gray-400 font-normal">or</span>
+                        <span *ngIf="!isUploadLogoProfil" class="block text-gray-400 font-normal">{{'21.31' | translate}}</span> <span *ngIf="!isUploadLogoProfil" class="block text-gray-400 font-normal">{{'21.32' | translate}}</span>
                         <div *ngIf="!isUploadLogoProfil" class="flex space-x-2">
-                          <button type="button" class="focus:outline-none text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-semibold rounded-lg text-base px-3 py-2">Add photos</button>
+                          <button type="button" class="focus:outline-none text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-semibold rounded-lg text-base px-3 py-2">{{'21.33' | translate}}</button>
                         </div>
                       </div>
-                    </div> <input type="file" accept="image/*" formControlName="fileProfil" (change)="onImageProfilChange($event)" multiple class="h-full w-full opacity-0" name="file">
+                    </div> <input type="file" accept="image/png, image/jpg, image/gif, image/jpeg" formControlName="fileProfil" (change)="onImageProfilChange($event)" class="h-full w-full opacity-0" name="file">
                   </div>
-                  <div class="flex justify-between items-center text-gray-400"> <span>Accepted file type:.png, .jpg, .gif</span>
+                  <div class="flex justify-between items-center text-gray-400"> <span>{{'21.35' | translate}}</span>
                     <span class="flex items-center ">
                       <svg *ngIf="!currentCompany.logo" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -1146,8 +644,8 @@
               </div>
             </div>
             <div class="w-full p-6 mx-auto border border-gray-200 rounded-md">
-              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">Photo library</h2>
-              <div class="mb-2"> <span>Add at least 8 photos of your company, they will be displayed on your window</span>
+              <h2 class="text-lg font-semibold text-gray-800 capitalize dark:text-white">{{'21.36' | translate}}</h2>
+              <div class="mb-2"> <span>{{'21.37' | translate}}</span>
                 <form [formGroup]="uploadForm">
                   <div class="my-3 relative h-56 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
                     <div class="absolute">
@@ -1159,10 +657,10 @@
                         <svg *ngIf="!isUploadPhototeque" xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
-                        <span *ngIf="!isUploadPhototeque" class="block text-gray-400 font-normal">Drag your photos here</span> <span *ngIf="!isUploadPhototeque" class="block text-gray-400 font-normal">or</span> <button *ngIf="!isUploadPhototeque" type="button" class="focus:outline-none text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-semibold rounded-lg text-base px-3 py-2 m-2 dark:bg-indigo-500 dark:hover:bg-indigo-600 dark:focus:ring-indigo-800">Add photos</button> </div>
-                    </div> <input type="file" accept="image/*" formControlName="file" (change)="onImageChange($event)" multiple class="h-full w-full opacity-0" name="file">
+                        <span *ngIf="!isUploadPhototeque" class="block text-gray-400 font-normal">{{'21.38' | translate}}</span> <span *ngIf="!isUploadPhototeque" class="block text-gray-400 font-normal">{{'21.39' | translate}}</span> <button *ngIf="!isUploadPhototeque" type="button" class="focus:outline-none text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-semibold rounded-lg text-base px-3 py-2 m-2 dark:bg-indigo-500 dark:hover:bg-indigo-600 dark:focus:ring-indigo-800">{{'21.40' | translate}}</button> </div>
+                    </div> <input type="file" accept="image/png, image/jpg, image/gif, image/jpeg" formControlName="file" (change)="onImageChange($event)" class="h-full w-full opacity-0" name="file">
                   </div>
-                  <div class="flex justify-between items-center text-gray-400"> <span>Accepted file type:.png, .jpg, .gif</span> <span class="flex items-center ">
+                  <div class="flex justify-between items-center text-gray-400"> <span>{{'21.35' | translate}}</span> <span class="flex items-center ">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg></span> </div>
@@ -1196,7 +694,7 @@
                     <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
                     <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
                   </svg>
-                  Save</button>
+                  {{'21.24' | translate}}</button>
               </div>
             </form>
           </div>

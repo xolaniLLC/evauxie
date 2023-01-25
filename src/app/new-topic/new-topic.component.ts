@@ -4,6 +4,8 @@ import {Topic} from "../models/topic";
 import firebase from "firebase";
 import {AlertService} from "../services/alert.service";
 import {Router} from "@angular/router";
+import {CategoriesService} from "../services/categories.service";
+import {GroupForum} from "../models/group-forum";
 
 @Component({
   selector: 'app-new-topic',
@@ -16,10 +18,16 @@ export class NewTopicComponent implements OnInit {
   html = '';
   titre = '';
   categorie = '';
+  groupeForum: GroupForum[] = [];
 
-  constructor(private forumService: ForumService, private alertService: AlertService, private router: Router) { }
+  constructor(private categorieService: CategoriesService, private forumService: ForumService, private alertService: AlertService, private router: Router) { }
 
   ngOnInit(): void {
+    this.categorieService.getGroupForumActivites().then(
+      (data) => {
+        this.groupeForum = data;
+      }
+    );
   }
 
   sendTopic() {

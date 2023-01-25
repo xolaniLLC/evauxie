@@ -12,9 +12,9 @@
         <span class="font-normal text-2xl">&nbsp;{{messagesNonLus.length}}</span>
       </div>
       <a href="#" class="inline">
-        <h5 class="mb-1 text-xl capitalize tracking-tight text-gray-900 dark:text-white">request received</h5>
+        <h5 class="mb-1 text-xl capitalize tracking-tight text-gray-900 dark:text-white">{{'20.1' | translate}}</h5>
       </a>
-      <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Latest update</p>
+      <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{'20.2' | translate}}</p>
     </div>
     <div class="p-6 max-w-sm bg-white dark:bg-gray-800 dark:border-gray-700 text-center">
       <div>
@@ -25,9 +25,9 @@
         <span class="font-normal text-2xl">&nbsp;{{nbAvisCompanyNotReponse}}</span>
       </div>
       <a class="inline">
-        <h5 class="mb-1 text-xl capitalize tracking-tight text-gray-900 dark:text-white">Comments on Service</h5>
+        <h5 class="mb-1 text-xl capitalize tracking-tight text-gray-900 dark:text-white">{{'20.3' | translate}}</h5>
       </a>
-      <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Latest update times</p>
+      <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{'20.4' | translate}}</p>
     </div>
     <div class="p-6 max-w-sm bg-white dark:bg-gray-800 dark:border-gray-700 text-center">
       <div>
@@ -38,29 +38,22 @@
         <span class="font-normal text-2xl">&nbsp;{{0}}</span>
       </div>
       <a class="inline">
-        <h5 class="mb-1 text-xl capitalize tracking-tight text-gray-900 dark:text-white">Profile views</h5>
+        <h5 class="mb-1 text-xl capitalize tracking-tight text-gray-900 dark:text-white">{{'20.5' | translate}}</h5>
       </a>
-      <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Latest update times</p>
+      <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{'20.6' | translate}}</p>
     </div>
   </div>
 </section>
 
-<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-5">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-5" *ngIf="currentCompany && !currentCompany.verifier">
   <div class="flex p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg" role="alert">
     <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
     <span class="sr-only">Info</span>
     <div>
-      <span class="font-medium">We proceed to the verification of the information of your company facilitated in the registration form.</span>
+      <span class="font-medium">{{'20.7' | translate}}</span>
       <p class="mt-1.5 text-blue-700 list-disc list-inside">
-        Once the information is validated by our team, your window will be published on our site. In case of doubt, please contact us at info@evauxie.com
+        {{'20.8' | translate}}
       </p>
-    </div>
-  </div>
-  <div id="alert-4" class="flex p-4 mb-4 bg-yellow-100 rounded-lg dark:bg-yellow-200" role="alert">
-    <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5 text-yellow-700 dark:text-yellow-800" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-    <span class="sr-only">Info</span>
-    <div class="ml-3 text-sm font-medium text-yellow-700 dark:text-yellow-800">
-      You can <a routerLink="../my-showcase" class="font-semibold underline hover:text-yellow-800 dark:hover:text-yellow-900">click here</a> to add a company to your account.
     </div>
   </div>
 </section>
@@ -69,9 +62,12 @@
   <div class="md:w-2/4 w-full lg:space-y-4">
     <div class="border-gray-300 border rounded-xl p-3">
       <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
-        <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">Booking manager</h2>
+        <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">{{'20.10' | translate}}</h2>
       </div>
       <div class="space-y-2 px-5 py-5 h-96">
+        <p class="text-gray-400 text-2xl font-light" *ngIf="eventBooked.length === 0">
+          {{'20.11' | translate}}
+        </p>
         <div *ngFor="let event of eventBooked.slice(0,3)" class="bg-white border-gray-300 border dark:bg-gray-800 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between px-3 sm:px-3 rounded-xl">
           <div class="flex items-center mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
             <div class="relative w-10 h-10 rounded">
@@ -94,11 +90,11 @@
   <div class="md:w-2/4 lg:space-y-4 w-full">
     <div class="border-gray-300 border rounded-xl p-3">
       <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
-        <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">Calender</h2>
+        <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">{{'20.12' | translate}}</h2>
       </div>
       <div class="space-y-2 p-5 h-96">
         <p class="text-gray-400 text-2xl font-light">
-          Coming soon
+          {{'20.13' | translate}}
         </p>
         <div class="w-full h-full">
           <img src="assets/images/ill_32.png" class="w-80 h-80">
@@ -108,29 +104,29 @@
   </div>
 </section>
 
-<section class="max-w-7xl mx-auto my-7" *ngIf="currentCompany">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-7" *ngIf="currentCompany">
   <div class="md:flex justify-start md:gap-4 mb-8">
     <div class="h-16 w-16 mb-4 lg:mb-0 mr-4">
       <img src="{{currentUser && currentUser.photo ? currentUser.photo : 'assets/images/user.png'}}" alt="" class="h-full w-full rounded-full overflow-hidden shadow" />
     </div>
     <form #form="ngForm" class="w-full">
-      <input routerLink="../../new-topic" type="text" placeholder="Ask a question… Start a discussion…" class="placeholder-gray-600 w-full p-4 h-16 place-items-center border border-gray-400 rounded-md focus:outline-none" />
+      <input routerLink="../../new-topic" type="text" placeholder="{{'20.14' | translate}}" class="placeholder-gray-600 w-full p-4 h-16 place-items-center border border-gray-400 rounded-md focus:outline-none" />
     </form>
   </div>
 </section>
 
-<section class="max-w-7xl mx-auto" *ngIf="currentCompany">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" *ngIf="currentCompany">
   <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
-    <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">View recent posts</h2>
+    <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">{{'20.15' | translate}}</h2>
   </div>
   <p class="text-gray-500 font-light text-left py-10 text-xl" *ngIf="listeTopics.length === 0">
-    No items displayed
+    {{'20.16' | translate}}
   </p>
   <div>
     <app-miniature-topic skin="item" idTopic="{{topic.id}}" *ngFor="let topic of listeTopics"></app-miniature-topic>
   </div>
 </section>
 
-<br><p></p><br>
+<br><br><br><br><br>
 
 <app-footer></app-footer>

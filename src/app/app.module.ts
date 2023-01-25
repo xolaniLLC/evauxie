@@ -38,9 +38,7 @@ import { ApercuMailComponent } from './mailbox/apercu-mail/apercu-mail.component
 import { WriteMessageComponent } from './shared/write-message/write-message.component';
 import { MiniatureMessageComponent } from './shared/miniature-message/miniature-message.component';
 import { RegisterVendorComponent } from './register-vendor/register-vendor.component';
-import { CompanyManagementComponent } from './company-management/company-management.component';
 import { MenuCompanyManagementComponent } from './shared/menu-company-management/menu-company-management.component';
-import { MyCompanyComponent } from './company-management/my-company/my-company.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { VenuesComponent } from './venues/venues.component';
 import { BarreSearchComponent } from './shared/barre-search/barre-search.component';
@@ -66,6 +64,17 @@ import { MiniatureNameUserComponent } from './shared/miniature-name-user/miniatu
 import { FiltreComponent } from './shared/filtre/filtre.component';
 import { MiniatureSlowIncrementNumberComponent } from './shared/miniature-slow-increment-number/miniature-slow-increment-number.component';
 import { ConsoleInformationModelComponent } from './shared/console-information-model/console-information-model.component';
+import { DataProtectionPolicyComponent } from './data-protection-policy/data-protection-policy.component';
+import { UserTermsAndConditionsComponent } from './user-terms-and-conditions/user-terms-and-conditions.component';
+import { FloatingActionButtonComponent } from './shared/floating-action-button/floating-action-button.component';
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+
+// Factory function required during AOT compilation
+export function httpTranslateLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
     declarations: [
@@ -103,9 +112,7 @@ import { ConsoleInformationModelComponent } from './shared/console-information-m
         WriteMessageComponent,
         MiniatureMessageComponent,
         RegisterVendorComponent,
-        CompanyManagementComponent,
         MenuCompanyManagementComponent,
-        MyCompanyComponent,
         VenuesComponent,
         BarreSearchComponent,
         ZoneResultatSearchComponent,
@@ -130,14 +137,25 @@ import { ConsoleInformationModelComponent } from './shared/console-information-m
         MiniatureNameUserComponent,
         FiltreComponent,
         MiniatureSlowIncrementNumberComponent,
-        ConsoleInformationModelComponent
+        ConsoleInformationModelComponent,
+        DataProtectionPolicyComponent,
+        UserTermsAndConditionsComponent,
+        FloatingActionButtonComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FormsModule,
       EditorModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      HttpClientModule,
+      TranslateModule.forRoot({
+        loader: {
+          provide: TranslateLoader,
+          useFactory: httpTranslateLoaderFactory,
+          deps: [HttpClient]
+        }
+      })
     ],
   providers: [],
   bootstrap: [AppComponent]

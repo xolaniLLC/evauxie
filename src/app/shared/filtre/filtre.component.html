@@ -1,19 +1,19 @@
 <div class="space-y-4">
   <h2 class="mb-4 pl-2 text-gray-900">
-    Filtre
+    {{'8.1' | translate}}
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="float-right w-6 h-6">
       <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
     </svg>
   </h2>
   <div class="border border-gray-200 rounded p-2">
     <h3 class="mb-2 text-black text-base">
-      Category
+      {{'8.2' | translate}}
       <svg xmlns="http://www.w3.org/2000/svg" (click)="viewCat = !viewCat" class="float-right {{!viewCat ? 'rotate-180' : ''}} w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
       </svg>
     </h3>
     <div class="space-y-2" *ngIf="!isLoadingCat && viewCat">
-      <span (click)="updateCurrentLink('categorie','')" class="inline-block mr-2 hover:bg-gray-100 hover:cursor-pointer {{categorieSelect === '' ? 'bg-indigo-500 text-gray-50' : 'bg-transparent border-gray-300 border text-gray-800'}} text-xs font-normal p-1.5 rounded ">All</span>
+      <span (click)="updateCurrentLink('categorie','')" class="inline-block mr-2 hover:bg-gray-100 hover:cursor-pointer {{categorieSelect === '' ? 'bg-indigo-500 text-gray-50' : 'bg-transparent border-gray-300 border text-gray-800'}} text-xs font-normal p-1.5 rounded ">{{'8.3' | translate}}</span>
       <span (click)="updateCurrentLink('categorie',cat.id)" *ngFor="let cat of categories" class="inline-block mr-2 hover:bg-gray-100 hover:cursor-pointer {{categorieSelect === cat.id ? 'bg-indigo-500 text-gray-50' : 'bg-transparent border-gray-300 border text-gray-800'}} text-xs font-normal p-1.5 rounded ">{{cat.titre}}</span>
     </div>
     <div class="text-center">
@@ -25,27 +25,27 @@
   </div>
   <div class="border border-gray-200 rounded p-2">
     <h3 class="mb-2 text-black text-base">
-      Affordbility
+      {{'8.4' | translate}}
       <svg xmlns="http://www.w3.org/2000/svg" (click)="viewAffordbility = !viewAffordbility" class="float-right {{!viewAffordbility ? 'rotate-180' : ''}} w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
       </svg>
     </h3>
     <div class="space-y-2" *ngIf="viewAffordbility">
-      <span (click)="updateCurrentLink('affordbility','')" class="{{affordbilitySelect === '' ? 'bg-indigo-500 text-gray-50 border-0' : 'bg-transparent border-gray-300 border text-gray-800'}} inline-block mr-2 hover:bg-gray-100 hover:cursor-pointer text-xs font-normal p-1.5 rounded">All</span>
-      <span (click)="updateCurrentLink('affordbility','cheap')" class="{{affordbilitySelect === 'cheap' ? 'bg-indigo-500 text-gray-50 border-0' : 'bg-transparent border-gray-300 border text-gray-800'}} inline-block mr-2 hover:bg-gray-100 hover:cursor-pointer text-xs font-normal p-1.5 rounded">Cheap</span>
-      <span (click)="updateCurrentLink('affordbility','affordable')" class="{{affordbilitySelect === 'affordable' ? 'bg-indigo-500 text-gray-50' : 'bg-transparent border-gray-300 border text-gray-800'}} inline-block mr-2 hover:bg-gray-100 hover:cursor-pointer text-xs font-normal p-1.5 rounded">Affordable</span>
-      <span (click)="updateCurrentLink('affordbility','expensive')" class="{{affordbilitySelect === 'expensive' ? 'bg-indigo-500 text-gray-50' : 'bg-transparent border-gray-300 border text-gray-800'}} inline-block mr-2 hover:bg-gray-100 hover:cursor-pointer text-xs font-normal p-1.5 rounded">Expensive</span>
+      <span (click)="updateCurrentLink('affordbility','')" class="{{affordbilitySelect === '' ? 'bg-indigo-500 text-gray-50 border-0' : 'bg-transparent border-gray-300 border text-gray-800'}} inline-block mr-2 hover:bg-gray-100 hover:cursor-pointer text-xs font-normal p-1.5 rounded">{{'8.5' | translate}}</span>
+      <span (click)="updateCurrentLink('affordbility','cheap')" class="{{affordbilitySelect === 'cheap' ? 'bg-indigo-500 text-gray-50 border-0' : 'bg-transparent border-gray-300 border text-gray-800'}} inline-block mr-2 hover:bg-gray-100 hover:cursor-pointer text-xs font-normal p-1.5 rounded">{{'8.6' | translate}}</span>
+      <span (click)="updateCurrentLink('affordbility','affordable')" class="{{affordbilitySelect === 'affordable' ? 'bg-indigo-500 text-gray-50' : 'bg-transparent border-gray-300 border text-gray-800'}} inline-block mr-2 hover:bg-gray-100 hover:cursor-pointer text-xs font-normal p-1.5 rounded">{{'8.7' | translate}}</span>
+      <span (click)="updateCurrentLink('affordbility','expensive')" class="{{affordbilitySelect === 'expensive' ? 'bg-indigo-500 text-gray-50' : 'bg-transparent border-gray-300 border text-gray-800'}} inline-block mr-2 hover:bg-gray-100 hover:cursor-pointer text-xs font-normal p-1.5 rounded">{{'8.8' | translate}}</span>
     </div>
   </div>
   <div class="border border-gray-200 rounded p-2">
     <h3 class="mb-2 text-black text-base">
-      Town
+      {{'8.9' | translate}}
       <svg xmlns="http://www.w3.org/2000/svg" (click)="viewTown = !viewTown" class="float-right {{!viewTown ? 'rotate-180' : ''}} w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
       </svg>
     </h3>
     <div class="space-y-2" *ngIf="!isLoadingTown && viewTown">
-      <span (click)="updateCurrentLink('ville','')" class="inline-block mr-2 hover:bg-gray-100 hover:cursor-pointer {{townSelect === '' ? 'bg-indigo-500 text-gray-50' : 'bg-transparent border-gray-300 border text-gray-800'}} text-xs font-normal p-1.5 rounded ">All</span>
+      <span (click)="updateCurrentLink('ville','')" class="inline-block mr-2 hover:bg-gray-100 hover:cursor-pointer {{townSelect === '' ? 'bg-indigo-500 text-gray-50' : 'bg-transparent border-gray-300 border text-gray-800'}} text-xs font-normal p-1.5 rounded ">{{'8.5' | translate}}</span>
       <span (click)="updateCurrentLink('ville',town.city)" *ngFor="let town of towns" class="inline-block mr-2 hover:bg-gray-100 hover:cursor-pointer {{townSelect === town.city ? 'bg-indigo-500 text-gray-50' : 'bg-transparent border-gray-300 border text-gray-800'}} text-xs font-normal p-1.5 rounded ">{{town.city}}</span>
     </div>
     <div class="text-center">
@@ -57,7 +57,7 @@
   </div>
   <div class="border border-gray-200 rounded p-2">
     <h3 class="mb-2 text-black text-base">
-      Rating
+      {{'8.10' | translate}}
       <svg xmlns="http://www.w3.org/2000/svg" (click)="viewRating = !viewRating" class="float-right {{!viewRating ? 'rotate-180' : ''}} w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
       </svg>

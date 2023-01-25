@@ -18,13 +18,10 @@ import {ChecklistComponent} from "./planning-tools/checklist/checklist.component
 import {VendorsManagerComponent} from "./planning-tools/vendors-manager/vendors-manager.component";
 import {GuestsListsComponent} from "./planning-tools/guests-lists/guests-lists.component";
 import {BudgetComponent} from "./planning-tools/budget/budget.component";
-import {PlanningToolsGuardService} from "./services/planning-tools-guard.service";
 import {MailboxComponent} from "./mailbox/mailbox.component";
 import {PaymentComponent} from "./planning-tools/payment/payment.component";
 import {ApercuMailComponent} from "./mailbox/apercu-mail/apercu-mail.component";
 import {RegisterVendorComponent} from "./register-vendor/register-vendor.component";
-import {CompanyManagementComponent} from "./company-management/company-management.component";
-import {MyCompanyComponent} from "./company-management/my-company/my-company.component";
 import {VenuesComponent} from "./venues/venues.component";
 import {CompanyComponent} from "./company/company.component";
 import {VendorsComponent} from "./vendors/vendors.component";
@@ -36,6 +33,8 @@ import {DashboardComponent} from "./planning-tools/dashboard/dashboard.component
 import {VitrineVendorComponent} from "./planning-tools/vitrine-vendor/vitrine-vendor.component";
 import {AccountVendorComponent} from "./planning-tools/account-vendor/account-vendor.component";
 import {BookingManagerComponent} from "./planning-tools/booking-manager/booking-manager.component";
+import {DataProtectionPolicyComponent} from "./data-protection-policy/data-protection-policy.component";
+import {UserTermsAndConditionsComponent} from "./user-terms-and-conditions/user-terms-and-conditions.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -68,6 +67,8 @@ const routes: Routes = [
   { path: 'venues', component: VenuesComponent },
   { path: 'vendors', component: VendorsComponent },
   { path: 'search', component: SearchComponent },
+  { path: 'data-protection-policy', component: DataProtectionPolicyComponent },
+  { path: 'user-terms-and-conditions', component: UserTermsAndConditionsComponent },
   { path: 'e-admin', canActivate: [AuthGuardService], component: EAdminComponent },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];

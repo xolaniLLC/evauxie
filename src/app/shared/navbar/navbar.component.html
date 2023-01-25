@@ -21,33 +21,30 @@
         <!-- tab panel, show/hide based on tab state. -->
         <div class="pt-10 pb-8 px-4 space-y-10">
           <div>
-            <a href="./planning-tools" class="cursor-pointer font-medium text-gray-900">Planning Tools</a>
+            <a href="./planning-tools" class="cursor-pointer font-medium text-gray-900">{{'2.1' | translate}}</a>
             <ul *ngIf="!isLoadingCat && (!currentUser || (currentUser && currentUser.typeUtilisateur !== 'vendor'))" role="list" aria-labelledby="women-clothing-heading-mobile" class="mt-6 flex flex-col space-y-6">
-              <li class="flow-root" *ngIf="isConnected === 1">
-                <a href="./planning-tools{{isConnected === 1 ? '/my-event' : '#presentation-my-event'}}" class="-m-2 p-2 block text-gray-500"> My event </a>
+
+              <li class="flow-root">
+                <a href="./planning-tools{{isConnected === 1 ? '/checklist' : '#presentation-checklist'}}" class="-m-2 p-2 block text-gray-500"> {{'2.1.4' | translate}} </a>
               </li>
 
               <li class="flow-root">
-                <a href="./planning-tools{{isConnected === 1 ? '/checklist' : '#presentation-checklist'}}" class="-m-2 p-2 block text-gray-500"> Check lists </a>
+                <a href="./planning-tools{{isConnected === 1 ? '/guests-lists' : '#presentation-guests-lists'}}" class="-m-2 p-2 block text-gray-500"> {{'2.1.5' | translate}} </a>
               </li>
 
               <li class="flow-root">
-                <a href="./planning-tools{{isConnected === 1 ? '/guests-lists' : '#presentation-guests-lists'}}" class="-m-2 p-2 block text-gray-500"> Guest lists </a>
+                <a href="./planning-tools{{isConnected === 1 ? '/vendors-manager' : '#presentation-vendors-manager'}}" class="-m-2 p-2 block text-gray-500"> {{'2.1.2' | translate}} </a>
               </li>
 
               <li class="flow-root">
-                <a href="./planning-tools{{isConnected === 1 ? '/vendors-manager' : '#presentation-vendors-manager'}}" class="-m-2 p-2 block text-gray-500"> Vendor manager </a>
-              </li>
-
-              <li class="flow-root">
-                <a href="./planning-tools{{isConnected === 1 ? '/budget' : '#presentation-budget'}}" class="-m-2 p-2 block text-gray-500"> Budget </a>
+                <a href="./planning-tools{{isConnected === 1 ? '/budget' : '#presentation-budget'}}" class="-m-2 p-2 block text-gray-500"> {{'2.1.6' | translate}} </a>
               </li>
 
             </ul>
             <ul role="list" aria-labelledby="women-clothing-heading-mobile" class="mt-6 flex flex-col space-y-6" *ngIf="isConnected === 1 && currentUser.typeUtilisateur === 'vendor'">
 
               <li class="flow-root">
-                <a href="./planning-tools/booking-manager" class="hover:text-gray-800"> Booking manager </a>
+                <a href="./planning-tools/booking-manager" class="hover:text-gray-800"> {{'2.1.3' | translate}} </a>
               </li>
             </ul>
 
@@ -60,7 +57,7 @@
           </div>
 
           <div>
-            <p id="women-accessories-heading-mobile" class="font-medium text-gray-900">Type of venues</p>
+            <p id="women-accessories-heading-mobile" class="font-medium text-gray-900">{{'2.2' | translate}}</p>
             <ul role="list" aria-labelledby="women-accessories-heading-mobile" class="mt-6 flex flex-col space-y-6">
               <li class="flow-root" *ngFor="let sous of sousCategoriesVenue">
                 <a href="./venues?categorie={{sous.id}}" class="-m-2 p-2 block text-gray-500"> {{sous.titre}} </a>
@@ -75,7 +72,7 @@
           </div>
 
           <div>
-            <p id="women-brands-heading-mobile" class="font-medium text-gray-900">Categories of Vendors on the platform</p>
+            <p id="women-brands-heading-mobile" class="font-medium text-gray-900">{{'2.3.1' | translate}}</p>
             <ul role="list" aria-labelledby="women-brands-heading-mobile" class="mt-6 flex flex-col space-y-6">
               <ng-container *ngFor="let cat of categories">
                 <li class="flow-root" *ngIf="cat.titre.toLocaleLowerCase() !== 'venue'">
@@ -96,11 +93,11 @@
 
       <div class="border-t border-gray-200 py-6 px-4 space-y-6">
         <div class="flow-root">
-          <a href="./forum" class="-m-2 p-2 block font-medium text-gray-900">Forum</a>
+          <a href="./forum" class="-m-2 p-2 block font-medium text-gray-900">{{'2.4' | translate}}</a>
         </div>
 
         <div class="flow-root">
-          <a href="./blogs-posts" class="-m-2 p-2 block font-medium text-gray-900">Blogs Posts</a>
+          <a href="./blogs-posts" class="-m-2 p-2 block font-medium text-gray-900">{{'2.5' | translate}}</a>
         </div>
 
       </div>
@@ -116,10 +113,10 @@
         </svg>
       </div>
       <div class="items-center text-right items-end content-end justify-end justify-items-end" *ngIf="isConnected === 0">
-        <span class="mx-5 md:inline block font-semibold text-white">Are you a seller and don't have an account yet? <a routerLink="../register-vendor" class="underline">Create one here</a></span>
+        <span class="mx-5 md:inline block font-semibold text-white">{{'1.1' | translate}} <a routerLink="../register-vendor" class="underline">{{'1.2' | translate}}</a></span>
         <div class="mt-4 md:inline">
-          <a href="./login-customer" class="font-bold mx-2 my-2 bg-white transition duration-150 ease-in-out hover:bg-gray-100 hover:text-indigo-600 rounded text-indigo-700 px-8 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-700">Login</a>
-          <a href="./register-customer" class="mx-2 my-2 bg-transparent transition duration-150 ease-in-out hover:bg-gray-100 hover:text-indigo-600 font-bold rounded border border-white text-white px-8 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-700">Register</a>
+          <a href="./login-customer" class="font-bold mx-2 my-2 bg-white transition duration-150 ease-in-out hover:bg-gray-100 hover:text-indigo-600 rounded text-indigo-700 px-8 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-700">{{'1.3' | translate}}</a>
+          <a href="./register-customer" class="mx-2 my-2 bg-transparent transition duration-150 ease-in-out hover:bg-gray-100 hover:text-indigo-600 font-bold rounded border border-white text-white px-8 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-700">{{'1.4' | translate}}</a>
         </div>
       </div>
       <div class="flex space-x-5 justify-end items-center pl-2 pr-5" *ngIf="isConnected === 1">
@@ -142,9 +139,9 @@
                     <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white capitalize">{{currentUser ? currentUser.nom : ''}}</h5>
                     <span class="text-sm text-gray-500 dark:text-gray-400">{{currentUser ? currentUser.email : ''}}</span>
                     <div class="mt-2 space-y-3">
-                      <a href="planning-tools" class="block items-center py-2 px-4 text-sm font-medium text-center text-white bg-indigo-500 rounded-lg hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300">View dashboard</a>
-                      <a *ngIf="currentUser && currentUser.typeUtilisateur === 'vendor'" href="planning-tools/account-vendor" class="block items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">View business profile</a>
-                      <a href="{{currentUser ? '../profil/' + currentUser.email : ''}}" class="block items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">View account</a>
+                      <a href="planning-tools" class="block items-center py-2 px-4 text-sm font-medium text-center text-white bg-indigo-500 rounded-lg hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300">{{'18.1' | translate}}</a>
+                      <a *ngIf="currentUser && currentUser.typeUtilisateur === 'vendor'" href="planning-tools/account-vendor" class="block items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">{{'18.2' | translate}}</a>
+                      <a href="{{currentUser ? '../profil/' + currentUser.email : ''}}" class="block items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">{{'18.3' | translate}}</a>
                     </div>
                   </div>
                 </div>
@@ -157,7 +154,7 @@
                      stroke-linecap="round" stroke-linejoin="round">
                   <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                 </svg>
-                <span class="ml-2">Log out</span>
+                <span class="ml-2">{{'18.4' | translate}}</span>
               </li>
             </ul>
             <a (click)="userDropdown ? (userDropdown = false) : (userDropdown = true)"
@@ -196,7 +193,7 @@
             <div class="h-full flex space-x-8">
               <div class="flex">
                 <div class="relative flex">
-                  <a href="./planning-tools" (mouseover)="sm_1_1 = true; sm_1_2 = false; sm_1_3 = false;" type="button" class="{{ sm_1_1 ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-900 hover:text-gray-800'}} relative z-10 flex items-center transition-colors ease-out duration-200 text-base font-medium border-b-2 -mb-px pt-px" aria-expanded="false">Planning Tools</a>
+                  <a href="./planning-tools" (mouseover)="sm_1_1 = true; sm_1_2 = false; sm_1_3 = false;" type="button" class="{{ sm_1_1 ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-900 hover:text-gray-800'}} relative z-10 flex items-center transition-colors ease-out duration-200 text-base font-medium border-b-2 -mb-px pt-px" aria-expanded="false">{{'2.1' | translate}}</a>
                 </div>
                 <div class="absolute top-full inset-x-0 text-base text-gray-500 z-10" *ngIf="sm_1_1" (mouseleave)="sm_1_1 = false" >
                  <div class="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true"></div>
@@ -211,7 +208,7 @@
                             </div>
                             <a class="mt-6 block font-medium text-gray-900">
                               <span class="absolute z-10 inset-0" aria-hidden="true"></span>
-                              Check your task list
+                              {{'2.1.7' | translate}}
                             </a>
                           </div>
 
@@ -221,25 +218,21 @@
                             </div>
                             <a class="mt-6 block font-medium text-gray-900">
                               <span class="absolute z-10 inset-0" aria-hidden="true"></span>
-                              Manage your guests
+                              {{'2.1.8' | translate}}
                             </a>
                           </div>
                         </div>
                         <div class="row-start-1 grid grid-cols-3 gap-y-10 gap-x-8 text-base">
                           <div *ngIf="!isLoadingCat && (!currentUser || (currentUser && currentUser.typeUtilisateur !== 'vendor'))">
                             <div>
-                              <p id="loa" class="font-medium text-gray-900 text-xl">List of actions</p>
+                              <p id="loa" class="font-medium text-gray-900 text-xl">{{'2.1' | translate}}</p>
                               <ul role="list" aria-labelledby="loa" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
-                                <li class="flex" *ngIf="isConnected === 1">
-                                  <a href="./planning-tools{{isConnected === 1 ? '/my-events' : '#presentation-my-events'}}" class="hover:text-gray-800"> My Events </a>
+                                <li class="flex">
+                                  <a href="./planning-tools{{isConnected === 1 ? '/checklist' : '#presentation-checklist'}}" class="hover:text-gray-800"> {{'2.1.4' | translate}} </a>
                                 </li>
 
                                 <li class="flex">
-                                  <a href="./planning-tools{{isConnected === 1 ? '/checklist' : '#presentation-checklist'}}" class="hover:text-gray-800"> Check Lists </a>
-                                </li>
-
-                                <li class="flex">
-                                  <a href="./planning-tools{{isConnected === 1 ? '/guests-lists' : '#presentation-guests-lists'}}" class="hover:text-gray-800"> Guest Lists </a>
+                                  <a href="./planning-tools{{isConnected === 1 ? '/guests-lists' : '#presentation-guests-lists'}}" class="hover:text-gray-800"> {{'2.1.5' | translate}} </a>
                                 </li>
                               </ul>
                             </div>
@@ -248,11 +241,11 @@
                               <p id="mvm" class="font-medium text-gray-900">&nbsp;</p>
                               <ul role="list" aria-labelledby="mvm" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
                                 <li class="flex">
-                                  <a href="./planning-tools{{isConnected === 1 ? '/vendors-manager' : '#presentation-vendor-manager'}}" class="hover:text-gray-800"> Vendor Manager </a>
+                                  <a href="./planning-tools{{isConnected === 1 ? '/vendors-manager' : '#presentation-vendor-manager'}}" class="hover:text-gray-800"> {{'2.1.2' | translate}} </a>
                                 </li>
 
                                 <li class="flex">
-                                  <a href="./planning-tools{{isConnected === 1 ? '/budget' : '#presentation-budget'}}" class="hover:text-gray-800"> Budget </a>
+                                  <a href="./planning-tools{{isConnected === 1 ? '/budget' : '#presentation-budget'}}" class="hover:text-gray-800"> {{'2.1.6' | translate}} </a>
                                 </li>
                               </ul>
                             </div>
@@ -263,7 +256,7 @@
                               <p class="font-medium text-gray-900 text-xl">List of actions</p>
                               <ul role="list" aria-labelledby="loa" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
                                 <li class="flex">
-                                  <a href="./planning-tools/booking-manager" class="hover:text-gray-800"> Booking manager </a>
+                                  <a href="./planning-tools/booking-manager" class="hover:text-gray-800"> {{'2.1.3' | translate}} </a>
                                 </li>
 
                                 <li class="flex">
@@ -288,7 +281,7 @@
 
               <div class="flex">
                 <div class="relative flex">
-                  <a href="./venues" (mouseover)="sm_1_2 = true; sm_1_1 = false; sm_1_3 = false;" type="button" class="{{ sm_1_2 ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-900 hover:text-gray-800'}} hover:text-gray-800 relative z-10 flex items-center transition-colors ease-out duration-200 text-base font-medium border-b-2 -mb-px pt-px" aria-expanded="false">Venues</a>
+                  <a href="./venues" (mouseover)="sm_1_2 = true; sm_1_1 = false; sm_1_3 = false;" type="button" class="{{ sm_1_2 ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-900 hover:text-gray-800'}} hover:text-gray-800 relative z-10 flex items-center transition-colors ease-out duration-200 text-base font-medium border-b-2 -mb-px pt-px" aria-expanded="false">{{'2.2' | translate}}</a>
                 </div>
 
                 <div class="absolute top-full inset-x-0 text-sm text-gray-500 z-10" *ngIf="sm_1_2" (mouseleave)="sm_1_2 = false">
@@ -299,7 +292,7 @@
                       <div class="py-7">
                         <div class="row-start-1 text-base">
                           <div>
-                            <p id="Clothing-heading" class="font-medium text-gray-900 text-xl">Type of venues</p>
+                            <p id="Clothing-heading" class="font-medium text-gray-900 text-xl">{{'2.2.1' | translate}}</p>
                             <ul role="list" aria-labelledby="Clothing-heading" class="grid lg:grid-cols-4 md:grid-cols-3 mt-3">
                               <li class="flex my-2" *ngFor="let sous of sousCategoriesVenue">
                                 <a href="./venues?categorie={{sous.id}}" class="hover:text-gray-800 capitalize"> {{sous.titre}} </a>
@@ -321,7 +314,7 @@
 
               <div class="flex">
                 <div class="relative flex">
-                  <a href="./vendors" type="button" (mouseover)="sm_1_3 = true; sm_1_1 = false; sm_1_2 = false;" class="{{ sm_1_3 ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-900 hover:text-gray-800'}} relative z-10 flex items-center transition-colors ease-out duration-200 text-base font-medium border-b-2 -mb-px pt-px" aria-expanded="false">Vendors</a>
+                  <a href="./vendors" type="button" (mouseover)="sm_1_3 = true; sm_1_1 = false; sm_1_2 = false;" class="{{ sm_1_3 ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-900 hover:text-gray-800'}} relative z-10 flex items-center transition-colors ease-out duration-200 text-base font-medium border-b-2 -mb-px pt-px" aria-expanded="false">{{'2.3' | translate}}</a>
                 </div>
                 <div class="absolute top-full inset-x-0 text-sm text-gray-500 z-10" *ngIf="sm_1_3" (mouseleave)="sm_1_3 = false">
                   <div class="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true"></div>
@@ -331,7 +324,7 @@
                       <div class="py-7">
                         <div class="row-start-1 text-base">
                           <div>
-                            <p id="Clothing-heading-2" class="font-medium text-gray-900 text-xl">Categories of Vendors on the platform</p>
+                            <p id="Clothing-heading-2" class="font-medium text-gray-900 text-xl">{{'3.1' | translate}}</p>
                             <ul role="list" aria-labelledby="Clothing-heading" class="grid lg:grid-cols-4 md:grid-cols-3 mt-3">
                               <ng-container *ngFor="let cat of categories">
                                 <li class="flex my-2" *ngIf="cat.titre.toLocaleLowerCase() !== 'venue'">
@@ -352,9 +345,9 @@
                   </div>
                 </div>
               </div>
-              <a href="./forum" (mouseover)="sm_1_3 = false; sm_1_1 = false; sm_1_2 = false;" class="flex items-center text-base font-medium text-gray-900 hover:text-indigo-600">Forum</a>
+              <a href="./forum" (mouseover)="sm_1_3 = false; sm_1_1 = false; sm_1_2 = false;" class="flex items-center text-base font-medium text-gray-900 hover:text-indigo-600">{{'2.4' | translate}}</a>
 
-              <a href="./blogs-posts" (mouseover)="sm_1_3 = false; sm_1_1 = false; sm_1_2 = false;" class="flex items-center text-base font-medium text-gray-900 hover:text-indigo-600">Blogs Posts</a>
+              <a href="./blogs-posts" (mouseover)="sm_1_3 = false; sm_1_1 = false; sm_1_2 = false;" class="flex items-center text-base font-medium text-gray-900 hover:text-indigo-600">{{'2.5' | translate}}</a>
             </div>
           </div>
         </div>

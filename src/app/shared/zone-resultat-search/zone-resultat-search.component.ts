@@ -3,6 +3,7 @@ import {SearchService} from "../../services/search.service";
 import {Company} from "../../models/company";
 import {AvisCompany} from "../../models/avis-company";
 import {AvisCompanyService} from "../../services/avis-company.service";
+import {CategoriesService} from "../../services/categories.service";
 
 @Component({
   selector: 'app-zone-resultat-search',
@@ -21,6 +22,8 @@ export class ZoneResultatSearchComponent implements OnInit {
 
   @Input() affordbility = '';
 
+  @Input() pageInclude = '';
+
   typePrint = '';
   listeResultat: Company[] = [];
   page = 0;
@@ -28,7 +31,7 @@ export class ZoneResultatSearchComponent implements OnInit {
 
   isLoading = true;
 
-  constructor(private avisCompanyService: AvisCompanyService, private searchService: SearchService) { }
+  constructor(private categorieService: CategoriesService, private avisCompanyService: AvisCompanyService, private searchService: SearchService) { }
 
   ngOnInit(): void {
     this.typePrint = 'list';
@@ -40,9 +43,10 @@ export class ZoneResultatSearchComponent implements OnInit {
         const pointe = this;
         data.forEach(function (doc) {
           if(doc.categorie !== pointe.excluCategorie) {
-            /*if((!pointe.ville && !pointe.categorie && !pointe.affordbility) || (pointe.ville !== '' && doc.ville === pointe.ville) || (pointe.categorie !== '' && doc.categorie === pointe.categorie) || (pointe.affordbility !== '' && doc.affordbility === pointe.affordbility)) {
-              pointe.listeResultat.push(doc);
-            }*/
+
+            if(pointe.text && (doc.adresse.toLowerCase().indexOf(pointe.text.toLowerCase()) === -1 && doc.ville.toLowerCase().indexOf(pointe.text.toLowerCase()) === -1 && doc.nom.toLowerCase().indexOf(pointe.text.toLowerCase()) === -1 && doc.description.toLowerCase().indexOf(pointe.text.toLowerCase()) === -1 && doc.pays.toString().toLowerCase().indexOf(pointe.text.toLowerCase()) === -1 && doc.siteWeb.toLowerCase().indexOf(pointe.text.toLowerCase()) === -1)) {
+              pointe.deleteElement(doc);
+            }
 
             if(pointe.categorie && doc.categorie !== pointe.categorie) {
               pointe.deleteElement(doc);
@@ -54,6 +58,16 @@ export class ZoneResultatSearchComponent implements OnInit {
 
             if(pointe.ville && doc.ville !== pointe.ville) {
               pointe.deleteElement(doc);
+            }
+
+            if((pointe.pageInclude === 'venues')) {
+              pointe.categorieService.getCategorieWitchId(doc.categorie).then(
+                (loum) => {
+                  if(!loum.parent) {
+                    pointe.deleteElement(doc);
+                  }
+                }
+              );
             }
 
             if(pointe.rating) {

@@ -22,9 +22,9 @@ export class SearchComponent implements OnInit {
     if(this.activatedRoute.snapshot.queryParams['categorie'])
       this.categorieSelect = this.activatedRoute.snapshot.queryParams['categorie'];
     if(this.activatedRoute.snapshot.queryParams['pays'])
-      this.categorieSelect = this.activatedRoute.snapshot.queryParams['pays'];
+      this.paysSelect = this.activatedRoute.snapshot.queryParams['pays'];
     if(this.activatedRoute.snapshot.queryParams['textSearch'])
-      this.categorieSelect = this.activatedRoute.snapshot.queryParams['textSearch'];
+      this.textSearch = this.activatedRoute.snapshot.queryParams['textSearch'];
 
     this.categorieService.getAllCategoriesActivites().then(
       (data) => {

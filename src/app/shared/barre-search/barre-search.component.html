@@ -1,38 +1,26 @@
-<section class="py-3">
-  <div class="container px-6 py-3 mx-auto">
-    <div class="flex flex-col md:flex-row md:justify-center md:items-center">
-      <div class="flex items-center justify-center">
-        <div class="flex items-center">
-          <!-- Search input on desktop screen -->
-          <div class="mx-10 md:block">
-            <div  class="grid md:grid-cols-4 sm:grid-cols-1 gap-5 bg-white rounded flex items-center w-full py-3 px-5 border border-gray-200">
-              <a class="text-2xl font-bold text-gray-800 transition-colors duration-200 transform dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300">Search</a>
+<section class="max-w-3xl mx-auto container mt-2 p-2">
+  <div  class="grid md:grid-cols-4 sm:grid-cols-1 gap-5 bg-white rounded flex items-center w-full py-3 px-5 border border-gray-200">
+    <a class="text-2xl font-bold text-gray-800 transition-colors duration-200 transform dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300">{{'4.1' | translate}}</a>
 
-              <div class="mt-1 relative">
-                <input (focusout)="codeCat = ''" (click)="popOver = !popOver" [(ngModel)]="searchTxt" type="search" name="" id="1" placeholder="Your search..." class="relative md:w-fit sm:w-full text-sm outline-none focus:outline-none bg-transparent">
-                <ul *ngIf="popOver" class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label">
-                  <li (click)="codeCat = cat.id; searchTxt = cat.titre; popOver = !popOver;" class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9 hover:bg-indigo-600 hover:text-gray-50 cursor-pointer" id="listbox-option-0" role="option" *ngFor="let cat of categories">
-                    <div class="flex items-center">
-                      <span class="font-normal ml-3 block truncate"> {{cat.titre}} </span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="select">
-                <select [(ngModel)]="searchCountry" name="" id="2" class="text-sm outline-none focus:outline-none bg-transparent">
-                  <option value="" selected="selected">In all</option>
-                  <ng-container *ngFor="let pays of listePays">
-                    <option value="{{pays.nom}}" selected="selected" class="font-semibold capitalize">{{pays.nom}}</option>
-                    <option value="{{pays.nom + ':' + ville}}" class="capitalize italic font-light" selected="selected" *ngFor="let ville of pays.villes">{{ville}}</option>
-                  </ng-container>
-                </select>
-              </div>
-              <a href="./search?categorie={{codeCat}}&pays={{searchCountry}}&textSearch={{codeCat ? '' : searchTxt}}" type="button" class="text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200 w-fit font-semibold rounded-lg text-sm px-5 py-2.5 dark:bg-indigo-500 dark:hover:bg-indigo-600 focus:outline-none dark:focus:ring-indigo-700">Click to search</a>
-            </div>
+    <div class="mt-1 relative">
+      <input (focusout)="codeCat = ''" (click)="popOver = !popOver" [(ngModel)]="searchTxt" type="search" name="" id="1" placeholder="{{'4.2' | translate}}" class="relative md:w-fit sm:w-full text-sm outline-none focus:outline-none bg-transparent">
+      <ul *ngIf="popOver" class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label">
+        <li (click)="codeCat = cat.id; searchTxt = cat.titre; popOver = !popOver;" class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9 hover:bg-indigo-600 hover:text-gray-50 cursor-pointer" id="listbox-option-0" role="option" *ngFor="let cat of categories">
+          <div class="flex items-center">
+            <span class="font-normal ml-3 block truncate"> {{cat.titre}} </span>
           </div>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
-
+    <div class="select">
+      <select [(ngModel)]="searchCountry" name="" id="2" class="text-sm outline-none focus:outline-none bg-transparent">
+        <option value="" selected="selected">{{'4.3' | translate}}</option>
+        <ng-container *ngFor="let pays of listePays">
+          <option value="{{pays.nom}}" selected="selected" class="font-semibold capitalize">{{pays.nom}}</option>
+          <option value="{{pays.nom + ':' + ville}}" class="capitalize italic font-light" selected="selected" *ngFor="let ville of pays.villes">{{ville}}</option>
+        </ng-container>
+      </select>
+    </div>
+    <a href="./search?categorie={{codeCat}}&pays={{searchCountry}}&textSearch={{codeCat ? '' : searchTxt}}" type="button" class="text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200 w-fit font-semibold rounded-md text-sm px-5 py-2.5 dark:bg-indigo-500 dark:hover:bg-indigo-600 focus:outline-none dark:focus:ring-indigo-700">{{'4.4' | translate}}</a>
   </div>
 </section>

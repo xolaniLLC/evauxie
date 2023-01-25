@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CategoriesService} from "../../services/categories.service";
 import {CategorieActivite} from "../../models/categorie-activite";
 import {Location} from '@angular/common';
@@ -10,6 +10,8 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./filtre.component.scss']
 })
 export class FiltreComponent implements OnInit {
+
+  @Input() pageInclude = '';
 
   categories: CategorieActivite[] = [];
   isLoadingCat = true;
@@ -33,7 +35,13 @@ export class FiltreComponent implements OnInit {
     this.categoryService.getAllCategoriesActivites().then(
       (data) => {
         this.isLoadingCat = false;
-        this.categories = data;
+
+        let pointe = this;
+        data.forEach(function (doc) {
+          if((pointe.pageInclude === 'venues' && doc.parent) || (!pointe.pageInclude && !doc.parent)) {
+            pointe.categories.push(doc);
+          }
+        });
       }
     );
     this.towns = [

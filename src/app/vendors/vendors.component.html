@@ -3,23 +3,22 @@
 <header id="up" class="bg-center bg-fixed bg-no-repeat bg-center bg-cover relative">
   <div class="relative h-fit w-full flex items-center justify-start bg-cover bg-center" [style]="'background-image:url(assets/images/ill_27.jpg);'">
     <div class="absolute top-0 right-0 bottom-0 left-0 bg-black opacity-75"></div>
-    <main class="px-10 lg:px-24 py-20" style="z-index: 1">
-      <div class="lg:w-auto custom md:mt-0 h-full flex px-4 md:px-0  z-10 justify-center items-center md:items-start flex-col md:pl-20 lg:px-20 2xl:px-44">
-        <p class="text-xl sm:text-2xl xl:text-4xl text-center md:text-left font-semibold leading-6 xl:leading-10 text-gray-100 w-full" >Find your vendors</p>
-        <p class="mt-4 w-full text-center md:text-left  text-base leading-normal text-gray-200" >Consult our large list of vendors and book your ideal vendor</p>
+    <main class="max-w-7xl px-2 mx-auto container py-20" style="z-index: 1">
+      <div>
+        <p class="text-xl sm:text-2xl xl:text-4xl text-center md:text-left font-semibold leading-6 xl:leading-10 text-gray-100 w-full" >{{'9.1' | translate}}</p>
+        <p class="mt-4 w-full text-center md:text-left  text-base leading-normal text-gray-200" >{{'9.2' | translate}}</p>
       </div>
     </main>
   </div>
 </header>
 
 <section>
-  <div class="container px-6 py-8 mx-auto">
-    <div class="lg:flex lg:-mx-2">
-      <div class="space-y-3 lg:w-1/5 lg:px-2 lg:space-y-4">
+  <div class="max-w-7xl mx-auto container px-2 py-8">
+    <div class="grid md:grid-cols-5 grid-cols-1 gap-3">
+      <div class="col-span-1">
         <app-filtre></app-filtre>
       </div>
-
-      <div class="mt-6 lg:mt-0 lg:px-2 lg:w-4/5 ">
+      <div class="col-span-4">
         <app-zone-resultat-search ville="{{townSelect}}" rating="{{ratingSelect}}" affordbility="{{affordbilitySelect}}" categorie="{{categorieSelect}}"></app-zone-resultat-search>
       </div>
     </div>

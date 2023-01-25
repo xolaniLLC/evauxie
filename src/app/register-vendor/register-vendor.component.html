@@ -8,7 +8,7 @@
 
           <p class="max-w-xl mt-6 text-gray-300">
           <div class="">
-            <h1 class="text-lg font-medium text-gray-300 capitalize lg:text-xl dark:text-white">The best platform for the visibility of your company towards the customers, <br> register you to discover it by yourself</h1>
+            <h1 class="text-lg font-medium text-gray-300 capitalize lg:text-xl dark:text-white">{{'17.1' | translate}} <br> {{'17.2' | translate}}</h1>
 
             <div class="mt-8 space-y-2">
               <div class="flex items-center">
@@ -16,7 +16,7 @@
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                 </svg>
 
-                <span class="mx-4 text-gray-300 dark:text-gray-300">Get new customers and increase your chances of success.</span>
+                <span class="mx-4 text-gray-300 dark:text-gray-300">{{'17.3' | translate}}</span>
               </div>
 
               <div class="flex items-center">
@@ -24,15 +24,7 @@
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                 </svg>
 
-                <span class="mx-4 text-gray-300 dark:text-gray-300">Recevez les demandes de devis de mariés intéressés par vos services.</span>
-              </div>
-
-              <div class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-300" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-
-                <span class="mx-4 text-gray-300 dark:text-gray-300">Together, our brands help you reach more engaged couples everywhere</span>
+                <span class="mx-4 text-gray-300 dark:text-gray-300">{{'17.4' | translate}}</span>
               </div>
             </div>
         </div>
@@ -46,43 +38,43 @@
         <div class="text-center">
           <a routerLink="../home"><img style="display: inline" width="200" height="100" src="assets/images/logo.png"/></a> <!-- routerLink="../home" -->
 
-          <p class="mt-5 text-gray-500 dark:text-gray-300">Propel your business with evauxie and the thousands of customers who are waiting for you</p>
+          <p class="mt-5 text-gray-500 dark:text-gray-300">{{'17.5' | translate}}</p>
         </div>
 
         <div class="mt-8">
           <form #form="ngForm" (ngSubmit)="registerEmail(form)">
 
             <div class="mt-6">
-              <label for="nom" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Full name *</label>
-              <input [disabled]="isLoading" required ngModel type="text" name="nom" id="nom" placeholder="Full name" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+              <label for="nom" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">{{'17.6' | translate}} *</label>
+              <input [disabled]="isLoading" required ngModel type="text" name="nom" id="nom" placeholder="" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
             </div>
 
             <div class="mt-6">
-              <label for="nom" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Company name *</label>
-              <input [disabled]="isLoading" required ngModel type="text" name="companyName" id="companyName" placeholder="Full name" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+              <label for="nom" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">{{'17.7' | translate}} *</label>
+              <input [disabled]="isLoading" required ngModel type="text" name="companyName" id="companyName" placeholder="" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
             </div>
 
             <div class="mt-6">
-              <label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Company address email *</label>
+              <label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">{{'17.8' | translate}} *</label>
               <input [disabled]="isLoading" ngModel required type="email" name="email" id="email" placeholder="example@example.com" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
             </div>
 
             <div class="mt-6">
-              <label for="phone" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Company phone Number *</label>
+              <label for="phone" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">{{'17.9' | translate}} *</label>
               <input [disabled]="isLoading" required ngModel type="tel" name="phone" id="phone" placeholder="+12 3456789" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
             </div>
 
             <div class="mt-6">
-              <label for="country" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Country *</label>
+              <label for="country" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">{{'17.10' | translate}} *</label>
               <select required ngModel name="country" id="country" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40">
-                <option value="" selected="selected">Choose a country</option>
-                <option *ngFor="let country of allCountry" value="{{country.name}}"  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{country.name}}</option>
+                <option value="" selected="selected">...</option>
+                <option *ngFor="let country of allCountry" value="{{country.code}}"  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{country.name}}</option>
               </select>
             </div>
 
 
             <div class="relative flex items-center justify-center">
-              <input ngModel [disabled]="isLoading" required name="passwordRegister" id="myInput" placeholder="Create your password" [type]="pass ? 'text' : 'password'" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+              <input ngModel [disabled]="isLoading" required name="passwordRegister" id="myInput" placeholder="{{'17.11' | translate}}" [type]="pass ? 'text' : 'password'" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
               <div class="absolute right-0 mt-2 mr-3 cursor-pointer" (click)="clickEvent()">
                 <div id="show">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -102,21 +94,23 @@
                 </div>
               </div>
             </div>
-
-
+            <div class="flex items-center my-6">
+              <input ngModel name="condition" id="condition" type="checkbox" required [value]="false" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+              <label for="condition" class="ml-2 text-xs font-medium text-gray-900 dark:text-gray-300">{{'17.12' | translate}} <a target="_blank" href="./data-protection-policy" class="text-indigo-700">{{'17.13' | translate}}</a> {{'17.14' | translate}} <a target="_blank" href="./user-terms-and-conditions" class="text-indigo-700">{{'17.15' | translate}}</a></label>
+            </div>
             <div class="mt-6">
-              <button [disabled]="isLoading || form.invalid" type="submit" role="button" class="disabled:bg-gray-500 disabled:text-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-bold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">
+              <button [disabled]="isLoading || form.invalid || !form.value.condition" type="submit" role="button" class="disabled:bg-gray-500 disabled:text-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-bold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">
                 <svg *ngIf="isLoading" role="status" class="inline mr-3 w-4 h-4 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
                   <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
                 </svg>
-                Sign up
+                {{'17.16' | translate}}
               </button>
             </div>
 
           </form>
 
-          <p class="mt-6 text-sm text-center text-gray-400">You already have an account ? <a routerLink="../login-customer" class="text-blue-500 focus:outline-none focus:underline hover:underline">Login here</a>.</p>
+          <p class="mt-6 text-sm text-center text-gray-400">{{'17.17' | translate}} <a routerLink="../login-customer" class="text-blue-500 focus:outline-none focus:underline hover:underline">{{'17.18' | translate}}</a>.</p>
         </div>
       </div>
     </div>

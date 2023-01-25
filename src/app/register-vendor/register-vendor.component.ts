@@ -4009,10 +4009,13 @@ export class RegisterVendorComponent implements OnInit {
     const user: Utilisateur = new Utilisateur(form.value.nom.toLocaleLowerCase(), form.value.email.toLocaleLowerCase(), 'email', 'vendor');
     user.country = form.value.country;
     user.phone = form.value.phone;
+    const tmpNameCompany = form.value.companyName;
+    const tmpIdCountry = form.value.country;
+    const tmpPhoneNumber = form.value.phone;
 
     this.authService.signUpUser(user, form.value.passwordRegister).then(
       () => {
-        this.router.navigateByUrl('home');
+        this.router.navigateByUrl('planning-tools/my-showcase?companyName=' + tmpNameCompany + '&companyCountry=' + tmpIdCountry + '&companyPhoneNumber=' + tmpPhoneNumber);
       },
       (error) => {
         this.isLoading = false;
