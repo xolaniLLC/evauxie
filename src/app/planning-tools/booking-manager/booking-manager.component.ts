@@ -78,7 +78,7 @@ export class BookingManagerComponent implements OnInit {
     this.eventService.deleteTaskVendor(task).then(
       () => {
         this.isLoading = false;
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
         this.liste_task_en_cours.splice(this.liste_task_en_cours.indexOf(task), 1);
       }, (error) => {
         this.isLoading = false;
@@ -94,7 +94,7 @@ export class BookingManagerComponent implements OnInit {
       () => {
         this.isLoading = false;
         this.liste_task_en_cours.splice(this.liste_task_en_cours.indexOf(task), 1);
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
       }, (error) => {
         this.isLoading = false;
         this.alertService.print(error, 'danger');
@@ -108,7 +108,7 @@ export class BookingManagerComponent implements OnInit {
     this.eventService.ajouterTacheVendeur(tmp).then(
       () => {
         this.isLoading = false;
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
         this.liste_task_en_cours.push(tmp);
         this.modalHandler(false);
       }, (error) => {
@@ -143,7 +143,7 @@ export class BookingManagerComponent implements OnInit {
     this.eventService.ajouterDetail(tmp).then(
       () => {
         this.isLoading = false;
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
         this.detailsEvent.push(tmp);
         this.modalHandler2(false);
       }, (error) => {
@@ -158,7 +158,7 @@ export class BookingManagerComponent implements OnInit {
     this.eventService.deleteDetailEvent(detail).then(
       () => {
         this.isLoading = false;
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
         this.detailsEvent.splice(this.detailsEvent.indexOf(detail), 1);
       }, (error) => {
         this.isLoading = false;

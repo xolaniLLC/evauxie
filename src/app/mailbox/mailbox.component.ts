@@ -99,7 +99,7 @@ export class MailboxComponent implements OnInit {
               this.messageService.updateMessage(tmp).then(
                 () => {
                   this.currentMessageOpen = tmp;
-                  this.alertService.print('Operation done', 'success');
+                  this.alertService.print('Done', 'success');
                 }
             );
             }
@@ -125,7 +125,7 @@ export class MailboxComponent implements OnInit {
     this.messageService.updateMessage(message).then(
       () => {
         this.isLoading = false;
-        this.alertService.print('Operation successfully completed', 'success');
+        this.alertService.print('Done', 'success');
       }, (error) => {
         this.isLoading = false;
         this.alertService.print(error, 'danger');
@@ -157,7 +157,7 @@ export class MailboxComponent implements OnInit {
     this.messageService.updateMessage(message).then(
       () => {
         this.isLoading = false;
-        this.alertService.print('Operation successfully completed', 'success');
+        this.alertService.print('Done', 'success');
       }, (error) => {
         this.isLoading = false;
         this.alertService.print(error, 'danger');

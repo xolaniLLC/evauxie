@@ -74,7 +74,7 @@ export class ApercuMailComponent implements OnInit {
           data.eventEnCours.push(idEvent);
           this.companyService.updateCompany(data).then(
             () => {
-              this.alertService.print('Operation done', 'success');
+              this.alertService.print('Done', 'success');
             }
           );
         }

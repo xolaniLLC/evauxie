@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
     this.contactForm.addContact(new UserContact(form.value.fullName, form.value.email, form.value.phone, form.value.message, form.value.typeEvent)).then(
       () => {
         this.isLoadingSendContact = false;
-        this.alertService.print('Your message has been sent', 'success');
+        this.alertService.print('Done', 'success');
       }, (error) => {
         this.isLoadingSendContact = false;
         this.alertService.print(error, 'danger')

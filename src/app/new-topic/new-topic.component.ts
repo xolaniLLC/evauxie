@@ -37,7 +37,7 @@ export class NewTopicComponent implements OnInit {
         () => {
           this.isLoading = false;
           this.router.navigateByUrl('forum');
-          this.alertService.print('Discussion sent successfully', 'success');
+          this.alertService.print('Done', 'success');
         }, (error) => {
           this.alertService.print(error, 'danger');
         }

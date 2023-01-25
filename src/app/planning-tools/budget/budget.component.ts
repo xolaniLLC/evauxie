@@ -81,7 +81,7 @@ export class BudgetComponent implements OnInit {
       () => {
         this.isLoading = false;
         this.depenses.splice(this.depenses.indexOf(dep), 1);
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
       }, (error) => {
         this.isLoading = false;
         this.alertService.print(error, 'danger');
@@ -100,7 +100,7 @@ export class BudgetComponent implements OnInit {
         this.depenses.push(tmp);
         this.isLoading = false;
         this.modalHandler(false);
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
       }, (error) => {
         this.isLoading = false;
         this.alertService.print(error, 'danger');
@@ -135,7 +135,7 @@ export class BudgetComponent implements OnInit {
         this.currentDepenseUpdate = null;
         this.modalUpdateBtn();
         this.isLoading = false;
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
       }, (error) => {
         this.isLoading = false;
         this.alertService.print(error, 'danger');
@@ -149,7 +149,7 @@ export class BudgetComponent implements OnInit {
     this.eventService.updateEvent(this.currentEvent).then(
       () => {
         this.isLoading = false;
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
       }, (error) => {
         this.isLoading = false;
         this.alertService.print(error, 'danger');

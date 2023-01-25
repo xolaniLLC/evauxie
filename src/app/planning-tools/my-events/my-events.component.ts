@@ -71,7 +71,7 @@ export class MyEventsComponent implements OnInit {
         this.liste_my_event.splice(this.liste_my_event.indexOf(event), 1);
         this.event_en_cours.splice(this.event_en_cours.indexOf(event), 1);
         this.list_event_select.splice(this.list_event_select.indexOf(event), 1)
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
       }, (error) => {
         this.isLoading = false;
         this.alertService.print(error, 'danger');
@@ -103,7 +103,7 @@ export class MyEventsComponent implements OnInit {
     const tmp = new Evenement(form.value.titre, form.value.dateSelect, firebase.auth().currentUser?.email, ' ', this.liste_my_event.length === 0 ? 1 : 0, form.value.description);
     this.eventService.ajouterEvenement(tmp).then(
       () => {
-        this.alertService.print('Operation successfully completed', 'success');
+        this.alertService.print('Done', 'success');
         this.isLoading = false;
         this.liste_my_event.push(tmp);
         if (tmp.etat === 1) { this.event_en_cours.push(tmp); }

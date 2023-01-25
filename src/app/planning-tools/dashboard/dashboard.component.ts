@@ -131,7 +131,7 @@ export class DashboardComponent implements OnInit {
     this.eventService.deleteTask(task).then(
       () => {
         this.isLoading = false;
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
         this.liste_task_en_cours.splice(this.liste_task_en_cours.indexOf(task), 1);
       }, (error) => {
         this.isLoading = false;
@@ -147,7 +147,7 @@ export class DashboardComponent implements OnInit {
       () => {
         this.isLoading = false;
         this.liste_task_en_cours.splice(this.liste_task_en_cours.indexOf(task), 1);
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
       }, (error) => {
         this.isLoading = false;
         this.alertService.print(error, 'danger');
@@ -165,7 +165,7 @@ export class DashboardComponent implements OnInit {
     this.eventService.updateEvent(this.event_en_cours).then(
       () => {
         this.isLoading = false;
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
       }, (error) => {
         this.isLoading = false;
         this.alertService.print(error, 'danger');

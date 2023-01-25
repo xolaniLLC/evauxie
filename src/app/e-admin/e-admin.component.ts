@@ -80,7 +80,7 @@ export class EAdminComponent implements OnInit {
   updateCompany(company: Company) {
     this.companyService.updateCompany(company).then(
       () => {
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
       }
     );
   }
@@ -93,7 +93,7 @@ export class EAdminComponent implements OnInit {
     categorie.parent = event;
     this.categorieService.addCategorie(categorie).then(
       () => {
-        this.alertService.print('Opération effectué', 'success');
+        this.alertService.print('Done', 'success');
       }
     );
   }
@@ -102,7 +102,7 @@ export class EAdminComponent implements OnInit {
     categorie.titre = event;
     this.categorieService.addCategorie(categorie).then(
       () => {
-        this.alertService.print('Opération effectué', 'success');
+        this.alertService.print('Done', 'success');
       }
     );
   }
@@ -110,7 +110,7 @@ export class EAdminComponent implements OnInit {
   deleteCategorie(idCategorie: string) {
     this.categorieService.deleteCategorieActivite(idCategorie).then(
       () => {
-        this.alertService.print('Opération effectué', 'success');
+        this.alertService.print('Done', 'success');
         this.ngOnInit();
       }
     );
@@ -124,7 +124,7 @@ export class EAdminComponent implements OnInit {
     groupeForum.parent = event;
     this.categorieService.addGroupForum(groupeForum).then(
       () => {
-        this.alertService.print('Opération effectué', 'success');
+        this.alertService.print('Done', 'success');
       }
     );
   }
@@ -133,7 +133,7 @@ export class EAdminComponent implements OnInit {
     groupeForum.titre = event;
     this.categorieService.addGroupForum(groupeForum).then(
       () => {
-        this.alertService.print('Opération effectué', 'success');
+        this.alertService.print('Done', 'success');
       }
     );
   }
@@ -141,7 +141,7 @@ export class EAdminComponent implements OnInit {
   deleteGroupForum(idGroupForum: string) {
     this.categorieService.deleteGroupForumActivite(idGroupForum).then(
       () => {
-        this.alertService.print('Opération effectué', 'success');
+        this.alertService.print('Done', 'success');
         this.ngOnInit();
       }
     );

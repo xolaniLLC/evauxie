@@ -82,7 +82,7 @@ export class ChecklistComponent implements OnInit {
     this.eventService.deleteTask(task).then(
       () => {
         this.isLoading = false;
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
         this.liste_task.splice(this.liste_task.indexOf(task), 1);
       }, (error) => {
         this.isLoading = false;
@@ -97,7 +97,7 @@ export class ChecklistComponent implements OnInit {
     this.eventService.updateTask(task).then(
       () => {
         this.isLoading = false;
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
       }, (error) => {
         this.isLoading = false;
         this.alertService.print(error, 'danger');
@@ -111,7 +111,7 @@ export class ChecklistComponent implements OnInit {
     this.eventService.ajouterTache(tmp).then(
       () => {
         this.isLoading = false;
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
         this.liste_task.push(tmp);
         this.modalHandler(false);
       }, (error) => {

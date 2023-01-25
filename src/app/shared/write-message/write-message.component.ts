@@ -48,7 +48,7 @@ export class WriteMessageComponent implements OnInit {
       () => {
         this.isLoading = false;
         this.closeModal(index);
-        this.alertService.print('Operation successfully completed', 'success');
+        this.alertService.print('Done', 'success');
       }, (error) => {
         this.isLoading = false;
         this.alertService.print(error, 'danger');

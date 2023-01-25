@@ -105,7 +105,7 @@ export class GuestsListsComponent implements OnInit {
         this.currentInviteUpdate = null;
         this.modalUpdateHandler(false);
         this.isLoading = false;
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
       }, (error) => {
         this.isLoading = false;
         this.alertService.print(error, 'danger');
@@ -148,7 +148,7 @@ export class GuestsListsComponent implements OnInit {
         this.isLoading = false;
         this.liste_invite.splice(this.liste_invite.indexOf(gt), 1);
         this.liste_invite_select.splice(this.liste_invite_select.indexOf(gt), 1)
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
       }, (error) => {
         this.isLoading = false;
         this.alertService.print(error, 'danger');
@@ -162,7 +162,7 @@ export class GuestsListsComponent implements OnInit {
     this.eventService.ajouterInvite(tmp).then(
       () => {
         this.isLoading = false;
-        this.alertService.print('Operation done', 'success');
+        this.alertService.print('Done', 'success');
         this.liste_invite.push(tmp);
         this.modalHandler(false);
       }, (error) => {
