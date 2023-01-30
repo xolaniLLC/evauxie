@@ -31,13 +31,13 @@
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
             </svg>
           </div>
-          <span class="{{categorie ? '' : 'animate-pulse'}}"> {{categorie ? categorie.titre : '...'}}</span>
+          <span class="{{categorie ? '' : 'animate-pulse'}}"> {{categorie ? getValueTraduct(categorie.titre) : '...'}}</span>
         </li>
       </ul>
     </div>
     <div class="mt-6 md:mt-0 space-x-5" *ngIf="isConnected === true">
-      <button (click)="updateLikeCompany()" class="{{ isLike === null ? 'animate-pulse' : ''}} bg-transparent border border-gray-200 dark:bg-gray-700 focus:outline-none transition duration-150 ease-in-out rounded hover:bg-gray-300 text-indigo-700 dark:hover:bg-gray-600 dark:text-indigo-600 px-5 py-2 text-sm">
-        {{isLike === null ? '...' : ''}}
+      <button routerLink="{{isLike ? '' : '../../planning-tools/my-events'}}" (click)="isLike ? updateLikeCompany() : null" class="{{ isLike === null ? 'animate-pulse' : ''}} bg-transparent border border-gray-200 dark:bg-gray-700 focus:outline-none transition duration-150 ease-in-out rounded hover:bg-gray-300 text-indigo-700 dark:hover:bg-gray-600 dark:text-indigo-600 px-5 py-2 text-sm">
+        {{isLike === null ? ('27.1' | translate) : ''}}
         <svg *ngIf="isLike !== null && isLike === false" class="feather feather-bookmark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path  class="text-gray-600" stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
         </svg>
@@ -46,8 +46,8 @@
         </svg>
       </button>
 
-      <button (click)="updateSolliciteCompany()" class="{{ isSollicite === null ? 'animate-pulse' : ''}} bg-transparent border border-gray-200 dark:bg-gray-700 focus:outline-none transition duration-150 ease-in-out rounded hover:bg-gray-300 text-indigo-700 dark:hover:bg-gray-600 dark:text-indigo-600 px-5 py-2 text-sm">
-        {{isSollicite === null ? '...' : ''}}
+      <button routerLink="{{isSollicite ? '' : '../../planning-tools/my-events'}}" (click)="isSollicite ? updateSolliciteCompany() : null" class="{{ isSollicite === null ? 'animate-pulse' : ''}} bg-transparent border border-gray-200 dark:bg-gray-700 focus:outline-none transition duration-150 ease-in-out rounded hover:bg-gray-300 text-indigo-700 dark:hover:bg-gray-600 dark:text-indigo-600 px-5 py-2 text-sm">
+        {{isSollicite === null ? ('27.2' | translate) : ''}}
         <svg *ngIf="isSollicite !== null && isSollicite === false" class="feather feather-share-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path class="text-gray-600" stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
         </svg>
@@ -71,7 +71,7 @@
     <div class="lg:flex lg:-mx-2">
       <div class="lg:mt-0 lg:px-2 w-full ">
         <div class="flex items-center justify-between text-sm tracking-widest uppercase" *ngIf="currentCompany">
-          <p class="text-gray-500 dark:text-gray-300">Gallery {{currentCompany.phototheque.length}}</p>
+          <p class="text-gray-500 dark:text-gray-300">{{'27.3' | translate}} {{currentCompany.phototheque.length}}</p>
         </div>
 
         <div class="flex items-center justify-center w-full py-24 sm:py-8">
@@ -98,7 +98,7 @@
           </div>
         </div>
         <div *ngIf="currentCompany" class="py-24 sm:py-8">
-          <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">About</h2>
+          <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">{{'27.4' | translate}}</h2>
 
           <p class="text-gray-500 dark:text-gray-400 w-full" [innerHTML]="currentCompany.description"></p>
         </div>

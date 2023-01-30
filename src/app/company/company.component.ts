@@ -10,6 +10,9 @@ import {ActivatedRoute} from "@angular/router";
 import {AvisCompanyService} from "../services/avis-company.service";
 import {AvisCompany} from "../models/avis-company";
 import {AuthentificationService} from "../services/authentification.service";
+import firebase from "firebase";
+import {ToolsService} from "../services/tools.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-company',
@@ -28,7 +31,7 @@ export class CompanyComponent implements OnInit {
   slider: any;
   defaultTransform: any;
 
-  constructor(private authService: AuthentificationService, private avisCompanyService: AvisCompanyService, private alertService: AlertService, private activatedRoute: ActivatedRoute, private evenementService: EvenementService, private companyService: CompanyService, private categorieService: CategoriesService, private writeMailService: WriteMailService) { }
+  constructor(private authService: AuthentificationService, private translate: TranslateService, private avisCompanyService: AvisCompanyService, private alertService: AlertService, private activatedRoute: ActivatedRoute, private evenementService: EvenementService, private companyService: CompanyService, private categorieService: CategoriesService, private writeMailService: WriteMailService) { }
 
   ngOnInit(): void {
 
@@ -51,25 +54,44 @@ export class CompanyComponent implements OnInit {
           }
         );
 
-        this.evenementService.isLikeCompany(this.currentCompany).then(
-          (data) => {
-            this.isLike = data;
-          }
-        );
+        this.authService.isAuthenticated().then(
+          (val) => {
+            let idUserSave;
+            if(!localStorage.getItem('guestUser')) {
+              const gid = new ToolsService();
+              localStorage.setItem('guestUser', ('guestUser_' + gid.generateId(7)));
+            }
+            idUserSave = val ? firebase.auth().currentUser?.email : localStorage.getItem('guestUser');
+            this.isConnected = val;
 
-        this.evenementService.isSolliciteCompany(this.currentCompany).then(
-          (data) => {
-            this.isSollicite = data;
+            if(val) {
+              this.evenementService.isLikeCompany(this.currentCompany).then(
+                (data) => {
+                  this.isLike = data;
+                }
+              );
+
+              this.evenementService.isSolliciteCompany(this.currentCompany).then(
+                (data) => {
+                  this.isSollicite = data;
+                }
+              );
+            }
+
+            if ((val && !this.currentCompany.vue.includes(idUserSave)) || (!val && !this.currentCompany.vue.includes(idUserSave))) {
+              this.currentCompany.vue.push(idUserSave);
+              this.companyService.updateCompany(this.currentCompany);
+            }
           }
         );
       }
     );
+  }
 
-    this.authService.isAuthenticated().then(
-      (val) => {
-        this.isConnected = val;
-      }
-    );
+  getValueTraduct(texte: string, langue: string = '') {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML= texte;
+    return wrapper.getElementsByTagName(langue ? langue : this.translate.defaultLang).length > 0 ? wrapper.getElementsByTagName(langue ? langue : this.translate.defaultLang)[0].innerHTML.replace('amp;', '')  : (texte && texte.includes('</') ? '' : texte);
   }
 
   calculMoyenneAvis() {

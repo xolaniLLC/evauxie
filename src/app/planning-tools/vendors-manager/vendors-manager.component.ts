@@ -9,6 +9,7 @@ import {WriteMailService} from "../../services/write-mail.service";
 import {Company} from "../../models/company";
 import {CompanyService} from "../../services/company.service";
 import {AvisCompany} from "../../models/avis-company";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-vendors-manager',
@@ -26,7 +27,7 @@ export class VendorsManagerComponent implements OnInit {
   isLoading = false;
   companyBooked: string[] = [];
 
-  constructor(private companyService: CompanyService, private writeMailService: WriteMailService, private eventService: EvenementService, private alertService: AlertService, private categorieService: CategoriesService, private activatedRoute: ActivatedRoute) { }
+  constructor(private translate: TranslateService, private companyService: CompanyService, private writeMailService: WriteMailService, private eventService: EvenementService, private alertService: AlertService, private categorieService: CategoriesService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.eventService.getMyEvents().then(
@@ -92,6 +93,12 @@ export class VendorsManagerComponent implements OnInit {
         this.alertService.print(error, 'danger');
       }
     );
+  }
+
+  getValueTraduct(texte: string, langue: string = '') {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML= texte;
+    return wrapper.getElementsByTagName(langue ? langue : this.translate.defaultLang).length > 0 ? wrapper.getElementsByTagName(langue ? langue : this.translate.defaultLang)[0].innerHTML.replace('amp;', '')  : (texte && texte.includes('</') ? '' : texte);
   }
 
 }

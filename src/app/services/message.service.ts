@@ -98,4 +98,17 @@ export class MessageService {
       );
     });
   }
+
+  async deleteMessage(id: string) {
+    return new Promise<void>((resolve, reject) => {
+      firebase.firestore().collection('messages').doc(id).delete().then(
+        () => {
+          resolve();
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
 }

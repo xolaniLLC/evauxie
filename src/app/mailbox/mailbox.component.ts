@@ -17,6 +17,7 @@ export class MailboxComponent implements OnInit {
   isList: any;
   elementSelect: any[] = [];
   mesMessagesNonLu: Message[] = [];
+  allMessages: Message[] = [];
   mesMessagesLu: Message[] = [];
   mesMessagesSend: Message[] = [];
   currentEmailUser: any = firebase.auth().currentUser?.email;
@@ -44,6 +45,7 @@ export class MailboxComponent implements OnInit {
 
     this.messageService.getMesMessagesRecu().then(
       (result) => {
+        this.allMessages = result;
         for(let i=0; i<result.length; i++) {
           if(result[i].auteur === firebase.auth().currentUser?.email) {
             this.mesMessagesSend.push(result[i]);
@@ -61,11 +63,11 @@ export class MailboxComponent implements OnInit {
   }
 
   checkAll(event: any) {
-    if(this.elementSelect.length === (this.viewElement === 'inbox' ? this.mesMessagesLu.length : (this.viewElement === 'unread' ? this.mesMessagesNonLu.length : (this.viewElement === 'send' ? this.mesMessagesSend.length : 0)))) {
+    if(this.elementSelect.length === (this.viewElement === 'inbox' ? this.allMessages.length : (this.viewElement === 'unread' ? this.mesMessagesNonLu.length : (this.viewElement === 'send' ? this.mesMessagesSend.length : 0)))) {
       this.elementSelect = [];
     } else {
-      for(let i = 0; i < (this.viewElement === 'inbox' ? this.mesMessagesLu.length : (this.viewElement === 'unread' ? this.mesMessagesNonLu.length : (this.viewElement === 'send' ? this.mesMessagesSend.length : 0))); i++) {
-        this.elementSelect.push((this.viewElement === 'inbox' ? this.mesMessagesLu[i].id : (this.viewElement === 'unread' ? this.mesMessagesNonLu[i].id : (this.viewElement === 'send' ? this.mesMessagesSend[i].id : null))));
+      for(let i = 0; i < (this.viewElement === 'inbox' ? this.allMessages.length : (this.viewElement === 'unread' ? this.mesMessagesNonLu.length : (this.viewElement === 'send' ? this.mesMessagesSend.length : 0))); i++) {
+        this.elementSelect.push((this.viewElement === 'inbox' ? this.allMessages[i].id : (this.viewElement === 'unread' ? this.mesMessagesNonLu[i].id : (this.viewElement === 'send' ? this.mesMessagesSend[i].id : null))));
       }
     }
   }
@@ -119,6 +121,19 @@ export class MailboxComponent implements OnInit {
     }
   }
 
+  delete_all_message_select() {
+    if(window.confirm('Confirm ?')) {
+      for(let i=0; i<this.elementSelect.length; i++) {
+        this.deleteMessage(this.elementSelect[i]);
+      }
+      this.ngOnInit();
+    }
+  }
+
+  deleteMessage(idMessage: string) {
+    this.messageService.deleteMessage(idMessage);
+  }
+
   make_read_or_unread_message(message: Message) {
     this.isLoading = true;
     message.read.includes(firebase.auth().currentUser?.email as string) ? message.read.push(firebase.auth().currentUser?.email as String | any) : message.read.splice(message.read.indexOf(firebase.auth().currentUser?.email as string), 1);
@@ -163,6 +178,10 @@ export class MailboxComponent implements OnInit {
         this.alertService.print(error, 'danger');
       }
     );
+  }
+
+  extractTextPure(text: string) : string {
+    return text.replace(/<([^>])*>/g,'').replace(/\&nbsp;/g, '');
   }
 
   getNombreJoursRestant(date: any) {

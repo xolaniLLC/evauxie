@@ -18,8 +18,8 @@
     "1.6": "Budget",
     "1.7": "Vérifiez votre liste de tâches",
     "1.8": "Gérez vos invités",
-    "2": "Lieux",
-    "2.1": "Type de lieux",
+    "2": "Reception",
+    "2.1": "Type de reception",
     "3": "Fournisseurs",
     "3.1": "Catégories de vendeurs sur la plateforme",
     "4": "Forum",
@@ -27,7 +27,7 @@
   },
   "3": {
     "1": "Préparez-vous à planifier votre",
-    "2": "Evénement parfait",
+    "2": "Evénement",
     "3": "Avec nous",
     "4": "Prêt à planifier votre événement et à trouver vos fournisseurs parfaits?",
     "5": "S'inscrire",
@@ -36,14 +36,15 @@
     "8": "RECHERCHEZ PARMI NOS NOMBREUX FOURNISSEURS À DIVERS ENDROITS POUR TROUVER VOTRE ÉQUIPE IDÉALE",
     "9": "Nos fournisseurs en vedette",
     "10": "Nos articles de blog",
-    "11": "DÉCOUVREZ LES DERNIÈRES TENDANCES ET CONSEILLEZ SUR LA PLANIFICATION D’ÉVÉNEMENTS",
+    "11": "DÉCOUVREZ LES DERNIÈRES TENDANCES ET CONSEILLES SUR LA PLANIFICATION D’ÉVÉNEMENTS",
     "12": "VOIR TOUS LES ARTICLES DE BLOG",
     "13": "Votre entreprise a-t-elle besoin d'aide ?",
-    "14": "Nous pouvons trouver et réserver des vendeurs qui correspondent aux besoins de votre entreprise",
-    "15": "budget et attentes",
+    "14": "Nous pouvons trouver et réserver des fournisseurs qui correspondent",
+    "15": "a vos besoins et votre budget",
     "16": "Contactez nous",
     "17": "Êtes-vous un vendeur ?",
-    "18": "Soyez mis en avant sur notre plateforme et soyez accessible aux clients du monde entier",
+    "18": "Soyez mis en avant sur notre plateforme et devenez accessible aux",
+    "18.1": "clients de part le monde",
     "19": "Enregistrez-vous ici",
     "20": "Notre Forum",
     "21": "DÉCOUVREZ LES DERNIERS ÉCHANGES ENTRE LES UTILISATEURS DE LA PLATEFORME ET LES ORGANISATEURS D’ÉVÉNEMENTS",
@@ -63,7 +64,7 @@
     "35": "+237 652 765 206",
     "36": "Email",
     "37": "contact@evauxie.com",
-    "38": "Formulaire de contact Evauxie",
+    "38": "Formulaire de contact",
     "39": "Envoyez-nous un message pour vos réservations d’événements personnalisés!",
     "40": "Nom complet",
     "41": "Adresse courriel",
@@ -76,17 +77,17 @@
     "1" : "Recherche",
     "2" : "Votre recherche...",
     "3" : "Dans tous",
-    "4" : "Cliquez pour rechercher",
+    "4" : "Rechercher",
     "5" : "Rechercher sur la plateforme"
   },
   "5" : {
     "1" : "Recevez la newsletter gratuite",
-    "2" : "Inscrivez-vous pour recevoir les mises à jour sur les nouvelles et les événements",
+    "2" : "Inscrivez-vous pour recevoir les mises à jour sur les nouveaux articles",
     "3" : "Votre adresse e-mail",
     "4" : "A propos d'Evauxie",
-    "5" : "Evauxie est un auxiliaire de planification d’événements et un marché qui aide les gens à planifier et à organiser des événements en les mettant en contact avec des fournisseurs locaux en Afrique, de n’importe où dans le monde",
+    "5" : "Evauxie est une plateforme qui aide les gens à planifier et à organiser des événements en les mettant en contact avec des fournisseurs locaux en Afrique, de n’importe où dans le monde",
     "6" : "Liens rapides",
-    "7" : "•Outils de planification",
+    "7" : "Outils de planification",
     "8" : "Lieux",
     "9" : "Fournisseurs",
     "10" : "Forum",
@@ -233,7 +234,7 @@
     "18" : "Connectez-vous ici"
   },
   "18" : {
-    "1" : "Voir le tableau de bord",
+    "1" : "Tableau de bord",
     "2" : "Voir le profil de l'entreprise",
     "3" : "Voir le compte",
     "4" : "Se déconnecter"
@@ -374,6 +375,12 @@
   "9" : "Aucun message",
   "10" : "Retourner en arrière",
   "11" : "message envoyé à"
-}
+  },
+  "27" : {
+    "1" : "Ajouter un événement pour aimer cette entreprise",
+    "2" : "Ajouter un événement pour demander cette entreprise",
+    "3" : "GALERIE",
+    "4" : "A propos"
+  }
 }
 

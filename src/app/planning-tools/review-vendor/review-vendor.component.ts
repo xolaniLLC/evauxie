@@ -14,12 +14,14 @@ export class ReviewVendorComponent implements OnInit {
   currentCompany: Company | any;
   avisCurrentCompany: AvisCompany[] = [];
   isLoading = false;
+  isLoadAvis = true;
 
   constructor(private companyService: CompanyService, private avisCompanyService: AvisCompanyService) { }
 
   ngOnInit(): void {
     this.companyService.getCompanies().then(
       (docRef) => {
+        this.isLoadAvis = false;
         for(let i=0; i<docRef.length; i++) {
           if(docRef[i].date) {
             this.currentCompany = docRef[i];
@@ -31,6 +33,8 @@ export class ReviewVendorComponent implements OnInit {
             );
           }
         }
+      }, () => {
+        this.isLoadAvis = false;
       });
   }
 

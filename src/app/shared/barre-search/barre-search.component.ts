@@ -3,6 +3,7 @@ import {CategoriesService} from "../../services/categories.service";
 import {CategorieActivite} from "../../models/categorie-activite";
 import {ApiService} from "../../services/api.service";
 import {Pays} from "../../models/pays";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-barre-search',
@@ -21,7 +22,7 @@ export class BarreSearchComponent implements OnInit {
   codeCat = '';
   listePays: Pays[] = [];
 
-  constructor(private apiService: ApiService, private categorieService: CategoriesService) { }
+  constructor(private translate: TranslateService, private apiService: ApiService, private categorieService: CategoriesService) { }
 
   ngOnInit(): void {
     if(this.textPreload) { this.searchTxt = this.textPreload; }
@@ -37,6 +38,12 @@ export class BarreSearchComponent implements OnInit {
         this.listePays = data;
       }
     );
+  }
+
+  getValueTraduct(texte: string, langue: string = '') {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML= texte;
+    return wrapper.getElementsByTagName(langue ? langue : this.translate.defaultLang).length > 0 ? wrapper.getElementsByTagName(langue ? langue : this.translate.defaultLang)[0].innerHTML.replace('amp;', '')  : (texte && texte.includes('</') ? '' : texte);
   }
 
 }

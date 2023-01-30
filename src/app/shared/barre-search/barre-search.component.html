@@ -5,9 +5,9 @@
     <div class="mt-1 relative">
       <input (focusout)="codeCat = ''" (click)="popOver = !popOver" [(ngModel)]="searchTxt" type="search" name="" id="1" placeholder="{{'4.2' | translate}}" class="relative md:w-fit sm:w-full text-sm outline-none focus:outline-none bg-transparent">
       <ul *ngIf="popOver" class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label">
-        <li (click)="codeCat = cat.id; searchTxt = cat.titre; popOver = !popOver;" class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9 hover:bg-indigo-600 hover:text-gray-50 cursor-pointer" id="listbox-option-0" role="option" *ngFor="let cat of categories">
+        <li (click)="codeCat = cat.id; searchTxt = getValueTraduct(cat.titre); popOver = !popOver;" class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9 hover:bg-indigo-600 hover:text-gray-50 cursor-pointer" id="listbox-option-0" role="option" *ngFor="let cat of categories">
           <div class="flex items-center">
-            <span class="font-normal ml-3 block truncate"> {{cat.titre}} </span>
+            <span class="font-normal ml-3 block truncate"> {{getValueTraduct(cat.titre)}} </span>
           </div>
         </li>
       </ul>

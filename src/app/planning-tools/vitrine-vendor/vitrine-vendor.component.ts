@@ -12,6 +12,8 @@ import {ApiService} from "../../services/api.service";
 import firebase from "firebase";
 import {Faq} from "../../models/faq";
 import {ToolsService} from "../../services/tools.service";
+import {TranslateService} from "@ngx-translate/core";
+import { ViewportScroller} from '@angular/common';
 
 @Component({
   selector: 'app-vitrine-vendor',
@@ -38,6 +40,7 @@ export class VitrineVendorComponent implements OnInit {
   isUploadLogoProfil = false;
   isUploadPhototeque = false;
   sousCategorisActivity: CategorieActivite[] = [];
+  luEtAcceptConditionVendor = false;
 
   allCountry = [
     {
@@ -4021,7 +4024,7 @@ export class VitrineVendorComponent implements OnInit {
     }
   ];
 
-  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private categorieService: CategoriesService, private alertService: AlertService, private companyService: CompanyService, private sanitizer: DomSanitizer, private formBuilder: FormBuilder, private apiService: ApiService) {
+  constructor(private viewportScroller: ViewportScroller, private translate: TranslateService, private route: ActivatedRoute, private router: Router, private userService: UserService, private categorieService: CategoriesService, private alertService: AlertService, private companyService: CompanyService, private sanitizer: DomSanitizer, private formBuilder: FormBuilder, private apiService: ApiService) {
   }
 
   ngOnInit(): void {
@@ -4091,6 +4094,10 @@ export class VitrineVendorComponent implements OnInit {
         }
       );
     }
+  }
+
+  scrollToTop(): void {
+    this.viewportScroller.scrollToPosition([0, 0]);
   }
 
   recupNomCategorie(idCategorie: string) {
@@ -4174,6 +4181,7 @@ export class VitrineVendorComponent implements OnInit {
         this.alertService.print('The number of photos is insufficient (8 at least)', 'warning');
       } else {
         this.currentCompany.date = new Date().toString();
+        this.currentCompany.verifier = new Date().toString();
         this.companyService.updateCompany(this.currentCompany).then(
           () => {
             this.isLoading = false;
@@ -4190,6 +4198,7 @@ export class VitrineVendorComponent implements OnInit {
         () => {
           this.isLoading = false;
           this.stepMake += 1;
+          this.scrollToTop();
         }, (error) => {
           this.isLoading = false;
           this.alertService.print(error, 'danger');
@@ -4198,8 +4207,14 @@ export class VitrineVendorComponent implements OnInit {
     }
   }
 
+  getValueTraduct(texte: string, langue: string = '') {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML= texte;
+    return wrapper.getElementsByTagName(langue ? langue : this.translate.defaultLang).length > 0 ? wrapper.getElementsByTagName(langue ? langue : this.translate.defaultLang)[0].innerHTML.replace('amp;', '')  : (texte && texte.includes('</') ? '' : texte);
+  }
+
   addNewFaq() {
-    this.currentCompany.faq.push(new Faq('', '', 'en'));
+    this.currentCompany.faq.unshift(Object.assign({}, new Faq('', '', 'en')));
   }
 
   removeFaq(i: number) {

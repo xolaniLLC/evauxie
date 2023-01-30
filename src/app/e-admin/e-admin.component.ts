@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {CategoriesService} from "../services/categories.service";
 import {CategorieActivite} from "../models/categorie-activite";
 import {AlertService} from "../services/alert.service";
-import {AuthentificationService} from "../services/authentification.service";
 import {UserService} from "../services/user.service";
 import firebase from "firebase";
 import {CompanyService} from "../services/company.service";
@@ -10,6 +9,10 @@ import {Company} from "../models/company";
 import {WriteMailService} from "../services/write-mail.service";
 import {Location} from "@angular/common";
 import {GroupForum} from "../models/group-forum";
+import {TranslateService} from "@ngx-translate/core";
+import {BlogService} from "../services/blog.service";
+import {Blog} from "../models/blog";
+import {GroupBlog} from "../models/group-blog";
 
 @Component({
   selector: 'app-e-admin',
@@ -20,13 +23,23 @@ export class EAdminComponent implements OnInit {
 
   categoriesActivity: CategorieActivite[] = [];
   groupeForum: GroupForum[] = [];
+  groupeBlog: GroupBlog[] = [];
   company: Company[] = [];
   isLoadCat = true;
   isLoadGF = true;
+  isLoadGB = true;
   isLoadCom = true;
   isAdmin = -1;
+  menu = 1;
+  isLoadSaveCat = false;
+  isLoadSaveGF = false;
+  isLoadSaveGB = false;
+  isLoadingSaveBlog = false;
+  isLoadBlog = false;
+  blogs: Blog[] = [];
+  currentBlog!: any;
 
-  constructor(private location: Location, private writeService: WriteMailService, private companyService: CompanyService, private userService: UserService, private alertService: AlertService, private categorieService: CategoriesService) { }
+  constructor(private blogService: BlogService, private translate: TranslateService, private location: Location, private writeService: WriteMailService, private companyService: CompanyService, private userService: UserService, private alertService: AlertService, private categorieService: CategoriesService) { }
 
   ngOnInit(): void {
     this.userService.getInfosUserWitchId(firebase.auth().currentUser?.email).then(
@@ -48,13 +61,43 @@ export class EAdminComponent implements OnInit {
             }
           );
 
+          this.categorieService.getAllGroupBlogActivites().then(
+            (data) => {
+              this.isLoadGB = false;
+              this.groupeBlog = data;
+            }
+          );
+
           this.companyService.getAllCompanies().then(
             (data) => {
               this.isLoadCom = false;
               this.company = data;
             }
           );
+
+          this.blogService.getBlogs().then(
+            (data) => {
+              this.isLoadBlog = false;
+              this.blogs = data;
+            }
+          );
         } else { this.isAdmin = 0; }
+      }
+    );
+  }
+
+  updateActionBlog(event: any) {
+    this.currentBlog = event === '' ? null : this.blogs[Number(event)] as Blog;
+  }
+
+  addBlog(form: any) {
+    this.isLoadingSaveBlog = true;
+    const tmpBlog: Blog = new Blog(form.value.titre, form.value.contenu, firebase.auth().currentUser?.email as string, form.value.categorie, form.value.tags ? form.value.tags.split(',') : '');
+    tmpBlog.id = form.value.action === '' ? tmpBlog.id : this.currentBlog.id;
+    this.blogService.addNewBlog(tmpBlog).then(
+      () => {
+        this.isLoadingSaveBlog = false;
+        this.alertService.print('Done', 'success');
       }
     );
   }
@@ -85,31 +128,72 @@ export class EAdminComponent implements OnInit {
     );
   }
 
+  getValueTraduct(texte: string, langue: string = '') {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML= texte;
+    return wrapper.getElementsByTagName(langue ? langue : this.translate.defaultLang).length > 0 ? wrapper.getElementsByTagName(langue ? langue : this.translate.defaultLang)[0].innerHTML.replace('amp;', '')  : (texte && texte.includes('</') ? '' : texte);
+  }
+
+
   addCat() {
     this.categoriesActivity.unshift(new CategorieActivite('', ''));
   }
 
-  updateParentCategorie(event: any, categorie: CategorieActivite) {
-    categorie.parent = event;
-    this.categorieService.addCategorie(categorie).then(
+  deleteBlog(form: any) {
+    this.isLoadingSaveBlog = true;
+    this.blogService.deleteBlog(this.blogs[Number(form.value.action)].id).then(
       () => {
+        this.isLoadingSaveBlog = false;
+        this.alertService.print('Done', 'success');
+        location.reload();
+      }
+    );
+  }
+
+  saveCat(cat:CategorieActivite, form: any) {
+    this.isLoadSaveCat = true;
+    cat.titre = '<fr>' + form.value.cat_input_fr_ + '</fr>' + '<en>' + form.value.cat_input_en_ + '</en>';
+    cat.parent = form.value.cat_select_parent_;
+    cat.icone = form.value.cat_textarea_icone_;
+    this.categorieService.addCategorie(cat).then(
+      () => {
+        this.isLoadSaveCat = false;
         this.alertService.print('Done', 'success');
       }
     );
   }
 
-  updateNameCategorie(event: any, categorie: CategorieActivite) {
-    categorie.titre = event;
-    this.categorieService.addCategorie(categorie).then(
+  saveGroup(group:GroupForum, form: any) {
+    this.isLoadSaveGF = true;
+    group.titre = '<fr>' + form.value.cat_input_fr_ + '</fr>' + '<en>' + form.value.cat_input_en_ + '</en>';
+    group.parent = form.value.cat_select_parent_;
+    group.icone = form.value.cat_textarea_icone_;
+    this.categorieService.addGroupForum(group).then(
       () => {
+        this.isLoadSaveGF = false;
+        this.alertService.print('Done', 'success');
+      }
+    );
+  }
+
+  saveGroupBlog(group:GroupBlog, form: any) {
+    this.isLoadSaveGB = true;
+    group.titre = '<fr>' + form.value.cat_input_fr_ + '</fr>' + '<en>' + form.value.cat_input_en_ + '</en>';
+    group.parent = form.value.cat_select_parent_;
+    group.icone = form.value.cat_textarea_icone_;
+    this.categorieService.addGroupBlog(group).then(
+      () => {
+        this.isLoadSaveGB = false;
         this.alertService.print('Done', 'success');
       }
     );
   }
 
   deleteCategorie(idCategorie: string) {
+    this.isLoadSaveCat = true;
     this.categorieService.deleteCategorieActivite(idCategorie).then(
       () => {
+        this.isLoadSaveCat = false;
         this.alertService.print('Done', 'success');
         this.ngOnInit();
       }
@@ -120,27 +204,26 @@ export class EAdminComponent implements OnInit {
     this.groupeForum.unshift(new GroupForum('', ''));
   }
 
-  updateParentGroupForum(event: any, groupeForum: GroupForum) {
-    groupeForum.parent = event;
-    this.categorieService.addGroupForum(groupeForum).then(
-      () => {
-        this.alertService.print('Done', 'success');
-      }
-    );
-  }
-
-  updateNameGroupForum(event: any, groupeForum: GroupForum) {
-    groupeForum.titre = event;
-    this.categorieService.addGroupForum(groupeForum).then(
-      () => {
-        this.alertService.print('Done', 'success');
-      }
-    );
+  addGroupBlog() {
+    this.groupeBlog.unshift(new GroupBlog('', ''));
   }
 
   deleteGroupForum(idGroupForum: string) {
+    this.isLoadSaveGF = true;
     this.categorieService.deleteGroupForumActivite(idGroupForum).then(
       () => {
+        this.isLoadSaveGF = false;
+        this.alertService.print('Done', 'success');
+        this.ngOnInit();
+      }
+    );
+  }
+
+  deleteGroupBlog(idGroupBlog: string) {
+    this.isLoadSaveGB = true;
+    this.categorieService.deleteGroupBlogActivite(idGroupBlog).then(
+      () => {
+        this.isLoadSaveGB = false;
         this.alertService.print('Done', 'success');
         this.ngOnInit();
       }

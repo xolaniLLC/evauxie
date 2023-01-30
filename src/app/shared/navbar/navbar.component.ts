@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import firebase from "firebase";
 import {CategorieActivite} from "../../models/categorie-activite";
 import {CategoriesService} from "../../services/categories.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-navbar',
@@ -27,7 +28,7 @@ export class NavbarComponent implements OnInit {
   isLoadingCat = true;
   isLoadingSousCatVenu = true;
 
-  constructor(private categorieService: CategoriesService, private messageService: MessageService, private userService: UserService, private authService: AuthentificationService, private router: Router) { }
+  constructor(private translate: TranslateService, private categorieService: CategoriesService, private messageService: MessageService, private userService: UserService, private authService: AuthentificationService, private router: Router) { }
 
   ngOnInit(): void {
     this.authService.isAuthenticated().then(
@@ -63,6 +64,12 @@ export class NavbarComponent implements OnInit {
         this.isLoadingSousCatVenu = false;
       }
     )
+  }
+
+  getValueTraduct(texte: string) {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML= texte;
+    return wrapper.getElementsByTagName(this.translate.defaultLang).length > 0 ? wrapper.getElementsByTagName(this.translate.defaultLang)[0].innerHTML.replace('amp;', '')  : (texte && texte.includes('</') ? '' : texte);
   }
 
   goDeconnect() {

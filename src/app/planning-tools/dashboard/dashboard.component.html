@@ -89,7 +89,7 @@
         No element
       </p>
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
-        <div class="p-3 border border-gray-300 rounded-xl" *ngFor="let cy of (event_en_cours.companySollicite).slice(0,4)">
+        <div class="p-3 border border-gray-300 rounded-xl" *ngFor="let cy of (event_en_cours.companySollicite).slice(0,2)">
           <app-miniature-company skin="images-simple" id="{{cy}}"></app-miniature-company>
           <form #form1="ngForm">
             <select [disabled]="isLoading || companyBooked.includes(cy.toString())" [ngModel]="companyBooked.includes(cy.toString()) ? 'alreadyBooked' : (event_en_cours.companySollicite.includes(cy) ? 'hired' : 'not_hired')" (ngModelChange)="updateEtatEvent(event_en_cours, cy.toString(), form1.value.etat)" name="etat" aria-label="Selected tab" class="{{companyBooked.includes(cy.toString()) ? 'bg-orange-500' : (form1.value.etat === 'hired' ? 'bg-green-500' : 'bg-red-500')}} focus:outline-none form-select block w-full p-3 border border-gray-300 rounded-lg mt-3 text-white dark:text-gray-400 appearance-none relative z-10">

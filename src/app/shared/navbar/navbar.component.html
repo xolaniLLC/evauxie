@@ -60,7 +60,7 @@
             <p id="women-accessories-heading-mobile" class="font-medium text-gray-900">{{'2.2' | translate}}</p>
             <ul role="list" aria-labelledby="women-accessories-heading-mobile" class="mt-6 flex flex-col space-y-6">
               <li class="flow-root" *ngFor="let sous of sousCategoriesVenue">
-                <a href="./venues?categorie={{sous.id}}" class="-m-2 p-2 block text-gray-500"> {{sous.titre}} </a>
+                <a href="./venues?categorie={{sous.id}}" class="-m-2 p-2 block text-gray-500"> {{getValueTraduct(sous.titre)}} </a>
               </li>
               <div class="text-center" *ngIf="isLoadingSousCatVenu">
                 <svg role="status" class="inline w-12 h-12 text-indigo-700 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -76,7 +76,7 @@
             <ul role="list" aria-labelledby="women-brands-heading-mobile" class="mt-6 flex flex-col space-y-6">
               <ng-container *ngFor="let cat of categories">
                 <li class="flow-root" *ngIf="cat.titre.toLocaleLowerCase() !== 'venue'">
-                  <a href="./vendors/?categorie={{cat.id}}" class="-m-2 p-2 block text-gray-500"> {{cat.titre}} </a>
+                  <a href="./vendors/?categorie={{cat.id}}" class="-m-2 p-2 block text-gray-500"> {{getValueTraduct(cat.titre)}} </a>
                 </li>
               </ng-container>
             </ul>
@@ -295,7 +295,7 @@
                             <p id="Clothing-heading" class="font-medium text-gray-900 text-xl">{{'2.2.1' | translate}}</p>
                             <ul role="list" aria-labelledby="Clothing-heading" class="grid lg:grid-cols-4 md:grid-cols-3 mt-3">
                               <li class="flex my-2" *ngFor="let sous of sousCategoriesVenue">
-                                <a href="./venues?categorie={{sous.id}}" class="hover:text-gray-800 capitalize"> {{sous.titre}} </a>
+                                <a href="./venues?categorie={{sous.id}}" class="hover:text-gray-800 capitalize"> {{getValueTraduct(sous.titre)}} </a>
                               </li>
                             </ul>
                             <div class="text-center" *ngIf="isLoadingSousCatVenu">
@@ -328,7 +328,7 @@
                             <ul role="list" aria-labelledby="Clothing-heading" class="grid lg:grid-cols-4 md:grid-cols-3 mt-3">
                               <ng-container *ngFor="let cat of categories">
                                 <li class="flex my-2" *ngIf="cat.titre.toLocaleLowerCase() !== 'venue'">
-                                  <a href="./vendors/?categorie={{cat.id}}" class="hover:text-gray-800 capitalize"> {{cat.titre}} </a>
+                                  <a href="./vendors/?categorie={{cat.id}}" class="hover:text-gray-800 capitalize"> {{getValueTraduct(cat.titre)}} </a>
                                 </li>
                               </ng-container>
                             </ul>

@@ -6,9 +6,11 @@
       <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
     </svg>
   </button>
-  <a href="e-admin#gestion-compagnie" class="text-xl hover:underline">Company management</a>
-  <a href="e-admin#gestion-categorie" class="text-xl hover:underline">Gestion categorie</a>
-  <a href="e-admin#gestion-groupe-forum" class="text-xl hover:underline">Gestion groupe forum</a>
+  <a (click)="menu = 1" class="{{menu === 1 ? 'text-indigo-700' : ''}} cursor-pointer text-xl hover:underline">Company management</a>
+  <a (click)="menu = 2" class="{{menu === 2 ? 'text-indigo-700' : ''}} cursor-pointer text-xl hover:underline">Gestion categorie</a>
+  <a (click)="menu = 3" class="{{menu === 3 ? 'text-indigo-700' : ''}} cursor-pointer text-xl hover:underline">Gestion groupe forum</a>
+  <a (click)="menu = 4" class="{{menu === 4 ? 'text-indigo-700' : ''}} cursor-pointer text-xl hover:underline">Gestion groupe blog</a>
+  <a (click)="menu = 5" class="{{menu === 5 ? 'text-indigo-700' : ''}} cursor-pointer text-xl hover:underline">Gestion Blog</a>
 </section>
 
 <section *ngIf="isAdmin === -1" class="max-w-7xl mx-auto py-20 text-center">
@@ -24,166 +26,278 @@
   </p>
 </section>
 
-<section id="gestion-compagnie" *ngIf="isAdmin === 1" class="max-w-7xl mx-auto py-5">
-  <h1 tabindex="0" class="mb-5 focus:outline-none text-4xl lg:text-4xl font-normal leading-tight text-gray-800 lg:w-7/12 md:w-9/12 xl:w-5/12">Gestion compagnies</h1>
+<section *ngIf="isAdmin === 1">
+  <div id="gestion-compagnie" *ngIf="menu === 1" class="max-w-7xl mx-auto py-5">
+    <h1 tabindex="0" class="mb-5 focus:outline-none text-4xl lg:text-4xl font-normal leading-tight text-gray-800 lg:w-7/12 md:w-9/12 xl:w-5/12">Gestion compagnies</h1>
 
-  <svg *ngIf="isLoadCom" role="status" class="w-10 h-10 text-indigo-700 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
-    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
-  </svg>
+    <svg *ngIf="isLoadCom" role="status" class="w-10 h-10 text-indigo-700 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+      <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+    </svg>
 
-  <div *ngIf="!isLoadCom">
-    <div *ngFor="let compagnie of company" class="w-full bg-gray-200 dark:bg-gray-900 py-10">
-      <div class="container mx-auto px-6 flex items-start justify-center">
-        <div class="w-full">
-          <!-- Card is full width. Use in 12 col grid for best view. -->
-          <!-- Card code block start -->
-          <div class="mx-auto w-full p-5 lg:p-10 bg-white dark:bg-gray-800 shadow rounded">
-            <div class="flex flex-col lg:flex-row items-start lg:items-center mb-8">
-              <h1 class="mr-12 text-xl lg:text-2xl text-gray-800 dark:text-gray-100 font-bold lg:w-1/2">{{compagnie.nom}}</h1>
-              <div class="flex flex-col md:flex-row items-start md:items-center space-x-5">
-                <div (click)="updateEtatCompany(compagnie)" class="hover:opacity-75 mt-4 lg:mt-0 mr-0 xl:mr-8 text-sm cursor-pointer {{ compagnie.verifier ? 'bg-red-100 text-red-500' : 'bg-indigo-100 text-indigo-700'}} dark:text-indigo-600 rounded font-medium py-2 w-48 flex justify-center">{{compagnie.verifier ? 'Deactivate the company' : 'Activate the company'}}</div>
-                <div (click)="writeEmailToUser(compagnie.administrateurs[0])" class="hover:opacity-75 cursor-pointer mt-4 lg:mt-0 mr-0 lg:mr-4 xl:mr-8 text-sm bg-orange-300 text-white rounded font-medium py-2 w-48 flex justify-center">Write a &nbsp; <app-miniature-name-user [idUser]="compagnie.administrateurs[0]"></app-miniature-name-user></div>
+    <div *ngIf="!isLoadCom">
+      <div *ngFor="let compagnie of company" class="w-full bg-gray-200 dark:bg-gray-900 py-10">
+        <div class="container mx-auto px-6 flex items-start justify-center">
+          <div class="w-full">
+            <!-- Card is full width. Use in 12 col grid for best view. -->
+            <!-- Card code block start -->
+            <div class="mx-auto w-full p-5 lg:p-10 bg-white dark:bg-gray-800 shadow rounded">
+              <div class="flex flex-col lg:flex-row items-start lg:items-center mb-8">
+                <h1 class="mr-12 text-xl lg:text-2xl text-gray-800 dark:text-gray-100 font-bold lg:w-1/2">{{compagnie.nom}}</h1>
+                <div class="flex flex-col md:flex-row items-start md:items-center space-x-5">
+                  <div (click)="updateEtatCompany(compagnie)" class="hover:opacity-75 mt-4 lg:mt-0 mr-0 xl:mr-8 text-sm cursor-pointer {{ compagnie.verifier ? 'bg-red-100 text-red-500' : 'bg-indigo-100 text-indigo-700'}} dark:text-indigo-600 rounded font-medium py-2 w-48 flex justify-center">{{compagnie.verifier ? 'Deactivate the company' : 'Activate the company'}}</div>
+                  <div (click)="writeEmailToUser(compagnie.administrateurs[0])" class="hover:opacity-75 cursor-pointer mt-4 lg:mt-0 mr-0 lg:mr-4 xl:mr-8 text-sm bg-orange-300 text-white rounded font-medium py-2 w-48 flex justify-center">Write a &nbsp; <app-miniature-name-user [idUser]="compagnie.administrateurs[0]"></app-miniature-name-user></div>
+                </div>
               </div>
-            </div>
-            <div class="items-start lg:items-center space-y-8 my-5">
-              <div class="w-full">
-                <div class="flex items-center space-x-5">
-                  <div class="w-12 h-12 rounded">
-                    <app-miniature-avatar-user [idUser]="compagnie.administrateurs[0]"></app-miniature-avatar-user>
+              <div class="items-start lg:items-center space-y-8 my-5">
+                <div class="w-full">
+                  <div class="flex items-center space-x-5">
+                    <div class="w-12 h-12 rounded">
+                      <app-miniature-avatar-user [idUser]="compagnie.administrateurs[0]"></app-miniature-avatar-user>
+                    </div>
+                    <div class="ml-2">
+                      <h5 class="text-gray-800 dark:text-gray-100 font-medium text-base"><app-miniature-name-user [idUser]="compagnie.administrateurs[0]"></app-miniature-name-user></h5>
+                      <a href="mailto:{{compagnie.administrateurs[0]}}" class="text-orange-500 text-xs">{{compagnie.administrateurs[0]}}</a>
+                      <p class="text-gray-600 dark:text-gray-400 text-xs font-normal">Company create the <span class="text-indigo-700 font-medium">{{compagnie.date | date : 'EEEE dd MMMM YYYY'}}</span></p>
+                    </div>
                   </div>
-                  <div class="ml-2">
-                    <h5 class="text-gray-800 dark:text-gray-100 font-medium text-base"><app-miniature-name-user [idUser]="compagnie.administrateurs[0]"></app-miniature-name-user></h5>
-                    <a href="mailto:{{compagnie.administrateurs[0]}}" class="text-orange-500 text-xs">{{compagnie.administrateurs[0]}}</a>
-                    <p class="text-gray-600 dark:text-gray-400 text-xs font-normal">Company create the <span class="text-indigo-700 font-medium">{{compagnie.date | date : 'EEEE dd MMMM YYYY'}}</span></p>
+                  <p class="mt-5 text-sm text-gray-600 dark:text-gray-400 font-normal" [innerHTML]="compagnie.description"></p>
+                </div>
+                <div class="w-full flex flex-col lg:flex-row items-start lg:items-center">
+                  <div class="mr-12 flex lg:block items-center lg:mr-6 xl:mr-12 mt-5 lg:mt-0">
+                    <h2 class="text-gray-600 dark:text-gray-400 font-bold text-xl lg:text-2xl leading-6 mb-1 lg:text-center">Country</h2>
+                    <p class="ml-2 lg:ml-0 text-gray-800 dark:text-gray-100 text-xl leading-5 text-center">{{compagnie.pays}}</p>
+                  </div>
+                  <div class="mr-12 flex lg:block lg:mr-6 xl:mr-12 mt-5 lg:mt-0">
+                    <h2 class="text-gray-600 dark:text-gray-400 font-bold text-xl lg:text-2xl leading-6 mb-1 lg:text-center">Category</h2>
+                    <p class="ml-2 lg:ml-0 text-gray-800 dark:text-gray-100 text-xl leading-5 text-center"><app-console-information-model [idCategorie]="compagnie.categorie"></app-console-information-model></p>
+                  </div>
+                  <div class="mt-5 flex lg:block lg:mt-0">
+                    <a href="tel:{{compagnie.phone}}" class="block text-gray-600 dark:text-gray-400 font-bold text-xl lg:text-2xl leading-6 mb-1 lg:text-center">Phone number</a>
+                    <p class="ml-2 lg:ml-0 text-gray-800 dark:text-gray-100 text-xl leading-5 text-center">{{compagnie.phone}}</p>
                   </div>
                 </div>
-                <p class="mt-5 text-sm text-gray-600 dark:text-gray-400 font-normal" [innerHTML]="compagnie.description"></p>
               </div>
-              <div class="w-full flex flex-col lg:flex-row items-start lg:items-center">
-                <div class="mr-12 flex lg:block items-center lg:mr-6 xl:mr-12 mt-5 lg:mt-0">
-                  <h2 class="text-gray-600 dark:text-gray-400 font-bold text-xl lg:text-2xl leading-6 mb-1 lg:text-center">Country</h2>
-                  <p class="ml-2 lg:ml-0 text-gray-800 dark:text-gray-100 text-xl leading-5 text-center">{{compagnie.pays}}</p>
+              <div class="w-full py-6 my-10">
+                <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between">
+                  <div class="text-xs text-center w-full bg-indigo-100 text-indigo-700 dark:text-indigo-600 rounded font-medium p-3 lg:mr-3">{{compagnie.affordbility}}</div>
+                  <div class="mt-4 text-center w-full lg:mt-0 text-xs bg-red-200 text-red-500 rounded font-medium p-3 space-x-5"><span *ngFor="let prix of compagnie.price; let i = index">{{prix}}{{i%2 !== 0 ? '' : ' - '}}</span></div>
                 </div>
-                <div class="mr-12 flex lg:block lg:mr-6 xl:mr-12 mt-5 lg:mt-0">
-                  <h2 class="text-gray-600 dark:text-gray-400 font-bold text-xl lg:text-2xl leading-6 mb-1 lg:text-center">Category</h2>
-                  <p class="ml-2 lg:ml-0 text-gray-800 dark:text-gray-100 text-xl leading-5 text-center"><app-console-information-model [idCategorie]="compagnie.categorie"></app-console-information-model></p>
+                <div class="mt-6 mb-8 w-full bg-gray-100 dark:bg-gray-700 rounded p-4 relative">
+                  <ul>
+                    <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Ville : {{compagnie.ville}}</li>
+                    <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal my-4">- Code postal : {{compagnie.codePostal}}</li>
+                    <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Devise : {{compagnie.devise}}</li>
+                    <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Adresse : {{compagnie.adresse}}</li>
+                    <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Site web : <a href="{{compagnie.siteWeb}}">{{compagnie.siteWeb}}</a></li>
+                  </ul>
                 </div>
-                <div class="mt-5 flex lg:block lg:mt-0">
-                  <a href="tel:{{compagnie.phone}}" class="block text-gray-600 dark:text-gray-400 font-bold text-xl lg:text-2xl leading-6 mb-1 lg:text-center">Phone number</a>
-                  <p class="ml-2 lg:ml-0 text-gray-800 dark:text-gray-100 text-xl leading-5 text-center">{{compagnie.phone}}</p>
+              </div>
+              <div class="flex flex-col lg:flex-row items-start lg:items-center">
+                <div *ngIf="compagnie.logo" class="border-2 border-white dark:border-gray-700 shadow rounded-full w-full h-52 hover:absolute hover:h-1/2 hover:w-1/2">
+                  <img class="w-full h-full overflow-hidden object-cover rounded-full" src="{{compagnie.logo}}" alt="Logo company" />
+                </div>
+                <div *ngFor="let tof of compagnie.phototheque; let i = index" class="border-2 border-white dark:border-gray-700 shadow w-full h-52 hover:absolute hover:h-1/2 hover:w-1/2">
+                  <img class="w-full h-full overflow-hidden object-cover rounded-md" src="{{tof}}" alt="photo {{i}}" />
                 </div>
               </div>
             </div>
-            <div class="w-full py-6 my-10">
-              <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between">
-                <div class="text-xs text-center w-full bg-indigo-100 text-indigo-700 dark:text-indigo-600 rounded font-medium p-3 lg:mr-3">{{compagnie.affordbility}}</div>
-                <div class="mt-4 text-center w-full lg:mt-0 text-xs bg-red-200 text-red-500 rounded font-medium p-3 space-x-5"><span *ngFor="let prix of compagnie.price; let i = index">{{prix}}{{i%2 !== 0 ? '' : ' - '}}</span></div>
-              </div>
-              <div class="mt-6 mb-8 w-full bg-gray-100 dark:bg-gray-700 rounded p-4 relative">
-                <ul>
-                  <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Ville : {{compagnie.ville}}</li>
-                  <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal my-4">- Code postal : {{compagnie.codePostal}}</li>
-                  <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Devise : {{compagnie.devise}}</li>
-                  <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Adresse : {{compagnie.adresse}}</li>
-                  <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Site web : <a href="{{compagnie.siteWeb}}">{{compagnie.siteWeb}}</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="flex flex-col lg:flex-row items-start lg:items-center">
-              <div *ngIf="compagnie.logo" class="border-2 border-white dark:border-gray-700 shadow rounded-full w-full h-52 hover:absolute hover:h-1/2 hover:w-1/2">
-                <img class="w-full h-full overflow-hidden object-cover rounded-full" src="{{compagnie.logo}}" alt="Logo company" />
-              </div>
-              <div *ngFor="let tof of compagnie.phototheque; let i = index" class="border-2 border-white dark:border-gray-700 shadow w-full h-52 hover:absolute hover:h-1/2 hover:w-1/2">
-                <img class="w-full h-full overflow-hidden object-cover rounded-md" src="{{tof}}" alt="photo {{i}}" />
-              </div>
-            </div>
+            <!-- Card code block end -->
           </div>
-          <!-- Card code block end -->
         </div>
       </div>
-    </div>
 
+    </div>
   </div>
-</section>
 
-<section id="gestion-categorie" *ngIf="isAdmin === 1" class="max-w-7xl mx-auto py-5">
-  <h1 tabindex="0" class="mb-5 focus:outline-none text-4xl lg:text-4xl font-normal leading-tight text-gray-800 lg:w-7/12 md:w-9/12 xl:w-5/12">Gestion categorie</h1>
+  <div id="gestion-categorie" *ngIf="menu === 2" class="max-w-7xl mx-auto py-5">
+    <h1 tabindex="0" class="{{isLoadSaveCat ? 'animate-bounce' : ''}} mb-5 focus:outline-none text-4xl lg:text-4xl font-normal leading-tight text-gray-800 lg:w-7/12 md:w-9/12 xl:w-5/12">Gestion categorie</h1>
 
-  <svg *ngIf="isLoadCat" role="status" class="w-10 h-10 text-indigo-700 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
-    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
-  </svg>
+    <svg *ngIf="isLoadCat" role="status" class="w-10 h-10 text-indigo-700 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+      <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+    </svg>
 
-  <div *ngIf="!isLoadCat" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
-    <div (click)="addCat()" class="block w-full p-6 bg-yellow-400 border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-      <h3 class="text-xl block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ajouter nouvelle catégorie</h3> <br>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    </div>
-    <div *ngFor="let cat of categoriesActivity" class="block w-full p-6 {{ cat.parent ? 'bg-orange-500' : 'bg-white'}} border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-      <input placeholder="Nom de la catégorie" (ngModelChange)="updateNameCategorie($event, cat)" [title]="cat.id" type="text" ngModel="{{cat.titre}}" class="placeholder:font-light w-full border-none bg-transparent text-base font-bold tracking-tight text-gray-900" />
-      <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Catégorie parent</label>
-      <select [ngModel]="cat.parent" (ngModelChange)="updateParentCategorie($event, cat)" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        <option value="">...</option>
-        <option *ngFor="let cat of categoriesActivity" [value]="cat.id">{{cat.titre}}</option>
-      </select>
-
-      <div class="flex space-x-2 py-2">
-        <button (click)="deleteCategorie(cat.id)" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-          </svg>
-        </button>
-        <button id="loading_{{cat.id}}" disabled type="button" class="hidden text-sm font-medium text-gray-900 items-center">
-          <svg aria-hidden="true" role="status" class="inline w-4 h-4 text-gray-200 animate-spin dark:text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#1C64F2"/>
-          </svg>
-        </button>
+    <div *ngIf="!isLoadCat" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+      <div (click)="addCat()" class="block w-full p-6 bg-yellow-400 border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h3 class="text-xl block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ajouter nouvelle catégorie</h3> <br>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <div *ngFor="let cat of categoriesActivity" class="block w-full p-6 {{ cat.parent ? 'bg-orange-500' : 'bg-white'}} border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <form #form="ngForm" (ngSubmit)="saveCat(cat, form)">
+          <label for="cat_select_parent_{{cat.id}}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titre catégorie français</label>
+          <input placeholder="Fr" name="cat_input_fr_" [title]="cat.id" type="text" ngModel="{{getValueTraduct(cat.titre, 'fr')}}" class="rounded-lg border border-gray-300 placeholder:font-light w-full bg-gray-50 font-medium rounded-lg text-sm px-5 py-2.5 tracking-tight text-gray-900" />
+          <label for="cat_select_parent_{{cat.id}}" class="mt-3 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titre catégorie anglais</label>
+          <input placeholder="En" name="cat_input_en_" [title]="cat.id" type="text" ngModel="{{getValueTraduct(cat.titre, 'en')}}" class="rounded-lg border border-gray-300 placeholder:font-light w-full bg-gray-50 font-medium rounded-lg text-sm px-5 py-2.5 tracking-tight text-gray-900" />
+          <label for="cat_select_parent_{{cat.id}}" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Catégorie parent</label>
+          <select [ngModel]="cat.parent" name="cat_select_parent_" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option value="">...</option>
+            <option *ngFor="let cat of categoriesActivity" [value]="cat.id">{{getValueTraduct(cat.titre)}}</option>
+          </select>
+          <label for="cat_select_parent_{{cat.id}}" class="mt-3 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Icone catégorie</label>
+          <textarea [ngModel]="cat.icone" rows="4" name="cat_textarea_icone_" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Icone en SVG (ex: <svg>...</svg>)"></textarea>
+          <div class="flex space-x-2 py-2">
+            <a (click)="deleteCategorie(cat.id)" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+              </svg>
+            </a>
+            <button [disabled]="isLoadSaveCat" type="submit" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.413-.587Q3 19.825 3 19V5q0-.825.587-1.413Q4.175 3 5 3h12l4 4v5.4l-2 2V7.825L16.175 5H5v14h9.4l-2 2Zm7-3q1.25 0 2.125-.875T15 15q0-1.25-.875-2.125T12 12q-1.25 0-2.125.875T9 15q0 1.25.875 2.125T12 18Zm-6-8h9V6H6Zm9 13v-1.775l5-4.975l1.75 1.775L16.775 23Zm7.4-5.65l-1.775-1.75l.85-.85q.15-.15.362-.15q.213 0 .363.15l1.05 1.05q.15.15.15.35q0 .2-.15.35ZM5 19V5v9.4Z"/></svg>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-</section>
 
-<section id="gestion-groupe-forum" *ngIf="isAdmin === 1" class="max-w-7xl mx-auto py-5">
-  <h1 tabindex="0" class="mb-5 focus:outline-none text-4xl lg:text-4xl font-normal leading-tight text-gray-800 lg:w-7/12 md:w-9/12 xl:w-5/12">Gestion groupe forum</h1>
+  <div id="gestion-groupe-forum" *ngIf="menu === 3" class="max-w-7xl mx-auto py-5">
+    <h1 tabindex="0" class="{{isLoadSaveGF ? 'animate-bounce' : ''}} mb-5 focus:outline-none text-4xl lg:text-4xl font-normal leading-tight text-gray-800 lg:w-7/12 md:w-9/12 xl:w-5/12">Gestion groupe forum</h1>
 
-  <svg *ngIf="isLoadGF" role="status" class="w-10 h-10 text-indigo-700 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
-    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
-  </svg>
+    <svg *ngIf="isLoadGF" role="status" class="w-10 h-10 text-indigo-700 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+      <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+    </svg>
 
-  <div *ngIf="!isLoadGF" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
-    <div (click)="addGroupForum()" class="block w-full p-6 bg-yellow-400 border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-      <h3 class="text-xl block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ajouter nouveau groupe</h3> <br>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    </div>
-    <div *ngFor="let cat of groupeForum" class="block w-full p-6 {{ cat.parent ? 'bg-orange-500' : 'bg-white'}} border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-      <input placeholder="Nom du groupe" (ngModelChange)="updateNameGroupForum($event, cat)" [title]="cat.id" type="text" ngModel="{{cat.titre}}" class="placeholder:font-light w-full border-none bg-transparent text-base font-bold tracking-tight text-gray-900" />
-      <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Groupe parent</label>
-      <select [ngModel]="cat.parent" (ngModelChange)="updateParentGroupForum($event, cat)" id="gf" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        <option value="">...</option>
-        <option *ngFor="let cat of groupeForum" [value]="cat.id">{{cat.titre}}</option>
-      </select>
-
-      <div class="flex space-x-2 py-2">
-        <button (click)="deleteGroupForum(cat.id)" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-          </svg>
-        </button>
-        <button id="loading_{{cat.id}}" disabled type="button" class="hidden text-sm font-medium text-gray-900 items-center">
-          <svg aria-hidden="true" role="status" class="inline w-4 h-4 text-gray-200 animate-spin dark:text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#1C64F2"/>
-          </svg>
-        </button>
+    <div *ngIf="!isLoadGF" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+      <div (click)="addGroupForum()" class="block w-full p-6 bg-yellow-400 border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h3 class="text-xl block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ajouter nouveau groupe</h3> <br>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <div *ngFor="let cat of groupeForum" class="block w-full p-6 {{ cat.parent ? 'bg-orange-500' : 'bg-white'}} border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <form #form="ngForm" (ngSubmit)="saveGroup(cat, form)">
+          <label for="cat_select_parent_{{cat.id}}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titre groupe français</label>
+          <input placeholder="Fr" name="cat_input_fr_" [title]="cat.id" type="text" ngModel="{{getValueTraduct(cat.titre, 'fr')}}" class="rounded-lg border border-gray-300 placeholder:font-light w-full bg-gray-50 font-medium rounded-lg text-sm px-5 py-2.5 tracking-tight text-gray-900" />
+          <label for="cat_select_parent_{{cat.id}}" class="mt-3 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titre groupe anglais</label>
+          <input placeholder="En" name="cat_input_en_" [title]="cat.id" type="text" ngModel="{{getValueTraduct(cat.titre, 'en')}}" class="rounded-lg border border-gray-300 placeholder:font-light w-full bg-gray-50 font-medium rounded-lg text-sm px-5 py-2.5 tracking-tight text-gray-900" />
+          <label for="cat_select_parent_{{cat.id}}" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Groupe parent</label>
+          <select [ngModel]="cat.parent" name="cat_select_parent_" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option value="">...</option>
+            <option *ngFor="let cat of groupeForum" [value]="cat.id">{{getValueTraduct(cat.titre)}}</option>
+          </select>
+          <label for="cat_select_parent_{{cat.id}}" class="mt-3 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Icone catégorie</label>
+          <textarea [ngModel]="cat.icone" rows="4" name="cat_textarea_icone_" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Icone en SVG (ex: <svg>...</svg>)"></textarea>
+          <div class="flex space-x-2 py-2">
+            <a (click)="deleteGroupForum(cat.id)" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+              </svg>
+            </a>
+            <button [disabled]="isLoadSaveGF" type="submit" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.413-.587Q3 19.825 3 19V5q0-.825.587-1.413Q4.175 3 5 3h12l4 4v5.4l-2 2V7.825L16.175 5H5v14h9.4l-2 2Zm7-3q1.25 0 2.125-.875T15 15q0-1.25-.875-2.125T12 12q-1.25 0-2.125.875T9 15q0 1.25.875 2.125T12 18Zm-6-8h9V6H6Zm9 13v-1.775l5-4.975l1.75 1.775L16.775 23Zm7.4-5.65l-1.775-1.75l.85-.85q.15-.15.362-.15q.213 0 .363.15l1.05 1.05q.15.15.15.35q0 .2-.15.35ZM5 19V5v9.4Z"/></svg>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+
+  <div *ngIf="menu === 4" class="max-w-7xl mx-auto py-5">
+    <h1 tabindex="0" class="{{isLoadSaveGB ? 'animate-bounce' : ''}} mb-5 focus:outline-none text-4xl lg:text-4xl font-normal leading-tight text-gray-800 lg:w-7/12 md:w-9/12 xl:w-5/12">Gestion groupe blog</h1>
+
+    <svg *ngIf="isLoadGB" role="status" class="w-10 h-10 text-indigo-700 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+      <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+    </svg>
+
+    <div *ngIf="!isLoadGB" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+      <div (click)="addGroupBlog()" class="block w-full p-6 bg-yellow-400 border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h3 class="text-xl block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ajouter nouveau groupe</h3> <br>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <div *ngFor="let cat of groupeBlog" class="block w-full p-6 {{ cat.parent ? 'bg-orange-500' : 'bg-white'}} border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <form #form="ngForm" (ngSubmit)="saveGroupBlog(cat, form)">
+          <label for="cat_select_parent_{{cat.id}}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titre groupe français</label>
+          <input placeholder="Fr" name="cat_input_fr_" [title]="cat.id" type="text" ngModel="{{getValueTraduct(cat.titre, 'fr')}}" class="rounded-lg border border-gray-300 placeholder:font-light w-full bg-gray-50 font-medium rounded-lg text-sm px-5 py-2.5 tracking-tight text-gray-900" />
+          <label for="cat_select_parent_{{cat.id}}" class="mt-3 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titre groupe anglais</label>
+          <input placeholder="En" name="cat_input_en_" [title]="cat.id" type="text" ngModel="{{getValueTraduct(cat.titre, 'en')}}" class="rounded-lg border border-gray-300 placeholder:font-light w-full bg-gray-50 font-medium rounded-lg text-sm px-5 py-2.5 tracking-tight text-gray-900" />
+          <label for="cat_select_parent_{{cat.id}}" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Groupe parent</label>
+          <select [ngModel]="cat.parent" name="cat_select_parent_" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option value="">...</option>
+            <option *ngFor="let cat of groupeBlog" [value]="cat.id">{{getValueTraduct(cat.titre)}}</option>
+          </select>
+          <label for="cat_select_parent_{{cat.id}}" class="mt-3 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Icone catégorie</label>
+          <textarea [ngModel]="cat.icone" rows="4" name="cat_textarea_icone_" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Icone en SVG (ex: <svg>...</svg>)"></textarea>
+          <div class="flex space-x-2 py-2">
+            <a (click)="deleteGroupBlog(cat.id)" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+              </svg>
+            </a>
+            <button [disabled]="isLoadSaveGB" type="submit" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.413-.587Q3 19.825 3 19V5q0-.825.587-1.413Q4.175 3 5 3h12l4 4v5.4l-2 2V7.825L16.175 5H5v14h9.4l-2 2Zm7-3q1.25 0 2.125-.875T15 15q0-1.25-.875-2.125T12 12q-1.25 0-2.125.875T9 15q0 1.25.875 2.125T12 18Zm-6-8h9V6H6Zm9 13v-1.775l5-4.975l1.75 1.775L16.775 23Zm7.4-5.65l-1.775-1.75l.85-.85q.15-.15.362-.15q.213 0 .363.15l1.05 1.05q.15.15.15.35q0 .2-.15.35ZM5 19V5v9.4Z"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="menu === 5" class="md:px-10 md:col-span-3">
+    <form #form="ngForm" (ngSubmit)="addBlog(form)">
+      <div class="my-6 lg:my-9 container mx-auto px-10 items-start md:items-center justify-between pb-4">
+        <h4 class="text-3xl font-bold leading-tight text-gray-800 dark:text-gray-100">Ajouter un blog</h4>
+        <div class="mt-6">
+          <select ngModel (ngModelChange)="updateActionBlog($event)" name="action" id="action" class="bg-transparent dark:text-gray-400 w-full h-16 border border-gray-300 rounded text-sm font-medium leading-none placeholder-gray-800 text-gray-800 py-3 pl-3 mt-2">
+            <option value="" selected>Nouveau blog</option>
+            <option *ngFor="let blog of blogs; let i = index" [value]="i">Modifier {{blog.titre}} {{blog.date | date : '(EEE dd MMM YYYY à HH:mm)'}}</option>
+          </select>
+        </div>
+        <div class="mt-6">
+          <input id="titre" required name="titre" [ngModel]="currentBlog ? currentBlog.titre : ''" class="dark:text-gray-400 focus:outline-none focus:border focus:border-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-full h-16 flex items-center pl-3 text-sm rounded border-gray-300 border" placeholder="Titre *" />
+        </div>
+        <div class="mt-6">
+          <select [ngModel]="currentBlog ? currentBlog.categorie : ''" required name="categorie" id="categorie" class="bg-transparent dark:text-gray-400 w-full h-16 border border-gray-300 rounded text-sm font-medium leading-none placeholder-gray-800 text-gray-800 py-3 pl-3 mt-2">
+            <option value="" disabled selected="selected">Catégorie blog *</option>
+            <option *ngFor="let cat of groupeBlog" [value]="cat.id">{{getValueTraduct(cat.titre)}}</option>
+          </select>
+        </div>
+        <div class="mt-6">
+          <input id="tags" name="tags" [ngModel]="currentBlog ? currentBlog.tags : ''" class="dark:text-gray-400 focus:outline-none focus:border focus:border-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-full h-16 flex items-center pl-3 text-sm rounded border-gray-300 border" placeholder="Ajouter tags en les séparent par le symbole   ,    (virgule)" />
+        </div>
+        <div class="mt-6">
+          <editor class="mt-5"
+                  [ngModel]="currentBlog ? currentBlog.contenu : ''"
+                  required
+                  name="contenu"
+                  apiKey="ykyh8j6aqah0jdmw6sbtjjtvrnvprawtf5mx81xfhyx8f7i5"
+                  [init]="{
+               height: 500,
+               menubar: true,
+               placeholder: 'Ecrire le contenue contenue',
+               plugins: [
+                 'advlist autolink lists link image charmap print preview anchor',
+                 'searchreplace visualblocks code fullscreen',
+                 'insertdatetime media table paste code help wordcount'
+               ],
+               toolbar:
+                 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
+             }"
+          ></editor>
+        </div>
+        <div class="mt-6 grid grid-cols-2">
+          <button [disabled]="form.invalid" type="submit" role="button" class="disabled:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-bold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 px-8 py-4 w-full">
+            <svg *ngIf="isLoadingSaveBlog" style="display: inline" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Enregistrer
+          </button>
+          <a *ngIf="form.value.action" (click)="deleteBlog(form)" role="button" class="inline-block focus:ring-2 focus:ring-offset-2 focus:ring-red-700 text-sm font-bold leading-none text-white focus:outline-none bg-red-700 border rounded hover:bg-red-600 px-8 py-4 w-full">
+            <svg *ngIf="isLoadingSaveBlog" style="display: inline" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Supprimer
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
 </section>
+
 

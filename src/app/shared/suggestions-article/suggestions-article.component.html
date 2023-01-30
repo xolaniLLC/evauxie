@@ -10,9 +10,9 @@
 </div>
 
 <div *ngIf="!isLoading && skin === 'card-home'">
-  <div class="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 lg:grid-cols-5 grid-cols-1 gap-4">
+  <div class="grid md:grid-cols-4 grid-cols-1 gap-4">
     <a href="../article/{{article.id}}" *ngFor="let article of listeArticles | slice: 0 : 4; let i = index" class="space-y-5 block">
-      <div class="hover:bg-auto hover:transition-transform w-full h-56 rounded-md bg-center bg-cover" style="background-image: url({{extractImage(article.contenu)}})"></div>
+      <div class="hover:bg-auto hover:transition-transform hover:transition-opacity w-full h-56 rounded-md bg-center bg-cover" style="background-image: url({{extractImage(article.contenu)}})"></div>
       <h5 class="mb-2 text-base font-normal uppercase text-gray-500 truncate">{{article.titre}}</h5>
       <p class="mb-3 font-medium text-gray-900 dark:text-gray-400">{{extractTextPure(article.contenu).slice(0, 60) + '...'}}</p>
     </a>

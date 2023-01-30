@@ -23,7 +23,7 @@
             <label for="categorie" class="text-sm font-medium leading-none text-gray-800"></label>
             <select [(ngModel)]="categorie" required name="categorie" id="categorie" class="bg-transparent dark:text-gray-400 w-96 h-16 border border-gray-300 rounded text-sm font-medium leading-none placeholder-gray-800 text-gray-800 py-3 pl-3 mt-2">
               <option value="" selected="selected">{{'11.3' | translate}}</option>
-              <option *ngFor="let cat of groupeForum" [value]="cat.id">{{cat.titre}}</option>
+              <option *ngFor="let cat of groupeForum" [value]="cat.id">{{getValueTraduct(cat.titre)}}</option>
             </select>
           </div>
         </div>

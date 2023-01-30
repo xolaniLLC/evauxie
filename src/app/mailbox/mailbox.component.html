@@ -11,7 +11,7 @@
   <div class="grid md:grid-cols-7 md:gap-3 grid-cols-1 gap-2">
     <div class="md:col-span-1 border-r border-gray-300 justify-center px-3">
       <div class="border-b border-gray-300 py-3">
-        <button (click)="viewElement = 'inbox'; currentMessageOpen = null" type="button" class="w-full {{viewElement === 'inbox' ? 'text-white bg-indigo-500 hover:bg-indigo-800' : 'text-indigo-500 border border-indigo-500 bg-transparent hover:bg-indigo-100'}} focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">{{'26.2' | translate}} {{mesMessagesLu.length}}</button>
+        <button (click)="viewElement = 'inbox'; currentMessageOpen = null" type="button" class="w-full {{viewElement === 'inbox' ? 'text-white bg-indigo-500 hover:bg-indigo-800' : 'text-indigo-500 border border-indigo-500 bg-transparent hover:bg-indigo-100'}} focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">{{'26.2' | translate}} {{mesMessagesLu.length + mesMessagesNonLu.length}}</button>
         <br>
         <button (click)="viewElement = 'unread'; currentMessageOpen = null" type="button" class="w-full {{viewElement === 'unread' ? 'text-white bg-indigo-500 hover:bg-indigo-800' : 'text-indigo-500 border border-indigo-500 bg-transparent hover:bg-indigo-100'}} focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">{{'26.3' | translate}} {{mesMessagesNonLu.length}}</button>
         <br>
@@ -57,14 +57,14 @@
       </ng-container>
       <ng-container *ngIf="!currentMessageOpen">
         <h1 class="text-2xl font-semibold uppercase">{{viewElement}}</h1>
-        <p class="py-8 pl-8 pr-6 text-2xl font-light text-gray-400" *ngIf="viewElement === 'inbox' ? mesMessagesLu.length === 0 : (viewElement === 'unread' ? mesMessagesNonLu.length === 0 : (viewElement === 'send' ? mesMessagesSend.length === 0 : false))">
+        <p class="py-8 pl-8 pr-6 text-2xl font-light text-gray-400" *ngIf="viewElement === 'inbox' ? allMessages.length === 0 : (viewElement === 'unread' ? mesMessagesNonLu.length === 0 : (viewElement === 'send' ? mesMessagesSend.length === 0 : false))">
           {{'26.9' | translate}}
         </p>
-        <div class="mx-auto container bg-white" *ngIf="viewElement === 'inbox' ? mesMessagesLu.length > 0 : (viewElement === 'unread' ? mesMessagesNonLu.length > 0 : (viewElement === 'send' ? mesMessagesSend.length : 0))">
+        <div class="mx-auto container bg-white" *ngIf="viewElement === 'inbox' ? allMessages.length > 0 : (viewElement === 'unread' ? mesMessagesNonLu.length > 0 : (viewElement === 'send' ? mesMessagesSend.length : 0))">
           <div class="flex flex-col lg:flex-row p-4 lg:p-8 justify-between items-start lg:items-stretch w-full">
             <div class="w-full lg:w-1/3 flex flex-col lg:flex-row items-start lg:items-center">
               <div class="flex items-center">
-                <input (change)="checkAll($event)" type="checkbox" [checked]="elementSelect.length === (viewElement === 'inbox' ? mesMessagesLu.length : (viewElement === 'unread' ? mesMessagesNonLu.length : (viewElement === 'send' ? mesMessagesSend.length : 0)))"
+                <input (change)="checkAll($event)" type="checkbox" [checked]="elementSelect.length === (viewElement === 'inbox' ? allMessages.length : (viewElement === 'unread' ? mesMessagesNonLu.length : (viewElement === 'send' ? mesMessagesSend.length : 0)))"
                        class="cursor-pointer relative w-5 h-5 border rounded border-gray-400 bg-white dark:bg-gray-800 outline-none" />
                 <span class="pl-6">{{'26.7' | translate}}</span>
               </div>
@@ -75,8 +75,8 @@
                         class="disabled:opacity-50 bg-transparent transition duration-150 ease-in-out focus:outline-none border border-transparent focus:border-gray-800 focus:shadow-outline-gray hover:bg-gray-300 rounded-full text-gray-800 px-7 border border-gray-800 h-10 flex items-center text-sm">
                   {{'26.8' | translate}}
                 </button>
-                <div
-                  class="{{elementSelect.length === 0 ? 'opacity-50' : ''}} text-gray-800 ml-4 cursor-pointer focus:outline-none border border-transparent focus:border-gray-800 focus:shadow-outline-gray transition duration-150 ease-in-out hover:bg-indigo-600 items-center justify-center">
+                <div (click)="elementSelect.length === 0 ? null : delete_all_message_select()"
+                  class="{{elementSelect.length === 0 ? 'opacity-50' : 'hover:text-orange-600'}} text-gray-800 ml-4 cursor-pointer focus:outline-none border border-transparent focus:border-gray-800 focus:shadow-outline-gray transition duration-150 ease-in-out items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
                     <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.256 1.478l-.209-.035-1.005 13.07a3 3 0 01-2.991 2.77H8.084a3 3 0 01-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 01-.256-1.478A48.567 48.567 0 017.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 013.369 0c1.603.051 2.815 1.387 2.815 2.951zm-6.136-1.452a51.196 51.196 0 013.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 00-6 0v-.113c0-.794.609-1.428 1.364-1.452zm-.355 5.945a.75.75 0 10-1.5.058l.347 9a.75.75 0 101.499-.058l-.346-9zm5.48.058a.75.75 0 10-1.498-.058l-.347 9a.75.75 0 001.5.058l.345-9z" clip-rule="evenodd" />
                   </svg>
@@ -87,24 +87,24 @@
           <div class="overflow-x-scroll xl:overflow-x-hidden">
             <table class="w-full bg-white dark:bg-gray-800">
               <tbody class="border-l-8 border-indigo-700 border-t-2">
-              <ng-container *ngFor="let message of (viewElement === 'inbox' ? mesMessagesLu : (viewElement === 'unread' ? mesMessagesNonLu : (viewElement === 'send' ? mesMessagesSend : [])))">
-                <tr (click)="currentMessageOpen = message; markCurrentMessageRead()"
-                    class="{{elementSelect.includes(message.id)  ? 'bg-orange-300 h-24' : 'bg-gray-50 h-24'}} cursor-pointer"
+              <ng-container *ngFor="let message of (viewElement === 'inbox' ? allMessages : (viewElement === 'unread' ? mesMessagesNonLu : (viewElement === 'send' ? mesMessagesSend : [])))">
+                <tr
+                    class="{{elementSelect.includes(message.id)  ? 'bg-orange-300' : (message.read.includes(currentEmailUser) ? 'bg-white' : 'bg-gray-100')}} h-24 cursor-pointer"
                 >
                   <td
                     class="pl-8 pr-6 text-left whitespace-no-wrap text-sm text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                    <input type="checkbox" [checked]="elementSelect.includes(message.id)"
+                    <input ngModel type="checkbox" [checked]="elementSelect.includes(message.id)"
                            class="cursor-pointer relative w-5 h-5 border rounded border-gray-400 bg-white dark:bg-gray-800 outline-none"
-                           (change)="elementSelect.includes(message.id) ? elementSelect.push(message.id) : elementSelect.splice(elementSelect.indexOf(message.id), 1)"
+                           (ngModelChange)="elementSelect.indexOf(message.id) === -1 ? elementSelect.push(message.id) : elementSelect.splice(elementSelect.indexOf(message.id), 1)"
                     />
 
                   </td>
-                  <td class="pr-4 whitespace-no-wrap">
+                  <td class="pr-4 whitespace-no-wrap" (click)="currentMessageOpen = message; markCurrentMessageRead()">
                     <div class="flex items-center">
                       <app-miniature-avatar-user [idUser]="message.auteur"></app-miniature-avatar-user>
                       <div class="ml-2 truncate text-gray-800 dark:text-gray-100 tracking-normal leading-4 text-sm">
                         <app-miniature-name-user [idUser]="message.auteur"></app-miniature-name-user>
-                        <p class="truncate mt-2" [innerHTML]="message.message"></p>
+                        <p class="truncate mt-2" [innerHTML]="extractTextPure(message.message)"></p>
                       </div>
                     </div>
                   </td>

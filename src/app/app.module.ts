@@ -70,6 +70,7 @@ import { FloatingActionButtonComponent } from './shared/floating-action-button/f
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import { VendorsAgreementWebsiteComponent } from './shared/vendors-agreement-website/vendors-agreement-website.component';
 
 // Factory function required during AOT compilation
 export function httpTranslateLoaderFactory(http: HttpClient) {
@@ -140,7 +141,8 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
         ConsoleInformationModelComponent,
         DataProtectionPolicyComponent,
         UserTermsAndConditionsComponent,
-        FloatingActionButtonComponent
+        FloatingActionButtonComponent,
+        VendorsAgreementWebsiteComponent
     ],
     imports: [
         BrowserModule,

@@ -43,7 +43,8 @@
     "15": "budget and expectation",
     "16": "Contact us",
     "17": "Are you a vendor?",
-    "18": "Be featured on our platform and be accessible to customers worldwide",
+    "18": "Be featured on our platform and be accessible",
+    "18.1": "to customers worldwide",
     "19": "Register here",
     "20": "Our Forum",
     "21": "DISCOVER THE LATEST EXCHANGES BETWEEN THE PLATFORM'S USERS AND EVENT ORGANIZERS",
@@ -374,5 +375,108 @@
     "9": "No messages",
     "10": "Go back",
     "11": "message sent at"
+  },
+  "27": {
+    "1": "Add an event to like this company",
+    "2": "Add an event to request this company",
+    "3": "GALLERY",
+    "4": "About"
+  },
+  "28": {
+    "1": "Dashboard",
+    "2": "My events",
+    "3": "Checklist",
+    "4": "Vendors manager",
+    "5": "Guests lists",
+    "6": "Budget",
+    "7": "Payment"
+  },
+  "29": {
+    "1": "CheckList",
+    "2": "No task",
+    "3": "Budget",
+    "4": "TOTAL PAID",
+    "5": "Click on the sum to modify it",
+    "6": "FINAL COST",
+    "7": "DIFFERENCE",
+    "8": "My providers",
+    "9": "My guests",
+    "10": "View RECENT DISCUSSION"
+  },
+  "30": {
+    "1": "My events",
+    "2": "Name",
+    "3": "Description",
+    "4": "Date",
+    "5": "Options",
+    "6": "Add a new event",
+    "7": "In progress",
+    "8": "Delete"
+  },
+  "31": {
+    "1": "Completed",
+    "2": "Done ?",
+    "3": "Name",
+    "4": "Description",
+    "5": "Date task",
+    "6": "Options",
+    "7": "Print",
+    "8": "Download",
+    "9": "Add new task",
+    "10": "Delete"
+  },
+  "32": {
+    "1": "Favourite Vendors",
+    "2": "List",
+    "3": "Images",
+    "4": "Liked vendors",
+    "5": "Hired vendors",
+    "6": "Find vendors on the list and like them so they can appear in your list"
+  },
+  "33": {
+    "1": "On Hold",
+    "2": "Validate",
+    "3": "Declined",
+    "4": "All",
+    "5": "Add a new guest",
+    "6": "Name",
+    "7": "Invitation status",
+    "8": "Email",
+    "9": "Phone number",
+    "10": "Options",
+    "11": "Update",
+    "12": "Delete"
+  },
+  "34": {
+    "1": "Overall status",
+    "2": "Validate",
+    "3": "TOTAL PAID",
+    "4": "FINAL COST",
+    "5": "DIFFERENCE",
+    "6": "Click on the sum to modify it",
+    "7": "For all category   |   Estimated cost is",
+    "8": "For all category",
+    "9": "For all category",
+    "10": "All",
+    "11": "Add new expenses",
+    "12": "Title",
+    "13": "Estimated Cost",
+    "14": "Final cost",
+    "15": "Category",
+    "16": "Date",
+    "17": "Options",
+    "18": "Update",
+    "19": "Delete",
+    "20": "Total"
+  },
+  "35": {
+    "1": "All catégories",
+    "2": "All",
+    "3": "Paid",
+    "4": "Pending",
+    "5": "Title",
+    "6": "Status",
+    "7": "Amount",
+    "8": "Category"
   }
 }

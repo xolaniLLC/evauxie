@@ -3,6 +3,7 @@ import {CategoriesService} from "../../services/categories.service";
 import {CategorieActivite} from "../../models/categorie-activite";
 import {Location} from '@angular/common';
 import {ActivatedRoute} from "@angular/router";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-filtre',
@@ -29,7 +30,7 @@ export class FiltreComponent implements OnInit {
   viewRating = true;
   ratingSelect = 0;
 
-  constructor(private activatedRoute: ActivatedRoute, private categoryService: CategoriesService, private location: Location) { }
+  constructor(private translate: TranslateService, private activatedRoute: ActivatedRoute, private categoryService: CategoriesService, private location: Location) { }
 
   ngOnInit(): void {
     this.categoryService.getAllCategoriesActivites().then(
@@ -161,6 +162,12 @@ export class FiltreComponent implements OnInit {
     this.affordbilitySelect = this.activatedRoute.snapshot.queryParams['affordbility'] ? this.activatedRoute.snapshot.queryParams['affordbility'] : '';
     this.townSelect = this.activatedRoute.snapshot.queryParams['ville'] ? this.activatedRoute.snapshot.queryParams['ville'] : '';
     this.ratingSelect = this.activatedRoute.snapshot.queryParams['rating'] ? Number(this.activatedRoute.snapshot.queryParams['rating']) : 0;
+  }
+
+  getValueTraduct(texte: string, langue: string = '') {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML= texte;
+    return wrapper.getElementsByTagName(langue ? langue : this.translate.defaultLang).length > 0 ? wrapper.getElementsByTagName(langue ? langue : this.translate.defaultLang)[0].innerHTML.replace('amp;', '')  : (texte && texte.includes('</') ? '' : texte);
   }
 
   updateCurrentLink(param: string, valeur: string) {

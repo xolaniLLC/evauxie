@@ -6,6 +6,7 @@ import {AlertService} from "../services/alert.service";
 import {Router} from "@angular/router";
 import {CategoriesService} from "../services/categories.service";
 import {GroupForum} from "../models/group-forum";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-new-topic',
@@ -20,7 +21,7 @@ export class NewTopicComponent implements OnInit {
   categorie = '';
   groupeForum: GroupForum[] = [];
 
-  constructor(private categorieService: CategoriesService, private forumService: ForumService, private alertService: AlertService, private router: Router) { }
+  constructor(private translate: TranslateService, private categorieService: CategoriesService, private forumService: ForumService, private alertService: AlertService, private router: Router) { }
 
   ngOnInit(): void {
     this.categorieService.getGroupForumActivites().then(
@@ -43,6 +44,12 @@ export class NewTopicComponent implements OnInit {
         }
       );
     } else { this.isLoading = false; this.alertService.print('One or more fields not filled in', 'danger'); }
+  }
+
+  getValueTraduct(texte: string, langue: string = '') {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML= texte;
+    return wrapper.getElementsByTagName(langue ? langue : this.translate.defaultLang).length > 0 ? wrapper.getElementsByTagName(langue ? langue : this.translate.defaultLang)[0].innerHTML.replace('amp;', '')  : (texte && texte.includes('</') ? '' : texte);
   }
 
 }

@@ -25,6 +25,7 @@ export class Company {
   sousCategorie: string;
   eventEnCours: string[];
   affordbility: string;
+  vue: string[];
 
   constructor(public administrateurs: any[]) {
     const gid = new ToolsService();
@@ -49,5 +50,6 @@ export class Company {
     this.sousCategorie = '';
     this.eventEnCours = [];
     this.affordbility = '';
+    this.vue = [];
   }
 }

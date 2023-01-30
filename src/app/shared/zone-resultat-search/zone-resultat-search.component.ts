@@ -63,7 +63,7 @@ export class ZoneResultatSearchComponent implements OnInit {
             if((pointe.pageInclude === 'venues')) {
               pointe.categorieService.getCategorieWitchId(doc.categorie).then(
                 (loum) => {
-                  if(!loum.parent) {
+                  if(loum && !loum.parent) {
                     pointe.deleteElement(doc);
                   }
                 }

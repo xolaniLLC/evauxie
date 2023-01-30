@@ -55,6 +55,19 @@ export class BlogService {
     });
   }
 
+  async deleteBlog(id: string) {
+    return new Promise<void>((resolve, reject) => {
+      firebase.firestore().collection('blogs').doc(id).delete().then(
+        () => {
+          resolve();
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
   async addCommentaire(commentaire: CommentaireBlog) {
     return new Promise<void>((resolve, reject) => {
       firebase.firestore().collection('commentaires_blogs').doc(commentaire.id).set(Object.assign({}, commentaire)).then(
