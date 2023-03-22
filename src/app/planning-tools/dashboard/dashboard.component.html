@@ -2,7 +2,7 @@
 
 <app-menu-planning-tools></app-menu-planning-tools>
 
-<section class="max-w-7xl mx-auto flex space-x-5">
+<section class="max-w-7xl mx-auto flex space-x-5 px-4 sm:px-6 lg:px-8">
   <div class="w-2/4 w-full lg:space-y-4">
     <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
       <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">CheckList</h2>
@@ -76,7 +76,7 @@
   </div>
 </section>
 
-<section class="max-w-7xl mx-auto flex space-x-5 mt-8">
+<section class="max-w-7xl mx-auto flex space-x-5 mt-8 px-4 sm:px-6 lg:px-8">
   <div class="md:w-2/4 lg:space-y-4">
     <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
       <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">My providers</h2>
@@ -139,7 +139,7 @@
   </div>
 </section>
 
-<section class="max-w-7xl mx-auto my-7" *ngIf="event_en_cours">
+<section class="max-w-7xl mx-auto my-7 px-4 sm:px-6 lg:px-8" *ngIf="event_en_cours">
   <div class="md:flex justify-start md:gap-4 mb-8">
     <div class="h-16 w-16 mb-4 lg:mb-0 mr-4">
       <img src="{{currentUser && currentUser.photo ? currentUser.photo : 'assets/images/user.png'}}" alt="" class="h-full w-full rounded-full overflow-hidden shadow" />
@@ -150,7 +150,7 @@
   </div>
 </section>
 
-<section class="max-w-7xl mx-auto" *ngIf="event_en_cours">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" *ngIf="event_en_cours">
   <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
     <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">View RECENT DISCUSSION</h2>
   </div>

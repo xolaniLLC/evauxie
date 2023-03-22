@@ -8,6 +8,7 @@ import {EvenementService} from "../../services/evenement.service";
 import {AlertService} from "../../services/alert.service";
 import {AvisCompany} from "../../models/avis-company";
 import {AvisCompanyService} from "../../services/avis-company.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-miniature-company',
@@ -24,7 +25,7 @@ export class MiniatureCompanyComponent implements OnInit {
   isSollicite: boolean | any = null;
   avisCurrentCompany: AvisCompany[] = [];
 
-  constructor(private avisCompanyService: AvisCompanyService, private alertService: AlertService, private evenementService: EvenementService, private companyService: CompanyService, private categorieService: CategoriesService, private writeMailService: WriteMailService) { }
+  constructor(private translate: TranslateService, private avisCompanyService: AvisCompanyService, private alertService: AlertService, private evenementService: EvenementService, private companyService: CompanyService, private categorieService: CategoriesService, private writeMailService: WriteMailService) { }
 
   ngOnInit(): void {
     this.companyService.getCompanyWitchId(this.id).then(
@@ -97,6 +98,12 @@ export class MiniatureCompanyComponent implements OnInit {
 
   getPureTexte(brute: any) {
     return brute.toString().replace(/<[^>]*>/g, '').replace('&nbsp;', '');
+  }
+
+  getValueTraduct(texte: string, langue: string = '') {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML= texte;
+    return wrapper.getElementsByTagName(langue ? langue : this.translate.defaultLang).length > 0 ? wrapper.getElementsByTagName(langue ? langue : this.translate.defaultLang)[0].innerHTML.replace('amp;', '')  : (texte && texte.includes('</') ? '' : texte);
   }
 
 }

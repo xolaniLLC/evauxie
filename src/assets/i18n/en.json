@@ -374,7 +374,10 @@
     "8": "Mark as read",
     "9": "No messages",
     "10": "Go back",
-    "11": "message sent at"
+    "11": "message sent at",
+    "12": "Reject the reservation for this event",
+    "13": "Confirm booking for this event",
+    "14": "Reply"
   },
   "27": {
     "1": "Add an event to like this company",
@@ -383,15 +386,30 @@
     "4": "About"
   },
   "28": {
-    "1": "Dashboard",
-    "2": "My events",
-    "3": "Checklist",
-    "4": "Vendors manager",
-    "5": "Guests lists",
-    "6": "Budget",
-    "7": "Payment"
+    "1": "Information about the selected company",
+    "2": "Account Information",
+    "3": "The right plan for your business",
+    "4": "Account Information",
+    "5": "Name of contact person",
+    "6": "Phone number",
+    "7": "Email address",
+    "8": "Reset password",
+    "9": "Update"
   },
   "29": {
+    "1": "Write message in evauxie",
+    "2": "Reply to",
+    "3": "To",
+    "4": "Objet",
+    "5": "Evauxie",
+    "6": "Write",
+    "7": "Send",
+    "8": "Cancel",
+    "9": "Delivery date",
+    "10": "Agreed price of service",
+    "11": "Description service"
+  },
+  "31": {
     "1": "CheckList",
     "2": "No task",
     "3": "Budget",
@@ -403,7 +421,7 @@
     "9": "My guests",
     "10": "View RECENT DISCUSSION"
   },
-  "30": {
+  "32": {
     "1": "My events",
     "2": "Name",
     "3": "Description",
@@ -413,7 +431,7 @@
     "7": "In progress",
     "8": "Delete"
   },
-  "31": {
+  "33": {
     "1": "Completed",
     "2": "Done ?",
     "3": "Name",
@@ -425,7 +443,7 @@
     "9": "Add new task",
     "10": "Delete"
   },
-  "32": {
+  "34": {
     "1": "Favourite Vendors",
     "2": "List",
     "3": "Images",
@@ -433,7 +451,7 @@
     "5": "Hired vendors",
     "6": "Find vendors on the list and like them so they can appear in your list"
   },
-  "33": {
+  "35": {
     "1": "On Hold",
     "2": "Validate",
     "3": "Declined",
@@ -447,7 +465,7 @@
     "11": "Update",
     "12": "Delete"
   },
-  "34": {
+  "36": {
     "1": "Overall status",
     "2": "Validate",
     "3": "TOTAL PAID",
@@ -469,7 +487,7 @@
     "19": "Delete",
     "20": "Total"
   },
-  "35": {
+  "37": {
     "1": "All catégories",
     "2": "All",
     "3": "Paid",

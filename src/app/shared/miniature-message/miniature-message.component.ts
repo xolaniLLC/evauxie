@@ -23,4 +23,12 @@ export class MiniatureMessageComponent implements OnInit {
     );
   }
 
+  epureText(text: string) {
+    let result = text;
+    if((text.split('#').length - 1) > 1 && text.includes('@')) {
+      result = text.substring(0, text.indexOf('#'));
+    }
+    return result;
+  }
+
 }

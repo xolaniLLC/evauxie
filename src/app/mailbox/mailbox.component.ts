@@ -14,7 +14,7 @@ import {CompanyService} from "../services/company.service";
   styleUrls: ['./mailbox.component.scss']
 })
 export class MailboxComponent implements OnInit {
-  isList: any;
+
   elementSelect: any[] = [];
   mesMessagesNonLu: Message[] = [];
   allMessages: Message[] = [];
@@ -32,6 +32,7 @@ export class MailboxComponent implements OnInit {
   listeMessageSelect: Message[] = [];
   currentMessageOpen: Message | any;
   writeMail = false;
+  typeAuteur = -1;
 
   constructor(private companyService: CompanyService, private writeMailService: WriteMailService, private messageService: MessageService, private userService: UserService, private alertService: AlertService) { }
 

@@ -71,10 +71,7 @@ export class VendorsManagerComponent implements OnInit {
     this.companyService.getCompanyWitchId(idCompany).then(
       (data) => {
         this.writeMailService.new(data.administrateurs as any, 'Request book #' + data.id + '@' + idEvent + '#',
-          'Hello! We are interested in your service at your facility.' +
-          'Delivery date : \n' +
-          'Agreed price of service : \n' +
-          'Description of service : \n',
+          ':form-booking',
           '');
       }
     );

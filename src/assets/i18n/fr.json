@@ -365,7 +365,7 @@
   },
   "26" : {
   "1" : "MailBox",
-  "2" : "Boîte de réception",
+  "2" : "Boîte réception",
   "3" : "Non lu",
   "4" : "Envoyer",
   "5" : "Messages clients",
@@ -374,13 +374,40 @@
   "8" : "Marquer comme lu",
   "9" : "Aucun message",
   "10" : "Retourner en arrière",
-  "11" : "message envoyé à"
+  "11" : "message envoyé à",
+  "12" : "Rejeter la réservation pour cet événement",
+  "13" : "Confirmer la réservation pour cet événement",
+  "14" : "Répondre"
   },
   "27" : {
     "1" : "Ajouter un événement pour aimer cette entreprise",
     "2" : "Ajouter un événement pour demander cette entreprise",
     "3" : "GALERIE",
     "4" : "A propos"
+  },
+  "28": {
+    "1": "Information about the selected company",
+    "2": "Account Information",
+    "3": "The right plan for your business",
+    "4": "Account Information",
+    "5": "Name of contact person",
+    "6": "Phone number",
+    "7": "Email address",
+    "8": "Reset password",
+    "9": "Update"
+  },
+  "29" : {
+    "1" : "Ecrire un message dans l'évauxie",
+    "2" : "Répondre à",
+    "3" : "A",
+    "4" : "Objet",
+    "5" : "Evauxie",
+    "6" : "Écriture",
+    "7" : "Envoyer",
+    "8" : "Annuler",
+    "9" : "Date de livraison",
+    "10" : "Prix convenu du service",
+    "11" : "Description du service"
   }
 }
 

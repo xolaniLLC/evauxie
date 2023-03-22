@@ -1,25 +1,25 @@
 <app-navbar></app-navbar>
 
 <section class="border-y">
-  <p class="py-5 text-sm items-center leading-none text-gray-400 px-10 capitalize">
-    <a class="hover:text-indigo-600 cursor-pointer inline" routerLink="../home"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 inline" viewBox="0 0 24 24"><path fill="currentColor" d="M6 21q-.825 0-1.412-.587Q4 19.825 4 19v-9q0-.475.213-.9q.212-.425.587-.7l6-4.5q.275-.2.575-.3q.3-.1.625-.1t.625.1q.3.1.575.3l6 4.5q.375.275.588.7q.212.425.212.9v9q0 .825-.587 1.413Q18.825 21 18 21h-4v-7h-4v7Z"/></svg></a> -
-    <a class="cursor-pointer hover:text-indigo-600 inline">{{'26.1' | translate}}</a>
-  </p>
+  <div class="py-5 text-sm items-center justify-center leading-none text-gray-400 px-10 capitalize">
+    <a class="hover:text-indigo-600 cursor-pointer inline" routerLink="../home"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 inline" viewBox="0 0 24 24"><path fill="currentColor" d="M6 21q-.825 0-1.412-.587Q4 19.825 4 19v-9q0-.475.213-.9q.212-.425.587-.7l6-4.5q.275-.2.575-.3q.3-.1.625-.1t.625.1q.3.1.575.3l6 4.5q.375.275.588.7q.212.425.212.9v9q0 .825-.587 1.413Q18.825 21 18 21h-4v-7h-4v7Z"/></svg></a> -
+    <span class="cursor-pointer hover:text-indigo-600 inline">{{'26.1' | translate}}</span>
+  </div>
 </section>
 
 <section class="p-5">
   <div class="grid md:grid-cols-7 md:gap-3 grid-cols-1 gap-2">
     <div class="md:col-span-1 border-r border-gray-300 justify-center px-3">
       <div class="border-b border-gray-300 py-3">
-        <button (click)="viewElement = 'inbox'; currentMessageOpen = null" type="button" class="w-full {{viewElement === 'inbox' ? 'text-white bg-indigo-500 hover:bg-indigo-800' : 'text-indigo-500 border border-indigo-500 bg-transparent hover:bg-indigo-100'}} focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">{{'26.2' | translate}} {{mesMessagesLu.length + mesMessagesNonLu.length}}</button>
+        <button (click)="viewElement = 'inbox'; currentMessageOpen = null; elementSelect = [];" type="button" class="w-full {{viewElement === 'inbox' ? 'text-white bg-indigo-500 hover:bg-indigo-800' : 'text-indigo-500 border border-indigo-500 bg-transparent hover:bg-indigo-100'}} focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">{{'26.2' | translate}} {{mesMessagesLu.length + mesMessagesNonLu.length}}</button>
         <br>
-        <button (click)="viewElement = 'unread'; currentMessageOpen = null" type="button" class="w-full {{viewElement === 'unread' ? 'text-white bg-indigo-500 hover:bg-indigo-800' : 'text-indigo-500 border border-indigo-500 bg-transparent hover:bg-indigo-100'}} focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">{{'26.3' | translate}} {{mesMessagesNonLu.length}}</button>
+        <button (click)="viewElement = 'unread'; currentMessageOpen = null; elementSelect = [];" type="button" class="w-full {{viewElement === 'unread' ? 'text-white bg-indigo-500 hover:bg-indigo-800' : 'text-indigo-500 border border-indigo-500 bg-transparent hover:bg-indigo-100'}} focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">{{'26.3' | translate}} {{mesMessagesNonLu.length}}</button>
         <br>
-        <button (click)="viewElement = 'send'; currentMessageOpen = null" type="button" class="w-full {{viewElement === 'send' ? 'text-white bg-indigo-500 hover:bg-indigo-800' : 'text-indigo-500 border border-indigo-500 bg-transparent hover:bg-indigo-100'}} focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">{{'26.4' | translate}} {{mesMessagesSend.length}}</button>
+        <button (click)="viewElement = 'send'; currentMessageOpen = null; elementSelect = [];" type="button" class="w-full {{viewElement === 'send' ? 'text-white bg-indigo-500 hover:bg-indigo-800' : 'text-indigo-500 border border-indigo-500 bg-transparent hover:bg-indigo-100'}} focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">{{'26.4' | translate}} {{mesMessagesSend.length}}</button>
       </div>
       <div class="space-y-3 text-sm py-5 text-right">
-        <a class="block cursor-pointer hover:text-indigo-700">&nbsp;{{'26.5' | translate}}&nbsp;</a>
-        <a class="block cursor-pointer hover:text-indigo-700">&nbsp;{{'26.6' | translate}}&nbsp;</a>
+        <a class="block cursor-pointer hover:opacity-75 {{typeAuteur === 0 ? 'text-orange-500' : ''}}" (click)="typeAuteur = 0">&nbsp;{{'26.5' | translate}}&nbsp;</a>
+        <a class="block cursor-pointer hover:opacity-75 {{typeAuteur === 1 ? 'text-orange-500' : ''}}" (click)="typeAuteur = 1">&nbsp;{{'26.6' | translate}}&nbsp;</a>
       </div>
     </div>
     <div class="md:col-span-6">
@@ -36,7 +36,7 @@
             </h2>
           </div>
           <div class="p-5">
-            <h2 class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800 capitalize">
+            <h2 class="text-base sm:text-lg md:text-xl lg:text-2xl font-medium leading-normal text-gray-800 capitalize">
               {{currentMessageOpen.objet ? (currentMessageOpen.objet.split('#').length > 1 && currentMessageOpen.objet.includes('@') ? currentMessageOpen.objet.split('#')[0] : currentMessageOpen.objet) : '...'}}
             </h2>
             <p class="mt-2">
@@ -47,16 +47,16 @@
               <div class="md:col-span-11">
                 <app-miniature-name-user [idUser]="currentMessageOpen.auteur"></app-miniature-name-user>
                 <p class="my-4" [innerHTML]="currentMessageOpen.message"></p>
-                <button (click)="openWrite(currentMessageOpen.auteur, currentMessageOpen.id)" type="button" class="float-right font-bold text-xl text-black bg-orange-700 hover:bg-blue-800  hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-base px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Reply</button>
-                <button (click)="invalidBook(currentMessageOpen.auteur)" *ngIf="comptNombreOccurance(currentMessageOpen.objet, '#') === 2 && comptNombreOccurance(currentMessageOpen.objet, '@') === 1" type="button" class="float-left font-bold text-base text-white bg-red-700 hover:bg-red-900 hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Reject the reservation for this event</button>
-                <button (click)="validBook(currentMessageOpen.objet.split('#')[1].split('@')[0], currentMessageOpen.objet.split('#')[1].split('@')[1])" *ngIf="comptNombreOccurance(currentMessageOpen.objet, '#') === 2 && comptNombreOccurance(currentMessageOpen.objet, '@') === 1" type="button" class="float-left font-bold text-base text-black bg-orange-700 hover:bg-blue-800 hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Confirm booking for this event</button>
+                <button (click)="openWrite(currentMessageOpen.auteur, currentMessageOpen.id)" type="button" class="float-right font-bold text-xl text-black bg-orange-700 hover:bg-blue-800  hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-base px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">{{'26.14' | translate}}</button>
+                <button (click)="invalidBook(currentMessageOpen.auteur)" *ngIf="comptNombreOccurance(currentMessageOpen.objet, '#') === 2 && comptNombreOccurance(currentMessageOpen.objet, '@') === 1" type="button" class="float-left font-bold text-base text-white bg-red-700 hover:bg-red-900 hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">{{'26.12' | translate}}</button>
+                <button (click)="validBook(currentMessageOpen.objet.split('#')[1].split('@')[0], currentMessageOpen.objet.split('#')[1].split('@')[1])" *ngIf="comptNombreOccurance(currentMessageOpen.objet, '#') === 2 && comptNombreOccurance(currentMessageOpen.objet, '@') === 1" type="button" class="float-left font-bold text-base text-black bg-orange-700 hover:bg-blue-800 hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">{{'26.13' | translate}}</button>
               </div>
             </div>
           </div>
         </div>
       </ng-container>
       <ng-container *ngIf="!currentMessageOpen">
-        <h1 class="text-2xl font-semibold uppercase">{{viewElement}}</h1>
+        <h1 class="text-2xl font-medium uppercase">{{viewElement}}</h1>
         <p class="py-8 pl-8 pr-6 text-2xl font-light text-gray-400" *ngIf="viewElement === 'inbox' ? allMessages.length === 0 : (viewElement === 'unread' ? mesMessagesNonLu.length === 0 : (viewElement === 'send' ? mesMessagesSend.length === 0 : false))">
           {{'26.9' | translate}}
         </p>
@@ -88,7 +88,7 @@
             <table class="w-full bg-white dark:bg-gray-800">
               <tbody class="border-l-8 border-indigo-700 border-t-2">
               <ng-container *ngFor="let message of (viewElement === 'inbox' ? allMessages : (viewElement === 'unread' ? mesMessagesNonLu : (viewElement === 'send' ? mesMessagesSend : [])))">
-                <tr
+                <tr *ngIf="typeAuteur < 0 || (typeAuteur === 0 && !message.isAdmin) || (typeAuteur === 1 && message.isAdmin)"
                     class="{{elementSelect.includes(message.id)  ? 'bg-orange-300' : (message.read.includes(currentEmailUser) ? 'bg-white' : 'bg-gray-100')}} h-24 cursor-pointer"
                 >
                   <td

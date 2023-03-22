@@ -6,6 +6,7 @@ export class Message {
   date: string;
   read: string[];
   reponse: string;
+  isAdmin: boolean;
 
   constructor(public auteur: any, public objet: string, public destinataires: string[], public message: string, public typeMessage: string) {
     const gid = new ToolsService();
@@ -13,5 +14,6 @@ export class Message {
     this.date = new Date().toString();
     this.read = [];
     this.reponse = '';
+    this.isAdmin = false;
   }
 }

@@ -20,7 +20,6 @@ import {GuestsListsComponent} from "./planning-tools/guests-lists/guests-lists.c
 import {BudgetComponent} from "./planning-tools/budget/budget.component";
 import {MailboxComponent} from "./mailbox/mailbox.component";
 import {PaymentComponent} from "./planning-tools/payment/payment.component";
-import {ApercuMailComponent} from "./mailbox/apercu-mail/apercu-mail.component";
 import {RegisterVendorComponent} from "./register-vendor/register-vendor.component";
 import {VenuesComponent} from "./venues/venues.component";
 import {CompanyComponent} from "./company/company.component";
@@ -47,7 +46,6 @@ const routes: Routes = [
   { path: 'article/:id', component: ArticleComponent },
   { path: 'profil/:id', component: ProfilComponent },
   { path: 'mailbox', canActivate: [AuthGuardService], component: MailboxComponent },
-  { path: 'mailbox/:id', canActivate: [AuthGuardService], component: ApercuMailComponent },
   { path: 'company/:id', component: CompanyComponent },
   { path: 'planning-tools', component: PlanningToolsComponent },
   { path: 'planning-tools/dashboard', canActivate: [AuthGuardService], component: DashboardComponent },

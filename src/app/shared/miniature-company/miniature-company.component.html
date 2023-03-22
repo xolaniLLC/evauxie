@@ -16,7 +16,7 @@
     <p class="mt-1 text-sm text-gray-600 dark:text-gray-400 h-16 overflow-hidden overflow-ellipsis">{{getPureTexte(currentCompany.description)}}</p>
     <div class="flex lg:items-center items-start flex-col lg:flex-row">
       <div class="flex items-center">
-        <p class="text-indigo-600 dark:text-gray-400 text-xs font-normal {{!categorie ? 'animate-pulse' : ''}}">{{categorie ? categorie.titre : '...'}}, {{currentCompany.pays}}</p>
+        <p class="text-indigo-600 dark:text-gray-400 text-xs font-normal {{!categorie ? 'animate-pulse' : ''}}">{{categorie ? getValueTraduct(categorie.titre) : '...'}}, {{currentCompany.pays}}</p>
       </div>
     </div>
     <div class="mt-2">
@@ -64,7 +64,7 @@
       <p class="mb-6 font-normal text-gray-700 dark:text-gray-500 text-sm tracking-normal w-11/12 lg:w-9/12 h-16 overflow-hidden overflow-ellipsis">{{getPureTexte(currentCompany.description)}}</p>
       <div class="flex lg:items-center items-start flex-col lg:flex-row">
         <div class="flex items-center">
-          <p class="text-gray-600 dark:text-gray-400 text-xs font-normal ml-1{{!categorie ? 'animate-pulse' : ''}}">{{categorie ? categorie.titre : '...'}}, {{currentCompany.pays}}</p>
+          <p class="text-gray-600 dark:text-gray-400 text-xs font-normal ml-1{{!categorie ? 'animate-pulse' : ''}}">{{categorie ? getValueTraduct(categorie.titre) : '...'}}, {{currentCompany.pays}}</p>
         </div>
       </div>
     </div>

@@ -17,13 +17,14 @@ export class WriteMailService {
     this.modals.splice(index, 1);
   }
 
-  new(destinataires: any, objet: string, message: string, reponse: string) {
+  new(destinataires: any, objet: string, message: string, reponse: string, isAdmin = false) {
     this.modals.push(
       {
         destinataires: destinataires,
         objet: objet,
         message: message,
-        reponse: reponse
+        reponse: reponse,
+        isAdmin: isAdmin
       }
     );
   }

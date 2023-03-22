@@ -13,6 +13,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {BlogService} from "../services/blog.service";
 import {Blog} from "../models/blog";
 import {GroupBlog} from "../models/group-blog";
+import {Topic} from "../models/topic";
 
 @Component({
   selector: 'app-e-admin',
@@ -24,7 +25,8 @@ export class EAdminComponent implements OnInit {
   categoriesActivity: CategorieActivite[] = [];
   groupeForum: GroupForum[] = [];
   groupeBlog: GroupBlog[] = [];
-  company: Company[] = [];
+  companyVerified: Company[] = [];
+  companyNoVerified: Company[] = [];
   isLoadCat = true;
   isLoadGF = true;
   isLoadGB = true;
@@ -38,6 +40,7 @@ export class EAdminComponent implements OnInit {
   isLoadBlog = false;
   blogs: Blog[] = [];
   currentBlog!: any;
+  printInfos: string[] = [];
 
   constructor(private blogService: BlogService, private translate: TranslateService, private location: Location, private writeService: WriteMailService, private companyService: CompanyService, private userService: UserService, private alertService: AlertService, private categorieService: CategoriesService) { }
 
@@ -71,7 +74,12 @@ export class EAdminComponent implements OnInit {
           this.companyService.getAllCompanies().then(
             (data) => {
               this.isLoadCom = false;
-              this.company = data;
+              const pointe = this;
+              data.forEach(function (doc) {
+                if(doc.verifier) {
+                  pointe.companyVerified.push(doc);
+                } else { pointe.companyNoVerified.push(doc); }
+              });
             }
           );
 
@@ -102,6 +110,10 @@ export class EAdminComponent implements OnInit {
     );
   }
 
+  fusionneTableau(tab1: any[], tab2: any[]) {
+    return tab1.concat(tab2);
+  }
+
   boutton_back() {
     this.location.back();
   }
@@ -117,7 +129,7 @@ export class EAdminComponent implements OnInit {
   }
 
   writeEmailToUser(user: string) {
-    this.writeService.new([user], '', '', '');
+    this.writeService.new([user], '', '', '', true);
   }
 
   updateCompany(company: Company) {

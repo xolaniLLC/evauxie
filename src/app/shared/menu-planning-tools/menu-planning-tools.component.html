@@ -62,9 +62,8 @@
 </section>
 
 <section *ngIf="currentUser && currentUser.typeUtilisateur === 'customer'">
-  <div class="my-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-center bg-fixed bg-no-repeat bg-center bg-cover relative rounded-lg">
-    <div class="flex flex-col items-center py-4 rounded-lg bg-cover" [style]="'background-image:url(assets/images/ill_25.png);'">
-      <div class="absolute top-0 right-0 bottom-0 left-0 bg-black opacity-75 rounded-lg"></div>
+  <div class="my-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-center bg-fixed bg-no-repeat bg-center bg-cover relative rounded-md">
+    <div class="flex flex-col items-center py-4 rounded-md bg-cover" [style]="'background-image:url(assets/images/ill_34.png), url(assets/images/ill_25.png);'">
       <div class="lg:flex-row p-4 lg:p-8 justify-between items-start lg:items-stretch w-full z-10">
         <p class="text-3xl text-white font-semibold pb-3">Hi{{currentUser ? ' ' + currentUser.nom : ''}}!</p>
         <p class="text-sm text-gray-50 pb-3 font-normal" *ngIf="event_en_cours.length === 0">

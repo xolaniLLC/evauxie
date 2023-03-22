@@ -36,7 +36,7 @@
     </svg>
 
     <div *ngIf="!isLoadCom">
-      <div *ngFor="let compagnie of company" class="w-full bg-gray-200 dark:bg-gray-900 py-10">
+      <div *ngFor="let compagnie of fusionneTableau(companyVerified, companyNoVerified)" class="w-full bg-gray-200 dark:bg-gray-900 py-10">
         <div class="container mx-auto px-6 flex items-start justify-center">
           <div class="w-full">
             <!-- Card is full width. Use in 12 col grid for best view. -->
@@ -45,8 +45,9 @@
               <div class="flex flex-col lg:flex-row items-start lg:items-center mb-8">
                 <h1 class="mr-12 text-xl lg:text-2xl text-gray-800 dark:text-gray-100 font-bold lg:w-1/2">{{compagnie.nom}}</h1>
                 <div class="flex flex-col md:flex-row items-start md:items-center space-x-5">
-                  <div (click)="updateEtatCompany(compagnie)" class="hover:opacity-75 mt-4 lg:mt-0 mr-0 xl:mr-8 text-sm cursor-pointer {{ compagnie.verifier ? 'bg-red-100 text-red-500' : 'bg-indigo-100 text-indigo-700'}} dark:text-indigo-600 rounded font-medium py-2 w-48 flex justify-center">{{compagnie.verifier ? 'Deactivate the company' : 'Activate the company'}}</div>
+                  <div (click)="updateEtatCompany(compagnie)" class="hover:opacity-75 mt-4 lg:mt-0 mr-0 xl:mr-8 text-sm cursor-pointer {{ compagnie.verifier ? 'bg-red-100 text-red-500' : 'bg-indigo-100 text-indigo-700'}} dark:text-indigo-600 rounded font-medium py-2 w-48 flex justify-center">{{compagnie.verifier ? 'Desactivate the company' : 'Activate the company'}}</div>
                   <div (click)="writeEmailToUser(compagnie.administrateurs[0])" class="hover:opacity-75 cursor-pointer mt-4 lg:mt-0 mr-0 lg:mr-4 xl:mr-8 text-sm bg-orange-300 text-white rounded font-medium py-2 w-48 flex justify-center">Write a &nbsp; <app-miniature-name-user [idUser]="compagnie.administrateurs[0]"></app-miniature-name-user></div>
+                  <div (click)="printInfos.indexOf(compagnie.id) === -1 ? printInfos.push(compagnie.id) : printInfos.splice(printInfos.indexOf(compagnie.id), 1)" class="hover:opacity-75 cursor-pointer mt-4 lg:mt-0 mr-0 lg:mr-4 xl:mr-8 text-sm bg-green-300 text-white rounded font-medium py-2 w-48 flex justify-center">{{printInfos.indexOf(compagnie.id) !== -1 ? 'Hide information' : 'Print more information'}}</div>
                 </div>
               </div>
               <div class="items-start lg:items-center space-y-8 my-5">
@@ -61,8 +62,10 @@
                       <p class="text-gray-600 dark:text-gray-400 text-xs font-normal">Company create the <span class="text-indigo-700 font-medium">{{compagnie.date | date : 'EEEE dd MMMM YYYY'}}</span></p>
                     </div>
                   </div>
-                  <p class="mt-5 text-sm text-gray-600 dark:text-gray-400 font-normal" [innerHTML]="compagnie.description"></p>
                 </div>
+              </div>
+              <div *ngIf="printInfos.indexOf(compagnie.id) !== -1">
+                <p class="my-5 text-sm text-gray-600 dark:text-gray-400 font-normal" [innerHTML]="compagnie.description"></p>
                 <div class="w-full flex flex-col lg:flex-row items-start lg:items-center">
                   <div class="mr-12 flex lg:block items-center lg:mr-6 xl:mr-12 mt-5 lg:mt-0">
                     <h2 class="text-gray-600 dark:text-gray-400 font-bold text-xl lg:text-2xl leading-6 mb-1 lg:text-center">Country</h2>
@@ -77,28 +80,28 @@
                     <p class="ml-2 lg:ml-0 text-gray-800 dark:text-gray-100 text-xl leading-5 text-center">{{compagnie.phone}}</p>
                   </div>
                 </div>
-              </div>
-              <div class="w-full py-6 my-10">
-                <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between">
-                  <div class="text-xs text-center w-full bg-indigo-100 text-indigo-700 dark:text-indigo-600 rounded font-medium p-3 lg:mr-3">{{compagnie.affordbility}}</div>
-                  <div class="mt-4 text-center w-full lg:mt-0 text-xs bg-red-200 text-red-500 rounded font-medium p-3 space-x-5"><span *ngFor="let prix of compagnie.price; let i = index">{{prix}}{{i%2 !== 0 ? '' : ' - '}}</span></div>
+                <div class="w-full py-6 my-10">
+                  <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between">
+                    <div class="text-xs text-center w-full bg-indigo-100 text-indigo-700 dark:text-indigo-600 rounded font-medium p-3 lg:mr-3">{{compagnie.affordbility}}</div>
+                    <div class="mt-4 text-center w-full lg:mt-0 text-xs bg-red-200 text-red-500 rounded font-medium p-3 space-x-5"><span *ngFor="let prix of compagnie.price; let i = index">{{prix}}{{i%2 !== 0 ? '' : ' - '}}</span></div>
+                  </div>
+                  <div class="mt-6 mb-8 w-full bg-gray-100 dark:bg-gray-700 rounded p-4 relative">
+                    <ul>
+                      <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Ville : {{compagnie.ville}}</li>
+                      <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal my-4">- Code postal : {{compagnie.codePostal}}</li>
+                      <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Devise : {{compagnie.devise}}</li>
+                      <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Adresse : {{compagnie.adresse}}</li>
+                      <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Site web : <a href="{{compagnie.siteWeb}}">{{compagnie.siteWeb}}</a></li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="mt-6 mb-8 w-full bg-gray-100 dark:bg-gray-700 rounded p-4 relative">
-                  <ul>
-                    <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Ville : {{compagnie.ville}}</li>
-                    <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal my-4">- Code postal : {{compagnie.codePostal}}</li>
-                    <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Devise : {{compagnie.devise}}</li>
-                    <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Adresse : {{compagnie.adresse}}</li>
-                    <li class="text-xs text-gray-600 dark:text-gray-400 font-normal tracking-normal">- Site web : <a href="{{compagnie.siteWeb}}">{{compagnie.siteWeb}}</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="flex flex-col lg:flex-row items-start lg:items-center">
-                <div *ngIf="compagnie.logo" class="border-2 border-white dark:border-gray-700 shadow rounded-full w-full h-52 hover:absolute hover:h-1/2 hover:w-1/2">
-                  <img class="w-full h-full overflow-hidden object-cover rounded-full" src="{{compagnie.logo}}" alt="Logo company" />
-                </div>
-                <div *ngFor="let tof of compagnie.phototheque; let i = index" class="border-2 border-white dark:border-gray-700 shadow w-full h-52 hover:absolute hover:h-1/2 hover:w-1/2">
-                  <img class="w-full h-full overflow-hidden object-cover rounded-md" src="{{tof}}" alt="photo {{i}}" />
+                <div class="flex flex-col lg:flex-row items-start lg:items-center">
+                  <div *ngIf="compagnie.logo" class="border-2 border-white dark:border-gray-700 shadow rounded-full w-full h-52 hover:absolute hover:h-1/2 hover:w-1/2">
+                    <img class="w-full h-full overflow-hidden object-cover rounded-full" src="{{compagnie.logo}}" alt="Logo company" />
+                  </div>
+                  <div *ngFor="let tof of compagnie.phototheque; let i = index" class="border-2 border-white dark:border-gray-700 shadow w-full h-52 hover:absolute hover:h-1/2 hover:w-1/2">
+                    <img class="w-full h-full overflow-hidden object-cover rounded-md" src="{{tof}}" alt="photo {{i}}" />
+                  </div>
                 </div>
               </div>
             </div>

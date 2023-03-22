@@ -34,7 +34,6 @@ import { GuestsListsComponent } from './planning-tools/guests-lists/guests-lists
 import { BudgetComponent } from './planning-tools/budget/budget.component';
 import { MailboxComponent } from './mailbox/mailbox.component';
 import { PaymentComponent } from './planning-tools/payment/payment.component';
-import { ApercuMailComponent } from './mailbox/apercu-mail/apercu-mail.component';
 import { WriteMessageComponent } from './shared/write-message/write-message.component';
 import { MiniatureMessageComponent } from './shared/miniature-message/miniature-message.component';
 import { RegisterVendorComponent } from './register-vendor/register-vendor.component';
@@ -109,7 +108,6 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
         BudgetComponent,
         MailboxComponent,
         PaymentComponent,
-        ApercuMailComponent,
         WriteMessageComponent,
         MiniatureMessageComponent,
         RegisterVendorComponent,

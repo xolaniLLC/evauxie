@@ -5,19 +5,34 @@
         <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
       </svg>
     </div>
-    <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Write message in evauxie</h1>
+    <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">{{'29.1' | translate}}</h1>
 
     <app-miniature-message *ngIf="modalWrite.reponse" idMessage="{{modalWrite.reponse}}"></app-miniature-message>
 
-    <form #form="ngForm" (ngSubmit)="sendMessage(form, i, modalWrite.reponse ? modalWrite.reponse : '')">
-      <label for="destinataires" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">To</label>
+    <form #form="ngForm" (ngSubmit)="sendMessage(form, i, modalWrite.reponse ? modalWrite.reponse : '', modalWrite)">
+      <label for="destinataires" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">{{'29.3' | translate}}</label>
       <div id="destinataires" class="space-x-2">
         <app-miniature-name-user [idUser]="idU" *ngFor="let idU of modalWrite.destinataires"></app-miniature-name-user>
         <input [readOnly]="modalWrite.destinataires" [type]="modalWrite.destinataires ? 'password' : 'text'" name="destinataires" [ngModel]="modalWrite.destinataires" required class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full flex items-center text-sm border-gray-300 rounded border invisible" placeholder="Name1@customer.com, Name2@customer.com">
       </div>
-      <label for="objet" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Objet</label>
-      <input id="objet" name="objet" [ngModel]="modalWrite.objet" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Evauxie" />
-      <editor class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full items-center text-sm rounded"
+
+      <div class="{{isBooking(modalWrite.objet) ? 'invisible h-0' : ''}}">
+        <label for="objet" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">{{'29.4' | translate}}</label>
+        <input id="objet" name="objet" [ngModel]="modalWrite.objet" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="{{'29.5' | translate}}" />
+      </div>
+
+      <ng-container *ngIf="modalWrite.message === ':form-booking'">
+        <label for="dateDelivery" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">{{'29.9' | translate}}</label>
+        <input required type="date" id="dateDelivery" name="dateDelivery" ngModel class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Date" />
+
+        <label for="agreedPriceOfService" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">{{'29.10' | translate}}</label>
+        <input required type="text" id="agreedPriceOfService" name="agreedPriceOfService" ngModel class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="..." />
+
+        <label for="descriptionService" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">{{'29.11' | translate}}</label>
+        <textarea required rows="3" id="descriptionService" name="descriptionService" [ngModel]="'Hello! We are interested in your service at your facility'" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full flex items-center p-3 text-sm border-gray-300 rounded border" placeholder="Message..."></textarea>
+      </ng-container>
+
+      <editor *ngIf="modalWrite.message !== ':form-booking'" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full items-center text-sm rounded"
               [ngModel]="modalWrite.message"
               required
               [disabled]="isLoading"
@@ -26,7 +41,7 @@
               [init]="{
                                height: 200,
                                menubar: false,
-                               placeholder: 'Write...',
+                               placeholder: ('29.6' | translate),
                                plugins: [
                                  'advlist autolink lists link image charmap print preview anchor',
                                  'searchreplace visualblocks code fullscreen',
@@ -41,8 +56,8 @@
           <svg *ngIf="isLoading" style="display: inline" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          Send</button>
-        <a class="cursor-pointer focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" (click)="closeModal(i)">Cancel</a>
+          {{'29.7' | translate}}</button>
+        <a class="cursor-pointer focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" (click)="closeModal(i)">{{'29.8' | translate}}</a>
       </div>
     </form>
     <div class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out" (click)="closeModal(i)">
