@@ -327,7 +327,7 @@
                             <p id="Clothing-heading-2" class="font-medium text-gray-900 text-xl">{{'3.1' | translate}}</p>
                             <ul role="list" aria-labelledby="Clothing-heading" class="grid lg:grid-cols-4 md:grid-cols-3 mt-3">
                               <ng-container *ngFor="let cat of categories">
-                                <li class="flex my-2" *ngIf="cat.titre.toLocaleLowerCase() !== 'venue'">
+                                <li class="flex my-2" *ngIf="cat.id.toLocaleLowerCase() !== '318a527a244caec0556dae'">
                                   <a href="./vendors/?categorie={{cat.id}}" class="hover:text-gray-800 capitalize"> {{getValueTraduct(cat.titre)}} </a>
                                 </li>
                               </ng-container>

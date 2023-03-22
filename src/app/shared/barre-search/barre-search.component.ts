@@ -26,7 +26,7 @@ export class BarreSearchComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.textPreload) { this.searchTxt = this.textPreload; }
-    if(this.countryPreload) { console.log(this.countryPreload); this.searchCountry = this.countryPreload; }
+    if(this.countryPreload) { this.searchCountry = this.countryPreload; }
     this.categorieService.getCategoriesActivites().then(
       (data) => {
         this.categories = data;
