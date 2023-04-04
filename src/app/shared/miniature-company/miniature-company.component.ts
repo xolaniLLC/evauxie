@@ -106,4 +106,10 @@ export class MiniatureCompanyComponent implements OnInit {
     return wrapper.getElementsByTagName(langue ? langue : this.translate.defaultLang).length > 0 ? wrapper.getElementsByTagName(langue ? langue : this.translate.defaultLang)[0].innerHTML.replace('amp;', '')  : (texte && texte.includes('</') ? '' : texte);
   }
 
+  getInnerHtml(text: string): string {
+    const element: HTMLElement = document.createElement('tmpConvert') as HTMLElement
+    element.innerHTML = text;
+    return element.textContent as string;
+  }
+
 }

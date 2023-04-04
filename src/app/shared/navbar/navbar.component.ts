@@ -27,6 +27,9 @@ export class NavbarComponent implements OnInit {
   sousCategoriesVenue: CategorieActivite[] = [];
   isLoadingCat = true;
   isLoadingSousCatVenu = true;
+  viewListPlaningTools = false;
+  viewListVenues = false;
+  viewListVendors = false;
 
   constructor(private translate: TranslateService, private categorieService: CategoriesService, private messageService: MessageService, private userService: UserService, private authService: AuthentificationService, private router: Router) { }
 

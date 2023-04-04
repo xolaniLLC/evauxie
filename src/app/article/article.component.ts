@@ -7,6 +7,7 @@ import {AuthentificationService} from "../services/authentification.service";
 import {BlogService} from "../services/blog.service";
 import {Blog} from "../models/blog";
 import {CommentaireBlog} from "../models/commentaire-blog";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-article',
@@ -24,7 +25,7 @@ export class ArticleComponent implements OnInit {
   isLoadingSendReply = false;
   html = '';
 
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private blogService: BlogService, private authService: AuthentificationService) { }
+  constructor(private translate: TranslateService, private userService: UserService, private activatedRoute: ActivatedRoute, private blogService: BlogService, private authService: AuthentificationService) { }
 
   ngOnInit(): void {
     this.blogService.getBlogWitchId(this.activatedRoute.snapshot.paramMap.get('id')).then(
@@ -83,6 +84,12 @@ export class ArticleComponent implements OnInit {
         this.currentCommentaire.push(tmpCom);
       }
     );
+  }
+
+  getValueTraduct(texte: string) {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML= texte;
+    return wrapper.getElementsByTagName(this.translate.defaultLang).length > 0 ? wrapper.getElementsByTagName(this.translate.defaultLang)[0].innerHTML.replace('amp;', '')  : texte;
   }
 
 }

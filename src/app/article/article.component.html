@@ -17,10 +17,11 @@
         <img [src]="currentUserAuthor.photo ? currentUserAuthor.photo : 'assets/images/user.png'" alt="" class="w-16 h-16 rounded-full" />
         <div class="flex items-start justify-between w-full">
           <div class="pl-3 w-full">
-            <p class="font-bold text-xl leading-5 text-gray-900">{{currentBlog.titre}}</p>
+            <p class="font-bold text-xl leading-5 text-gray-900">{{getValueTraduct(currentBlog.titre)}}</p>
             <p class="text-sm leading-normal pt-2 text-gray-500">
               <span routerLink="../profil" class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">{{currentUserAuthor.nom}}</span> in
-              <span class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">{{currentBlog.categorie}}</span>,
+              <!--span class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">{{currentBlog.categorie}}</span-->,
+              <span class="hover:text-indigo-600 hover:cursor-pointer font-bold text-gray-900 capitalize">general</span>,
               on {{currentBlog.date | date:"MMMM dd, yyyy"}} at {{currentBlog.date | date:"hh:mm"}} · <span class="font-bold text-gray-900 capitalize"> {{currentBlog.vus.length}} views </span>
             </p>
           </div>
@@ -29,7 +30,7 @@
     </div>
 
     <div class="my-3 container px-10 mx-auto flex flex-col md:flex-row items-start md:items-center justify-between">
-      <div class="items-center justify-center w-full overflow-auto overscroll-none" [innerHTML]="currentBlog.contenu">
+      <div class="items-center justify-center w-full overflow-auto overscroll-none" [innerHTML]="getValueTraduct(currentBlog.contenu)">
       </div>
     </div>
 

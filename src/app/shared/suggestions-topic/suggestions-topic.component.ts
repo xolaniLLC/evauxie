@@ -28,7 +28,9 @@ export class SuggestionsTopicComponent implements OnInit {
   }
 
   extractTextPure(text: string) : string {
-    return text.replace(/<([^>])*>/g,'').replace(/\&nbsp;/g, '');
+    const element: HTMLElement = document.createElement('tmpConvert') as HTMLElement
+    element.innerHTML = text;
+    return element.textContent as string;
   }
 
   extractImage(brute: string) {

@@ -15,7 +15,7 @@
       <div class="mt-6 lg:mt-0 lg:px-2 w-full"> <!--  lg:w-4/5  -->
         <div class="w-full bg-white dark:bg-gray-800 py-5 flex flex-col xl:flex-row items-start xl:items-center justify-between space-y-3">
           <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
-            <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">Favourite Vendors</h2>
+            <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">{{'35.2' | translate}}</h2>
           </div>
           <div class="flex items-center" role="group">
             <button (click)="typePrint = 'list'" type="button" class="{{typePrint === 'list' ? 'text-gray-50 bg-indigo-600 border border-indigo-600 hover:bg-indigo-500 hover:border-indigo-500 hover:text-white focus:ring-white focus:text-white' : 'text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-indigo-600 focus:z-10 focus:ring-2 focus:ring-indigo-600 focus:text-indigo-600'}} inline-flex items-center py-2 px-4 text-sm font-medium rounded-l-lg">
@@ -39,8 +39,8 @@
             </div>
             <form #form="ngForm">
               <select ngModel (ngModelChange)="currentTabSelect = form.value.opm" name="opm" aria-label="Selected tab" class="focus:outline-none form-select block w-full p-3 border border-gray-300 rounded text-gray-600 dark:text-gray-400 appearance-none bg-transparent relative z-10">
-                <option class="text-sm text-gray-600 dark:text-gray-400" value="liked" [selected]="currentTabSelect === 'liked'" (click)="currentTabSelect = 'liked'">Liked Venodors</option>
-                <option class="text-sm text-gray-600 dark:text-gray-400" value="hired" [selected]="currentTabSelect === 'hired'" (click)="currentTabSelect = 'hired'">Hired vendors</option>
+                <option class="text-sm text-gray-600 dark:text-gray-400" value="liked" [selected]="currentTabSelect === 'liked'" (click)="currentTabSelect = 'liked'">{{'35.3' | translate}}</option>
+                <option class="text-sm text-gray-600 dark:text-gray-400" value="hired" [selected]="currentTabSelect === 'hired'" (click)="currentTabSelect = 'hired'">{{'35.4' | translate}}</option>
               </select>
             </form>
           </div>
@@ -50,17 +50,17 @@
                 <path d="M9.653 16.915l-.005-.003-.019-.01a20.759 20.759 0 01-1.162-.682 22.045 22.045 0 01-2.582-1.9C4.045 12.733 2 10.352 2 7.5a4.5 4.5 0 018-2.828A4.5 4.5 0 0118 7.5c0 2.852-2.044 5.233-3.885 6.82a22.049 22.049 0 01-3.744 2.582l-.019.01-.005.003h-.002a.739.739 0 01-.69.001l-.002-.001z" />
               </svg>
               &nbsp;
-              Liked Vendors</li>
+              {{'35.3' | translate}}</li>
             <li (click)="currentTabSelect = 'hired'" class="cursor-pointer font-normal flex justify-center items-center py-2 px-4 rounded {{ currentTabSelect === 'hired' ? 'text-indigo-700 bg-gray-200' : 'text-gray-500 hover:bg-gray-200'}} mr-4 sm:mr-0 md:mr-0 lg:mr-0 xl:mr-0 sm:ml-4 md:ml-4 lg:ml-4 xl:ml-4 dark:hover:bg-gray-700 dark:text-gray-400 text-sm">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-green-700">
                 <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
               </svg>
               &nbsp;
-              Hired vendors</li>
+              {{'35.4' | translate}}</li>
           </ul>
         </div>
         <p class="text-gray-500 font-light text-center py-10 text-xl" *ngIf="event_en_cours && ((currentTabSelect === 'liked' && event_en_cours.companyLike.length === 0) || (currentTabSelect === 'hired' && event_en_cours.companySollicite.length === 0))">
-          No items displayed
+          {{'35.5' | translate}}
         </p>
         <div *ngIf="event_en_cours" class="grid grid-cols-1 mt-8 {{typePrint === 'images' ? 'gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : ''}}">
           <div class="p-3 border border-gray-300 rounded" *ngFor="let cy of currentTabSelect === 'liked' ? event_en_cours.companyLike : event_en_cours.companySollicite">
@@ -79,7 +79,7 @@
         </div>
 
         <div class="border-t border-gray-300 py-5 my-10">
-          <h2 class="text-center text-xl font-light py-4 text-gray-500">Trouvez des vendeurs sur la liste et aimez-les pour qu'ils puissent apparaître dans votre liste</h2>
+          <h2 class="text-center text-xl font-light py-4 text-gray-500">{{'35.8' | translate}}</h2>
           <div class="grid md:grid-cols-5 grid-cols-1 gap-4 my-3">
             <a *ngFor="let cat of categories; let i = index" href="../search/?categorie={{cat.id}}"  class="block h-fit bg-gray-100 border rounded dark:bg-gray-800 dark:border-gray-700 p-5">
               <div class="p-3 text-center text-gray-400">

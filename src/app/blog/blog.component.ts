@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BlogService} from "../services/blog.service";
 import {Blog} from "../models/blog";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-blog',
@@ -14,7 +15,7 @@ export class BlogComponent implements OnInit {
   page = 0;
   nbreLimitEltPrPage = 6;
 
-  constructor(private blogService: BlogService) { }
+  constructor(private translate: TranslateService, private blogService: BlogService) { }
 
   ngOnInit(): void {
     this.blogService.getBlogs().then(
@@ -31,6 +32,12 @@ export class BlogComponent implements OnInit {
 
   searchBlog(form: any) {
 
+  }
+
+  getValueTraduct(texte: string) {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML= texte;
+    return wrapper.getElementsByTagName(this.translate.defaultLang).length > 0 ? wrapper.getElementsByTagName(this.translate.defaultLang)[0].innerHTML.replace('amp;', '')  : (texte && texte.includes('</') ? '' : texte);
   }
 
 }

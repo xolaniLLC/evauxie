@@ -4176,9 +4176,9 @@ export class VitrineVendorComponent implements OnInit {
       if(!(this.currentCompany.nom && this.currentCompany.categorie && this.currentCompany.adresse && this.currentCompany.description && this.currentCompany.pays && this.currentCompany.ville && this.currentCompany.phone && this.currentCompany.price.length > 0)) {
         this.isLoading = false;
         this.alertService.print('One or more fields not filled in', 'warning');
-      } else if(this.currentCompany.phototheque.length < 8) {
+      } else if(this.currentCompany.phototheque.length < 3) {
         this.isLoading = false;
-        this.alertService.print('The number of photos is insufficient (8 at least)', 'warning');
+        this.alertService.print('The number of photos is insufficient (3 at least)', 'warning');
       } else {
         this.currentCompany.date = new Date().toString();
         this.currentCompany.verifier = new Date().toString();

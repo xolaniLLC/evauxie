@@ -3,6 +3,7 @@ import {Utilisateur} from "../../models/utilisateur";
 import {Blog} from "../../models/blog";
 import {BlogService} from "../../services/blog.service";
 import {UserService} from "../../services/user.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-miniature-blog',
@@ -17,7 +18,7 @@ export class MiniatureBlogComponent implements OnInit {
   currentBlog: Blog | any = null;
   currentUser: Utilisateur | any = null;
 
-  constructor(private blogService: BlogService, private userService: UserService) { }
+  constructor(private translate: TranslateService, private blogService: BlogService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.blogService.getBlogWitchId(this.idBlog).then(
@@ -40,8 +41,10 @@ export class MiniatureBlogComponent implements OnInit {
     return Math.trunc(Diff_temps / (1000 * 3600 * 24));
   }
 
-  getPureTexte(brute: any) {
-    return brute.toString().replace(/<[^>]*>/g, '').replace('&nbsp;', '');
+  getPureTexte(brute: any): string {
+    const element: HTMLElement = document.createElement('tmpConvert') as HTMLElement
+    element.innerHTML = brute;
+    return element.textContent as string;
   }
 
   extractImage(brute: string) {
@@ -50,7 +53,13 @@ export class MiniatureBlogComponent implements OnInit {
     if(e1.length > 1) {
       result = e1[1].split('"')[0];
     }
-    return result;
+    return result.replace('amp;', '');
+  }
+
+  getValueTraduct(texte: string) {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML= texte;
+    return wrapper.getElementsByTagName(this.translate.defaultLang).length > 0 ? wrapper.getElementsByTagName(this.translate.defaultLang)[0].innerHTML.replace('amp;', '')  : (texte && texte.includes('</') ? '' : texte);
   }
 
 }

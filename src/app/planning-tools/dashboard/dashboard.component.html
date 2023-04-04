@@ -5,14 +5,14 @@
 <section class="max-w-7xl mx-auto flex space-x-5 px-4 sm:px-6 lg:px-8">
   <div class="w-2/4 w-full lg:space-y-4">
     <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
-      <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">CheckList</h2>
+      <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">{{'33.1' | translate}}</h2>
     </div>
     <p *ngIf="!event_en_cours" class="font-light text-2xl text-gray-400">
-      No event
+      ---
     </p>
     <div class="space-y-2 border-gray-300 border rounded-xl px-5 py-5 h-80" *ngIf="event_en_cours">
       <p *ngIf="liste_task_en_cours.length === 0" class="font-light text-2xl text-gray-400">
-        No task
+        {{'33.15' | translate}}
       </p>
       <div *ngFor="let task of liste_task_en_cours.slice(0,3)" class="bg-white border-gray-300 border dark:bg-gray-800 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between px-3 sm:px-3 rounded-xl">
         <div class="flex items-center mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
@@ -37,40 +37,40 @@
         </div>
       </div>
       <div *ngIf="liste_task_en_cours.length > 0" class="text-right mt-3">
-        <a routerLink="../../planning-tools/checklist" class="text-indigo-600 font-medium">View all</a>
+        <a routerLink="../../planning-tools/checklist" class="text-indigo-600 font-medium">{{'32.6' | translate}}</a>
       </div>
     </div>
   </div>
 
   <div class="md:w-2/4 w-full lg:space-y-4">
     <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
-      <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">Budget</h2>
+      <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">{{'37.1' | translate}}</h2>
     </div>
     <p *ngIf="!event_en_cours" class="font-light text-2xl text-gray-400">
-      No event
+      ---
     </p>
     <div class="space-y-2 border-gray-300 border rounded-xl px-5 py-5 h-80" *ngIf="event_en_cours">
       <div class="w-full">
-        <p class="text-xs md:text-sm font-medium leading-none text-gray-500 uppercase">TOTAL PAID</p>
+        <p class="text-xs md:text-sm font-medium leading-none text-gray-500 uppercase">{{'37.2' | translate}}</p>
         <input (change)="saveNewEstimatBudget(event_en_cours.estimationBudget)" class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-3 text-gray-800 mt-1" [(ngModel)]="event_en_cours.estimationBudget" />
         <div class="flex flex-col md:w-64">
           <div class="w-full flex justify-start">
             <div class="flex items-center">
-              <p class="text-xs leading-none text-green-600">Click on the sum to modify it</p>
+              <p class="text-xs leading-none text-green-600">{{'37.3' | translate}}</p>
             </div>
           </div>
         </div>
       </div> <br>
       <div class="w-full">
-        <p class="text-xs md:text-sm font-medium leading-none text-gray-500 uppercase">Final cost</p>
+        <p class="text-xs md:text-sm font-medium leading-none text-gray-500 uppercase">{{'37.25' | translate}}</p>
         <input readonly (change)="saveNewEstimatBudget(event_en_cours.estimationBudget)" class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-3 text-gray-800 mt-1" [ngModel]="recupTotalDepense().fc" />
       </div> <br>
       <div class="w-full">
-        <p class="text-xs md:text-sm font-medium leading-none text-gray-500 uppercase">Difference</p>
+        <p class="text-xs md:text-sm font-medium leading-none text-gray-500 uppercase">{{'37.8' | translate}}</p>
         <input readonly (change)="saveNewEstimatBudget(event_en_cours.estimationBudget)" class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-3 text-gray-800 mt-1" [ngModel]="(event_en_cours.estimationBudget - recupTotalDepense().fc)" />
       </div>
       <div *ngIf="liste_task_en_cours.length > 0" class="text-right mt-3">
-        <a routerLink="../../planning-tools/budget" class="text-indigo-600 font-medium">View all</a>
+        <a routerLink="../../planning-tools/budget" class="text-indigo-600 font-medium">{{'32.6' | translate}}</a>
       </div>
     </div>
   </div>
@@ -79,7 +79,7 @@
 <section class="max-w-7xl mx-auto flex space-x-5 mt-8 px-4 sm:px-6 lg:px-8">
   <div class="md:w-2/4 lg:space-y-4">
     <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
-      <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">My providers</h2>
+      <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">{{'32.1' | translate}}</h2>
     </div>
     <p *ngIf="!event_en_cours" class="font-light text-2xl text-gray-400">
       No event
@@ -94,27 +94,27 @@
           <form #form1="ngForm">
             <select [disabled]="isLoading || companyBooked.includes(cy.toString())" [ngModel]="companyBooked.includes(cy.toString()) ? 'alreadyBooked' : (event_en_cours.companySollicite.includes(cy) ? 'hired' : 'not_hired')" (ngModelChange)="updateEtatEvent(event_en_cours, cy.toString(), form1.value.etat)" name="etat" aria-label="Selected tab" class="{{companyBooked.includes(cy.toString()) ? 'bg-orange-500' : (form1.value.etat === 'hired' ? 'bg-green-500' : 'bg-red-500')}} focus:outline-none form-select block w-full p-3 border border-gray-300 rounded-lg mt-3 text-white dark:text-gray-400 appearance-none relative z-10">
               <option *ngIf="companyBooked.includes(cy.toString())" value="alreadyBooked" class="text-sm text-gray-700 bg-white dark:text-gray-400" [selected]="event_en_cours.companySollicite.includes(cy)">Already booked</option>
-              <option value="hired" class="text-sm text-gray-700 bg-white dark:text-gray-400" [selected]="event_en_cours.companySollicite.includes(cy)">Hired</option>
+              <option value="hired" class="text-sm text-gray-700 bg-white dark:text-gray-400" [selected]="event_en_cours.companySollicite.includes(cy)">{{'35.4' | translate}}</option>
               <option value="not_hired" class="text-sm text-gray-700 bg-white dark:text-gray-400" [selected]="!event_en_cours.companySollicite.includes(cy)">Not committed</option>
             </select>
           </form>
         </div>
       </div>
       <div *ngIf="event_en_cours && event_en_cours.companySollicite.length > 0" class="text-left mt-3">
-        <a routerLink="../../planning-tools/vendors-manager" class="text-indigo-600 font-medium">See all my providers</a>
+        <a routerLink="../../planning-tools/vendors-manager" class="text-indigo-600 font-medium">{{'32.6' | translate}}</a>
       </div>
     </div>
   </div>
   <div class="md:w-2/4 lg:space-y-4">
     <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
-      <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">My guests</h2>
+      <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">{{'32.4' | translate}}</h2>
     </div>
     <p *ngIf="!event_en_cours" class="font-light text-2xl text-gray-400">
-      No event
+      {{'32.2' | translate}}
     </p>
     <div class="space-y-2 border-gray-300 border rounded-xl px-5 py-5 h-80" *ngIf="event_en_cours">
       <p *ngIf="liste_guest_en_cours.length === 0" class="font-light text-2xl text-gray-400">
-        No guest
+        {{'32.6' | translate}}
       </p>
       <ng-container *ngFor="let guest of liste_guest_en_cours.slice(0,4); let  i = index">
         <div class="bg-white border-gray-300 border dark:bg-gray-800 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between px-3 sm:px-3 rounded-xl">
@@ -133,7 +133,7 @@
         </div>
       </ng-container>
       <div *ngIf="liste_task_en_cours.length > 0" class="text-right mt-3">
-        <a routerLink="../../planning-tools/guests-lists" class="text-indigo-600 font-medium">View all</a>
+        <a routerLink="../../planning-tools/guests-lists" class="text-indigo-600 font-medium">{{'32.6' | translate}}</a>
       </div>
     </div>
   </div>
@@ -152,10 +152,10 @@
 
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" *ngIf="event_en_cours">
   <div class="mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
-    <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">View RECENT DISCUSSION</h2>
+    <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">{{'32.8' | translate}}</h2>
   </div>
   <p class="text-gray-500 font-light text-left py-10 text-xl" *ngIf="listeTopics.length === 0">
-    No items displayed
+    {{'32.2' | translate}}
   </p>
   <div>
     <app-miniature-topic skin="item" idTopic="{{topic.id}}" *ngFor="let topic of listeTopics"></app-miniature-topic>

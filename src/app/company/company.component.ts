@@ -31,6 +31,8 @@ export class CompanyComponent implements OnInit {
   slider: any;
   defaultTransform: any;
 
+  isToggle: any[] = [];
+
   constructor(private authService: AuthentificationService, private translate: TranslateService, private avisCompanyService: AvisCompanyService, private alertService: AlertService, private activatedRoute: ActivatedRoute, private evenementService: EvenementService, private companyService: CompanyService, private categorieService: CategoriesService, private writeMailService: WriteMailService) { }
 
   ngOnInit(): void {
