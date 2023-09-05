@@ -9,6 +9,8 @@ import {AlertService} from "../../services/alert.service";
 import {AvisCompany} from "../../models/avis-company";
 import {AvisCompanyService} from "../../services/avis-company.service";
 import {TranslateService} from "@ngx-translate/core";
+import {PaymentStripeService} from "../../services/payment-stripe.service";
+import {loadStripe, Stripe, StripeElements} from "@stripe/stripe-js";
 
 @Component({
   selector: 'app-miniature-company',
@@ -24,10 +26,12 @@ export class MiniatureCompanyComponent implements OnInit {
   isLike: boolean | any = null;
   isSollicite: boolean | any = null;
   avisCurrentCompany: AvisCompany[] = [];
+  stripeServiceTak : any;
 
-  constructor(private translate: TranslateService, private avisCompanyService: AvisCompanyService, private alertService: AlertService, private evenementService: EvenementService, private companyService: CompanyService, private categorieService: CategoriesService, private writeMailService: WriteMailService) { }
+  constructor(private stripeService: PaymentStripeService, private translate: TranslateService, private avisCompanyService: AvisCompanyService, private alertService: AlertService, private evenementService: EvenementService, private companyService: CompanyService, private categorieService: CategoriesService, private writeMailService: WriteMailService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.stripeServiceTak = this.stripeService;
     this.companyService.getCompanyWitchId(this.id).then(
       (data0) => {
         this.currentCompany = data0;

@@ -71,7 +71,7 @@
         </p>
         <div class="grid md:grid-cols-4 sm:grid-cols-1 gap-4" *ngIf="event_en_cours.length > 0">
           <div class="md:col-span-3">
-            <span class="text-gray-50">{{'30.9' | translate}} <h4 class="font-semibold inline">{{event_en_cours[0].titre}}</h4> {{'30.10' | translate}} <h4 class="font-semibold inline"> {{event_en_cours[0].dateEvenement | date:"MMMM dd, yyyy"}}</h4></span>.
+            <span class="text-gray-50">{{'30.9' | translate}} <h4 class="font-semibold inline">{{event_en_cours[0].titre}}</h4> {{'30.10' | translate}} <h4 class="font-semibold inline"> {{event_en_cours[0].dateEvenement | date:"dd MMMM yyyy"}}</h4></span>.
             <p class="text-gray-50">
               {{event_en_cours[0].description}}
             </p>

@@ -70,6 +70,7 @@ import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { VendorsAgreementWebsiteComponent } from './shared/vendors-agreement-website/vendors-agreement-website.component';
+import { PaymentStripeComponent } from './shared/payment-stripe/payment-stripe.component';
 
 // Factory function required during AOT compilation
 export function httpTranslateLoaderFactory(http: HttpClient) {
@@ -140,7 +141,8 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
         DataProtectionPolicyComponent,
         UserTermsAndConditionsComponent,
         FloatingActionButtonComponent,
-        VendorsAgreementWebsiteComponent
+        VendorsAgreementWebsiteComponent,
+        PaymentStripeComponent
     ],
     imports: [
         BrowserModule,

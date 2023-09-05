@@ -82,18 +82,18 @@
       <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">{{'32.1' | translate}}</h2>
     </div>
     <p *ngIf="!event_en_cours" class="font-light text-2xl text-gray-400">
-      No event
+      {{'39.3' | translate}}
     </p>
     <div class="border-gray-300 border rounded-xl px-5 py-5 h-80" *ngIf="event_en_cours">
       <p *ngIf="event_en_cours.companySollicite.length === 0" class="font-light text-2xl text-gray-400">
-        No element
+        {{'39.2' | translate}}
       </p>
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
         <div class="p-3 border border-gray-300 rounded-xl" *ngFor="let cy of (event_en_cours.companySollicite).slice(0,2)">
           <app-miniature-company skin="images-simple" id="{{cy}}"></app-miniature-company>
           <form #form1="ngForm">
             <select [disabled]="isLoading || companyBooked.includes(cy.toString())" [ngModel]="companyBooked.includes(cy.toString()) ? 'alreadyBooked' : (event_en_cours.companySollicite.includes(cy) ? 'hired' : 'not_hired')" (ngModelChange)="updateEtatEvent(event_en_cours, cy.toString(), form1.value.etat)" name="etat" aria-label="Selected tab" class="{{companyBooked.includes(cy.toString()) ? 'bg-orange-500' : (form1.value.etat === 'hired' ? 'bg-green-500' : 'bg-red-500')}} focus:outline-none form-select block w-full p-3 border border-gray-300 rounded-lg mt-3 text-white dark:text-gray-400 appearance-none relative z-10">
-              <option *ngIf="companyBooked.includes(cy.toString())" value="alreadyBooked" class="text-sm text-gray-700 bg-white dark:text-gray-400" [selected]="event_en_cours.companySollicite.includes(cy)">Already booked</option>
+              <option *ngIf="companyBooked.includes(cy.toString())" value="alreadyBooked" class="text-sm text-gray-700 bg-white dark:text-gray-400" [selected]="event_en_cours.companySollicite.includes(cy)">{{'35.9' | translate}}</option>
               <option value="hired" class="text-sm text-gray-700 bg-white dark:text-gray-400" [selected]="event_en_cours.companySollicite.includes(cy)">{{'35.4' | translate}}</option>
               <option value="not_hired" class="text-sm text-gray-700 bg-white dark:text-gray-400" [selected]="!event_en_cours.companySollicite.includes(cy)">Not committed</option>
             </select>
@@ -145,7 +145,7 @@
       <img src="{{currentUser && currentUser.photo ? currentUser.photo : 'assets/images/user.png'}}" alt="" class="h-full w-full rounded-full overflow-hidden shadow" />
     </div>
     <form #form="ngForm" class="w-full">
-      <input routerLink="../../new-topic" type="text" placeholder="Ask a question..Start a Discussion" class="placeholder-gray-600 w-full p-4 h-16 place-items-center border border-gray-400 rounded-md focus:outline-none" />
+      <input routerLink="../../new-topic" type="text" placeholder="{{'20.14' | translate}}" class="placeholder-gray-600 w-full p-4 h-16 place-items-center border border-gray-400 rounded-md focus:outline-none" />
     </form>
   </div>
 </section>

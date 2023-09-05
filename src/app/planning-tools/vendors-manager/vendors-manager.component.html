@@ -68,11 +68,11 @@
             <form #form1="ngForm">
               <select [disabled]="isLoading || companyBooked.includes(cy)" [ngModel]="event_en_cours.companySollicite.includes(cy) ? 'hired' : ''" (ngModelChange)="updateEtatEvent(event_en_cours, cy, form1.value.etat)" name="etat" aria-label="Selected tab" class="{{form1.value.etat === 'hired' ? 'bg-green-500' : (form1.value.etat === '' ? 'bg-gray-800' : 'bg-red-500')}} focus:outline-none form-select block w-full p-3 border border-gray-300 rounded-lg mt-3 text-white dark:text-gray-400 appearance-none relative z-10">
                 <option value="" class="text-sm text-gray-700 bg-white dark:text-gray-400" [selected]="!event_en_cours.companySollicite.includes(cy)">...</option>
-                <option value="hired" class="text-sm text-gray-700 bg-white dark:text-gray-400" [selected]="event_en_cours.companySollicite.includes(cy)">Hired</option>
-                <option value="not_hired" class="text-sm text-gray-700 bg-white dark:text-gray-400">Not committed</option>
+                <option value="hired" class="text-sm text-gray-700 bg-white dark:text-gray-400" [selected]="event_en_cours.companySollicite.includes(cy)">{{'35.11' | translate}}</option>
+                <option value="not_hired" class="text-sm text-gray-700 bg-white dark:text-gray-400">{{'35.10' | translate}}</option>
               </select>
               <div class="flex items-center mt-2">
-                <button [disabled]="!event_en_cours.companySollicite.includes(cy) || isLoading || companyBooked.includes(cy)" (click)="requestBooked(cy, event_en_cours.id)" type="button" class="w-full disabled:text-gray-400 disabled:bg-gray-200 text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">{{ companyBooked.includes(cy) ? 'Already booked' : 'Request booked'}}</button>
+                <button [disabled]="!event_en_cours.companySollicite.includes(cy) || isLoading || companyBooked.includes(cy)" (click)="requestBooked(cy, event_en_cours.id)" type="button" class="w-full disabled:text-gray-400 disabled:bg-gray-200 text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">{{ companyBooked.includes(cy) ? ('35.9' | translate) : ('35.7' | translate)}}</button>
               </div>
             </form>
           </div>

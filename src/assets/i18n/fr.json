@@ -437,7 +437,7 @@
   },
   "32" : {
     "1" : "Mes fournisseurs",
-    "2" : "Pas de fournisseur",
+    "2" : "Pas d'élément",
     "3" : "Voir tout mes fournisseurs",
     "4" : "Mes invités",
     "5" : "Pas d’invité",
@@ -479,11 +479,12 @@
     "12" : "Écrire...",
     "13" : "Ajouter une tâche",
     "14" : "Annuler",
-    "15" : "Terminée ",
-    "16" : "Nom Description ",
-    "17" : "Date d’échéance ",
-    "18" : "Options",
-    "19" : "Supprimer"
+    "15" : "Terminée ?",
+    "16" : "Nom ",
+    "17" : "Expiry date",
+    "18": "Date de la tâche",
+    "19" : "Options",
+    "20" : "Supprimer"
   },
   "35" : {
     "1" : "Gestionnaire des fournisseurs",
@@ -492,8 +493,11 @@
     "4" : "Fournisseurs embauchés",
     "5" : "Aucun élément affiché",
     "6" : "Quand il y a un vendeur",
-    "7" : "Demande de réservation",
-    "8" : "Parcourez les fournisseurs et aimez leur profil pour les faire apparaître sur votre liste de favoris"
+    "7" : "Demander reservation",
+    "8" : "Parcourez les fournisseurs et aimez leur profil pour les faire apparaître sur votre liste de favoris",
+    "9": "Déjà réservé",
+    "10": "Non engagé",
+    "11": "Embauché"
   },
   "36" : {
     "1" : "En attente",
@@ -555,7 +559,9 @@
     "2" : "À VENIR"
   },
   "39" : {
-    "1" : "Demander le prix"
+    "1" : "Demander le prix",
+    "2" : "Pas d'élément",
+    "3" : "Pas d'évènement"
   }
 }
 

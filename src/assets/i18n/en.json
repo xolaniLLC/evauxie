@@ -481,7 +481,7 @@
     "14": "Cancel",
     "15": "Completed ?",
     "16": "Name",
-    "17": "Description",
+    "17": "Date expiration",
     "18": "Date task",
     "19" : "Options",
     "20" : "Delete"
@@ -494,7 +494,10 @@
     "5": "No items displayed",
     "6": "When there is a vendor",
     "7": "Request booking",
-    "8": "Browse through vendors and like their profile to have them appear on your favorite list"
+    "8": "Browse through vendors and like their profile to have them appear on your favorite list",
+    "9": "Already booked",
+    "10": "Not committed",
+    "11": "Hired"
   },
   "36" : {
     "1": "Pending",
@@ -556,6 +559,8 @@
     "2": "COMING SOON"
   },
   "39" : {
-    "1": "Request pricing"
+    "1": "Request pricing",
+    "2" : "No element",
+    "3" : "No event"
   }
 }

@@ -35,7 +35,7 @@ export class CompanyComponent implements OnInit {
 
   constructor(private authService: AuthentificationService, private translate: TranslateService, private avisCompanyService: AvisCompanyService, private alertService: AlertService, private activatedRoute: ActivatedRoute, private evenementService: EvenementService, private companyService: CompanyService, private categorieService: CategoriesService, private writeMailService: WriteMailService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
 
     this.slider = document.getElementById("slider");
     this.defaultTransform=0;
@@ -89,6 +89,8 @@ export class CompanyComponent implements OnInit {
       }
     );
   }
+
+
 
   getValueTraduct(texte: string, langue: string = '') {
     const wrapper = document.createElement('div');
